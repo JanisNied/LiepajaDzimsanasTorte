@@ -8,11 +8,42 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "MeshInstance",
+"class": "CloudDome",
+"language": "GDScript",
+"path": "res://addons/cloud/Cloud.gd"
+}, {
+"base": "ResourceFormatLoader",
+"class": "HTerrainDataLoader",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_loader.gd"
+}, {
+"base": "ResourceFormatSaver",
+"class": "HTerrainDataSaver",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
+} ]
+_global_script_class_icons={
+"CloudDome": "",
+"HTerrainDataLoader": "",
+"HTerrainDataSaver": ""
+}
+
 [application]
 
 config/name="GodotCake"
-run/main_scene="res://MenuScene/Menu.tscn"
+run/main_scene="res://Scenes/SplashScreen/splashscene.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SceneManager="*res://addons/scene_manager/scene_manager.tscn"
+Scenes="*res://addons/scene_manager/scenes.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/cloud/plugin.cfg", "res://addons/radial_progress/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/silicon.vfx.lens_flare/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [global]
 
