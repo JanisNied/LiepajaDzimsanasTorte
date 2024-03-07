@@ -274,7 +274,6 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 script = ExtResource( 4 )
-progress = 100
 bg_color = Color( 0.501961, 0.501961, 0.501961, 0 )
 bar_color = Color( 0.333333, 0.333333, 0.333333, 1 )
 
