@@ -7,7 +7,7 @@ func _ready():
 	disableAreas()
 
 func _input(event):
-	if event is InputEventKey and event.pressed and anim:
+	if (event is InputEventKey or event is InputEventMouseButton) and anim:
 		anim = false
 		animationplayer.play("ZoomToTable")
 
