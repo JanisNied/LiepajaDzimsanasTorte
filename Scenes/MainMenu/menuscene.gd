@@ -1,6 +1,7 @@
 extends Spatial
 
 var anim = true
+var rulesRead = false;
 onready var animationplayer = $Camera/CameraAnim
 
 func _ready():

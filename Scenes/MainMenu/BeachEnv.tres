@@ -12,6 +12,7 @@ background_sky_orientation = Basis( 0.540402, -0.0887104, -0.836718, 0, 0.994427
 background_energy = 0.47
 ambient_light_color = Color( 0.992157, 0.686275, 0.364706, 1 )
 ambient_light_energy = 2.58
+ambient_light_sky_contribution = 0.25
 tonemap_mode = 2
 tonemap_exposure = 1.7
 tonemap_white = 11.05
