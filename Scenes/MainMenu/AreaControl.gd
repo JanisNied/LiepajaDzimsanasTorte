@@ -1,15 +1,6 @@
-extends Spatial
+extends Camera
 
-var anim = true
-onready var animationplayer = $Camera/CameraAnim
 
-func _ready():
-	disableAreas()
-
-func _input(event):
-	if event is InputEventKey and event.pressed and anim:
-		anim = false
-		animationplayer.play("ZoomToTable")
 
 func disableAreas():
 	$PlaySelector/Area.hide()

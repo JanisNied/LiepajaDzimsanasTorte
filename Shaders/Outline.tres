@@ -1,0 +1,70 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+ 
+render_mode unshaded, cull_front;
+ 
+ 
+uniform float border_width : hint_range(0,1,0.001);
+uniform vec4 color : hint_color = vec4(1.0);
+ 
+uniform bool pattern;
+uniform float line_number : hint_range(0,100,1);
+uniform float line_sharpness : hint_range(0,10,0.001);
+ 
+uniform bool pulse;
+uniform float pulse_speed : hint_range(0,100,1);
+ 
+uniform bool line_movement;
+uniform float line_movement_speed : hint_range(-100,100,1);
+ 
+uniform bool wave;
+ 
+void vertex() {
+	VERTEX += VERTEX * border_width;
+}
+ 
+void fragment() {
+	ALBEDO = color.xyz;
+	if (pattern) 
+	{
+		vec2 uv = VERTEX.xy * line_number;
+		ALBEDO = sin(uv.xxx + uv.yyy) * line_sharpness * color.xyz;
+ 
+		if (pulse)
+		{
+			ALBEDO = sin(uv.xxx + uv.yyy) * line_sharpness * color.xyz * sin(TIME * pulse_speed);
+		}
+ 
+		if (line_movement)
+		{
+			ALBEDO = sin(uv.xxx + uv.yyy + TIME * line_movement_speed) * line_sharpness * color.xyz;
+		}
+ 
+		if (pulse && line_movement)
+		{
+			ALBEDO = sin(uv.xxx + uv.yyy + TIME * line_movement_speed) * line_sharpness * color.xyz * sin(TIME * pulse_speed);
+		}
+	}
+ 
+	if (wave)
+	{
+		vec2 uv = VERTEX.xy * line_number;
+		ALBEDO = sin(uv.xxx + TIME * line_movement_speed) * line_sharpness * color.xyz;
+	}
+ 
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/border_width = 0.023
+shader_param/color = Color( 0.698039, 0.992157, 0.662745, 1 )
+shader_param/pattern = false
+shader_param/line_number = 0.0
+shader_param/line_sharpness = null
+shader_param/pulse = false
+shader_param/pulse_speed = 100.0
+shader_param/line_movement = false
+shader_param/line_movement_speed = 100.0
+shader_param/wave = false
