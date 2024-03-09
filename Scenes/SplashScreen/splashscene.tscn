@@ -149,7 +149,7 @@ anims/COIN = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
 [node name="Teksts" type="Spatial" parent="ViewportContainer/Viewport/Coin"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 0.136, 0, -1, -5.94475e-09, 0, 0, 0.262 )
+transform = Transform( 1, 0, 0, 0, -0.5, 0.117779, 0, -0.866025, -0.068, 0, 0, 0.262 )
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
