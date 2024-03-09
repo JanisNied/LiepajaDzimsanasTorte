@@ -1,0 +1,168 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/SplashScreen/untitled.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://addons/SIsilicon.3d.text/icon_label_3d.svg" type="Texture" id=3]
+[ext_resource path="res://addons/SIsilicon.3d.text/label_3d.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/SplashScreen/splashscene.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "COIN"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("50Cent:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.0947323, 0.0947323 ),
+"update": 0,
+"values": [ Vector3( 1.1, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("50Cent:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.5, 3 ),
+"transitions": PoolRealArray( 0.176777, 1.7411 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -180 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Teksts:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("50Cent:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1.1, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("50Cent:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Teksts:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="MainScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -250.0
+margin_right = 250.0
+margin_bottom = 250.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 500, 500 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Coin" type="Spatial" parent="ViewportContainer/Viewport"]
+
+[node name="50Cent" type="MeshInstance" parent="ViewportContainer/Viewport/Coin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, 0 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("../../../..")
+
+[node name="Label3D" type="Spatial" parent="ViewportContainer/Viewport/Coin/50Cent"]
+transform = Transform( -1, -8.74228e-08, 5.19706e-16, 0, -4.37114e-08, -0.136, 8.74228e-08, -1, 5.94475e-09, 0, -0.00714122, 0 )
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+text = "399"
+text_size = 0.225
+font = null
+align = 2
+color = Color( 0, 0, 0, 1 )
+metallic = 1.0
+roughness = 0.5
+emission_color = Color( 0, 0, 0, 1 )
+emission_strength = 0.0
+extrude = 0.1
+max_steps = 256
+step_size = 1.0
+
+[node name="SpotLight" type="SpotLight" parent="ViewportContainer/Viewport/Coin"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.781, 0 )
+light_energy = 1.5
+
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport/Coin"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.612, 0 )
+fov = 81.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ViewportContainer/Viewport/Coin"]
+anims/COIN = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="Teksts" type="Spatial" parent="ViewportContainer/Viewport/Coin"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 0.136, 0, -1, -5.94475e-09, 0, 0, 0.262 )
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+text = "centi"
+text_size = 0.093
+font = null
+align = 2
+color = Color( 1, 1, 1, 1 )
+metallic = 1.0
+roughness = 0.5
+emission_color = Color( 1, 1, 1, 1 )
+emission_strength = 0.12
+extrude = 0.1
+max_steps = 256
+step_size = 1.0

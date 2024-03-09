@@ -1,0 +1,8 @@
+{
+	"contains_albedo": false,
+	"resolution": 1080,
+	"src": {
+		"a": "res://Scenes/MainMenu/aerial_beach_01/aerial_beach_01_rough_4k.jpg",
+		"rgb": "res://Scenes/MainMenu/aerial_beach_01/aerial_beach_01_nor_gl_4k.jpg"
+	}
+}
