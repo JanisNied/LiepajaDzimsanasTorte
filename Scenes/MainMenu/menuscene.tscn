@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://assets/textures/lake.jpg" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainMenu/rock/Rock030_2K-JPG_NormalGL.jpg" type="Texture" id=2]
@@ -15,14 +15,15 @@
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/MainMenu/Picnic/picnic.fbx" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/MainMenu/menuscene.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/MainMenu/sign/signmat.tres" type="Material" id=16]
 [ext_resource path="res://Scenes/MainMenu/Picnic/cakeobj1.obj" type="ArrayMesh" id=17]
+[ext_resource path="res://Scenes/MainMenu/sign/signarrow.obj" type="ArrayMesh" id=18]
 [ext_resource path="res://Scenes/MainMenu/cakemat.tres" type="Material" id=19]
 [ext_resource path="res://Assets/Notebook/Sketchfab_2023_02_28_13_25_16.fbx" type="PackedScene" id=23]
 [ext_resource path="res://addons/SIsilicon.3d.text/icon_label_3d.svg" type="Texture" id=24]
 [ext_resource path="res://addons/SIsilicon.3d.text/label_3d.gd" type="Script" id=25]
 [ext_resource path="res://Scenes/MainMenu/selectionbox.tres" type="Material" id=26]
 [ext_resource path="res://Scenes/MainMenu/plate/plates.obj" type="ArrayMesh" id=27]
-[ext_resource path="res://Scenes/MainMenu/PlaySelector.gd" type="Script" id=28]
 [ext_resource path="res://Assets/Cake/textures/Blueberry Cream.png" type="Texture" id=29]
 [ext_resource path="res://Assets/Cake/textures/Tea flavour Cake.png" type="Texture" id=30]
 [ext_resource path="res://Assets/Cake/textures/Purple Cake.png" type="Texture" id=31]
@@ -50,7 +51,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=67]
+[sub_resource type="ShaderMaterial" id=92]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -64,9 +65,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=68]
+[sub_resource type="ShaderMaterial" id=93]
 render_priority = -124
-next_pass = SubResource( 67 )
+next_pass = SubResource( 92 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 2, 0 )
@@ -79,9 +80,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=69]
+[sub_resource type="ShaderMaterial" id=94]
 render_priority = -125
-next_pass = SubResource( 68 )
+next_pass = SubResource( 93 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 2, 0 )
@@ -94,9 +95,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=70]
+[sub_resource type="ShaderMaterial" id=95]
 render_priority = -126
-next_pass = SubResource( 69 )
+next_pass = SubResource( 94 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 2, 0 )
@@ -109,9 +110,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=71]
+[sub_resource type="ShaderMaterial" id=96]
 render_priority = -127
-next_pass = SubResource( 70 )
+next_pass = SubResource( 95 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 2, 0 )
@@ -124,9 +125,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=72]
+[sub_resource type="ShaderMaterial" id=97]
 render_priority = -128
-next_pass = SubResource( 71 )
+next_pass = SubResource( 96 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 2, 0 )
@@ -279,6 +280,38 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationNodeAnimation" id=49]
 animation = "RESET"
+
+[sub_resource type="GDScript" id=91]
+script/source = "extends Spatial
+onready var cameraAnimHandler = get_parent().get_node(\"Camera/CameraAnim\")
+
+func _ready():
+	pass 
+
+
+func _on_Area_mouse_entered():
+	$Teksts.emission_strength = 1.35
+	$cakeobj1/Outline.show()
+	$Plate/plateoutline.show()
+	$animplayer.play(\"FloatUp\")
+	pass 
+
+
+func _on_Area_mouse_exited():
+	$Teksts.emission_strength = 0
+	$cakeobj1/Outline.hide()
+	$Plate/plateoutline.hide()
+	$animplayer.play_backwards(\"FloatUp\")
+	pass
+
+
+func _on_Area_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			print(\"[Play] Menu open!\")
+			$Area.hide()
+			get_parent().get_node(\"Camera/CameraAnim\").play(\"ZoomToNotebook\")
+"
 
 [sub_resource type="ArrayMesh" id=53]
 surfaces/0 = {
@@ -462,6 +495,37 @@ tracks/5/keys = {
 "values": [ Vector3( -49.4973, 177.649, -0.160081 ) ]
 }
 
+[sub_resource type="GDScript" id=98]
+script/source = "extends Spatial
+onready var cameraAnimHandler = get_parent().get_node(\"Camera/CameraAnim\")
+
+func _ready():
+	pass 
+
+
+func _on_Area_mouse_entered():
+	$Teksts.emission_strength = 1.35
+	$cakeobj1/Outline.show()
+	$Plate/plateoutline.show()
+	$animplayer.play(\"FloatUp\")
+	pass 
+
+
+func _on_Area_mouse_exited():
+	$Teksts.emission_strength = 0
+	$cakeobj1/Outline.hide()
+	$Plate/plateoutline.hide()
+	$animplayer.play_backwards(\"FloatUp\")
+	pass
+
+
+func _on_Area_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			$Area.hide()
+			print(\"[Settings] Menu open!\")
+"
+
 [sub_resource type="SpatialMaterial" id=81]
 resource_local_to_scene = true
 albedo_texture = ExtResource( 29 )
@@ -632,6 +696,37 @@ tracks/5/keys = {
 "values": [ Vector3( -49.4973, 177.649, -0.160081 ) ]
 }
 
+[sub_resource type="GDScript" id=89]
+script/source = "extends Spatial
+onready var cameraAnimHandler = get_parent().get_node(\"Camera/CameraAnim\")
+
+func _ready():
+	pass 
+
+
+func _on_Area_mouse_entered():
+	$Teksts.emission_strength = 1.35
+	$cakeobj1/Outline.show()
+	$Plate/plateoutline.show()
+	$animplayer.play(\"FloatUp\")
+	pass 
+
+
+func _on_Area_mouse_exited():
+	$Teksts.emission_strength = 0
+	$cakeobj1/Outline.hide()
+	$Plate/plateoutline.hide()
+	$animplayer.play_backwards(\"FloatUp\")
+	pass
+
+
+func _on_Area_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			$Area.hide()
+			print(\"[Leaderboard] Menu open!\")
+"
+
 [sub_resource type="SpatialMaterial" id=82]
 resource_local_to_scene = true
 albedo_texture = ExtResource( 31 )
@@ -801,6 +896,37 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector3( -49.4973, 177.649, -0.160081 ) ]
 }
+
+[sub_resource type="GDScript" id=90]
+script/source = "extends Spatial
+onready var cameraAnimHandler = get_parent().get_node(\"Camera/CameraAnim\")
+
+func _ready():
+	pass 
+
+
+func _on_Area_mouse_entered():
+	$Teksts.emission_strength = 1.35
+	$cakeobj1/Outline.show()
+	$Plate/plateoutline.show()
+	$animplayer.play(\"FloatUp\")
+	pass 
+
+
+func _on_Area_mouse_exited():
+	$Teksts.emission_strength = 0
+	$cakeobj1/Outline.hide()
+	$Plate/plateoutline.hide()
+	$animplayer.play_backwards(\"FloatUp\")
+	pass
+
+
+func _on_Area_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			$Area.hide()
+			print(\"[About] Menu open!\")
+"
 
 [sub_resource type="SpatialMaterial" id=83]
 resource_local_to_scene = true
@@ -1005,7 +1131,7 @@ transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968
 
 [node name="Cloud" parent="Sand" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 72 )
+material_override = SubResource( 97 )
 skeleton = NodePath("../..")
 cloud_transform_speed = Vector2( 0.001, 0.001 )
 cloud_min_density_low = 0.466
@@ -1066,7 +1192,7 @@ transform = Transform( -0.0426478, -0.033384, -1.94518, -0.000731762, 1.94565, -
 
 [node name="PlaySelector" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.496, 17.9696, 153.214 )
-script = ExtResource( 28 )
+script = SubResource( 91 )
 
 [node name="cakeobj1" type="MeshInstance" parent="PlaySelector"]
 transform = Transform( -1.10924, 0, -1.24559, 0, 0.865469, 0, 1.24559, 0, -1.10924, -0.125909, -0.00315666, -0.11351 )
@@ -1086,7 +1212,7 @@ transform = Transform( 0.180973, 0, 0, 0, 0.180973, 0, 0, 0, 0.180973, 0, 0, 0 )
 shape = SubResource( 36 )
 
 [node name="Teksts" type="Spatial" parent="PlaySelector"]
-transform = Transform( -1.58391, -0.0538759, 0.00287223, -0.00287687, 1.02968, 0.0819733, -0.0683992, 1.20429, -0.0699596, 0.0519314, 0.0748119, -0.10112 )
+transform = Transform( -1.58391, -0.0538759, 0.00287223, -0.00287687, 1.02968, 0.0819733, -0.0683991, 1.20429, -0.0699596, 0.0519314, 0.0748119, -0.10112 )
 script = ExtResource( 25 )
 __meta__ = {
 "_editor_icon": ExtResource( 24 )
@@ -1120,7 +1246,7 @@ anims/RESET = SubResource( 66 )
 
 [node name="SettingsSelector" type="Spatial" parent="."]
 transform = Transform( 0.735707, 0, -0.6773, 0, 1, 0, 0.6773, 0, 0.735707, 14.7743, 17.9696, 153.189 )
-script = ExtResource( 28 )
+script = SubResource( 98 )
 
 [node name="cakeobj1" type="MeshInstance" parent="SettingsSelector"]
 transform = Transform( -1.10924, 0, -1.24559, 0, 0.865469, 0, 1.24559, 0, -1.10924, -0.125909, -0.00315666, -0.11351 )
@@ -1140,7 +1266,7 @@ transform = Transform( 0.180973, 0, 0, 0, 0.180973, 0, 0, 0, 0.180973, 0, 0, 0 )
 shape = SubResource( 36 )
 
 [node name="Teksts" type="Spatial" parent="SettingsSelector"]
-transform = Transform( -1.58391, -0.053876, 0.00287223, -0.00287687, 1.02968, 0.0819733, -0.0683992, 1.20429, -0.0699596, 0.0519314, 0.0748119, -0.10112 )
+transform = Transform( -1.58391, -0.0538759, 0.00287223, -0.00287687, 1.02968, 0.0819733, -0.0683991, 1.20429, -0.0699596, 0.0519314, 0.0748119, -0.10112 )
 script = ExtResource( 25 )
 __meta__ = {
 "_editor_icon": ExtResource( 24 )
@@ -1174,7 +1300,7 @@ anims/RESET = SubResource( 74 )
 
 [node name="LeaderboardSelector" type="Spatial" parent="."]
 transform = Transform( 0.870656, 0, 0.491892, 0, 1, 0, -0.491892, 0, 0.870656, 15.1881, 17.9696, 152.629 )
-script = ExtResource( 28 )
+script = SubResource( 89 )
 
 [node name="cakeobj1" type="MeshInstance" parent="LeaderboardSelector"]
 transform = Transform( -1.10924, 0, -1.24559, 0, 0.865469, 0, 1.24559, 0, -1.10924, -0.125909, -0.00315666, -0.11351 )
@@ -1194,7 +1320,7 @@ transform = Transform( 0.180973, 0, 0, 0, 0.180973, 0, 0, 0, 0.180973, 0, 0, 0 )
 shape = SubResource( 36 )
 
 [node name="Teksts" type="Spatial" parent="LeaderboardSelector"]
-transform = Transform( -1.58391, -0.053876, 0.00287223, -0.00287688, 1.02968, 0.0819733, -0.0683992, 1.20429, -0.0699596, 0.0519314, 0.0748119, -0.10112 )
+transform = Transform( -1.58391, -0.0538759, 0.00287223, -0.00287687, 1.02968, 0.0819733, -0.0683991, 1.20429, -0.0699596, 0.0519314, 0.0748119, -0.10112 )
 script = ExtResource( 25 )
 __meta__ = {
 "_editor_icon": ExtResource( 24 )
@@ -1228,7 +1354,7 @@ anims/RESET = SubResource( 76 )
 
 [node name="AboutSelector" type="Spatial" parent="."]
 transform = Transform( 0.254923, 0, -0.966962, 0, 1, 0, 0.966962, 0, 0.254923, 14.5457, 17.9696, 152.629 )
-script = ExtResource( 28 )
+script = SubResource( 90 )
 
 [node name="cakeobj1" type="MeshInstance" parent="AboutSelector"]
 transform = Transform( -1.10924, 0, -1.24559, 0, 0.865469, 0, 1.24559, 0, -1.10924, -0.125909, -0.00315666, -0.11351 )
@@ -1248,7 +1374,7 @@ transform = Transform( 0.180973, 0, 0, 0, 0.180973, 0, 0, 0, 0.180973, 0, 0, 0 )
 shape = SubResource( 36 )
 
 [node name="Teksts" type="Spatial" parent="AboutSelector"]
-transform = Transform( -1.58391, -0.053876, 0.00287223, -0.00287687, 1.02968, 0.0819733, -0.0683992, 1.20429, -0.0699596, 0.0519314, 0.0748119, -0.10112 )
+transform = Transform( -1.58391, -0.0538759, 0.00287223, -0.00287687, 1.02968, 0.0819733, -0.0683991, 1.20429, -0.0699596, 0.0519314, 0.0748119, -0.10112 )
 script = ExtResource( 25 )
 __meta__ = {
 "_editor_icon": ExtResource( 24 )
@@ -1279,6 +1405,75 @@ material/0 = SubResource( 87 )
 [node name="animplayer" type="AnimationPlayer" parent="AboutSelector"]
 anims/FloatUp = SubResource( 79 )
 anims/RESET = SubResource( 80 )
+
+[node name="MenuArrow" type="MeshInstance" parent="."]
+transform = Transform( 0.693692, 0.12454, 0.709423, -0.161205, 0.986798, -0.0156026, -0.702, -0.103539, 0.70461, 21.572, 16.473, 148.731 )
+mesh = ExtResource( 18 )
+material/0 = ExtResource( 16 )
+material/1 = ExtResource( 16 )
+
+[node name="MainMenuHeader" type="Spatial" parent="MenuArrow"]
+transform = Transform( 4.04149, 0, 0, 0, 4.04149, 0, 0, 0, 0.274821, 0.0430298, 1.3363, 0.113495 )
+script = ExtResource( 25 )
+__meta__ = {
+"_editor_icon": ExtResource( 24 )
+}
+text = "Torte"
+text_size = 0.093
+font = null
+align = 2
+color = Color( 1, 1, 1, 1 )
+metallic = 1.0
+roughness = 0.0
+emission_color = Color( 1, 1, 1, 1 )
+emission_strength = 2.91
+extrude = 0.1
+max_steps = 256
+step_size = 1.0
+
+[node name="MenuArrow2" type="MeshInstance" parent="."]
+transform = Transform( 0.671992, 0, 0.740558, 0, 1, 0, 0.740558, 0, -0.671992, 20.205, 16.023, 151.814 )
+mesh = ExtResource( 18 )
+material/0 = ExtResource( 16 )
+material/1 = ExtResource( 16 )
+
+[node name="MainMenuHeader" type="Spatial" parent="MenuArrow2"]
+transform = Transform( -1.85024, 0, 0, 0, 1.85024, -1.09992e-08, 0, 1.61753e-07, 0.125816, -0.000528336, 1.42026, 0.130386 )
+script = ExtResource( 25 )
+__meta__ = {
+"_editor_icon": ExtResource( 24 )
+}
+text = "Spied jebko"
+text_size = 0.093
+font = null
+align = 3
+color = Color( 1, 1, 1, 1 )
+metallic = 1.0
+roughness = 0.0
+emission_color = Color( 1, 1, 1, 1 )
+emission_strength = 2.91
+extrude = 0.1
+max_steps = 256
+step_size = 1.0
+
+[node name="MainMenuHeader2" type="Spatial" parent="MenuArrow2"]
+transform = Transform( -1.85024, 0, 0, 0, 1.85024, -1.09992e-08, 0, 1.61753e-07, 0.125816, -0.000528336, 1.264, 0.130386 )
+script = ExtResource( 25 )
+__meta__ = {
+"_editor_icon": ExtResource( 24 )
+}
+text = "lai turpinatu"
+text_size = 0.093
+font = null
+align = 3
+color = Color( 1, 1, 1, 1 )
+metallic = 1.0
+roughness = 0.0
+emission_color = Color( 1, 1, 1, 1 )
+emission_strength = 2.91
+extrude = 0.1
+max_steps = 256
+step_size = 1.0
 
 [connection signal="input_event" from="PlaySelector/Area" to="PlaySelector" method="_on_Area_input_event"]
 [connection signal="mouse_entered" from="PlaySelector/Area" to="PlaySelector" method="_on_Area_mouse_entered"]
