@@ -17,10 +17,8 @@ func _ready():
 
 
 func _on_Area_mouse_entered():
-	get_parent().get_node("TestLight").show()
 	pass # Replace with function body.
 
 
 func _on_Area_mouse_exited():
-	get_parent().get_node("TestLight").hide()
 	pass # Replace with function body.
