@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sun.mp3-d5ada35e7796e92f7b263a78abd21993.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/sun.mp3"
+dest_files=[ "res://.import/sun.mp3-d5ada35e7796e92f7b263a78abd21993.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -29,6 +29,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
 }, {
+"base": "Resource",
+"class": "MenuResource",
+"language": "GDScript",
+"path": "res://Scenes/MainMenu/MenuResource.gd"
+}, {
+"base": "Resource",
+"class": "SaveSystemTestResource",
+"language": "GDScript",
+"path": "res://addons/save_system/save_system_test/save_system_test_resource.gd"
+}, {
+"base": "Resource",
+"class": "SaveSystemTestSubresource",
+"language": "GDScript",
+"path": "res://addons/save_system/save_system_test/save_system_test_subresource.gd"
+}, {
 "base": "Node",
 "class": "SoundManagerModule",
 "language": "GDScript",
@@ -39,6 +54,9 @@ _global_script_class_icons={
 "CloudDome": "",
 "HTerrainDataLoader": "",
 "HTerrainDataSaver": "",
+"MenuResource": "",
+"SaveSystemTestResource": "",
+"SaveSystemTestSubresource": "",
 "SoundManagerModule": ""
 }
 
@@ -54,16 +72,19 @@ config/icon="res://icon.png"
 SceneManager="*res://addons/scene_manager/scene_manager.tscn"
 Scenes="*res://addons/scene_manager/scenes.gd"
 SoundManager="*res://addons/sound_manager/module/SoundManager.tscn"
+SaveSystem="*res://addons/save_system/save_system.gd"
 
 [display]
 
 window/size/height=576
+window/size/resizable=false
 mouse_cursor/custom_image="res://Assets/cursorexnew.png"
 window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/cloud/plugin.cfg", "res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/radial_progress/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/silicon.vfx.lens_flare/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/cloud/plugin.cfg", "res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/radial_progress/plugin.cfg", "res://addons/save_system/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/silicon.vfx.lens_flare/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [global]
 

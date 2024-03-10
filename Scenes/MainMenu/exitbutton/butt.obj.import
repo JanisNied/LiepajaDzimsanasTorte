@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/butt.obj-7b23bdcbe6a64b54b6ae556165d510aa.mesh"
+
+[deps]
+
+files=[ "res://.import/butt.obj-7b23bdcbe6a64b54b6ae556165d510aa.mesh" ]
+
+source_file="res://Scenes/MainMenu/exitbutton/butt.obj"
+dest_files=[ "res://.import/butt.obj-7b23bdcbe6a64b54b6ae556165d510aa.mesh", "res://.import/butt.obj-7b23bdcbe6a64b54b6ae556165d510aa.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

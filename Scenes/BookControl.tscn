@@ -1,0 +1,193 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Book.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Handvetica Neue Regular Trial.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 42
+font_data = ExtResource( 2 )
+
+[sub_resource type="GDScript" id=5]
+resource_name = "Return"
+script/source = "extends Label
+
+func _ready():
+	pass
+
+func _on_Return_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			print(\"woah\")
+			get_parent().get_parent().get_node(\"AnimationPlayer\").play(\"Back\")
+	pass 
+
+
+func _on_Return_mouse_entered():
+	theme.set_color_override(\"label_font_color\", Color(1, 0, 0))
+	pass 
+
+
+func _on_Return_mouse_exited():
+	theme.set_color_override(\"label_font_color\", Color(0, 0, 0))
+	pass 
+"
+
+[sub_resource type="DynamicFont" id=4]
+size = 15
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "Appear"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ViewportContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.0915054, 0.0915054 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1024, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Back"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ViewportContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.0915054, 0.0915054 ),
+"update": 0,
+"values": [ Vector2( -1024, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ViewportContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1024.0
+margin_right = 1024.0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3072.13
+margin_bottom = 1728.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 576 )
+own_world = true
+transparent_bg = true
+render_target_update_mode = 3
+
+[node name="Book" parent="ViewportContainer/Viewport" instance=ExtResource( 1 )]
+
+[node name="Title1" type="Label" parent="ViewportContainer"]
+margin_left = 190.0
+margin_top = 31.116
+margin_right = 490.0
+margin_bottom = 74.116
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "this is a page"
+align = 1
+autowrap = true
+
+[node name="Return" type="Label" parent="ViewportContainer"]
+margin_left = 820.0
+margin_top = 490.0
+margin_right = 850.0
+margin_bottom = 533.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "x"
+align = 2
+autowrap = true
+script = SubResource( 5 )
+
+[node name="Page1" type="Label" parent="ViewportContainer"]
+margin_left = 190.0
+margin_top = 81.659
+margin_right = 490.0
+margin_bottom = 124.659
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Yeah the time is now
+Burnt my dread in the drain
+I'm fearless now (For real)
+I ain’t pretending to be
+Nor I'm playing you see?
+From the bottom of my heart
+I'm ready to seize the day
+’Cause I know in your hearts there's a spot for me
+Believing in me gave me possibilities
+It's more like a gift that I don't deserve
+So I gotta give it back to you by all means
+By all means necessary
+Anybody еlse to y'all is secondary
+Time is running out if wе have any
+Don't worry I'm invincible, so legendary
+If I fall down I'm gonna get back up
+Right back up man to where I left off
+I won’t be caught by the fear of the battle
+Because I got my crew on my back
+You know I’ve already"
+autowrap = true
+
+[node name="Title2" type="Label" parent="ViewportContainer"]
+margin_left = 550.0
+margin_top = 31.116
+margin_right = 850.0
+margin_bottom = 74.116
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "this is a page"
+align = 1
+autowrap = true
+
+[node name="Page2" type="Label" parent="ViewportContainer"]
+margin_left = 550.0
+margin_top = 81.659
+margin_right = 850.0
+margin_bottom = 477.659
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Another wander in the night
+Let me paint the view
+Colour a town with my light
+For every moment shared with you
+Not out in the day
+But never fully gone
+Going to be back again
+Until the coming of a dawn"
+autowrap = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Appear = SubResource( 1 )
+anims/Back = SubResource( 6 )
+anims/RESET = SubResource( 2 )
+
+[connection signal="gui_input" from="ViewportContainer/Return" to="ViewportContainer/Return" method="_on_Return_gui_input"]
+[connection signal="mouse_entered" from="ViewportContainer/Return" to="ViewportContainer/Return" method="_on_Return_mouse_entered"]
+[connection signal="mouse_exited" from="ViewportContainer/Return" to="ViewportContainer/Return" method="_on_Return_mouse_exited"]

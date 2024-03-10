@@ -19,6 +19,10 @@ onready var fade_in_options = SceneManager.create_options(fade_in_speed, fade_in
 onready var general_options = SceneManager.create_general_options(color, timeout, clickable, add_to_back)
 
 func _ready():
+	OS.set_window_size(str2var("Vector2" + str(SaveSystem.get_var("Resolution"))))
+	center_window()
+	if (SaveSystem.get_var("WindowMode") == "Fullscreen"):
+		OS.window_fullscreen = true
 	$ViewportContainer/Viewport/Coin/Teksts.hide()
 	yield(get_tree().create_timer(1.0), "timeout")
 	$ViewportContainer/Viewport/Coin/AnimationPlayer.play("COIN")
@@ -30,3 +34,8 @@ func _ready():
 	SceneManager.change_scene("loadscene", fade_out_options, fade_in_options, general_options)
 	pass 
 
+func center_window():
+	var screen_size = OS.get_screen_size()
+	var window_size = OS.get_window_size()
+	var center_position = (screen_size - window_size) / 2
+	OS.set_window_position(center_position)

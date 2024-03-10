@@ -14,6 +14,6 @@ func loadScene() -> void:
 	SceneManager.change_scene_to_loaded_scene(fade_out_options, fade_in_options, general_options)
 
 func _input(event):
-	if event is InputEventKey and event.pressed and $EventHitbox.is_visible_in_tree():
+	if (event is InputEventKey or event is InputEventMouseButton) and $EventHitbox.is_visible_in_tree():
 		$EventHitbox.hide()
 		loadScene()

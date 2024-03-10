@@ -11,6 +11,7 @@ func _selectVideo():
 	$VideoArea/VideoScribble.hide()
 	$VideoArea.hide()
 	$AudioArea.show()
+	$Audio/Holder.hide()
 	$Audio/Holder/SettingsUI.hide()
 	pass
 	
@@ -18,7 +19,7 @@ func _selectAudio():
 	get_node("Audio").modulate = Color(0.13, 1.0, 0.33)
 	get_node("Video").modulate = Color(0.21, 0.21, 0.21)
 	$Audio/Holder.show()
-	$Audio/Holder.show()
+	$Video/Holder.hide()
 	$Audio/Holder/SettingsUI.show()
 	$AudioArea.hide()
 	$VideoArea.show()
@@ -37,7 +38,7 @@ func _hideEverything():
 	$Audio/Holder/SettingsUI.hide()
 	pass
 
-func _on_VideoArea_input_event(camera, event, position, normal, shape_idx):
+func _on_VideoArea_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 				_selectVideo()
@@ -54,7 +55,7 @@ func _on_VideoArea_mouse_exited():
 	pass
 
 
-func _on_AudioArea_input_event(camera, event, position, normal, shape_idx):
+func _on_AudioArea_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 				_selectAudio()
@@ -84,7 +85,7 @@ func _makeAvailable():
 	$VideoArea.show()
 	$AudioArea.show()
 	
-func _on_Return2_input_event(camera, event, position, normal, shape_idx):
+func _on_Return2_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 				_hideEverything()
