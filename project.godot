@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "HTerrainDataSaver",
 "language": "GDScript",
 "path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
+}, {
+"base": "Node",
+"class": "SoundManagerModule",
+"language": "GDScript",
+"path": "res://addons/sound_manager/module/internal_scripts/SoundManager_config.gd"
 } ]
 _global_script_class_icons={
 "ArrayUtils": "",
 "CloudDome": "",
 "HTerrainDataLoader": "",
-"HTerrainDataSaver": ""
+"HTerrainDataSaver": "",
+"SoundManagerModule": ""
 }
 
 [application]
@@ -47,17 +53,17 @@ config/icon="res://icon.png"
 
 SceneManager="*res://addons/scene_manager/scene_manager.tscn"
 Scenes="*res://addons/scene_manager/scenes.gd"
+SoundManager="*res://addons/sound_manager/module/SoundManager.tscn"
 
 [display]
 
 window/size/height=576
 mouse_cursor/custom_image="res://Assets/cursorexnew.png"
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/cloud/plugin.cfg", "res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/radial_progress/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/silicon.vfx.lens_flare/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/cloud/plugin.cfg", "res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/radial_progress/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/silicon.vfx.lens_flare/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [global]
 

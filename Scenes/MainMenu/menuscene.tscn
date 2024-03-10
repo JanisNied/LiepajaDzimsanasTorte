@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://assets/textures/lake.jpg" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainMenu/rock/Rock030_2K-JPG_NormalGL.jpg" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Scenes/MainMenu/cakemat.tres" type="Material" id=19]
 [ext_resource path="res://Assets/Handvetica Neue Regular Trial.ttf" type="DynamicFontData" id=20]
 [ext_resource path="res://Assets/scribble.png" type="Texture" id=21]
+[ext_resource path="res://Scenes/MainMenu/SettingsHandler.gd" type="Script" id=22]
 [ext_resource path="res://Assets/Notebook/Sketchfab_2023_02_28_13_25_16.fbx" type="PackedScene" id=23]
 [ext_resource path="res://addons/SIsilicon.3d.text/icon_label_3d.svg" type="Texture" id=24]
 [ext_resource path="res://addons/SIsilicon.3d.text/label_3d.gd" type="Script" id=25]
@@ -56,7 +57,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=130]
+[sub_resource type="ShaderMaterial" id=153]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -70,9 +71,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=131]
+[sub_resource type="ShaderMaterial" id=154]
 render_priority = -124
-next_pass = SubResource( 130 )
+next_pass = SubResource( 153 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -85,9 +86,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=132]
+[sub_resource type="ShaderMaterial" id=155]
 render_priority = -125
-next_pass = SubResource( 131 )
+next_pass = SubResource( 154 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -100,9 +101,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=133]
+[sub_resource type="ShaderMaterial" id=156]
 render_priority = -126
-next_pass = SubResource( 132 )
+next_pass = SubResource( 155 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -115,9 +116,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=134]
+[sub_resource type="ShaderMaterial" id=157]
 render_priority = -127
-next_pass = SubResource( 133 )
+next_pass = SubResource( 156 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -130,9 +131,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=135]
+[sub_resource type="ShaderMaterial" id=158]
 render_priority = -128
-next_pass = SubResource( 134 )
+next_pass = SubResource( 157 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -363,6 +364,72 @@ tracks/5/keys = {
 "values": [ 70.0, 94.4 ]
 }
 
+[sub_resource type="Animation" id=152]
+resource_name = "ZoomBackFromNotebookSettings"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( 13.899, 18.18, 152.963 ), Vector3( 15.09, 19.021, 152.135 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( -90, 75, 10 ), Vector3( -46.632, 167.665, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Camera:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ 95.0, 70.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Namebook/Settings:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "enableAreas"
+} ]
+}
+
 [sub_resource type="Animation" id=47]
 resource_name = "ZoomToNotebook"
 length = 3.0
@@ -413,6 +480,72 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 0.116629, 0.116629 ),
 "update": 0,
 "values": [ Vector3( -46.632, 167.665, 0 ), Vector3( -90, 170, 10 ) ]
+}
+
+[sub_resource type="Animation" id=145]
+resource_name = "ZoomToNotebook 2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( 15.09, 19.021, 152.135 ), Vector3( 13.899, 18.18, 152.963 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( -46.632, 167.665, 0 ), Vector3( -90, 75, 10 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Camera:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ 70.0, 95.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Namebook/Settings")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_makeAvailable"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Namebook/Settings:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=28]
@@ -520,6 +653,9 @@ func _on_YesArea_input_event(camera, event, position, normal, shape_idx):
 			get_parent().get_parent().rulesRead = true
 			hide()
 			get_parent().get_node(\"Ready\").show()
+			yield(get_tree().create_timer(2.0), \"timeout\")
+			get_parent().get_node(\"Ready/YesArea\").show()
+			get_parent().get_node(\"Ready/NoArea\").show()
 	pass
 "
 
@@ -540,7 +676,7 @@ albedo_color = Color( 0.976471, 0.12549, 0.12549, 0.768627 )
 albedo_texture = ExtResource( 21 )
 
 [sub_resource type="SphereShape" id=122]
-radius = 0.124145
+radius = 0.113494
 
 [sub_resource type="GDScript" id=138]
 script/source = "extends Spatial
@@ -582,6 +718,11 @@ func _on_YesArea_input_event(camera, event, position, normal, shape_idx):
 			get_parent().get_parent().get_node(\"Camera/CameraAnim\").play(\"ToTV\")
 	pass 
 "
+
+[sub_resource type="SpatialMaterial" id=159]
+flags_transparent = true
+albedo_color = Color( 0.372549, 0.721569, 0.105882, 0.768627 )
+albedo_texture = ExtResource( 21 )
 
 [sub_resource type="GDScript" id=91]
 script/source = "extends Spatial
@@ -828,7 +969,9 @@ func _on_Area_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			$Area.hide()
-			print(\"[Settings] Menu open!\")
+			get_parent().get_node(\"Camera/CameraAnim\").play(\"ZoomToNotebook 2\")
+			get_parent().disableAreas()
+			get_parent().get_node(\"Namebook/Settings\").show()
 "
 
 [sub_resource type="SpatialMaterial" id=81]
@@ -1417,7 +1560,7 @@ albedo_texture = SubResource( 127 )
 [node name="Menu" type="Spatial"]
 script = ExtResource( 15 )
 
-[node name="Sand" type="Spatial" parent="."]
+[node name="Environment" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 16.3651, 0 )
 script = ExtResource( 13 )
 lod_scale = 2.0
@@ -1436,18 +1579,18 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
 
-[node name="Water" type="MeshInstance" parent="Sand"]
+[node name="Water" type="MeshInstance" parent="Environment"]
 transform = Transform( 51.2598, 0, 0, 0, 51.2598, 0, 0, 0, 51.2598, -42.7284, -0.0722008, 90.806 )
 use_in_baked_light = true
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
-[node name="PicnicTable" parent="Sand" instance=ExtResource( 14 )]
+[node name="PicnicTable" parent="Environment" instance=ExtResource( 14 )]
 transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968904, 28.51, -0.0400581, 306.37 )
 
-[node name="Cloud" parent="Sand" instance=ExtResource( 7 )]
+[node name="Cloud" parent="Environment" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 135 )
+material_override = SubResource( 158 )
 skeleton = NodePath("../..")
 cloud_speed = Vector2( 3.606, 0 )
 cloud_transform_speed = Vector2( 0.001, 0.001 )
@@ -1455,12 +1598,12 @@ cloud_min_density_low = 0.466
 cloud_min_density_high = 0.633
 auto_follow_camera = false
 
-[node name="Mols" type="MeshInstance" parent="Sand"]
+[node name="Mols" type="MeshInstance" parent="Environment"]
 transform = Transform( 600, 0, 0, 0, 20, -1.74846e-06, 0, 1.74846e-06, 20, -285.986, -14.0782, 104.436 )
 mesh = SubResource( 20 )
 skeleton = NodePath("../..")
 
-[node name="Sand2" type="Spatial" parent="Sand"]
+[node name="Sand2" type="Spatial" parent="Environment"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000202179, 511.942 )
 script = ExtResource( 13 )
 lod_scale = 2.0
@@ -1479,10 +1622,10 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Sand"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = ExtResource( 9 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Sand/WorldEnvironment"]
+[node name="DirectionalLight" type="DirectionalLight" parent="Environment/WorldEnvironment"]
 transform = Transform( 0.0067195, 0.241425, -0.970396, 0, 0.970418, 0.241431, 0.999977, -0.00162229, 0.00652072, -0.102328, 6.3098, 158.897 )
 light_color = Color( 0.819608, 0.643137, 0.164706, 1 )
 light_energy = 16.0
@@ -1502,7 +1645,9 @@ root_node = NodePath("../..")
 anims/BackFromNotebook = SubResource( 48 )
 anims/RESET = SubResource( 29 )
 anims/ToTV = SubResource( 137 )
+anims/ZoomBackFromNotebookSettings = SubResource( 152 )
 anims/ZoomToNotebook = SubResource( 47 )
+"anims/ZoomToNotebook 2" = SubResource( 145 )
 anims/ZoomToTable = SubResource( 28 )
 
 [node name="Viewport" type="Viewport" parent="Camera"]
@@ -1525,7 +1670,7 @@ visible = false
 script = SubResource( 123 )
 
 [node name="Noteikumi" type="Label3D" parent="Namebook/Rules"]
-transform = Transform( -5.15143e-14, 1.20363e-06, 5.26142e-14, 1.05899e-14, -5.24433e-14, 1.20363e-06, 1.20363e-06, 4.79616e-14, -1.21248e-15, 0.125496, 0.000242233, 0.112237 )
+transform = Transform( 9.45054e-08, 1.19991e-06, 1.62018e-09, -2.74502e-11, -1.62303e-09, 1.20363e-06, 1.19991e-06, -9.45057e-08, -1.00051e-10, 0.125496, 0.00024128, 0.112237 )
 pixel_size = 100.0
 modulate = Color( 0, 0, 0, 1 )
 text = "Vai jūs izlasījāt 
@@ -1533,7 +1678,7 @@ noteikumus?"
 font = SubResource( 105 )
 
 [node name="YesPrompt" type="Label3D" parent="Namebook/Rules"]
-transform = Transform( -4.6212e-10, 1.20356e-06, 1.30226e-08, 5.00073e-12, -1.30226e-08, 1.20356e-06, 1.20363e-06, 4.62147e-10, -5.69235e-16, 0.0849991, 0.0024786, 0.0759916 )
+transform = Transform( 2.51752e-07, 1.17688e-06, 1.70503e-08, -3.54936e-10, -1.736e-08, 1.2035e-06, 1.17701e-06, -2.51732e-07, -3.28399e-09, 0.0795135, 0.0024786, 0.0761099 )
 pixel_size = 100.0
 modulate = Color( 0.317647, 0.568627, 0.0901961, 1 )
 outline_modulate = Color( 1, 1, 1, 1 )
@@ -1548,7 +1693,7 @@ skeleton = NodePath("../../../..")
 material/0 = SubResource( 113 )
 
 [node name="NoPrompt" type="Label3D" parent="Namebook/Rules"]
-transform = Transform( -4.62185e-10, 1.20356e-06, 1.30243e-08, 5.00181e-12, -1.30243e-08, 1.20356e-06, 1.20363e-06, 4.62213e-10, 5.93969e-15, 0.0850067, 0.00494957, 0.13895 )
+transform = Transform( -2.67442e-07, 1.17351e-06, 8.10737e-09, -6.13773e-10, -8.4551e-09, 1.2036e-06, 1.17354e-06, 2.67432e-07, 2.47713e-09, 0.0878677, 0.00494957, 0.138887 )
 pixel_size = 100.0
 modulate = Color( 0.568627, 0.0901961, 0.0901961, 1 )
 outline_modulate = Color( 1, 1, 1, 1 )
@@ -1563,13 +1708,13 @@ skeleton = NodePath("../../../..")
 material/0 = SubResource( 114 )
 
 [node name="YesArea" type="Area" parent="Namebook/Rules"]
-transform = Transform( 0.135016, 4.8658e-11, -1.86265e-09, 1.10276e-11, 0.135016, 4.88711e-09, -2.32831e-09, 2.30415e-10, 0.135016, 0.0847626, 0.00134659, 0.0763798 )
+transform = Transform( 0.135016, 5.07043e-11, -1.86265e-09, 1.7053e-11, 0.135016, 5.81838e-09, -2.79397e-09, 4.63119e-10, 0.135016, 0.079277, 0.0013485, 0.0764999 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Namebook/Rules/YesArea"]
 shape = SubResource( 122 )
 
 [node name="NoArea" type="Area" parent="Namebook/Rules"]
-transform = Transform( 0.135016, 6.86668e-11, -2.79397e-09, 2.55795e-11, 0.135016, 5.81842e-09, -3.49246e-09, 2.29974e-10, 0.135016, 0.086174, 0.00244427, 0.140289 )
+transform = Transform( 0.135016, 7.09406e-11, -2.79397e-09, 2.7967e-11, 0.135016, 6.7497e-09, -3.95812e-09, 4.62677e-10, 0.135016, 0.0890427, 0.00244427, 0.140226 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Namebook/Rules/NoArea"]
 shape = SubResource( 122 )
@@ -1582,7 +1727,7 @@ __meta__ = {
 }
 
 [node name="Noteikumi" type="Label3D" parent="Namebook/Ready"]
-transform = Transform( -5.15143e-14, 1.20363e-06, 5.26142e-14, 1.05899e-14, -5.24433e-14, 1.20363e-06, 1.20363e-06, 4.79616e-14, -1.21248e-15, 0.125496, 0.000242233, 0.112237 )
+transform = Transform( -1.3016e-07, 1.19657e-06, -2.23598e-09, -1.7107e-10, 2.23056e-09, 1.20363e-06, 1.19657e-06, 1.3016e-07, -7.11247e-11, 0.125496, 0.00024128, 0.112237 )
 pixel_size = 100.0
 modulate = Color( 0, 0, 0, 1 )
 text = "Vai jūs gatavi 
@@ -1590,7 +1735,7 @@ spēlēt?"
 font = SubResource( 105 )
 
 [node name="YesPrompt" type="Label3D" parent="Namebook/Ready"]
-transform = Transform( -4.6212e-10, 1.20356e-06, 1.30226e-08, 5.00073e-12, -1.30226e-08, 1.20356e-06, 1.20363e-06, 4.62147e-10, -5.69235e-16, 0.0849991, 0.0024786, 0.0759916 )
+transform = Transform( -1.71959e-07, 1.19124e-06, 9.94247e-09, -2.72687e-10, -1.00849e-08, 1.20359e-06, 1.19128e-06, 1.71951e-07, 1.71069e-09, 0.0808105, 0.0024786, 0.0760832 )
 pixel_size = 100.0
 modulate = Color( 0.317647, 0.568627, 0.0901961, 1 )
 outline_modulate = Color( 1, 1, 1, 1 )
@@ -1605,7 +1750,7 @@ skeleton = NodePath("../../../..")
 material/0 = SubResource( 113 )
 
 [node name="NoPrompt" type="Label3D" parent="Namebook/Ready"]
-transform = Transform( -4.62185e-10, 1.20356e-06, 1.30243e-08, 5.00181e-12, -1.30243e-08, 1.20356e-06, 1.20363e-06, 4.62213e-10, 5.93969e-15, 0.0850067, 0.00494957, 0.13895 )
+transform = Transform( 1.33104e-07, 1.19615e-06, 1.52326e-08, -7.03659e-11, -1.53187e-08, 1.20353e-06, 1.19625e-06, -1.33094e-07, -1.62408e-09, 0.0884171, 0.00494957, 0.138875 )
 pixel_size = 100.0
 modulate = Color( 0.568627, 0.0901961, 0.0901961, 1 )
 outline_modulate = Color( 1, 1, 1, 1 )
@@ -1620,16 +1765,169 @@ skeleton = NodePath("../../../..")
 material/0 = SubResource( 114 )
 
 [node name="YesArea" type="Area" parent="Namebook/Ready"]
-transform = Transform( 0.135016, 4.8658e-11, -1.86265e-09, 1.10276e-11, 0.135016, 4.88711e-09, -2.32831e-09, 2.30415e-10, 0.135016, 0.0847626, 0.00134659, 0.0763798 )
+transform = Transform( 0.135016, 5.07043e-11, -1.86265e-09, 1.7053e-11, 0.135016, 5.81838e-09, -2.79397e-09, 4.63119e-10, 0.135016, 0.080574, 0.0013485, 0.0764713 )
+visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Namebook/Ready/YesArea"]
 shape = SubResource( 122 )
 
 [node name="NoArea" type="Area" parent="Namebook/Ready"]
-transform = Transform( 0.135016, 6.86668e-11, -2.79397e-09, 2.55795e-11, 0.135016, 5.81842e-09, -3.49246e-09, 2.29974e-10, 0.135016, 0.086174, 0.00244427, 0.140289 )
+transform = Transform( 0.135016, 7.09406e-11, -2.79397e-09, 2.7967e-11, 0.135016, 6.7497e-09, -3.95812e-09, 4.62677e-10, 0.135016, 0.0895996, 0.00244427, 0.140215 )
+visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Namebook/Ready/NoArea"]
 shape = SubResource( 122 )
+
+[node name="Settings" type="Spatial" parent="Namebook"]
+transform = Transform( 1, 3.63798e-12, 0, 1.36424e-11, 1, 5.4543e-09, -5.58794e-09, -1.28225e-10, 1, -0.114235, -9.53674e-07, 0.00250053 )
+visible = false
+script = ExtResource( 22 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Title" type="Label3D" parent="Namebook/Settings"]
+transform = Transform( -1.20279e-06, 4.47778e-08, -3.03056e-09, -3.17024e-09, -3.69671e-09, 1.20362e-06, 4.47672e-08, 1.2028e-06, 3.81216e-09, 0.119217, 0.0015955, 0.191336 )
+pixel_size = 128.0
+modulate = Color( 0, 0, 0, 1 )
+text = "Iestatījumi "
+font = SubResource( 105 )
+
+[node name="Return" type="Label3D" parent="Namebook/Settings"]
+transform = Transform( -2.19895e-06, -6.93427e-08, -8.59972e-09, -8.38917e-09, -6.80764e-09, 2.20004e-06, -6.93698e-08, 2.19896e-06, 6.54015e-09, 0.241539, 0.00644684, 0.188844 )
+pixel_size = 128.0
+modulate = Color( 0, 0, 0, 1 )
+text = "<"
+font = SubResource( 105 )
+
+[node name="Video" type="Label3D" parent="Namebook/Settings"]
+transform = Transform( -1.20249e-06, 4.81932e-08, -2.05507e-08, -2.02798e-08, 7.16112e-09, 1.20344e-06, 4.83072e-08, 1.20265e-06, -6.34235e-09, 0.162956, 0.00407887, 0.167706 )
+pixel_size = 76.2124
+modulate = Color( 0.207843, 0.207843, 0.207843, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Video"
+font = SubResource( 105 )
+
+[node name="Holder" type="Spatial" parent="Namebook/Settings/Video"]
+visible = false
+
+[node name="Resolution" type="Label3D" parent="Namebook/Settings/Video/Holder"]
+transform = Transform( 1, 9.31323e-09, -9.31323e-09, 0, 1, 3.7835e-09, 0, -9.98261e-09, 1, -24352, -50269, -982 )
+pixel_size = 100.0
+modulate = Color( 0.454902, 0.454902, 0.454902, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Loga Izmērs"
+font = SubResource( 105 )
+
+[node name="DisplayMode" type="Label3D" parent="Namebook/Settings/Video/Holder"]
+transform = Transform( 0.998242, 0.0592596, 0.000634169, -0.0592586, 0.998242, -0.00103629, -0.00069448, 0.000996862, 0.999999, -20480, -24391.5, -624 )
+pixel_size = 102.356
+modulate = Color( 0.454902, 0.454902, 0.454902, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Loga Režīms"
+font = SubResource( 105 )
+
+[node name="SettingsUI" type="Control" parent="Namebook/Settings/Video/Holder"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 172.0
+
+[node name="OptionButton" type="OptionButton" parent="Namebook/Settings/Video/Holder/SettingsUI"]
+margin_left = 678.0
+margin_top = 19.515
+margin_right = 873.0
+margin_bottom = 61.5149
+rect_rotation = -5.5
+text = "Windowed"
+items = [ "Windowed", null, false, 0, null, "Fullscreen", null, false, 1, null ]
+selected = 0
+
+[node name="OptionButton2" type="OptionButton" parent="Namebook/Settings/Video/Holder/SettingsUI"]
+margin_left = 686.0
+margin_top = 96.348
+margin_right = 881.0
+margin_bottom = 141.348
+rect_rotation = -0.7
+text = "Item 0"
+items = [ "Item 0", null, false, 0, null, "Item 1", null, false, 1, null, "Item 2", null, false, 2, null, "Item 3", null, false, 3, null, "Item 4", null, false, 4, null ]
+selected = 0
+
+[node name="Audio" type="Label3D" parent="Namebook/Settings"]
+transform = Transform( -1.20345e-06, 1.33186e-09, -2.0554e-08, -2.05465e-08, 6.36693e-09, 1.20344e-06, 1.44036e-09, 1.20361e-06, -6.34326e-09, 0.08, 0.004, 0.168 )
+pixel_size = 76.2124
+modulate = Color( 0.207843, 0.207843, 0.207843, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Audio"
+font = SubResource( 105 )
+
+[node name="Holder" type="Spatial" parent="Namebook/Settings/Audio"]
+transform = Transform( 0.999241, -0.03894, -2.7027e-06, 0.0389393, 0.999241, 7.61036e-07, 2.70829e-06, -8.83854e-07, 1, -68916, -169, -1110.5 )
+visible = false
+
+[node name="Resolution" type="Label3D" parent="Namebook/Settings/Audio/Holder"]
+transform = Transform( 1, 9.31323e-09, -9.31323e-09, 0, 1, 3.7835e-09, 0, -9.98261e-09, 1, -24352, -50269, -982 )
+pixel_size = 100.0
+modulate = Color( 0.454902, 0.454902, 0.454902, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Loga Izmērs"
+font = SubResource( 105 )
+
+[node name="DisplayMode" type="Label3D" parent="Namebook/Settings/Audio/Holder"]
+transform = Transform( 0.998242, 0.0592596, 0.000634169, -0.0592586, 0.998242, -0.00103629, -0.00069448, 0.000996862, 0.999999, -20480, -24391.5, -624 )
+pixel_size = 102.356
+modulate = Color( 0.454902, 0.454902, 0.454902, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Loga Režīms"
+font = SubResource( 105 )
+
+[node name="SettingsUI" type="Control" parent="Namebook/Settings/Audio/Holder"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 161.0
+
+[node name="VideoArea" type="Area" parent="Namebook/Settings"]
+transform = Transform( 0.0166905, -0.00234395, -0.13396, 0.00225312, 0.134981, -0.00208109, 0.133962, -0.00197823, 0.0167253, 0.164093, 0.00276375, 0.157413 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Namebook/Settings/VideoArea"]
+transform = Transform( 1, -8.14907e-10, -4.47035e-08, -2.32831e-10, 1, -7.45058e-09, -7.45058e-09, 0, 1, 0.0780678, 0.000171661, 0.00787354 )
+shape = SubResource( 122 )
+
+[node name="VideoScribble" type="MeshInstance" parent="Namebook/Settings/VideoArea"]
+transform = Transform( -0.0148877, 0.000230318, -0.0959122, 0.00761779, 0.201418, -0.000160386, 0.200869, -0.0076216, -0.00710222, 0.0832901, -0.0165558, 0.017334 )
+visible = false
+mesh = SubResource( 112 )
+skeleton = NodePath("../../../..")
+material/0 = SubResource( 159 )
+
+[node name="Return2" type="Area" parent="Namebook/Settings"]
+transform = Transform( 0.0166905, -0.00234395, -0.13396, 0.00225312, 0.134981, -0.00208109, 0.133962, -0.00197823, 0.0167253, 0.239235, 0.00318336, 0.180201 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Namebook/Settings/Return2"]
+transform = Transform( 1, -2.44472e-09, -6.70552e-08, -2.32831e-10, 1, -1.11759e-08, -7.45058e-09, 0, 1, 0.0828285, -0.000473022, -0.0297852 )
+shape = SubResource( 122 )
+
+[node name="ReturnScribble" type="MeshInstance" parent="Namebook/Settings/Return2"]
+transform = Transform( -0.114327, 0.00229126, -0.0792003, 0.00697887, 0.201432, -0.000968133, 0.165857, -0.00689642, -0.0545528, 0.0639496, -0.0220413, -0.00476074 )
+visible = false
+mesh = SubResource( 112 )
+skeleton = NodePath("../../../..")
+material/0 = SubResource( 159 )
+
+[node name="AudioArea" type="Area" parent="Namebook/Settings"]
+transform = Transform( 0.0166905, -0.00234395, -0.13396, 0.00225312, 0.134981, -0.00208109, 0.133962, -0.00197823, 0.0167253, 0.0825119, 0.00276375, 0.1592 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Namebook/Settings/AudioArea"]
+transform = Transform( 1, -1.28057e-09, -5.96046e-08, -2.32831e-10, 1, -1.11759e-08, -7.45058e-09, 0, 1, 0.0499802, 0.000114441, 0.00512695 )
+shape = SubResource( 122 )
+
+[node name="AudioScribble" type="MeshInstance" parent="Namebook/Settings/AudioArea"]
+transform = Transform( -0.0148877, 0.000230318, -0.0959122, 0.00761779, 0.201418, -0.000160386, 0.200869, -0.00762161, -0.00710222, 0.0656738, -0.0163803, 0.0281982 )
+visible = false
+mesh = SubResource( 112 )
+skeleton = NodePath("../../../..")
+material/0 = SubResource( 159 )
 
 [node name="PlaySelector" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.496, 17.9696, 153.214 )
@@ -1847,13 +2145,13 @@ material/0 = SubResource( 87 )
 anims/FloatUp = SubResource( 79 )
 anims/RESET = SubResource( 80 )
 
-[node name="MenuArrow" type="MeshInstance" parent="."]
+[node name="MenuSignGamma" type="MeshInstance" parent="."]
 transform = Transform( 0.693692, 0.12454, 0.709423, -0.161205, 0.986798, -0.0156026, -0.702, -0.103539, 0.70461, 21.572, 16.473, 148.731 )
 mesh = ExtResource( 18 )
 material/0 = ExtResource( 16 )
 material/1 = ExtResource( 16 )
 
-[node name="MainMenuHeader" type="Spatial" parent="MenuArrow"]
+[node name="MainMenuHeader" type="Spatial" parent="MenuSignGamma"]
 transform = Transform( 4.04149, 0, 0, 0, 4.04149, 0, 0, 0, 0.274821, 0.0430298, 1.3363, 0.113495 )
 script = ExtResource( 25 )
 __meta__ = {
@@ -1872,13 +2170,13 @@ extrude = 0.1
 max_steps = 256
 step_size = 1.0
 
-[node name="MenuArrow2" type="MeshInstance" parent="."]
+[node name="MenuSignTheta" type="MeshInstance" parent="."]
 transform = Transform( 0.671992, 0, 0.740558, 0, 1, 0, 0.740558, 0, -0.671992, 20.205, 16.023, 151.814 )
 mesh = ExtResource( 18 )
 material/0 = ExtResource( 16 )
 material/1 = ExtResource( 16 )
 
-[node name="MainMenuHeader" type="Spatial" parent="MenuArrow2"]
+[node name="MainMenuHeader" type="Spatial" parent="MenuSignTheta"]
 transform = Transform( -1.85024, 0, 0, 0, 1.85024, -1.09992e-08, 0, 1.61753e-07, 0.125816, -0.000528336, 1.42026, 0.130386 )
 script = ExtResource( 25 )
 __meta__ = {
@@ -1897,7 +2195,7 @@ extrude = 0.1
 max_steps = 256
 step_size = 1.0
 
-[node name="MainMenuHeader2" type="Spatial" parent="MenuArrow2"]
+[node name="MainMenuHeader2" type="Spatial" parent="MenuSignTheta"]
 transform = Transform( -1.85024, 0, 0, 0, 1.85024, -1.09992e-08, 0, 1.61753e-07, 0.125816, -0.000528336, 1.264, 0.130386 )
 script = ExtResource( 25 )
 __meta__ = {
@@ -1939,6 +2237,15 @@ material/6 = SubResource( 126 )
 [connection signal="input_event" from="Namebook/Ready/NoArea" to="Namebook/Ready" method="_on_NoArea_input_event"]
 [connection signal="mouse_entered" from="Namebook/Ready/NoArea" to="Namebook/Ready" method="_on_NoArea_mouse_entered"]
 [connection signal="mouse_exited" from="Namebook/Ready/NoArea" to="Namebook/Ready" method="_on_NoArea_mouse_exited"]
+[connection signal="input_event" from="Namebook/Settings/VideoArea" to="Namebook/Settings" method="_on_VideoArea_input_event"]
+[connection signal="mouse_entered" from="Namebook/Settings/VideoArea" to="Namebook/Settings" method="_on_VideoArea_mouse_entered"]
+[connection signal="mouse_exited" from="Namebook/Settings/VideoArea" to="Namebook/Settings" method="_on_VideoArea_mouse_exited"]
+[connection signal="input_event" from="Namebook/Settings/Return2" to="Namebook/Settings" method="_on_Return2_input_event"]
+[connection signal="mouse_entered" from="Namebook/Settings/Return2" to="Namebook/Settings" method="_on_Return2_mouse_entered"]
+[connection signal="mouse_exited" from="Namebook/Settings/Return2" to="Namebook/Settings" method="_on_Return2_mouse_exited"]
+[connection signal="input_event" from="Namebook/Settings/AudioArea" to="Namebook/Settings" method="_on_AudioArea_input_event"]
+[connection signal="mouse_entered" from="Namebook/Settings/AudioArea" to="Namebook/Settings" method="_on_AudioArea_mouse_entered"]
+[connection signal="mouse_exited" from="Namebook/Settings/AudioArea" to="Namebook/Settings" method="_on_AudioArea_mouse_exited"]
 [connection signal="input_event" from="PlaySelector/Area" to="PlaySelector" method="_on_Area_input_event"]
 [connection signal="mouse_entered" from="PlaySelector/Area" to="PlaySelector" method="_on_Area_mouse_entered"]
 [connection signal="mouse_exited" from="PlaySelector/Area" to="PlaySelector" method="_on_Area_mouse_exited"]
