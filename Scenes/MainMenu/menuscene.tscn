@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://assets/textures/lake.jpg" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainMenu/rock/Rock030_2K-JPG_NormalGL.jpg" type="Texture" id=2]
@@ -21,7 +21,6 @@
 [ext_resource path="res://Scenes/MainMenu/cakemat.tres" type="Material" id=19]
 [ext_resource path="res://Assets/Handvetica Neue Regular Trial.ttf" type="DynamicFontData" id=20]
 [ext_resource path="res://Assets/scribble.png" type="Texture" id=21]
-[ext_resource path="res://Scenes/MainMenu/Rules.gd" type="Script" id=22]
 [ext_resource path="res://Assets/Notebook/Sketchfab_2023_02_28_13_25_16.fbx" type="PackedScene" id=23]
 [ext_resource path="res://addons/SIsilicon.3d.text/icon_label_3d.svg" type="Texture" id=24]
 [ext_resource path="res://addons/SIsilicon.3d.text/label_3d.gd" type="Script" id=25]
@@ -32,6 +31,7 @@
 [ext_resource path="res://Assets/Cake/textures/Tea flavour Cake.png" type="Texture" id=30]
 [ext_resource path="res://Assets/Cake/textures/Purple Cake.png" type="Texture" id=31]
 [ext_resource path="res://Scenes/MainMenu/television/tv.obj" type="ArrayMesh" id=32]
+[ext_resource path="res://Scenes/MainMenu/viewporttransition.gd" type="Script" id=33]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 12 )
@@ -56,7 +56,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=116]
+[sub_resource type="ShaderMaterial" id=130]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -70,9 +70,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=117]
+[sub_resource type="ShaderMaterial" id=131]
 render_priority = -124
-next_pass = SubResource( 116 )
+next_pass = SubResource( 130 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -85,9 +85,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=118]
+[sub_resource type="ShaderMaterial" id=132]
 render_priority = -125
-next_pass = SubResource( 117 )
+next_pass = SubResource( 131 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -100,9 +100,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=119]
+[sub_resource type="ShaderMaterial" id=133]
 render_priority = -126
-next_pass = SubResource( 118 )
+next_pass = SubResource( 132 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -115,9 +115,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=120]
+[sub_resource type="ShaderMaterial" id=134]
 render_priority = -127
-next_pass = SubResource( 119 )
+next_pass = SubResource( 133 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -130,9 +130,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=121]
+[sub_resource type="ShaderMaterial" id=135]
 render_priority = -128
-next_pass = SubResource( 120 )
+next_pass = SubResource( 134 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -259,6 +259,108 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 23.301, 18.533, 150.416 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Camera:fov")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 70.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Camera/Viewport/viewport/Camera:fov")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 70.0 ]
+}
+
+[sub_resource type="Animation" id=137]
+resource_name = "ToTV"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5, 4, 7 ),
+"transitions": PoolRealArray( 0.366022, 0.366022, 0.366, 14.42 ),
+"update": 0,
+"values": [ Vector3( 13.899, 18.183, 153.11 ), Vector3( 13.899, 18.183, 153.11 ), Vector3( 11.515, 17.402, 149.9 ), Vector3( 10.988, 17.402, 149.464 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5, 4, 15 ),
+"transitions": PoolRealArray( 0.366022, 0.366022, 0.366, 0.68302 ),
+"update": 0,
+"values": [ Vector3( -90, 170, 10 ), Vector3( -18.546, 43.199, -4.413 ), Vector3( 0, 55, 0 ), Vector3( 0, 55, -360 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Camera/Viewport/viewport:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.5, 4, 7 ),
+"transitions": PoolRealArray( 0.366022, 0.366022, 0.366, 14.42 ),
+"update": 0,
+"values": [ Vector3( 13.899, 18.183, 153.11 ), Vector3( 13.899, 18.183, 153.11 ), Vector3( 11.515, 17.402, 149.9 ), Vector3( 10.988, 17.402, 149.464 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Camera/Viewport/viewport:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.5, 4, 15 ),
+"transitions": PoolRealArray( 0.366022, 0.366022, 0.366, 0.68302 ),
+"update": 0,
+"values": [ Vector3( -90, 170, 10 ), Vector3( -18.546, 43.199, -4.413 ), Vector3( 0, 55, 0 ), Vector3( 0, 55, -360 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Camera/Viewport/viewport")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 5.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "transition"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Camera:fov")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 4, 6.1 ),
+"transitions": PoolRealArray( 3.4822, 3.4822 ),
+"update": 0,
+"values": [ 70.0, 94.4 ]
 }
 
 [sub_resource type="Animation" id=47]
@@ -439,6 +541,47 @@ albedo_texture = ExtResource( 21 )
 
 [sub_resource type="SphereShape" id=122]
 radius = 0.124145
+
+[sub_resource type="GDScript" id=138]
+script/source = "extends Spatial
+
+func _on_YesArea_mouse_entered():
+	$NoPrompt/Scribble2.hide()
+	$YesPrompt/Scribble.show()
+
+
+func _on_YesArea_mouse_exited():
+	$NoPrompt/Scribble2.hide()
+	$YesPrompt/Scribble.hide()
+
+
+func _on_NoArea_mouse_entered():
+	$NoPrompt/Scribble2.show()
+	$YesPrompt/Scribble.hide()
+
+
+func _on_NoArea_mouse_exited():
+	$NoPrompt/Scribble2.hide()
+	$YesPrompt/Scribble.hide()
+	pass 
+
+
+func _on_NoArea_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			hide()
+			get_parent().get_parent().get_node(\"Camera/CameraAnim\").play(\"BackFromNotebook\")
+			get_parent().get_parent().enableAreas()
+	pass 
+
+
+func _on_YesArea_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			hide()
+			get_parent().get_parent().get_node(\"Camera/CameraAnim\").play(\"ToTV\")
+	pass 
+"
 
 [sub_resource type="GDScript" id=91]
 script/source = "extends Spatial
@@ -1260,40 +1403,9 @@ tracks/5/keys = {
 "values": [ Vector3( -49.4973, 177.649, -0.160081 ) ]
 }
 
-[sub_resource type="Shader" id=128]
-code = "shader_type canvas_item;
-
-uniform float scanline_count : hint_range(0, 1800) = 50.0;
-
-vec2 uv_curve(vec2 uv)
-{
-	uv = (uv - 0.5) * 2.0;
-	uv.x *= 1.0 + pow(abs(uv.y) / 3.0, 2.0);
-	uv.y *= 1.0 + pow(abs(uv.x) / 3.0, 2.0);
-	uv /= 1.2;
-	
-	uv = (uv/2.0) + 0.5;
-	return uv;
-}
-
-
-void fragment()
-{	
-	float PI = 3.14159;
-	float r = texture(SCREEN_TEXTURE, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*0.0), 0.0).r;
-	float g = texture(SCREEN_TEXTURE, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*3.0), 0.0).g;
-	float b = texture(SCREEN_TEXTURE, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*-3.0), 0.0).b;
-	float s = sin(uv_curve(SCREEN_UV).y * scanline_count * PI * 2.0);
-	s = (s * 0.5 + 0.5) * 0.9 + 0.1;
-	vec4 scan_line = vec4(vec3(pow(s, 0.25)), 1.0);
-	
-	
-	COLOR = vec4(r, g, b, 1.0) * scan_line;
-}"
-
-[sub_resource type="ShaderMaterial" id=129]
-shader = SubResource( 128 )
-shader_param/scanline_count = 50.0
+[sub_resource type="SpatialMaterial" id=136]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0 )
 
 [sub_resource type="ViewportTexture" id=127]
 viewport_path = NodePath("Camera/Viewport")
@@ -1335,7 +1447,7 @@ transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968
 
 [node name="Cloud" parent="Sand" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 121 )
+material_override = SubResource( 135 )
 skeleton = NodePath("../..")
 cloud_speed = Vector2( 3.606, 0 )
 cloud_transform_speed = Vector2( 0.001, 0.001 )
@@ -1389,6 +1501,7 @@ __meta__ = {
 root_node = NodePath("../..")
 anims/BackFromNotebook = SubResource( 48 )
 anims/RESET = SubResource( 29 )
+anims/ToTV = SubResource( 137 )
 anims/ZoomToNotebook = SubResource( 47 )
 anims/ZoomToTable = SubResource( 28 )
 
@@ -1398,6 +1511,7 @@ render_target_v_flip = true
 
 [node name="viewport" type="Spatial" parent="Camera/Viewport"]
 transform = Transform( 0.252458, 0, 0.967608, 0, 1, 0, -0.967608, 0, 0.252458, 23.301, 18.533, 150.416 )
+script = ExtResource( 33 )
 
 [node name="Camera" type="Camera" parent="Camera/Viewport/viewport"]
 current = true
@@ -1462,7 +1576,7 @@ shape = SubResource( 122 )
 
 [node name="Ready" type="Spatial" parent="Namebook"]
 visible = false
-script = ExtResource( 22 )
+script = SubResource( 138 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -1563,7 +1677,6 @@ mesh = ExtResource( 27 )
 material/0 = SubResource( 55 )
 
 [node name="plateoutline" type="MeshInstance" parent="PlaySelector/Plate"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 visible = false
 mesh = SubResource( 54 )
 material/0 = ExtResource( 26 )
@@ -1807,7 +1920,7 @@ step_size = 1.0
 transform = Transform( 0.617798, 0, -0.447753, 0, 0.762992, 0, 0.447753, 0, 0.617798, 10.4458, 16.3315, 149.097 )
 mesh = ExtResource( 32 )
 material/0 = ExtResource( 28 )
-material/1 = SubResource( 129 )
+material/1 = SubResource( 136 )
 material/2 = ExtResource( 28 )
 material/3 = ExtResource( 28 )
 material/4 = ExtResource( 28 )
@@ -1820,6 +1933,7 @@ material/6 = SubResource( 126 )
 [connection signal="input_event" from="Namebook/Rules/NoArea" to="Namebook/Rules" method="_on_NoArea_input_event"]
 [connection signal="mouse_entered" from="Namebook/Rules/NoArea" to="Namebook/Rules" method="_on_NoArea_mouse_entered"]
 [connection signal="mouse_exited" from="Namebook/Rules/NoArea" to="Namebook/Rules" method="_on_NoArea_mouse_exited"]
+[connection signal="input_event" from="Namebook/Ready/YesArea" to="Namebook/Ready" method="_on_YesArea_input_event"]
 [connection signal="mouse_entered" from="Namebook/Ready/YesArea" to="Namebook/Ready" method="_on_YesArea_mouse_entered"]
 [connection signal="mouse_exited" from="Namebook/Ready/YesArea" to="Namebook/Ready" method="_on_YesArea_mouse_exited"]
 [connection signal="input_event" from="Namebook/Ready/NoArea" to="Namebook/Ready" method="_on_NoArea_input_event"]

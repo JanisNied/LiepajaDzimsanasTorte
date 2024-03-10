@@ -23,3 +23,7 @@ func enableAreas():
 	$SettingsSelector/Area.show()
 	$LeaderboardSelector/Area.show()
 	$AboutSelector/Area.show()
+
+
+func _on_YesArea_input_event(camera, event, position, normal, shape_idx):
+	pass # Replace with function body.

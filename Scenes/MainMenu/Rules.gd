@@ -28,3 +28,11 @@ func _on_NoArea_input_event(camera, event, position, normal, shape_idx):
 			get_parent().get_parent().get_node("Camera/CameraAnim").play("BackFromNotebook")
 			get_parent().get_parent().enableAreas()
 	pass 
+
+
+func _on_YesArea_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			hide()
+			get_parent().get_parent().get_node("Camera/CameraAnim").play("ToTV")
+	pass 
