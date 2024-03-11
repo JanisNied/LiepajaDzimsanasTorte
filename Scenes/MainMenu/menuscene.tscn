@@ -69,7 +69,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=192]
+[sub_resource type="ShaderMaterial" id=202]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -83,9 +83,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=193]
+[sub_resource type="ShaderMaterial" id=203]
 render_priority = -124
-next_pass = SubResource( 192 )
+next_pass = SubResource( 202 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -98,9 +98,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=194]
+[sub_resource type="ShaderMaterial" id=204]
 render_priority = -125
-next_pass = SubResource( 193 )
+next_pass = SubResource( 203 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -113,9 +113,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=195]
+[sub_resource type="ShaderMaterial" id=205]
 render_priority = -126
-next_pass = SubResource( 194 )
+next_pass = SubResource( 204 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -128,9 +128,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=196]
+[sub_resource type="ShaderMaterial" id=206]
 render_priority = -127
-next_pass = SubResource( 195 )
+next_pass = SubResource( 205 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -143,9 +143,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=197]
+[sub_resource type="ShaderMaterial" id=207]
 render_priority = -128
-next_pass = SubResource( 196 )
+next_pass = SubResource( 206 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -987,7 +987,6 @@ func _on_Area_mouse_entered():
 	$Plate/plateoutline.show()
 	$animplayer.play(\"FloatUp\")
 	pass 
-
 
 func _on_Area_mouse_exited():
 	$Teksts.emission_strength = 0
@@ -1884,7 +1883,7 @@ transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968
 
 [node name="Cloud" parent="Environment" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 197 )
+material_override = SubResource( 207 )
 skeleton = NodePath("../..")
 cloud_speed = Vector2( 3.606, 0 )
 cloud_transform_speed = Vector2( 0.001, 0.001 )
