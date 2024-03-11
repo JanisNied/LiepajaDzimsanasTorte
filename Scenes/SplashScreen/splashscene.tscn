@@ -87,12 +87,20 @@ tracks/2/keys = {
 [node name="MainScene" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 1024, 576 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 anchor_left = 0.5
@@ -103,6 +111,12 @@ margin_left = -250.0
 margin_top = -250.0
 margin_right = 250.0
 margin_bottom = 250.0
+rect_min_size = Vector2( 500, 500 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 500, 500 )

@@ -1,0 +1,13 @@
+# Blender 4.0.2 MTL File: 'None'
+# www.blender.org
+
+newmtl Button_Cyrcle_1
+Ns 1000.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/JanisN/Downloads/Button Round Flat/Users/fibonacci-design/Desktop/Buttons/Textures/Button_Cyrcle_1/Button_Cyrcle_1_BaseBlue.png
+map_refl C:/Users/JanisN/Downloads/Button Round Flat/Button_Cyrcle_1_Metallic.png

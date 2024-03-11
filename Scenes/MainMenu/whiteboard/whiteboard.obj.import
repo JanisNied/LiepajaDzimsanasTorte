@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/whiteboard.obj-f897269da422ec7f4172e66528e0f0f7.mesh"
+
+[deps]
+
+files=[ "res://.import/whiteboard.obj-f897269da422ec7f4172e66528e0f0f7.mesh" ]
+
+source_file="res://Scenes/MainMenu/whiteboard/whiteboard.obj"
+dest_files=[ "res://.import/whiteboard.obj-f897269da422ec7f4172e66528e0f0f7.mesh", "res://.import/whiteboard.obj-f897269da422ec7f4172e66528e0f0f7.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
