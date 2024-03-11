@@ -19,6 +19,30 @@ onready var fade_in_options = SceneManager.create_options(fade_in_speed, fade_in
 onready var general_options = SceneManager.create_general_options(color, timeout, clickable, add_to_back)
 
 func _ready():
+	# Create persistent settings if file doesn't exist in user directory
+	if not SaveSystem.has("SettingsGenerated"):
+		var volumes : Dictionary = {"master" : 1.0,
+									"music" : 0.2,
+									"sfx" : 1.0}
+		SaveSystem.set_var("SettingsGenerated", true)
+		SaveSystem.set_var("WindowMode", "Windowed")
+		SaveSystem.set_var("Resolution", Vector2(1024, 576))
+		SaveSystem.set_var("Volumes", volumes)
+		SaveSystem.save()
+	if not SaveSystem.has("Score"):
+		SaveSystem.set_var("Score", 0)
+		print("[PERSISTENCE] No score variable, creating.")	
+		SaveSystem.save()
+	if SaveSystem.get_var("Score") != 0:
+		SaveSystem.set_var("Score", 0)
+		SaveSystem.save()		
+		print("[PERSISTENCE] Initial score != 0, resetting.")	
+	print("[PERSISTENCE] Display Mode: ", SaveSystem.get_var("WindowMode"))
+	print("[PERSISTENCE] Resolution: ", SaveSystem.get_var("Resolution"))
+	print("[PERSISTENCE] Volume Dict: ", SaveSystem.get_var("Volumes"))		
+	print("[PERSISTENCE] Session Score: ", SaveSystem.get_var("Score"))			
+	SoundManager.set_bgm_volume_db(linear2db(SaveSystem.get_var("Volumes")["music"] * SaveSystem.get_var("Volumes")["master"]))
+	SoundManager.set_se_volume_db(linear2db(SaveSystem.get_var("Volumes")["sfx"] * SaveSystem.get_var("Volumes")["master"]))
 	OS.set_window_size(str2var("Vector2" + str(SaveSystem.get_var("Resolution"))))
 	center_window()
 	if (SaveSystem.get_var("WindowMode") == "Fullscreen"):
