@@ -84,7 +84,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/cloud/plugin.cfg", "res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/radial_progress/plugin.cfg", "res://addons/save_system/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/silicon.vfx.lens_flare/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/save_system/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [global]
 
