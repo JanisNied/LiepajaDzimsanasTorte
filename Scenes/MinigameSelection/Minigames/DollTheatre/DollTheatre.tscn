@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Orchestra.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/gem-indicator.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Indicator.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/flasher.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Flasher.gd" type="Script" id=13]
 
 [node name="Theatre" type="Node2D"]
 script = ExtResource( 1 )
@@ -67,11 +68,14 @@ expand = true
 [node name="Dolls" type="Node2D" parent="Foreground"]
 
 [node name="Flasher" type="Sprite" parent="Foreground/Dolls"]
+visible = false
 position = Vector2( 550, 157 )
 scale = Vector2( 0.839999, 0.610039 )
 texture = ExtResource( 12 )
+script = ExtResource( 13 )
 
 [node name="Indicator" type="Sprite" parent="Foreground/Dolls"]
+visible = false
 position = Vector2( 550, 75 )
 scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 10 )
