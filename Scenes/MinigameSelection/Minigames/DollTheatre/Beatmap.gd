@@ -18,7 +18,7 @@ func _ready():
 	pass
 
 func getbpm():
-	return Beatmap[0]
+	return int(Beatmap[0])
 
 func nextLine():
 	if currline < length:
