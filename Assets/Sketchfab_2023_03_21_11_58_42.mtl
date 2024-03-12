@@ -1,0 +1,14 @@
+# Blender 4.0.2 MTL File: 'Sketchfab_2023_03_21_11_58_42.blend'
+# www.blender.org
+
+newmtl Post_it_note
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:/post it notes batch_T_Post it note_BaseColor.1001.png
+map_Ns C:/post it notes batch_T_Post it note_Roughness.1001.png
+map_refl C:/post it notes batch_T_Post it note_Metallic.1001.png
+map_Bump -bm 1.000000 C:/post it notes batch_T_Post it note_Normal.1001.png

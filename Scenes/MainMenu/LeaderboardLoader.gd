@@ -84,3 +84,20 @@ func _on_Area2_mouse_entered():
 func _on_Area2_mouse_exited():
 	$Arrow.modulate = Color(0.99, 0.85, 0.41)
 	pass # Replace with function body.
+
+
+func _on_Area3_input_event(_camera, event, _position, _normal, _shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_parent().get_node("Camera/CameraAnim").play("FromPDA")
+	pass # Replace with function body.
+
+
+func _on_Area3_mouse_entered():
+	$Exit.modulate = Color(0.92, 0.12, 0.12)
+	pass # Replace with function body.
+
+
+func _on_Area3_mouse_exited():
+	$Exit.modulate = Color(0,0,0)
+	pass # Replace with function body.
