@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Orchestra.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/rc.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/lc.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/table.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/gem-indicator.png" type="Texture" id=10]
 
 [node name="Theatre" type="Node2D"]
 script = ExtResource( 1 )
@@ -45,14 +46,6 @@ expand = true
 
 [node name="Foreground" type="Node2D" parent="."]
 
-[node name="Table" type="TextureRect" parent="Foreground"]
-margin_left = 459.0
-margin_top = 291.0
-margin_right = 869.0
-margin_bottom = 456.0
-texture = ExtResource( 9 )
-expand = true
-
 [node name="Rcurtain" type="TextureRect" parent="Foreground"]
 margin_left = 832.0
 margin_top = -25.0
@@ -69,7 +62,23 @@ margin_bottom = 523.0
 texture = ExtResource( 8 )
 expand = true
 
+[node name="Table" type="TextureRect" parent="Foreground"]
+margin_left = 459.0
+margin_top = 291.0
+margin_right = 869.0
+margin_bottom = 456.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="Dolls" type="Node2D" parent="Foreground"]
+
+[node name="Indicator" type="Sprite" parent="Foreground/Dolls"]
+position = Vector2( 551, 73 )
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 10 )
+
 [node name="HUD" type="Control" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 576.0
 
