@@ -5,7 +5,7 @@ var beatdelay = 0
 var nthbeat = 0
 var lastreportbeat = 0
 var measures := 3
-var measure = 1
+var measure = 0
 var songpos = 0
 var waveturn = 0
 
