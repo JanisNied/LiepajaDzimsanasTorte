@@ -44,7 +44,7 @@ func _on_Conductor_timeout():
 		$Conductor.wait_time = $Conductor.wait_time - (AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency())
 		$Conductor.start()
 	else:
-		emit_signal("nowstart")
 		play()
 		$Conductor.stop()
+		emit_signal("nowstart")
 	report_beat()

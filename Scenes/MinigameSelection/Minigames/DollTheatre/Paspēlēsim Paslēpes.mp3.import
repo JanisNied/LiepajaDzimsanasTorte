@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Paspēlēsim Paslēpes.mp3-1cd4078bc4559584a72ef1785
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
