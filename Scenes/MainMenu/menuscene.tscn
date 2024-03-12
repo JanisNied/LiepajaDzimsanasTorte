@@ -88,7 +88,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=224]
+[sub_resource type="ShaderMaterial" id=233]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -102,9 +102,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=225]
+[sub_resource type="ShaderMaterial" id=234]
 render_priority = -124
-next_pass = SubResource( 224 )
+next_pass = SubResource( 233 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -117,9 +117,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=226]
+[sub_resource type="ShaderMaterial" id=235]
 render_priority = -125
-next_pass = SubResource( 225 )
+next_pass = SubResource( 234 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -132,9 +132,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=227]
+[sub_resource type="ShaderMaterial" id=236]
 render_priority = -126
-next_pass = SubResource( 226 )
+next_pass = SubResource( 235 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -147,9 +147,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=228]
+[sub_resource type="ShaderMaterial" id=237]
 render_priority = -127
-next_pass = SubResource( 227 )
+next_pass = SubResource( 236 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -162,9 +162,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=229]
+[sub_resource type="ShaderMaterial" id=238]
 render_priority = -128
-next_pass = SubResource( 228 )
+next_pass = SubResource( 237 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -2362,7 +2362,7 @@ transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968
 
 [node name="Cloud" parent="Environment" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 229 )
+material_override = SubResource( 238 )
 skeleton = NodePath("../..")
 cloud_speed = Vector2( 3.606, 0 )
 cloud_transform_speed = Vector2( 0.001, 0.001 )
@@ -3221,7 +3221,6 @@ shape = SubResource( 232 )
 
 [node name="None" type="Label3D" parent="Leaderboard"]
 transform = Transform( -1.76974e-14, -4.04872e-07, -1.76975e-14, 0, -1.76975e-14, 4.04872e-07, -4.0487e-07, 1.76975e-14, 7.73584e-22, -0.033, 0.005, -0.002 )
-visible = false
 pixel_size = 128.0
 modulate = Color( 1, 0.152941, 0.152941, 1 )
 outline_modulate = Color( 1, 1, 1, 1 )
