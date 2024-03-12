@@ -2530,14 +2530,6 @@ script = ExtResource( 33 )
 current = true
 far = 150.0
 
-[node name="Sketchfab_2023_03_21_11_58_42" type="MeshInstance" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 8.35187e-23, 0, 8.35187e-23, 1, 12.0566, 0.254253, -17.614 )
-mesh = ExtResource( 53 )
-
-[node name="Sketchfab_2023_03_21_11_58_43" type="MeshInstance" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 8.35187e-23, 0, 8.35187e-23, 1, 13.1505, -7.32074, -17.614 )
-mesh = ExtResource( 53 )
-
 [node name="Namebook" parent="." instance=ExtResource( 23 )]
 transform = Transform( -0.0425733, -0.0333923, -1.94518, -0.000747076, 1.94565, -0.0333839, 1.94547, 1.64104e-05, -0.0425798, 14.1228, 17.9893, 152.901 )
 
