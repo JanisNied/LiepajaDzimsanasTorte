@@ -74,6 +74,7 @@ expand = true
 [node name="Dolls" type="Node2D" parent="Foreground"]
 
 [node name="Indicator" type="Sprite" parent="Foreground/Dolls"]
+visible = false
 position = Vector2( 550, 75 )
 scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 10 )

@@ -2,7 +2,7 @@ extends Node2D
 
 func _ready():
 	SoundManager.stop("sunMenuMusic")
-	$Orchestra.start_play(4, $Beatmap.getbpm())
+	$Orchestra.start_play(5, $Beatmap.getbpm())
 
 
 
