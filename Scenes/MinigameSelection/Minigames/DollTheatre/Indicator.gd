@@ -8,12 +8,17 @@ var animreached = false
 func _physics_process(_delta):
 	if orchestra.playing and !animreached:
 		var beatpos = orchestra.measure - 1
-		var idealcoords = 550 + (81.75 * beatpos)
-		self.position.x = idealcoords
-		#if beatpos == 0:
-			
-	#	else:
-			
+		var idealpos = 550 + (81.75 * beatpos)
+		if self.position.x != idealpos:
+			if beatpos == 0:
+				self.position.x -= 81.75
+			else:
+				self.position.x += 27.25
+		else:
+			animreached = true
 
 func _on_Orchestra_nowstart():
 	self.visible = true
+
+func _on_Orchestra_nextbeat(pos):
+	animreached = false

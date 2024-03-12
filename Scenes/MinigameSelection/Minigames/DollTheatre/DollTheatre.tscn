@@ -85,6 +85,7 @@ margin_right = 1024.0
 margin_bottom = 576.0
 
 [connection signal="nextbeat" from="Orchestra" to="." method="_on_Orchestra_nextbeat"]
+[connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Indicator" method="_on_Orchestra_nextbeat"]
 [connection signal="nextwave" from="Orchestra" to="." method="_on_Orchestra_nextwave"]
 [connection signal="nowstart" from="Orchestra" to="." method="_on_Orchestra_nowstart"]
 [connection signal="nowstart" from="Orchestra" to="Foreground/Dolls/Indicator" method="_on_Orchestra_nowstart"]
