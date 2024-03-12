@@ -1,5 +1,7 @@
 extends Spatial
 
+const file_path : String = "user://leaderboard.json"
+
 var anim = false
 var rulesRead = false
 onready var animationplayer = $Camera/CameraAnim
@@ -27,5 +29,3 @@ func enableAreas():
 	$SettingsSelector/Area.show()
 	$LeaderboardSelector/Area.show()
 	$AboutSelector/Area.show()
-
-

@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=125 format=2]
 
 [ext_resource path="res://assets/textures/lake.jpg" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainMenu/rock/Rock030_2K-JPG_NormalGL.jpg" type="Texture" id=2]
@@ -45,6 +45,25 @@
 [ext_resource path="res://Scenes/MainMenu/whiteboard/textures/Untitled_2_default_Metallic.png" type="Texture" id=43]
 [ext_resource path="res://Scenes/MainMenu/whiteboard/textures/Untitled_2_default_Roughness.png" type="Texture" id=44]
 [ext_resource path="res://Scenes/MainMenu/RuleboardCreditBoard.gd" type="Script" id=45]
+[ext_resource path="res://Assets/Cake/textures/Icecream Cake.png" type="Texture" id=46]
+[ext_resource path="res://Scenes/MainMenu/pda/pda.obj" type="ArrayMesh" id=47]
+[ext_resource path="res://Assets/Cake/textures/pda_main_AO.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Cake/textures/pda_main_Base.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Cake/textures/pda_main_Normal.png" type="Texture" id=50]
+[ext_resource path="res://Assets/The Happy Giraffe Demo.ttf" type="DynamicFontData" id=51]
+[ext_resource path="res://Scenes/MainMenu/LeaderboardLoader.gd" type="Script" id=52]
+
+[sub_resource type="SpatialMaterial" id=55]
+resource_local_to_scene = true
+
+[sub_resource type="SpatialMaterial" id=218]
+albedo_texture = ExtResource( 30 )
+
+[sub_resource type="SpatialMaterial" id=219]
+albedo_texture = ExtResource( 46 )
+
+[sub_resource type="SpatialMaterial" id=220]
+albedo_texture = ExtResource( 30 )
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 12 )
@@ -69,7 +88,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=202]
+[sub_resource type="ShaderMaterial" id=209]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -83,9 +102,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=203]
+[sub_resource type="ShaderMaterial" id=210]
 render_priority = -124
-next_pass = SubResource( 202 )
+next_pass = SubResource( 209 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -98,9 +117,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=204]
+[sub_resource type="ShaderMaterial" id=211]
 render_priority = -125
-next_pass = SubResource( 203 )
+next_pass = SubResource( 210 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -113,9 +132,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=205]
+[sub_resource type="ShaderMaterial" id=212]
 render_priority = -126
-next_pass = SubResource( 204 )
+next_pass = SubResource( 211 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -128,9 +147,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=206]
+[sub_resource type="ShaderMaterial" id=213]
 render_priority = -127
-next_pass = SubResource( 205 )
+next_pass = SubResource( 212 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -143,9 +162,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=207]
+[sub_resource type="ShaderMaterial" id=214]
 render_priority = -128
-next_pass = SubResource( 206 )
+next_pass = SubResource( 213 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -666,6 +685,58 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=222]
+resource_name = "ZoomToPDA"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( 15.09, 19.021, 152.135 ), Vector3( 14.545, 17.614, 151.708 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( -46.632, 167.665, 0 ), Vector3( -90, 90, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Camera/Viewport/viewport:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( 15.09, 19.021, 152.135 ), Vector3( 14.545, 17.614, 151.708 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Camera/Viewport/viewport:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( -46.632, 167.665, 0 ), Vector3( -90, 90, 0 ) ]
+}
+
 [sub_resource type="Animation" id=201]
 resource_name = "ZoomToRulesFromNotebook"
 length = 3.0
@@ -1022,9 +1093,6 @@ surfaces/0 = {
 
 [sub_resource type="SphereShape" id=36]
 radius = 1.32934
-
-[sub_resource type="SpatialMaterial" id=55]
-resource_local_to_scene = true
 
 [sub_resource type="ArrayMesh" id=54]
 surfaces/0 = {
@@ -1419,8 +1487,8 @@ func _on_Area_mouse_exited():
 func _on_Area_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			$Area.hide()
-			print(\"[Leaderboard] Menu open!\")
+			get_parent().disableAreas()
+			get_parent().get_node(\"Camera/CameraAnim\").play(\"ZoomToPDA\")
 "
 
 [sub_resource type="SpatialMaterial" id=82]
@@ -1850,8 +1918,169 @@ normal_texture = ExtResource( 42 )
 [sub_resource type="SphereShape" id=200]
 radius = 0.721738
 
+[sub_resource type="SpatialMaterial" id=221]
+albedo_texture = ExtResource( 49 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 50 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_texture = ExtResource( 48 )
+ao_on_uv2 = false
+ao_texture_channel = 0
+
+[sub_resource type="DynamicFont" id=223]
+size = 155
+font_data = ExtResource( 51 )
+
 [node name="Menu" type="Spatial"]
 script = ExtResource( 15 )
+
+[node name="CakeDecor" type="MeshInstance" parent="."]
+transform = Transform( 0.315069, 0, 0.0692205, 0, 0.322582, 0, -0.0692205, 0, 0.315069, 13.3446, 17.9696, 153.641 )
+mesh = ExtResource( 27 )
+skeleton = NodePath("../PlaySelector")
+material/0 = SubResource( 55 )
+
+[node name="cakeobj1" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( 3.88043, 0, 2.52384, 0, 4.629, 0, -2.52384, 0, 3.88043, 7.62939e-06, 0.10218, 0.000244141 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 218 )
+
+[node name="cakeobj2" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( 1.65586, 0, 4.32269, 0, 4.629, 0, -4.32269, 0, 1.65586, 7.62939e-06, 0.10218, 0.000244141 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 218 )
+
+[node name="cakeobj3" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -1.20119, 0, 4.47042, 0, 4.629, 0, -4.47042, 0, -1.20119, 7.62939e-06, 0.10218, 0.000244141 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 218 )
+
+[node name="cakeobj4" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -3.59943, 0, 2.9106, 0, 4.629, 0, -2.9106, 0, -3.59943, 7.62939e-06, 0.10218, 0.000244141 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 218 )
+
+[node name="cakeobj5" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -4.62281, 0, 0.239035, 0, 4.629, 0, -0.239035, 0, -4.62281, 7.62939e-06, 0.10218, 0.000244141 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 218 )
+
+[node name="cakeobj6" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -3.88043, 0, -2.52384, 0, 4.629, 0, 2.52384, 0, -3.88043, 7.62939e-06, 0.10218, 0.000244141 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 218 )
+
+[node name="cakeobj7" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -1.65586, 0, -4.32269, 0, 4.629, 0, 4.32269, 0, -1.65586, 7.62939e-06, 0.10218, 0.000244141 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 218 )
+
+[node name="cakeobj8" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( 4.62281, 0, -0.239035, 0, 4.629, 0, 0.239035, 0, 4.62281, 7.62939e-06, 0.10218, 0.000244141 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 218 )
+
+[node name="cakeobj9" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( 3.06332, 0, 1.99239, 0, 3.65426, 0, -1.99239, 0, 3.06332, 7.62939e-06, 0.933701, 0.000427246 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 219 )
+
+[node name="cakeobj10" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( 1.30718, 0, 3.41245, 0, 3.65426, 0, -3.41245, 0, 1.30718, 7.62939e-06, 0.933701, 0.000427246 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 219 )
+
+[node name="cakeobj11" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -0.948255, 0, 3.52908, 0, 3.65426, 0, -3.52908, 0, -0.948255, 7.62939e-06, 0.933701, 0.000427246 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 219 )
+
+[node name="cakeobj12" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -2.84149, 0, 2.29771, 0, 3.65426, 0, -2.29771, 0, -2.84149, 7.62939e-06, 0.933701, 0.000427246 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 219 )
+
+[node name="cakeobj13" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -3.64938, 0, 0.188701, 0, 3.65426, 0, -0.188701, 0, -3.64938, 7.62939e-06, 0.933701, 0.000427246 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 219 )
+
+[node name="cakeobj14" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -3.06332, 0, -1.99239, 0, 3.65426, 0, 1.99239, 0, -3.06332, 7.62939e-06, 0.933701, 0.000427246 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 219 )
+
+[node name="cakeobj15" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -1.30718, 0, -3.41245, 0, 3.65426, 0, 3.41245, 0, -1.30718, 7.62939e-06, 0.933701, 0.000427246 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 219 )
+
+[node name="cakeobj16" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( 3.64938, 0, -0.188701, 0, 3.65426, 0, 0.188701, 0, 3.64938, 7.62939e-06, 0.933701, 0.000427246 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 219 )
+
+[node name="cakeobj17" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( 2.15814, 0, 1.40365, 0, 2.57446, 0, -1.40365, 0, 2.15814, -4.57764e-05, 1.59148, 0.000457764 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 220 )
+
+[node name="cakeobj18" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( 0.920923, 0, 2.4041, 0, 2.57446, 0, -2.4041, 0, 0.920923, -4.57764e-05, 1.59148, 0.000457764 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 220 )
+
+[node name="cakeobj19" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -0.668054, 0, 2.48626, 0, 2.57446, 0, -2.48626, 0, -0.668054, -4.57764e-05, 1.59148, 0.000457764 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 220 )
+
+[node name="cakeobj20" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -2.00186, 0, 1.61876, 0, 2.57446, 0, -1.61876, 0, -2.00186, -4.57764e-05, 1.59148, 0.000457764 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 220 )
+
+[node name="cakeobj21" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -2.57102, 0, 0.132941, 0, 2.57446, 0, -0.132941, 0, -2.57102, -4.57764e-05, 1.59148, 0.000457764 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 220 )
+
+[node name="cakeobj22" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( -2.15814, 0, -1.40365, 0, 2.57446, 0, 1.40365, 0, -2.15814, -4.57764e-05, 1.59148, 0.000457764 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 220 )
+
+[node name="cakeobj24" type="MeshInstance" parent="CakeDecor"]
+transform = Transform( 2.57102, 0, -0.132941, 0, 2.57446, 0, 0.132941, 0, 2.57102, -4.57764e-05, 1.59148, 0.000457764 )
+mesh = ExtResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 220 )
+
+[node name="Tops" type="MeshInstance" parent="CakeDecor"]
 
 [node name="Environment" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 16.3651, 0 )
@@ -1883,7 +2112,7 @@ transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968
 
 [node name="Cloud" parent="Environment" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 207 )
+material_override = SubResource( 214 )
 skeleton = NodePath("../..")
 cloud_speed = Vector2( 3.606, 0 )
 cloud_transform_speed = Vector2( 0.001, 0.001 )
@@ -1943,6 +2172,7 @@ anims/ToTV = SubResource( 137 )
 anims/ZoomBackFromNotebookSettings = SubResource( 152 )
 anims/ZoomToNotebook = SubResource( 47 )
 "anims/ZoomToNotebook 2" = SubResource( 145 )
+anims/ZoomToPDA = SubResource( 222 )
 anims/ZoomToRulesFromNotebook = SubResource( 201 )
 anims/ZoomToTable = SubResource( 28 )
 anims/ZoomToWhiteboard = SubResource( 191 )
@@ -2708,6 +2938,264 @@ transform = Transform( 8.78305, 0, 0, 0, 8.78305, 0, 0, 0, 8.78305, 0, 147.653, 
 [node name="CollisionShape" type="CollisionShape" parent="RuleboardCreditBoard/Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.79025, 0.14856, 0 )
 shape = SubResource( 200 )
+
+[node name="Leaderboard" type="MeshInstance" parent="."]
+transform = Transform( 3.28293, 0, 0, 0, 3.28293, 0, 0, 0, 3.28293, 14.5691, 17.3014, 151.704 )
+mesh = ExtResource( 47 )
+material/0 = SubResource( 221 )
+script = ExtResource( 52 )
+
+[node name="Tops" type="Label3D" parent="Leaderboard"]
+transform = Transform( -1.76974e-14, -4.04872e-07, -1.76975e-14, 0, -1.76975e-14, 4.04872e-07, -4.0487e-07, 1.76975e-14, 7.73584e-22, -0.052, 0.00453568, 0.0259895 )
+pixel_size = 128.0
+modulate = Color( 0.992157, 0.847059, 0.411765, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Top 10"
+font = SubResource( 223 )
+
+[node name="Top1" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000535488, 0 )
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top1"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top1"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top1"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Top2" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0159998, 0.000535488, 0 )
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top2"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top2"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top2"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Top3" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0320001, 0.000535488, 0 )
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top3"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top3"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top3"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Top4" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0479999, 0.000535488, 0 )
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top4"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top4"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top4"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Top5" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0640001, 0.000535488, 0 )
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top5"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top5"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top5"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Top6" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0799999, 0.000535488, 0 )
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top6"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top6"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top6"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Top7" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000535488, 0 )
+visible = false
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top7"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top7"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top7"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Top8" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0159998, 0.000535488, 0 )
+visible = false
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top8"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top8"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top8"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Top9" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0320001, 0.000535488, 0 )
+visible = false
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top9"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top9"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top9"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Top10" type="MeshInstance" parent="Leaderboard"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0479999, 0.000535488, 0 )
+visible = false
+
+[node name="Name" type="Label3D" parent="Leaderboard/Top10"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
+pixel_size = 128.0
+text = "#1 Eārģķļjāšž"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Laiks" type="Label3D" parent="Leaderboard/Top10"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.039, 0.004, -0.009 )
+pixel_size = 128.0
+text = "00:00:00"
+font = SubResource( 223 )
+horizontal_alignment = 0
+
+[node name="Punkti" type="Label3D" parent="Leaderboard/Top10"]
+transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.036, 0.004, 0.029 )
+pixel_size = 128.0
+text = "999pt"
+font = SubResource( 223 )
+horizontal_alignment = 0
 
 [connection signal="input_event" from="Namebook/Rules/YesArea" to="Namebook/Rules" method="_on_YesArea_input_event"]
 [connection signal="mouse_entered" from="Namebook/Rules/YesArea" to="Namebook/Rules" method="_on_YesArea_mouse_entered"]

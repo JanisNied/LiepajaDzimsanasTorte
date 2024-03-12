@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/pda.obj-776f84acaa9725475251e4c777f8d993.mesh"
+
+[deps]
+
+files=[ "res://.import/pda.obj-776f84acaa9725475251e4c777f8d993.mesh" ]
+
+source_file="res://Scenes/MainMenu/pda/pda.obj"
+dest_files=[ "res://.import/pda.obj-776f84acaa9725475251e4c777f8d993.mesh", "res://.import/pda.obj-776f84acaa9725475251e4c777f8d993.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

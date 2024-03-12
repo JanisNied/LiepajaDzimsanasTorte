@@ -87,9 +87,9 @@ anchor_bottom = 1.0
 alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 549.0
+margin_top = 525.0
 margin_right = 1024.0
-margin_bottom = 559.0
+margin_bottom = 535.0
 alignment = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
@@ -107,9 +107,9 @@ rect_min_size = Vector2( 150, 50 )
 text = "Go To Next Scene"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 563.0
+margin_top = 539.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 576.0
 custom_constants/margin_right = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
