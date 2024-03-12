@@ -2955,6 +2955,7 @@ font = SubResource( 223 )
 
 [node name="Top1" type="MeshInstance" parent="Leaderboard"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000535488, 0 )
+visible = false
 
 [node name="Name" type="Label3D" parent="Leaderboard/Top1"]
 transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
@@ -2979,6 +2980,7 @@ horizontal_alignment = 0
 
 [node name="Top2" type="MeshInstance" parent="Leaderboard"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0159998, 0.000535488, 0 )
+visible = false
 
 [node name="Name" type="Label3D" parent="Leaderboard/Top2"]
 transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
@@ -3003,6 +3005,7 @@ horizontal_alignment = 0
 
 [node name="Top3" type="MeshInstance" parent="Leaderboard"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0320001, 0.000535488, 0 )
+visible = false
 
 [node name="Name" type="Label3D" parent="Leaderboard/Top3"]
 transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
@@ -3027,6 +3030,7 @@ horizontal_alignment = 0
 
 [node name="Top4" type="MeshInstance" parent="Leaderboard"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0479999, 0.000535488, 0 )
+visible = false
 
 [node name="Name" type="Label3D" parent="Leaderboard/Top4"]
 transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
@@ -3051,6 +3055,7 @@ horizontal_alignment = 0
 
 [node name="Top5" type="MeshInstance" parent="Leaderboard"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0640001, 0.000535488, 0 )
+visible = false
 
 [node name="Name" type="Label3D" parent="Leaderboard/Top5"]
 transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )
@@ -3075,6 +3080,7 @@ horizontal_alignment = 0
 
 [node name="Top6" type="MeshInstance" parent="Leaderboard"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0799999, 0.000535488, 0 )
+visible = false
 
 [node name="Name" type="Label3D" parent="Leaderboard/Top6"]
 transform = Transform( -1.31168e-14, -3.00079e-07, -1.31169e-14, 0, -1.31169e-14, 3.0008e-07, -3.00078e-07, 1.31169e-14, 5.73358e-22, -0.0426645, 0.00425625, 0.0395622 )

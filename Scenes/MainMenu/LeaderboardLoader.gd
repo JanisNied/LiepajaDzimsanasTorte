@@ -11,17 +11,18 @@ func _ready():
 	leaderboard = sort_dict(leaderboard)
 	for key in leaderboard.keys():
 		if key <= 10:
-			var node = str("Top",key,"/");
-			get_node(node+"Name").text = str("#", str(key), " ", leaderboard[key][0])
-			get_node(node+"Laiks").text = "%02d:%02d:%02d" % [floor(int(leaderboard[key][1]) / 3600), floor((int(leaderboard[key][1]) % 3600) / 60), int(leaderboard[key][1]) % 60]
-			get_node(node+"Punkti").text = str(leaderboard[key][2])+"pt"
+			var node = str("Top",key);
+			get_node(node).show()
+			get_node(node+"/Name").text = str("#", str(key), " ", leaderboard[key][0])
+			get_node(node+"/Laiks").text = "%02d:%02d:%02d" % [floor(int(leaderboard[key][1]) / 3600), floor((int(leaderboard[key][1]) % 3600) / 60), int(leaderboard[key][1]) % 60]
+			get_node(node+"/Punkti").text = str(leaderboard[key][2])+"pt"
 		else:
 			break	
 	pass 
 
 func import_resources_data():
 	var file = File.new()
-	file.open("user://example.txt", file.READ)
+	file.open("user://leaderboard.", file.READ)
 	while !file.eof_reached(): 
 		var data_set = Array(file.get_csv_line(";"))
 		if data_set.size() == 3:
