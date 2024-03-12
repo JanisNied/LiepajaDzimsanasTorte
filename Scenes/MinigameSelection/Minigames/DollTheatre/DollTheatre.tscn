@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Orchestra.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Paspēlēsim Paslēpes.mp3" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/bg.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/wall.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/rc.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/lc.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/table.png" type="Texture" id=9]
 
 [node name="Theatre" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,26 +23,57 @@ script = ExtResource( 2 )
 [node name="Conductor" type="Timer" parent="Orchestra"]
 one_shot = true
 
-[node name="Foreground" type="Node2D" parent="."]
+[node name="Background" type="Node2D" parent="."]
 
-[node name="Wallpaper" type="TextureRect" parent="Foreground"]
+[node name="Wallpaper" type="TextureRect" parent="Background"]
 margin_right = 1024.0
 margin_bottom = 576.0
 texture = ExtResource( 5 )
 
-[node name="Ground" type="ColorRect" parent="Foreground"]
+[node name="Ground" type="ColorRect" parent="Background"]
 margin_top = 456.0
 margin_right = 1024.0
 margin_bottom = 576.0
 color = Color( 0.341176, 0.262745, 0.219608, 1 )
 
-[node name="Wall" type="TextureRect" parent="Foreground"]
+[node name="Wall" type="TextureRect" parent="Background"]
 margin_left = 500.0
 margin_right = 832.0
 margin_bottom = 456.0
 texture = ExtResource( 6 )
 expand = true
 
+[node name="Foreground" type="Node2D" parent="."]
+
+[node name="Table" type="TextureRect" parent="Foreground"]
+margin_left = 459.0
+margin_top = 291.0
+margin_right = 869.0
+margin_bottom = 456.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="Rcurtain" type="TextureRect" parent="Foreground"]
+margin_left = 832.0
+margin_top = -25.0
+margin_right = 1237.0
+margin_bottom = 560.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Lcurtain" type="TextureRect" parent="Foreground"]
+margin_left = 218.0
+margin_top = -25.0
+margin_right = 560.0
+margin_bottom = 523.0
+texture = ExtResource( 8 )
+expand = true
+
+[node name="HUD" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 576.0
+
 [connection signal="nextbeat" from="Orchestra" to="." method="_on_Orchestra_nextbeat"]
 [connection signal="nextwave" from="Orchestra" to="." method="_on_Orchestra_nextwave"]
+[connection signal="nowstart" from="Orchestra" to="." method="_on_Orchestra_nowstart"]
 [connection signal="timeout" from="Orchestra/Conductor" to="Orchestra" method="_on_Conductor_timeout"]
