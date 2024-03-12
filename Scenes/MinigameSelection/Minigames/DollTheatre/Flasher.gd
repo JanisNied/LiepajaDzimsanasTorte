@@ -2,11 +2,11 @@ extends Sprite
 
 onready var orchestra = get_parent().get_parent().get_parent().find_node("Orchestra")
 var vis = false
+var stuckpos = 550
 
 func _physics_process(_delta):
 	if orchestra.playing:
-		var idealpos = 550 + (81.75 * (orchestra.measure - 1))
-		self.position.x = idealpos
+		self.position.x = stuckpos
 		
 		if vis:
 			if self.modulate.a > 0:
@@ -20,3 +20,6 @@ func _unhandled_input(event):
 		self.visible = true
 		vis = true
 		self.modulate.a = 1
+
+func _on_Orchestra_nextbeat(pos):
+	self.stuckpos = 550 + (81.75 * (orchestra.measure))
