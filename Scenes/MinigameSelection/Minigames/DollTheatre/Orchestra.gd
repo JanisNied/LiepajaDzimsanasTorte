@@ -27,6 +27,6 @@ func _on_Conductor_timeout():
 	elif nthbeat == offset - 1:
 		$Conductor.wait_time = $Conductor.wait_time - (AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency())
 	else:
-		SoundManager.play_music("dollBeatmapSong")
+		SoundManager.play_bgm("dollBeatmapSong")
 		$Conductor.stop()
-	
+	reportbeat()

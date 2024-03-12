@@ -9,8 +9,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SoundManager.stop("sunMenuMusic")
-	SoundManager.play_music("dollBeatmapSong")
-	#$Orchestra.begin_orchestra(4, 120)
+	$Orchestra.begin_orchestra(4, 120)
 	pass # Replace with function body.
 
 
