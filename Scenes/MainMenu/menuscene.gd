@@ -23,9 +23,11 @@ func disableAreas():
 	$SettingsSelector/Area.hide()
 	$LeaderboardSelector/Area.hide()
 	$AboutSelector/Area.hide()
+	$Button/Area2.hide()
 	
 func enableAreas():
 	$PlaySelector/Area.show()
 	$SettingsSelector/Area.show()
 	$LeaderboardSelector/Area.show()
 	$AboutSelector/Area.show()
+	$Button/Area2.show()
