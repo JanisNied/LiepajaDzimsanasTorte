@@ -23,6 +23,8 @@ func transition():
 	SceneManager.validate_pattern(fade_out_pattern)
 	SceneManager.validate_pattern(fade_in_pattern)
 	SceneManager.set_recorded_scene(scene)
-	SceneManager.change_scene("loadscene", fade_out_options, fade_in_options, general_options)
+	
+	############# NEVER FORGET THIS!
+	SceneManager.change_scene("DollTheatre", fade_out_options, fade_in_options, general_options)
 	pass 
 

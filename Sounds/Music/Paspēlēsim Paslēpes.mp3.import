@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Paspēlēsim Paslēpes.mp3-9cf1556ffa04c20cabe6003e410d7287.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/Paspēlēsim Paslēpes.mp3"
+dest_files=[ "res://.import/Paspēlēsim Paslēpes.mp3-9cf1556ffa04c20cabe6003e410d7287.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
