@@ -1,6 +1,6 @@
 [gd_scene load_steps=125 format=2]
 
-[ext_resource path="res://assets/textures/lake.jpg" type="Texture" id=1]
+[ext_resource path="res://Assets/textures/lake.jpg" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainMenu/rock/Rock030_2K-JPG_NormalGL.jpg" type="Texture" id=2]
 [ext_resource path="res://Scenes/MainMenu/rock/Rock030_2K-JPG_Color.jpg" type="Texture" id=3]
 [ext_resource path="res://Scenes/MainMenu/Menu_slot0_albedo_bump.packed_tex" type="Texture" id=4]
@@ -9,7 +9,7 @@
 [ext_resource path="res://addons/cloud/Cloud.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/MainMenu/data.hterrain" type="Resource" id=8]
 [ext_resource path="res://Scenes/MainMenu/BeachEnv.tres" type="Environment" id=9]
-[ext_resource path="res://assets/shaders/water.shader" type="Shader" id=10]
+[ext_resource path="res://Assets/shaders/water.shader" type="Shader" id=10]
 [ext_resource path="res://addons/cloud/Cloud.shader" type="Shader" id=11]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=12]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=13]
