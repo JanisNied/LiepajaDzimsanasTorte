@@ -24,9 +24,10 @@ func _unhandled_input(event):
 			self.spaceLock = true
 		elif computerTurn == 0 and $Beatmap.dolls[step] == 1:
 			self.spaceLock = true
-			var DollHitTime = Time.get_ticks_msec()
+			var MsSinceAppearance = Time.get_ticks_msec() - momentIndiTouchesDollMS
+			var LifetimeMs = momentIndiLeavesMS - momentIndiTouchesDollMS
 			
-			print(momentIndiTouchesDollMS, " ", DollHitTime, " ", momentIndiLeavesMS)
+			print(MsSinceAppearance, " ",LifetimeMs , " ", MsSinceAppearance / LifetimeMs)
 			dollNodes[step].visible = false
 	
 # conductor
@@ -42,9 +43,7 @@ func _on_Orchestra_nextbeat(pos):
 		momentIndiLeavesMS = momentIndiTouchesDollMS + ($Orchestra.secsperbeat * 1000)
 		if self.step > 0:
 			dollNodes[step - 1].visible = false #miss
-	
-	#print(pos)
-	pass # Replace with function body.
+
 
 func _on_Orchestra_nextwave(turn):
 	self.computerTurn = turn
