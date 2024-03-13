@@ -59,6 +59,9 @@ func _on_Orchestra_nextwave(turn):
 	self.computerTurn = turn
 	
 	if computerTurn == 1:
+		$Foreground/Dolls/Indicator/Color.modulate.r = 1
+		$Foreground/Dolls/Indicator/Color.modulate.g = 0
+		
 		if dollNodes[3].visible:
 			dollNodes[3].visible = false
 			emit_signal("beatHit", -1)
@@ -66,10 +69,12 @@ func _on_Orchestra_nextwave(turn):
 		$Beatmap.nextLine()
 		for i in 4:
 			dollNodes[i].visible = false
-	pass # Replace with function body.
-
+	else:
+		$Foreground/Dolls/Indicator/Color.modulate.r = 0
+		$Foreground/Dolls/Indicator/Color.modulate.g = 1
+		
 func _on_Orchestra_nowstart():
-	pass # Replace with function body.
+	$Foreground/Dolls/Indicator/Color.modulate.b = 0
 
 # beatmap file
 func _on_Beatmap_eof():

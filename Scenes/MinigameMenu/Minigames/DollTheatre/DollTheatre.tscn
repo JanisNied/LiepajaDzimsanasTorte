@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://addons/SIsilicon.3d.text/default_font.ttf" type="DynamicFontData" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Orchestra.gd" type="Script" id=17]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Scoring.gd" type="Script" id=18]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Judge.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/gem-indicator-body.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -105,6 +106,9 @@ position = Vector2( 550, 75 )
 scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 6 )
 script = ExtResource( 15 )
+
+[node name="Color" type="Sprite" parent="Foreground/Dolls/Indicator"]
+texture = ExtResource( 20 )
 
 [node name="DollShow" type="Node2D" parent="Foreground/Dolls"]
 
