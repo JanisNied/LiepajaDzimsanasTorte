@@ -3,6 +3,7 @@ extends Spatial
 # what is this boilerplate crap
 # never let me code at 2am
 var activityIndex : int = 0
+var firstpass : bool = true
 
 var act1 : bool = true
 var act2 : bool = true
@@ -14,14 +15,22 @@ var act6 : bool = true
 func _ready():
 	pass
 
-func updateAct():
+func updateActClockWise():
 	if activityIndex == Global.allowedActivities.size():
 		activityIndex = 0
-		$AnimationPlayerOut.play("Activity"+str(Global.allowedActivities[Global.allowedActivities.size()-1]))
-	if activityIndex != 0:
-		$AnimationPlayerOut.play("Activity"+str(Global.allowedActivities[activityIndex - 1]))
+	if not firstpass:
+			$AnimationPlayerOut.play("Activity"+str(Global.allowedActivities[activityIndex - 1]))	
+	firstpass = false
 	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))
-
+	
+func updateActCounterClockWise():
+	if activityIndex == -abs(Global.allowedActivities.size()):
+		activityIndex = 0
+	if not firstpass:
+			$AnimationPlayerOut.play("Activity"+str(Global.allowedActivities[activityIndex + 1]))	
+	firstpass = false
+	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))	
+	
 func activity1():
 	if act1:
 		$CakeTop/PieceofCake2/MeshInstance.show()
@@ -101,7 +110,16 @@ func activity6():
 func _on_Button_button_up():
 	get_parent().get_parent().get_parent().get_node("Button").disabled = true
 	activityIndex += 1
-	updateAct()
+	updateActClockWise()
 	yield(get_tree().create_timer(0.7), "timeout")
 	get_parent().get_parent().get_parent().get_node("Button").disabled = false
 	pass 
+
+
+func _on_Button2_button_up():
+	get_parent().get_parent().get_parent().get_node("Button2").disabled = true
+	activityIndex -= 1
+	updateActCounterClockWise()
+	yield(get_tree().create_timer(0.7), "timeout")
+	get_parent().get_parent().get_parent().get_node("Button2").disabled = false
+	pass # Replace with function body.

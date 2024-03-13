@@ -119,7 +119,7 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "updateAct"
+"method": "updateActClockWise"
 } ]
 }
 
@@ -1651,4 +1651,12 @@ margin_right = 999.0
 margin_bottom = 263.0
 text = "testing"
 
+[node name="Button2" type="Button" parent="."]
+margin_left = 855.0
+margin_top = 393.0
+margin_right = 975.0
+margin_bottom = 483.0
+text = "testing"
+
 [connection signal="button_up" from="Button" to="ViewportContainer/Viewport/Spatial" method="_on_Button_button_up"]
+[connection signal="button_up" from="Button2" to="ViewportContainer/Viewport/Spatial" method="_on_Button2_button_up"]
