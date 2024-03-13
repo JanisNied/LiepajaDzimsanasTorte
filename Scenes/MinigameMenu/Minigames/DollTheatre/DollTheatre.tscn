@@ -199,8 +199,8 @@ align = 2
 
 [node name="HugeCurtain" type="Control" parent="."]
 visible = false
+margin_top = -576.0
 margin_right = 1024.0
-margin_bottom = 576.0
 script = ExtResource( 28 )
 
 [node name="Curtain" type="TextureRect" parent="HugeCurtain"]
