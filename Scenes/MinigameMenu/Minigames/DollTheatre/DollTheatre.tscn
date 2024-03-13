@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://addons/SIsilicon.3d.text/default_font.ttf" type="DynamicFontData" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Scoring.gd" type="Script" id=18]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Judge.gd" type="Script" id=19]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/gem-indicator-body.png" type="Texture" id=20]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/curtain.png" type="Texture" id=21]
+[ext_resource path="res://Assets/ARIAL.TTF" type="DynamicFontData" id=22]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -36,6 +38,14 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 144
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 22 )
 
 [node name="Theatre" type="Node2D"]
 script = ExtResource( 1 )
@@ -146,7 +156,7 @@ margin_bottom = 576.0
 
 [node name="Judge" type="AnimatedSprite" parent="HUD"]
 visible = false
-position = Vector2( 327, 166 )
+position = Vector2( 268, 234 )
 frames = SubResource( 1 )
 script = ExtResource( 19 )
 
@@ -178,9 +188,46 @@ text = "Punkti:
 0"
 align = 2
 
+[node name="HugeCurtain" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 576.0
+
+[node name="Curtain" type="TextureRect" parent="HugeCurtain"]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 21 )
+
+[node name="Scoreboard" type="Control" parent="HugeCurtain"]
+margin_left = 219.0
+margin_top = 44.0
+margin_right = 812.0
+margin_bottom = 498.0
+
+[node name="ColorRect" type="ColorRect" parent="HugeCurtain/Scoreboard"]
+margin_right = 593.0
+margin_bottom = 454.0
+color = Color( 0, 0, 0, 0.47451 )
+
+[node name="Grade" type="Label" parent="HugeCurtain/Scoreboard"]
+margin_left = 49.0
+margin_top = 61.0
+margin_right = 186.0
+margin_bottom = 225.0
+custom_fonts/font = SubResource( 4 )
+text = "10"
+
+[node name="ScoringText" type="Label" parent="HugeCurtain/Scoreboard"]
+margin_left = 289.0
+margin_top = 32.0
+margin_right = 559.0
+margin_bottom = 322.0
+custom_fonts/font = SubResource( 5 )
+
 [connection signal="beatHit" from="." to="Scoring" method="_on_Theatre_beatHit"]
 [connection signal="beatHit" from="." to="HUD/Judge" method="_on_Theatre_beatHit"]
 [connection signal="eof" from="Beatmap" to="." method="_on_Beatmap_eof"]
+[connection signal="eof" from="Beatmap" to="Orchestra" method="_on_Beatmap_eof"]
 [connection signal="nextbeat" from="Orchestra" to="." method="_on_Orchestra_nextbeat"]
 [connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Flasher" method="_on_Orchestra_nextbeat"]
 [connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Indicator" method="_on_Orchestra_nextbeat"]

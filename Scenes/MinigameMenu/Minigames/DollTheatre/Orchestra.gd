@@ -49,3 +49,8 @@ func _on_Conductor_timeout():
 		play()
 		$Conductor.stop()
 	report_beat()
+
+func _on_Beatmap_eof():
+	if playing:
+		stop()
+	pass # Replace with function body.
