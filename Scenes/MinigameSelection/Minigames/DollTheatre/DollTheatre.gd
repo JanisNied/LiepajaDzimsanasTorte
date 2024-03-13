@@ -18,7 +18,10 @@ func _unhandled_input(event):
 		if computerTurn == 1 and $Beatmap.dolls[step] == 1:
 			print("Miss!")
 			self.spaceLock = true
-	
+		elif computerTurn == 0:
+			#dollNodes[step].visible = false
+			print( $Beatmap.dolls[step], " of ",  $Beatmap.dolls)
+			self.spaceLock = true
 	pass
 	
 # conductor
@@ -31,16 +34,16 @@ func _on_Orchestra_nextbeat(pos):
 			dollNodes[step].visible = true
 	else:
 		if self.step > 0:
-			dollNodes[step - 1].visible = false
+			dollNodes[step - 1].visible = false #miss
 	
 	#print(pos)
 	pass # Replace with function body.
 
 func _on_Orchestra_nextwave(turn):
-	$Beatmap.nextLine()
 	self.computerTurn = turn
 	
 	if computerTurn == 1:
+		$Beatmap.nextLine()
 		for i in 4:
 			dollNodes[i].visible = false
 	pass # Replace with function body.
