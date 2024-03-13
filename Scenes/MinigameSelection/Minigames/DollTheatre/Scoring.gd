@@ -25,4 +25,4 @@ func _on_Theatre_beatHit(score):
 		Combo = 0
 	
 	get_parent().find_node("AccuracyText").text = "%.2f%%" % stepify((Accuracy * 100), 0.01)
-	get_parent().find_node("AccuracyText").text = "%dx" % Combo
+	get_parent().find_node("ComboText").text = "%dx" % Combo
