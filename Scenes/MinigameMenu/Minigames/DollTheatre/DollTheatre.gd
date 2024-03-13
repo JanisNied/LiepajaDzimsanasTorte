@@ -79,5 +79,8 @@ func _on_Orchestra_nowstart():
 # beatmap file
 func _on_Beatmap_eof():
 	$HugeCurtain.show()
+	
+	
+	
 	$HugeCurtain/Scoreboard/Grade.text = "%d" % $Scoring.getGrade()
 	$HugeCurtain/Scoreboard/ScoringText.text = "Spēles punkti:  %d\nPrecizitāte:  %.2f%%\nMaksimālais kombo:  %d" % [$Scoring.Score, $Scoring.Accuracy * 100, $Scoring.MaxCombo]

@@ -73,6 +73,7 @@ SceneManager="*res://addons/scene_manager/scene_manager.tscn"
 Scenes="*res://addons/scene_manager/scenes.gd"
 SoundManager="*res://addons/sound_manager/module/SoundManager.tscn"
 SaveSystem="*res://addons/save_system/save_system.gd"
+Global="*res://autoload/Global.gd"
 
 [display]
 
