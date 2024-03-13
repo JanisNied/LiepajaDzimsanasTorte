@@ -6,6 +6,7 @@ var computerTurn
 var step = 0
 var spaceLock = false
 
+signal beatHit(score)
 # hit timing
 var momentIndiTouchesDollMS
 
@@ -27,16 +28,17 @@ func _unhandled_input(event):
 			var LifetimeMs = $Orchestra.secsperbeat * 1000
 			var Timing = (MsSinceAppearance / LifetimeMs) * 100
 			
-			if Timing > 80:
-				print("50")
+			if Timing > 85:
+				emit_signal("beatHit", 50)
 			elif Timing > 65:
-				print("100")
+				emit_signal("beatHit",100)
 			elif Timing > 20:
-				print("300")
+				emit_signal("beatHit", 300)
 			elif Timing > 15:
-				print("100")
+				emit_signal("beatHit", 100)
 			else:
-				print("50")
+				emit_signal("beatHit", 50)
+			
 			dollNodes[step].visible = false
 	
 # conductor

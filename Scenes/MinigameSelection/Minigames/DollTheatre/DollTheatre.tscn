@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Orchestra.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/flasher.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Flasher.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/bruh.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/judge.png" type="Texture" id=15]
+[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Judger.gd" type="Script" id=16]
 
 [node name="Theatre" type="Node2D"]
 script = ExtResource( 1 )
@@ -113,10 +115,19 @@ texture = ExtResource( 9 )
 expand = true
 
 [node name="HUD" type="Control" parent="."]
-visible = false
 margin_right = 1024.0
 margin_bottom = 576.0
 
+[node name="Judger" type="TextureRect" parent="HUD"]
+visible = false
+margin_left = 222.0
+margin_top = 121.0
+margin_right = 377.0
+margin_bottom = 248.0
+texture = ExtResource( 15 )
+script = ExtResource( 16 )
+
+[connection signal="beatHit" from="." to="HUD/Judger" method="_on_Theatre_beatHit"]
 [connection signal="eof" from="Beatmap" to="." method="_on_Beatmap_eof"]
 [connection signal="nextbeat" from="Orchestra" to="." method="_on_Orchestra_nextbeat"]
 [connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Flasher" method="_on_Orchestra_nextbeat"]
