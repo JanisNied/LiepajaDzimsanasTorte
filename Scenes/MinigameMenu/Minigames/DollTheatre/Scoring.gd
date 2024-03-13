@@ -4,6 +4,7 @@ var Score = 0
 var Accuracy = 0
 var AccCount = 0
 var Combo = 0
+var MaxCombo = 0
 
 func _on_Theatre_beatHit(score):
 	# accuracy
@@ -34,6 +35,8 @@ func _on_Theatre_beatHit(score):
 		
 		# combo
 		Combo += 1
+		if MaxCombo <= Combo:
+			MaxCombo = Combo
 	else:
 		AccCount += 1
 		Accuracy = Accuracy + ((0.1 - Accuracy) / AccCount)
@@ -49,7 +52,4 @@ func getGrade():
 	if get_parent().find_node("Beatmap").FullCombo == Combo:
 		didmaxcombo == 1
 	var final = ((acc + didmaxcombo) / 11)
-	
-	print(final)
-	
 	return int(final)
