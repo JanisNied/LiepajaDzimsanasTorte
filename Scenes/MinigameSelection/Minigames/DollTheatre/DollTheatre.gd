@@ -8,7 +8,6 @@ var spaceLock = false
 
 # hit timing
 var momentIndiTouchesDollMS
-var momentIndiLeavesMS
 
 func _ready():
 	SoundManager.stop("sunMenuMusic")
@@ -25,9 +24,10 @@ func _unhandled_input(event):
 		elif computerTurn == 0 and $Beatmap.dolls[step] == 1:
 			self.spaceLock = true
 			var MsSinceAppearance = Time.get_ticks_msec() - momentIndiTouchesDollMS
-			var LifetimeMs = momentIndiLeavesMS - momentIndiTouchesDollMS
+			var LifetimeMs = $Orchestra.secsperbeat * 1000
 			
 			print(MsSinceAppearance, " ",LifetimeMs , " ", MsSinceAppearance / LifetimeMs)
+			
 			dollNodes[step].visible = false
 	
 # conductor
@@ -40,7 +40,6 @@ func _on_Orchestra_nextbeat(pos):
 			dollNodes[step].visible = true
 	else:
 		momentIndiTouchesDollMS = Time.get_ticks_msec()
-		momentIndiLeavesMS = momentIndiTouchesDollMS + ($Orchestra.secsperbeat * 1000)
 		if self.step > 0:
 			dollNodes[step - 1].visible = false #miss
 
