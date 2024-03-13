@@ -135,3 +135,8 @@ func _on_Button2_button_up():
 	yield(get_tree().create_timer(0.7), "timeout")
 	get_parent().get_parent().get_parent().get_node("Button2").disabled = false
 	pass # Replace with function body.
+
+
+func _on_Transition_button_up():
+	get_parent().get_parent().get_parent().get_node("Transition").transition(Global.chosenActivities[activityIndex]["scene"])
+	pass # Replace with function body.

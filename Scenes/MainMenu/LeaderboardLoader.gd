@@ -5,7 +5,7 @@ var leaderboard = {}
 var secondhalf = false
 
 static func sort_desc(a, b):
-	return	int(int(a[2]) - (int(a[1]) * 0.1)) > int(int(b[2]) - (int(b[1]) * 0.1))
+	return int(a[1]) < int(b[1])
 
 func _ready():
 	var temp = File.new()

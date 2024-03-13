@@ -44,9 +44,13 @@ var availableChoices : Dictionary = {
 }
 
 func pickActivitiesRandomly():
-	var temp = availableChoices
+	var temp = availableChoices.duplicate(true)
 	for i in allowedActivities:
 		var random_key = temp.keys()[randi() % temp.size()]
 		var activity = temp[random_key]
 		chosenActivities.append(activity)
 		temp.erase(random_key)
+
+func endGame():
+	allowedActivities = [1, 2, 3, 4, 5, 6]
+	chosenActivities.clear()
