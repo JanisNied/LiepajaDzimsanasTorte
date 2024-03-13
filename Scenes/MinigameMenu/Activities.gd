@@ -15,13 +15,22 @@ var act6 : bool = true
 func _ready():
 	pass
 
+func updateLabelData():
+	get_parent().get_parent().get_parent().get_node("Background/Tituls").text = str(Global.chosenActivities[activityIndex]["name"])
+	get_parent().get_parent().get_parent().get_node("Background/Description").text = str(Global.chosenActivities[activityIndex]["desc"])
+
 func updateActClockWise():
 	if activityIndex == Global.allowedActivities.size():
 		activityIndex = 0
 	if not firstpass:
 			$AnimationPlayerOut.play("Activity"+str(Global.allowedActivities[activityIndex - 1]))	
+	else:
+		get_parent().get_parent().get_parent().get_node("Background/Tituls").show()
+		get_parent().get_parent().get_parent().get_node("Background/Nosaukums").show()
+		get_parent().get_parent().get_parent().get_node("Background/Description").show()
 	firstpass = false
 	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))
+	updateLabelData()
 	
 func updateActCounterClockWise():
 	if activityIndex == -abs(Global.allowedActivities.size()):
@@ -29,7 +38,8 @@ func updateActCounterClockWise():
 	if not firstpass:
 			$AnimationPlayerOut.play("Activity"+str(Global.allowedActivities[activityIndex + 1]))	
 	firstpass = false
-	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))	
+	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))
+	updateLabelData()	
 	
 func activity1():
 	if act1:
