@@ -17,7 +17,8 @@ func _on_Theatre_beatHit(score):
 			addition = 0.25
 		
 		AccCount += 1
-		Accuracy = Accuracy + ((addition - Accuracy) / AccCount)
+		if AccCount != 0:
+			Accuracy = Accuracy + ((addition - Accuracy) / AccCount)
 		
 		# score
 		if score == 300:
@@ -35,7 +36,10 @@ func _on_Theatre_beatHit(score):
 		# combo
 		Combo += 1
 	else:
-		Accuracy = Accuracy + ((0.1 - Accuracy) / AccCount)
+		if AccCount != 0:
+			Accuracy = Accuracy + ((0.1 - Accuracy) / AccCount)
+		else:
+			Accuracy = Accuracy + ((0.1 - Accuracy) / 1)
 		Combo = 0
 	
 	get_parent().find_node("AccuracyText").text = "Prec.:\n%.2f%%" % stepify((Accuracy * 100), 0.01)

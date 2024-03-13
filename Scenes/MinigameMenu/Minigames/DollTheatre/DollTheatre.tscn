@@ -1,28 +1,28 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Orchestra.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Beatmap.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Paspēlēsim Paslēpes.mp3" type="AudioStream" id=4]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/bg.png" type="Texture" id=5]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/wall.png" type="Texture" id=6]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/rc.png" type="Texture" id=7]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/lc.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/table.png" type="Texture" id=9]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/gem-indicator.png" type="Texture" id=10]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Indicator.gd" type="Script" id=11]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/flasher.png" type="Texture" id=12]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Flasher.gd" type="Script" id=13]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/bruh.png" type="Texture" id=14]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/judge.png" type="Texture" id=15]
-[ext_resource path="res://addons/SIsilicon.3d.text/default_font.ttf" type="DynamicFontData" id=16]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Judge.gd" type="Script" id=17]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/judgemiss.png" type="Texture" id=18]
-[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Scoring.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
+[ext_resource path="res://addons/SIsilicon.3d.text/default_font.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/wall.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/lc.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/bruh.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/gem-indicator.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/flasher.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/bg.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/table.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Paspēlēsim Paslēpes.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/rc.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/judge.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/judgemiss.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Flasher.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Indicator.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Beatmap.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Orchestra.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Scoring.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Judge.gd" type="Script" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 15 ), ExtResource( 18 ), ExtResource( 18 ), ExtResource( 18 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -30,24 +30,24 @@ animations = [ {
 
 [sub_resource type="DynamicFont" id=2]
 size = 135
-font_data = ExtResource( 16 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
-font_data = ExtResource( 16 )
+font_data = ExtResource( 2 )
 
 [node name="Theatre" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Scoring" type="Node" parent="."]
-script = ExtResource( 19 )
+script = ExtResource( 18 )
 
 [node name="Beatmap" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 16 )
 
 [node name="Orchestra" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-script = ExtResource( 2 )
+stream = ExtResource( 10 )
+script = ExtResource( 17 )
 
 [node name="Conductor" type="Timer" parent="Orchestra"]
 one_shot = true
@@ -57,7 +57,7 @@ one_shot = true
 [node name="Wallpaper" type="TextureRect" parent="Background"]
 margin_right = 1024.0
 margin_bottom = 576.0
-texture = ExtResource( 5 )
+texture = ExtResource( 8 )
 
 [node name="Ground" type="ColorRect" parent="Background"]
 margin_top = 456.0
@@ -69,7 +69,7 @@ color = Color( 0.341176, 0.262745, 0.219608, 1 )
 margin_left = 500.0
 margin_right = 832.0
 margin_bottom = 456.0
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 expand = true
 
 [node name="Foreground" type="Node2D" parent="."]
@@ -79,7 +79,7 @@ margin_left = 831.0
 margin_top = -25.0
 margin_right = 1236.0
 margin_bottom = 560.0
-texture = ExtResource( 7 )
+texture = ExtResource( 11 )
 expand = true
 
 [node name="Lcurtain" type="TextureRect" parent="Foreground"]
@@ -87,7 +87,7 @@ margin_left = 218.0
 margin_top = -25.0
 margin_right = 560.0
 margin_bottom = 523.0
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
 expand = true
 
 [node name="Dolls" type="Node2D" parent="Foreground"]
@@ -96,37 +96,37 @@ expand = true
 visible = false
 position = Vector2( 550, 157 )
 scale = Vector2( 0.839999, 0.610039 )
-texture = ExtResource( 12 )
-script = ExtResource( 13 )
+texture = ExtResource( 7 )
+script = ExtResource( 14 )
 
 [node name="Indicator" type="Sprite" parent="Foreground/Dolls"]
-visible = false
+modulate = Color( 1, 0.68, 0.685333, 1 )
 position = Vector2( 550, 75 )
 scale = Vector2( 0.85, 0.85 )
-texture = ExtResource( 10 )
-script = ExtResource( 11 )
+texture = ExtResource( 6 )
+script = ExtResource( 15 )
 
 [node name="DollShow" type="Node2D" parent="Foreground/Dolls"]
 
 [node name="D1" type="Sprite" parent="Foreground/Dolls/DollShow"]
 visible = false
 position = Vector2( 547, 265 )
-texture = ExtResource( 14 )
+texture = ExtResource( 5 )
 
 [node name="D2" type="Sprite" parent="Foreground/Dolls/DollShow"]
 visible = false
 position = Vector2( 629, 263 )
-texture = ExtResource( 14 )
+texture = ExtResource( 5 )
 
 [node name="D3" type="Sprite" parent="Foreground/Dolls/DollShow"]
 visible = false
 position = Vector2( 712, 261 )
-texture = ExtResource( 14 )
+texture = ExtResource( 5 )
 
 [node name="D4" type="Sprite" parent="Foreground/Dolls/DollShow"]
 visible = false
 position = Vector2( 792, 261 )
-texture = ExtResource( 14 )
+texture = ExtResource( 5 )
 
 [node name="Table" type="TextureRect" parent="Foreground"]
 margin_left = 459.0
@@ -144,7 +144,7 @@ margin_bottom = 576.0
 visible = false
 position = Vector2( 327, 166 )
 frames = SubResource( 1 )
-script = ExtResource( 17 )
+script = ExtResource( 19 )
 
 [node name="ComboText" type="Label" parent="HUD"]
 margin_left = 4.0
@@ -174,8 +174,8 @@ text = "Punkti:
 0"
 align = 2
 
-[connection signal="beatHit" from="." to="HUD/Judge" method="_on_Theatre_beatHit"]
 [connection signal="beatHit" from="." to="Scoring" method="_on_Theatre_beatHit"]
+[connection signal="beatHit" from="." to="HUD/Judge" method="_on_Theatre_beatHit"]
 [connection signal="eof" from="Beatmap" to="." method="_on_Beatmap_eof"]
 [connection signal="nextbeat" from="Orchestra" to="." method="_on_Orchestra_nextbeat"]
 [connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Flasher" method="_on_Orchestra_nextbeat"]
