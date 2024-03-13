@@ -127,6 +127,8 @@ margin_right = 1024.0
 margin_bottom = 576.0
 
 [node name="Judge" type="AnimatedSprite" parent="HUD"]
+visible = false
+position = Vector2( 327, 166 )
 frames = SubResource( 1 )
 script = ExtResource( 17 )
 
