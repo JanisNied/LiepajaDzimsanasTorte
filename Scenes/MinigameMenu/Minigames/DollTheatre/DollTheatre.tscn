@@ -228,6 +228,7 @@ custom_fonts/font = SubResource( 5 )
 [connection signal="beatHit" from="." to="HUD/Judge" method="_on_Theatre_beatHit"]
 [connection signal="eof" from="Beatmap" to="." method="_on_Beatmap_eof"]
 [connection signal="eof" from="Beatmap" to="Orchestra" method="_on_Beatmap_eof"]
+[connection signal="eof" from="Beatmap" to="Foreground/Dolls/Indicator" method="_on_Beatmap_eof"]
 [connection signal="nextbeat" from="Orchestra" to="." method="_on_Orchestra_nextbeat"]
 [connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Flasher" method="_on_Orchestra_nextbeat"]
 [connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Indicator" method="_on_Orchestra_nextbeat"]

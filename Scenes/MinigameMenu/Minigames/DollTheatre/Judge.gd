@@ -12,4 +12,3 @@ func _on_Theatre_beatHit(score):
 		self.frame = 0
 	elif score == -1:
 		self.frame = 3
-	

@@ -22,3 +22,7 @@ func _on_Orchestra_nowstart():
 
 func _on_Orchestra_nextbeat(pos):
 	animreached = false
+
+func _on_Beatmap_eof():
+	self.visible = false	
+	pass # Replace with function body.
