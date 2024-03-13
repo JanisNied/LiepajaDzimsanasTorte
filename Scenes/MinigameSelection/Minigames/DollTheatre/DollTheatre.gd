@@ -18,9 +18,9 @@ func _unhandled_input(event):
 		if computerTurn == 1 and $Beatmap.dolls[step] == 1:
 			print("Miss!")
 			self.spaceLock = true
-		elif computerTurn == 0:
-			#dollNodes[step].visible = false
-			print( $Beatmap.dolls[step], " of ",  $Beatmap.dolls)
+		elif computerTurn == 0 and $Beatmap.dolls[step] == 1:
+			dollNodes[step].visible = false
+			print("HIT!")
 			self.spaceLock = true
 	pass
 	
