@@ -29,6 +29,9 @@ func _on_Orchestra_nextbeat(pos):
 	if computerTurn == 1:
 		if $Beatmap.dolls[step] == 1:
 			dollNodes[step].visible = true
+	else:
+		if self.step > 0:
+			dollNodes[step - 1].visible = false
 	
 	#print(pos)
 	pass # Replace with function body.
