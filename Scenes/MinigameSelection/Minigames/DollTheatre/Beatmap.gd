@@ -23,7 +23,7 @@ func getbpm():
 func nextLine():
 	if currline < length:
 		for i in 4:
-			dolls[i] = int(Beatmap[currline][i])
+			self.dolls[i] = int(Beatmap[currline][i])
 		currline += 1
 	else:
 		emit_signal("eof")

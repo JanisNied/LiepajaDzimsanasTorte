@@ -16,10 +16,13 @@ func _physics_process(_delta):
 				vis = false
 
 func _unhandled_input(event):
+	if !orchestra.playing:
+		return
+	
 	if !event.is_echo() and event.scancode == KEY_SPACE and !vis:
 		self.visible = true
 		vis = true
 		self.modulate.a = 1
 
 func _on_Orchestra_nextbeat(pos):
-	self.stuckpos = 550 + (81.75 * (orchestra.measure))
+	self.stuckpos = 550 + (81.75 * (pos))
