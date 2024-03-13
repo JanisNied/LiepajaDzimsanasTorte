@@ -28,6 +28,8 @@ func updateActClockWise():
 		get_parent().get_parent().get_parent().get_node("Background/Tituls").show()
 		get_parent().get_parent().get_parent().get_node("Background/Nosaukums").show()
 		get_parent().get_parent().get_parent().get_node("Background/Description").show()
+		get_parent().get_parent().get_parent().get_node("Button").show()
+		get_parent().get_parent().get_parent().get_node("Button2").show()
 	firstpass = false
 	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))
 	updateLabelData()

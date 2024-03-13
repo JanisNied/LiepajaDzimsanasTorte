@@ -1395,6 +1395,7 @@ align = 1
 valign = 1
 
 [node name="Tituls" type="Label" parent="Background"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = 76.0
@@ -1698,18 +1699,20 @@ anims/MoveViewport = SubResource( 9 )
 anims/RESET = SubResource( 10 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 811.0
-margin_top = 383.0
-margin_right = 931.0
-margin_bottom = 473.0
-text = "Clockwise"
+visible = false
+margin_left = 830.0
+margin_top = 450.0
+margin_right = 950.0
+margin_bottom = 540.0
+text = "Forward"
 
 [node name="Button2" type="Button" parent="."]
-margin_left = 622.0
-margin_top = 388.0
-margin_right = 742.0
-margin_bottom = 478.0
-text = "Counter-clockwise"
+visible = false
+margin_left = 450.0
+margin_top = 450.0
+margin_right = 579.0
+margin_bottom = 540.0
+text = "Backward"
 
 [connection signal="button_up" from="Button" to="ViewportContainer/Viewport/Spatial" method="_on_Button_button_up"]
 [connection signal="button_up" from="Button2" to="ViewportContainer/Viewport/Spatial" method="_on_Button2_button_up"]
