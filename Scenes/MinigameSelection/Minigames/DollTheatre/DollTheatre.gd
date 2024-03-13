@@ -20,7 +20,7 @@ func _unhandled_input(event):
 	
 	if !event.is_echo() and event.scancode == KEY_SPACE and !spaceLock:
 		if computerTurn == 1 and $Beatmap.dolls[step] == 1:
-			print("Miss!")
+			emit_signal("beatHit", -1)
 			self.spaceLock = true
 		elif computerTurn == 0 and $Beatmap.dolls[step] == 1:
 			self.spaceLock = true
@@ -51,14 +51,18 @@ func _on_Orchestra_nextbeat(pos):
 			dollNodes[step].visible = true
 	else:
 		momentIndiTouchesDollMS = Time.get_ticks_msec()
-		if self.step > 0:
-			dollNodes[step - 1].visible = false #miss
-
+		if self.step > 0 and dollNodes[step - 1].visible:
+			dollNodes[step - 1].visible = false
+			emit_signal("beatHit", -1)
 
 func _on_Orchestra_nextwave(turn):
 	self.computerTurn = turn
 	
 	if computerTurn == 1:
+		if dollNodes[3].visible:
+			dollNodes[3].visible = false
+			emit_signal("beatHit", -1)
+		
 		$Beatmap.nextLine()
 		for i in 4:
 			dollNodes[i].visible = false

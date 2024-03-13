@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Orchestra.gd" type="Script" id=2]
@@ -17,10 +17,11 @@
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/judge.png" type="Texture" id=15]
 [ext_resource path="res://addons/SIsilicon.3d.text/default_font.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Judge.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/judgemiss.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 15 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 18 ), ExtResource( 18 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -132,6 +133,7 @@ margin_right = 1024.0
 margin_bottom = 576.0
 
 [node name="Judge" type="AnimatedSprite" parent="HUD"]
+visible = false
 position = Vector2( 327, 166 )
 frames = SubResource( 1 )
 script = ExtResource( 17 )
