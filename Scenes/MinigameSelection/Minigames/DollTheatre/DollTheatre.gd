@@ -25,9 +25,18 @@ func _unhandled_input(event):
 			self.spaceLock = true
 			var MsSinceAppearance = Time.get_ticks_msec() - momentIndiTouchesDollMS
 			var LifetimeMs = $Orchestra.secsperbeat * 1000
+			var Timing = (MsSinceAppearance / LifetimeMs) * 100
 			
-			print(MsSinceAppearance, " ",LifetimeMs , " ", MsSinceAppearance / LifetimeMs)
-			
+			if Timing > 80:
+				print("50")
+			elif Timing > 65:
+				print("100")
+			elif Timing > 20:
+				print("300")
+			elif Timing > 15:
+				print("100")
+			else:
+				print("50")
 			dollNodes[step].visible = false
 	
 # conductor
