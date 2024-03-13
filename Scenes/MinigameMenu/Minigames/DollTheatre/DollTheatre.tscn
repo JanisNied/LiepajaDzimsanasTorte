@@ -224,6 +224,8 @@ margin_right = 186.0
 margin_bottom = 225.0
 custom_fonts/font = SubResource( 4 )
 text = "10"
+align = 1
+valign = 1
 
 [node name="ScoringText" type="Label" parent="HugeCurtain/Scoreboard"]
 margin_left = 289.0
