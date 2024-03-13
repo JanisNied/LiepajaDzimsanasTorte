@@ -75,12 +75,14 @@ func _on_Orchestra_nextwave(turn):
 		
 func _on_Orchestra_nowstart():
 	$Foreground/Dolls/Indicator/Color.modulate.b = 0
+	$Preparation.visible = false
+	$HUD.visible = true
 
 # beatmap file
 func _on_Beatmap_eof():
 	$HugeCurtain.show()
 	
-	
+	Global.score += $Scoring.getGrade()
 	
 	$HugeCurtain/Scoreboard/Grade.text = "%d" % $Scoring.getGrade()
 	$HugeCurtain/Scoreboard/ScoringText.text = "Spēles punkti:  %d\nPrecizitāte:  %.2f%%\nMaksimālais kombo:  %d" % [$Scoring.Score, $Scoring.Accuracy * 100, $Scoring.MaxCombo]

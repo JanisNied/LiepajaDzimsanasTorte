@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://addons/SIsilicon.3d.text/default_font.ttf" type="DynamicFontData" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/flasher.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/bg.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/table.png" type="Texture" id=9]
-[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Paspēlēsim Paslēpes.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Paspēlēsim Paslēpes Cut.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/rc.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/100.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/miss.png" type="Texture" id=13]
@@ -43,6 +43,10 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 128
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -161,6 +165,7 @@ texture = ExtResource( 9 )
 expand = true
 
 [node name="HUD" type="Control" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 576.0
 
@@ -196,6 +201,23 @@ custom_fonts/font = SubResource( 3 )
 text = "Punkti:
 0"
 align = 2
+
+[node name="Preparation" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 576.0
+
+[node name="Bg" type="ColorRect" parent="Preparation"]
+margin_right = 1024.0
+margin_bottom = 576.0
+color = Color( 0, 0, 0, 0.317647 )
+
+[node name="Label" type="Label" parent="Preparation"]
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 843.0
+margin_bottom = 346.0
+custom_fonts/font = SubResource( 6 )
+text = "Gatavojies!"
 
 [node name="HugeCurtain" type="Control" parent="."]
 visible = false
