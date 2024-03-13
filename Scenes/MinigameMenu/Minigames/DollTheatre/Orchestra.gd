@@ -14,7 +14,7 @@ signal nextwave(turn)
 signal nowstart()
 
 func start_play(offset, bpm):
-	volume_db = SoundManager.get_volume_db("sunMenuMusic")
+	#volume_db = SoundManager.get_volume_db("sunMenuMusic")
 	secsperbeat = 60.0 / bpm
 	beatdelay = offset
 	$Conductor.wait_time = secsperbeat
