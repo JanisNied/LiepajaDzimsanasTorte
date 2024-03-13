@@ -155,12 +155,13 @@ custom_fonts/font = SubResource( 2 )
 text = "0x"
 
 [node name="AccuracyText" type="Label" parent="HUD"]
-margin_left = 708.0
-margin_top = 45.0
-margin_right = 1023.0
-margin_bottom = 90.0
+margin_left = 704.0
+margin_top = 84.0
+margin_right = 1019.0
+margin_bottom = 161.0
 custom_fonts/font = SubResource( 3 )
-text = "100.00%"
+text = "Prec.:
+100.00%"
 align = 2
 
 [node name="ScoreText" type="Label" parent="HUD"]
@@ -169,7 +170,8 @@ margin_top = 5.0
 margin_right = 1016.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 3 )
-text = "0"
+text = "Punkti:
+0"
 align = 2
 
 [connection signal="beatHit" from="." to="HUD/Judge" method="_on_Theatre_beatHit"]
