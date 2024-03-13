@@ -78,5 +78,5 @@ func _on_Orchestra_nowstart():
 
 # beatmap file
 func _on_Beatmap_eof():
-	
-	pass # Replace with function body.
+	$HugeCurtain.show()
+	$HugeCurtain/Scoreboard/Grade.text = "%d" % $Scoring.getGrade()

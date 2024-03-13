@@ -12,6 +12,7 @@ signal eof()
 var length
 var currline = 1
 var dolls = [0, 0, 0, 0]
+var FullCombo = 0
 
 func _ready():
 	length = Beatmap.size()
@@ -24,6 +25,8 @@ func nextLine():
 	if currline < length:
 		for i in 4:
 			self.dolls[i] = int(Beatmap[currline][i])
+			if self.dolls[i] == 1:
+				FullCombo += 1
 		currline += 1
 	else:
 		emit_signal("eof")
