@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Orchestra.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Flasher.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/bruh.png" type="Texture" id=14]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/judge.png" type="Texture" id=15]
+[ext_resource path="res://addons/SIsilicon.3d.text/default_font.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Judge.gd" type="Script" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -24,6 +25,10 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+font_data = ExtResource( 16 )
 
 [node name="Theatre" type="Node2D"]
 script = ExtResource( 1 )
@@ -127,10 +132,25 @@ margin_right = 1024.0
 margin_bottom = 576.0
 
 [node name="Judge" type="AnimatedSprite" parent="HUD"]
-visible = false
 position = Vector2( 327, 166 )
 frames = SubResource( 1 )
 script = ExtResource( 17 )
+
+[node name="ScoreText" type="Label" parent="HUD"]
+margin_left = 6.0
+margin_top = 525.0
+margin_right = 190.0
+margin_bottom = 567.0
+custom_fonts/font = SubResource( 2 )
+text = "00000000"
+
+[node name="ComboText" type="Label" parent="HUD"]
+margin_left = 6.0
+margin_top = 495.0
+margin_right = 190.0
+margin_bottom = 537.0
+custom_fonts/font = SubResource( 2 )
+text = "0x"
 
 [connection signal="beatHit" from="." to="HUD/Judge" method="_on_Theatre_beatHit"]
 [connection signal="eof" from="Beatmap" to="." method="_on_Beatmap_eof"]
