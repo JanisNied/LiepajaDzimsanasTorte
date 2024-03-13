@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Orchestra.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Indicator.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/flasher.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/Flasher.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/MinigameSelection/Minigames/DollTheatre/img/bruh.png" type="Texture" id=14]
 
 [node name="Theatre" type="Node2D"]
 script = ExtResource( 1 )
@@ -81,6 +82,28 @@ scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 10 )
 script = ExtResource( 11 )
 
+[node name="DollShow" type="Node2D" parent="Foreground/Dolls"]
+
+[node name="D1" type="Sprite" parent="Foreground/Dolls/DollShow"]
+visible = false
+position = Vector2( 547, 265 )
+texture = ExtResource( 14 )
+
+[node name="D2" type="Sprite" parent="Foreground/Dolls/DollShow"]
+visible = false
+position = Vector2( 629, 263 )
+texture = ExtResource( 14 )
+
+[node name="D3" type="Sprite" parent="Foreground/Dolls/DollShow"]
+visible = false
+position = Vector2( 712, 261 )
+texture = ExtResource( 14 )
+
+[node name="D4" type="Sprite" parent="Foreground/Dolls/DollShow"]
+visible = false
+position = Vector2( 792, 261 )
+texture = ExtResource( 14 )
+
 [node name="Table" type="TextureRect" parent="Foreground"]
 margin_left = 459.0
 margin_top = 291.0
@@ -94,6 +117,7 @@ visible = false
 margin_right = 1024.0
 margin_bottom = 576.0
 
+[connection signal="eof" from="Beatmap" to="." method="_on_Beatmap_eof"]
 [connection signal="nextbeat" from="Orchestra" to="." method="_on_Orchestra_nextbeat"]
 [connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Flasher" method="_on_Orchestra_nextbeat"]
 [connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Indicator" method="_on_Orchestra_nextbeat"]
