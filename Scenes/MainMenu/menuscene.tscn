@@ -91,7 +91,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=233]
+[sub_resource type="ShaderMaterial" id=243]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -105,9 +105,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=234]
+[sub_resource type="ShaderMaterial" id=244]
 render_priority = -124
-next_pass = SubResource( 233 )
+next_pass = SubResource( 243 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -120,9 +120,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=235]
+[sub_resource type="ShaderMaterial" id=245]
 render_priority = -125
-next_pass = SubResource( 234 )
+next_pass = SubResource( 244 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -135,9 +135,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=236]
+[sub_resource type="ShaderMaterial" id=246]
 render_priority = -126
-next_pass = SubResource( 235 )
+next_pass = SubResource( 245 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -150,9 +150,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=237]
+[sub_resource type="ShaderMaterial" id=247]
 render_priority = -127
-next_pass = SubResource( 236 )
+next_pass = SubResource( 246 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -165,9 +165,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=238]
+[sub_resource type="ShaderMaterial" id=248]
 render_priority = -128
-next_pass = SubResource( 237 )
+next_pass = SubResource( 247 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -1759,7 +1759,6 @@ func _on_Area_mouse_exited():
 func _on_Area_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			get_parent().get_node(\"RuleboardCreditBoard/Area\").show()
 			get_parent().get_node(\"Camera/CameraAnim\").play(\"ZoomToWhiteboard\")
 			get_parent().disableAreas()
 "
@@ -2452,7 +2451,7 @@ transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968
 
 [node name="Cloud" parent="Environment" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 238 )
+material_override = SubResource( 248 )
 skeleton = NodePath("../..")
 cloud_speed = Vector2( 3.606, 0 )
 cloud_transform_speed = Vector2( 0.001, 0.001 )

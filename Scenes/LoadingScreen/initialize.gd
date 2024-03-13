@@ -5,7 +5,7 @@ func _ready():
 	SceneManager.load_scene_interactive(SceneManager.get_recorded_scene())
 
 func loading_finished() -> void:
-	$EventHitbox.show()
+	loadScene()
 
 func loadScene() -> void:
 	var fade_out_options = SceneManager.create_options(1.0, "scribbles", 0.2, true)

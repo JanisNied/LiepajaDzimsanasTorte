@@ -16,6 +16,7 @@ func _ready():
 func _input(event):
 	if (event is InputEventKey or event is InputEventMouseButton) and anim:
 		anim = false
+		$RuleboardCreditBoard/Area.show()
 		animationplayer.play("ZoomToTable")
 
 func disableAreas():

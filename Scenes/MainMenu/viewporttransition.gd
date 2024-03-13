@@ -1,9 +1,9 @@
 extends Spatial
 
-export(String) var scene = "splashscene"
+export(String) var scene = "MinigameMenu"
 export(float) var fade_out_speed = 1.0
 export(float) var fade_in_speed = 1.0
-export(String) var fade_out_pattern = "pixel"
+export(String) var fade_out_pattern = "dirt"
 export(String) var fade_in_pattern = "fade"
 export(float, 0, 1) var fade_out_smoothness = 0.1
 export(float, 0, 1) var fade_in_smoothness = 0.1
