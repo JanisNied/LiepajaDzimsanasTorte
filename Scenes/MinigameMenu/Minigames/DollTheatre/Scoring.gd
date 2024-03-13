@@ -47,4 +47,5 @@ func _on_Theatre_beatHit(score):
 	get_parent().find_node("ScoreText").text = "Punkti:\n%d" % Score
 
 func getGrade():
-	return round(Accuracy)
+	var acc = round(Accuracy)
+	

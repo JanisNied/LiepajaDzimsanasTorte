@@ -1,10 +1,10 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
 [ext_resource path="res://addons/SIsilicon.3d.text/default_font.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/wall.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/lc.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/bruh.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/lapsa.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/gem-indicator.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/flasher.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/bg.png" type="Texture" id=8]
@@ -22,6 +22,9 @@
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/gem-indicator-body.png" type="Texture" id=20]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/curtain.png" type="Texture" id=21]
 [ext_resource path="res://Assets/ARIAL.TTF" type="DynamicFontData" id=22]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/herkuless.png" type="Texture" id=23]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/ucipuci.png" type="Texture" id=24]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/leljljuteatralogo.png" type="Texture" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -124,23 +127,27 @@ texture = ExtResource( 20 )
 
 [node name="D1" type="Sprite" parent="Foreground/Dolls/DollShow"]
 visible = false
-position = Vector2( 547, 265 )
-texture = ExtResource( 5 )
-
-[node name="D2" type="Sprite" parent="Foreground/Dolls/DollShow"]
-visible = false
-position = Vector2( 629, 263 )
-texture = ExtResource( 5 )
+position = Vector2( 550, 222 )
+scale = Vector2( 0.84, 0.84 )
+texture = ExtResource( 23 )
 
 [node name="D3" type="Sprite" parent="Foreground/Dolls/DollShow"]
 visible = false
-position = Vector2( 712, 261 )
+position = Vector2( 718, 234 )
+scale = Vector2( 0.84, 0.84 )
+texture = ExtResource( 24 )
+
+[node name="D2" type="Sprite" parent="Foreground/Dolls/DollShow"]
+visible = false
+position = Vector2( 634, 222 )
+scale = Vector2( 0.84, 0.84 )
 texture = ExtResource( 5 )
 
 [node name="D4" type="Sprite" parent="Foreground/Dolls/DollShow"]
 visible = false
-position = Vector2( 792, 261 )
-texture = ExtResource( 5 )
+position = Vector2( 802, 211 )
+scale = Vector2( 0.84, 0.84 )
+texture = ExtResource( 25 )
 
 [node name="Table" type="TextureRect" parent="Foreground"]
 margin_left = 459.0
@@ -151,6 +158,7 @@ texture = ExtResource( 9 )
 expand = true
 
 [node name="HUD" type="Control" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 576.0
 
