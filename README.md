@@ -1,2 +1,2 @@
-# GodotCake
- GodotExperiment
+# Liepājas Torte
+Laipni lūdzam...
