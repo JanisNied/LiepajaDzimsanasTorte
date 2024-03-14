@@ -47,3 +47,4 @@ func deleteEatenSlices():
 				$ViewportContainer/Viewport/Spatial/CakeBottom/PieceofCake.queue_free()
 				$ViewportContainer/Viewport/Spatial/CakeBottom/PieceofCake11.queue_free()
 				$ViewportContainer/Viewport/Spatial/CakeBottom/PieceofCake10.queue_free()
+# y = -0.294
