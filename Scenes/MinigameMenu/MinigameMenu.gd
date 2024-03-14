@@ -3,7 +3,7 @@ extends Node2D
 var holoMat = preload("res://Shaders/holo.tres")
 
 func _ready():
-	print(Global.time)
+	print("[TIME] Elapsed Time since Game Start: %02d:%02d:%02d" % [floor(int(Global.time) / 3600), floor((int(Global.time) % 3600) / 60), int(Global.time) % 60])
 	SoundManager.stop("sunMenuMusic")
 	randomize()
 	if not Global.activitiesPicked:

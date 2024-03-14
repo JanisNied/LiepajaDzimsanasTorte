@@ -170,6 +170,37 @@ material/6 = SubResource( 17 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 13 )
 
+[node name="Thankyou" type="Label3D" parent="."]
+transform = Transform( -2.43917e-13, 0, 5.58017e-06, 0, 5.58016e-06, 0, -5.58015e-06, 0, -2.43916e-13, -1.528, 1.057, 0.473 )
+visible = false
+pixel_size = 128.0
+modulate = Color( 0, 0, 0, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Paldies, ka spelejat!"
+font = SubResource( 18 )
+horizontal_alignment = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance2" type="MeshInstance" parent="Thankyou"]
+transform = Transform( -0.000111782, 0, -2557.28, 0, 426.21, 0, 2557.27, 0, -0.000111782, 115409, 3942.53, 12006.8 )
+material_override = SubResource( 19 )
+mesh = SubResource( 20 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3" type="MeshInstance" parent="Thankyou"]
+transform = Transform( -0.000111782, 0, -2557.28, 0, 426.21, 0, 2557.27, 0, -0.000111782, 129387, 3942.53, 11110.8 )
+material_override = SubResource( 19 )
+mesh = SubResource( 20 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance4" type="MeshInstance" parent="Thankyou"]
+transform = Transform( -0.000111782, 0, -2557.28, 0, 426.21, 0, 2557.27, 0, -0.000111782, 148025, 3942.53, 8601.88 )
+material_override = SubResource( 19 )
+mesh = SubResource( 20 )
+skeleton = NodePath("../..")
+
 [node name="Stats" type="Label3D" parent="."]
 transform = Transform( -1.99991e-13, 0, 4.57529e-06, 0, 4.57528e-06, 0, -4.57527e-06, 0, -1.99992e-13, -1.56968, 1.38766, 0.37007 )
 visible = false
