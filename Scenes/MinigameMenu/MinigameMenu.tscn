@@ -41,7 +41,7 @@ outline_size = 1
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=33]
-size = 23
+size = 21
 font_data = ExtResource( 7 )
 
 [sub_resource type="SpatialMaterial" id=3]
@@ -1605,8 +1605,9 @@ margin_top = 200.0
 margin_right = 439.0
 margin_bottom = 333.0
 custom_fonts/font = SubResource( 33 )
-text = "descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescrdescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptioniptiondescription"
-align = 2
+text = "Laipni lūdzam Liepājas teātrī!
+- Jūsu mērķis šeit ir spiest \\\"Atstarpes (Spacebar)\\\" pogu dziesmas ritmā!
+- Pogu jāspiež tad, kad kvadrāts virs lellēm paliek zaļš."
 valign = 1
 autowrap = true
 
