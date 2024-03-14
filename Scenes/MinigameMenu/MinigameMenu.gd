@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready():
+	SoundManager.stop("sunMenuMusic")
 	randomize()
 	Global.pickActivitiesRandomly()
 	yield(get_tree().create_timer(1.5), "timeout")
