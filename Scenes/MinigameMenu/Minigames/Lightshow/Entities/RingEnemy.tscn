@@ -15,7 +15,7 @@ _data = {
 resource_name = "PatternCircle"
 script = ExtResource( 4 )
 bullet = "RingBullet"
-nbr = 10
+nbr = 60
 radius = 0
 angle_total = 6.28319
 angle_decal = 0
@@ -78,12 +78,14 @@ _data = {
 
 [sub_resource type="Curve" id=4]
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.994152, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.912281, 1, 0.985609, 1, 1, 1, 1, 1 )
 
 [sub_resource type="PackedDataContainer" id=6]
 script = ExtResource( 1 )
-speed = 100.0
-scale = 1
+speed = 150.0
+scale = 1.0
 angle = 0
 groups = [  ]
 anim_idle_texture = "0"
@@ -100,6 +102,7 @@ anim_waiting_sfx = -1
 anim_delete_sfx = -1
 spec_bounces = 0
 spec_no_collision = false
+spec_modulate = SubResource( 7 )
 spec_modulate_loop = 0.0
 spec_trail_length = 0.0
 spec_trail_width = 0.0
@@ -124,7 +127,6 @@ beam_length_per_ray = 0.0
 beam_width = 0.0
 beam_bounce_amount = 0
 scale_multi_iterations = 0
-scale_multiplier = SubResource( 5 )
 scale_multi_scale = 1
 r_randomisation_chances = 1.0
 r_speed_choice = ""
@@ -173,12 +175,14 @@ r_scale_multi_scale_variation = Vector3( 0, 0, 0 )
 script = ExtResource( 5 )
 
 [node name="SpawnPattern" type="Path2D" parent="."]
+z_index = -10
 curve = SubResource( 1 )
 script = ExtResource( 3 )
 id = "RingBulletPattern"
 pattern = SubResource( 2 )
 
 [node name="BulletPattern" type="Path2D" parent="."]
+z_index = -10
 curve = SubResource( 3 )
 script = ExtResource( 2 )
 id = "RingBullet"
