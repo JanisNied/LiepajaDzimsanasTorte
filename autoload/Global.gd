@@ -14,7 +14,7 @@ var discardedActivities : Array
 var availableChoices : Dictionary = {
 	"DollTheatre":{
 		"name":"\"Liepājas teātris\"",
-		"desc":"first actual minigame i cannot believe it...",
+		"desc":"Laipni lūdzam Liepājas teātrī!\n- Jūsu mērķis šeit ir spiest \"Atstarpes (Spacebar)\" pogu dziesmas ritmā!\n- Pogu jāspiež tad, kad kvadrāts virs lellēm paliek zaļš.",
 		"scene":"DollTheatre"
 	},
 	"testactivity2":{
