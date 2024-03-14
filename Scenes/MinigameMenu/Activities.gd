@@ -28,8 +28,9 @@ func updateActClockWise():
 		get_parent().get_parent().get_parent().get_node("Background/Tituls").show()
 		get_parent().get_parent().get_parent().get_node("Background/Nosaukums").show()
 		get_parent().get_parent().get_parent().get_node("Background/Description").show()
-		get_parent().get_parent().get_parent().get_node("Button").show()
-		get_parent().get_parent().get_parent().get_node("Button2").show()
+		if Global.slicesEaten < 5:
+			get_parent().get_parent().get_parent().get_node("Button").show()
+			get_parent().get_parent().get_parent().get_node("Button2").show()
 		get_parent().get_parent().get_parent().get_node("Transition").show()
 	firstpass = false
 	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))
@@ -142,6 +143,10 @@ func _on_Transition_button_up():
 	get_parent().get_parent().get_parent().get_node("Transition").transition(Global.chosenActivities[activityIndex]["scene"])
 	Global.discardedActivityNum.append(Global.allowedActivities[activityIndex])
 	Global.discardedActivities.append(Global.chosenActivities[activityIndex])
+	if activityIndex < 0:
+		activityIndex += Global.allowedActivities.size()
+	print(Global.discardedActivities)
+	print(Global.discardedActivityNum)	
 	Global.allowedActivities.remove(activityIndex)
 	Global.chosenActivities.remove(activityIndex)
 	Global.slicesEaten += 1

@@ -10,6 +10,10 @@ signal beatHit(score)
 # hit timing
 var momentIndiTouchesDollMS
 
+# handle overall time spent
+func _process(delta):
+	Global.time += delta
+
 func _ready():
 	SoundManager.stop("sunMenuMusic")
 	$Orchestra.volume_db = linear2db(SaveSystem.get_var("Volumes")["music"] * SaveSystem.get_var("Volumes")["master"])

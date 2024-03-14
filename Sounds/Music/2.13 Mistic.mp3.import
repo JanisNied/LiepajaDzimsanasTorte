@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/2.13 Mistic.mp3-6b9d9b023771b0ea009c78da557dcf42.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/2.13 Mistic.mp3"
+dest_files=[ "res://.import/2.13 Mistic.mp3-6b9d9b023771b0ea009c78da557dcf42.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
