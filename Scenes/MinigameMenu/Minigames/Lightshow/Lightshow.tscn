@@ -19,6 +19,12 @@ margin_right = 576.0
 margin_bottom = 576.0
 color = Color( 0.0431373, 0.054902, 0.188235, 1 )
 
+[node name="PaperCover" type="ColorRect" parent="Playground"]
+margin_left = 576.0
+margin_right = 1024.0
+margin_bottom = 576.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="Wall" type="StaticBody2D" parent="Playground"]
 z_index = -4
 
@@ -39,11 +45,4 @@ position = Vector2( 589, 294 )
 shape = SubResource( 2 )
 
 [node name="RingEnemy" parent="Playground" instance=ExtResource( 2 )]
-position = Vector2( 100, 100 )
-z_index = -10
-
-[node name="PaperCover" type="ColorRect" parent="Playground"]
-margin_left = 576.0
-margin_right = 1024.0
-margin_bottom = 576.0
-color = Color( 0, 0, 0, 1 )
+position = Vector2( 254, 82 )
