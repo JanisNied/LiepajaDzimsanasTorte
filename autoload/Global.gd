@@ -17,10 +17,10 @@ var availableChoices : Dictionary = {
 		"desc":"Laipni lūdzam Liepājas leļļu teātri!\nJāspiež atstarpi dziesmas ritmā, kad rombs ir zaļš!\n\nVeiksmi!",
 		"scene":"DollTheatre"
 	},
-	"testactivity2":{
-		"name":"\"he2lp\"",
-		"desc":"This is a description, this is a description, this is a description",
-		"scene":"MinigameMenu"
+	"MusicianMinigame":{
+		"name":"\"Liepājas izcilākie mūziķi\"",
+		"desc":"Mūziķi veido mūsu pilsētu skaļāku!\nŠeit jūs spēlēsiet x ritma spēles, saistībā ar mūziķiem.\nTālāk seko jautājumi!",
+		"scene":"MusicianMinigame"
 	},
 	"testactivity3":{
 		"name":"\"h3elp\"",
