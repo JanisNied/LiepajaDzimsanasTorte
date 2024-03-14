@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/cloud/Cloud.gd"
 }, {
+"base": "Spatial",
+"class": "GlowBorderEffectObject",
+"language": "GDScript",
+"path": "res://addons/glow_border_effect/glow_border_effect_object.gd"
+}, {
 "base": "ResourceFormatLoader",
 "class": "HTerrainDataLoader",
 "language": "GDScript",
@@ -79,6 +84,7 @@ _global_script_class_icons={
 "AudioStreamPlayerADSR": "",
 "Bank": "",
 "CloudDome": "",
+"GlowBorderEffectObject": "res://addons/glow_border_effect/glow_border_effect_renderer_icon.png",
 "HTerrainDataLoader": "",
 "HTerrainDataSaver": "",
 "MenuResource": "",
@@ -115,7 +121,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/save_system/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/cloud/plugin.cfg", "res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/midi/plugin.cfg", "res://addons/radial_progress/plugin.cfg", "res://addons/save_system/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg" )
 
 [global]
 
