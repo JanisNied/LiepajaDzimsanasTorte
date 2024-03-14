@@ -5,7 +5,6 @@
 [ext_resource path="res://addons/BulletUpHell/BuHPattern.gd" type="Script" id=3]
 [ext_resource path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/Lightshow/Entities/RingEnemy.gd" type="Script" id=5]
-[ext_resource path="res://addons/BulletUpHell/BuHSpawnPoint.gd" type="Script" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -16,12 +15,12 @@ _data = {
 resource_name = "PatternCircle"
 script = ExtResource( 4 )
 bullet = "RingBullet"
-nbr = 25
-radius = 0
+nbr = 32
+radius = 5.0
 angle_total = 6.28319
 angle_decal = 0
 pattern_angle = 0.0
-symmetric = false
+symmetric = true
 center = 0
 iterations = 1
 follows_parent = false
@@ -36,7 +35,7 @@ cooldown_spawn = 0.017
 cooldown_shoot = 0.0
 cooldown_next_spawn = 0.0
 cooldown_next_shoot = 0.0
-wait_latence = 0
+wait_latence = 3
 wait_release = null
 layer_nbr = 1
 layer_cooldown_spawn = 0.0
@@ -77,14 +76,18 @@ _data = {
 "points": PoolVector2Array(  )
 }
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=7]
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0.113402, 0.236364 ), 0.0, -0.226107, 0, 0, Vector2( 0.417526, 0.577273 ), 0.0, 0.0, 0, 0, Vector2( 0.546392, 0.986364 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="PackedDataContainer" id=5]
+[sub_resource type="Gradient" id=10]
+colors = PoolColorArray( 0, 0.90625, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="PackedDataContainer" id=9]
 script = ExtResource( 1 )
-speed = 100.0
-scale = 1
+speed = 50.0
+scale = 7.0
 angle = 0
 groups = [  ]
 anim_idle_texture = "0"
@@ -101,6 +104,7 @@ anim_waiting_sfx = -1
 anim_delete_sfx = -1
 spec_bounces = 0
 spec_no_collision = false
+spec_modulate = SubResource( 10 )
 spec_modulate_loop = 0.0
 spec_trail_length = 0.0
 spec_trail_width = 0.0
@@ -111,7 +115,7 @@ death_outside_box = Rect2( 0, 0, 0, 0 )
 death_from_collision = true
 a_direction_equation = ""
 a_curve_movement = 0
-a_speed_multiplier = SubResource( 3 )
+a_speed_multiplier = SubResource( 7 )
 a_speed_multi_iterations = 0
 a_speed_multi_scale = 0.0
 trigger_container = ""
@@ -124,9 +128,9 @@ homing_duration = 999
 beam_length_per_ray = 0.0
 beam_width = 0.0
 beam_bounce_amount = 0
-scale_multi_iterations = 0
-scale_multiplier = SubResource( 4 )
-scale_multi_scale = 1
+scale_multi_iterations = 4
+scale_multiplier = SubResource( 8 )
+scale_multi_scale = -2.0
 r_randomisation_chances = 1.0
 r_speed_choice = ""
 r_speed_variation = Vector3( 0, 0, 0 )
@@ -178,28 +182,10 @@ curve = SubResource( 1 )
 script = ExtResource( 3 )
 id = "RingBulletPattern"
 pattern = SubResource( 6 )
+preview_spawn = true
 
 [node name="BulletPattern" type="Path2D" parent="."]
 curve = SubResource( 2 )
 script = ExtResource( 2 )
 id = "RingBullet"
-props = SubResource( 5 )
-
-[node name="SpawnPoint" type="Node2D" parent="."]
-script = ExtResource( 6 )
-active = true
-shared_area_name = "0"
-rotating_speed = 0.0
-auto_pattern_id = "RingBulletPattern"
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_id = null
-r_randomisation_chances = 0.0
-r_active_chances = 0.0
-r_shared_area_choice = ""
-r_rotating_variation = Vector3( 0, 0, 0 )
-r_pattern_choice = ""
-r_start_time_choice = ""
-r_start_time_variation = Vector3( 0, 0, 0 )
+props = SubResource( 9 )
