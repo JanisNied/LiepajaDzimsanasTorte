@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/midi/MidiPlayer.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Minigames/IzcilakieMuziki/experimental/KeyAnim.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Minigames/IzcilakieMuziki/experimental/dreadshort.mp3" type="AudioStream" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+onready var allKeys = [$KeyAnim,$KeyAnim2,$KeyAnim3,$KeyAnim4]
+var currentKeys = []
+var combo = 0
+
+var busy = false
+
+func _ready():
+	$MidiPlayer.play()
+	yield(get_tree().create_timer(0.411), \"timeout\")
+	$AudioStreamPlayer.play()
+	pass
+
+func play_random():
+	var newKeys = []
+	var keyCount = randi()%2 + 1
+	var freeKeys = allKeys.duplicate() 
+	for a in currentKeys:
+		freeKeys.erase(a)
+	while keyCount > 0:
+		keyCount -= 1
+		newKeys.push_back(freeKeys[randi()%freeKeys.size()])
+	currentKeys = newKeys
+	for k in newKeys:
+		k.play()
+	pass
+
+
+func _on_MidiPlayer_midi_event(channel, event):
+	if event.type == 128 : #key down
+		if busy:
+			return
+		busy = true
+		for N in channel.note_on:
+			match N:
+				71:
+					$KeyAnim.play()
+				95:
+					$KeyAnim3.play()
+				83:
+					$KeyAnim2.play()
+				59:
+					$KeyAnim4.play()
+		yield(get_tree().create_timer(0.3),\"timeout\")
+		busy = false
+	pass 
+"
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+
+[node name="KeyAnim" parent="." instance=ExtResource( 2 )]
+margin_left = 86.0
+margin_top = 260.0
+margin_right = 166.0
+margin_bottom = 340.0
+button = "Q"
+
+[node name="KeyAnim2" parent="." instance=ExtResource( 2 )]
+margin_left = 343.0
+margin_top = 260.0
+margin_right = 423.0
+margin_bottom = 340.0
+
+[node name="KeyAnim3" parent="." instance=ExtResource( 2 )]
+margin_left = 600.0
+margin_top = 260.0
+margin_right = 680.0
+margin_bottom = 340.0
+button = "O"
+
+[node name="KeyAnim4" parent="." instance=ExtResource( 2 )]
+margin_left = 857.0
+margin_top = 260.0
+margin_right = 937.0
+margin_bottom = 340.0
+button = "P"
+
+[node name="MidiPlayer" type="Node" parent="."]
+script = ExtResource( 1 )
+file = "res://Scenes/Minigames/IzcilakieMuziki/experimental/dreadshort.mid"
+volume_db = -144.0
+soundfont = "res://Scenes/Minigames/IzcilakieMuziki/experimental/Yoshi's Island.sf2"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="midi_event" from="MidiPlayer" to="." method="_on_MidiPlayer_midi_event"]

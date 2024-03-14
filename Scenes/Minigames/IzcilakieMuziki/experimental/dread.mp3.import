@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dread.mp3-2b1790a9e2dab106f2caba817b6660a6.mp3str"
+
+[deps]
+
+source_file="res://Scenes/Minigames/IzcilakieMuziki/experimental/dread.mp3"
+dest_files=[ "res://.import/dread.mp3-2b1790a9e2dab106f2caba817b6660a6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
