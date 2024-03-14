@@ -1,2 +1,2 @@
-# Liepājas Torte 🎂
+# Liepājas Torte 🎂🟩🟥
 Laipni lūdzam...
