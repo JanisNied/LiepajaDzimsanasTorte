@@ -19,7 +19,7 @@ var availableChoices : Dictionary = {
 	},
 	"MusicianMinigame":{
 		"name":"\"Liepājas izcilākie mūziķi\"",
-		"desc":"Mūziķi veido mūsu pilsētu skaļāku!\nŠeit jūs spēlēsiet x ritma spēles, saistībā ar mūziķiem.\nTālāk seko jautājumi!",
+		"desc":"Mūziķi veido mūsu pilsētu skaļāku!\nŠeit jūs spēlēsiet x ritma spēles kārtas, ar mūziķu dziesmām.\nTālāk seko jautājumi!",
 		"scene":"MusicianMinigame"
 	},
 	"testactivity3":{
