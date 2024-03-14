@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/BulletUpHell/BulletProps.gd" type="Script" id=1]
 [ext_resource path="res://addons/BulletUpHell/BuHBulletProperties.gd" type="Script" id=2]
@@ -11,16 +11,16 @@ _data = {
 "points": PoolVector2Array(  )
 }
 
-[sub_resource type="NavigationPolygon" id=6]
+[sub_resource type="NavigationPolygon" id=2]
 resource_name = "PatternCircle"
 script = ExtResource( 4 )
 bullet = "RingBullet"
-nbr = 32
-radius = 5.0
+nbr = 10
+radius = 0
 angle_total = 6.28319
 angle_decal = 0
 pattern_angle = 0.0
-symmetric = true
+symmetric = false
 center = 0
 iterations = 1
 follows_parent = false
@@ -35,7 +35,7 @@ cooldown_spawn = 0.017
 cooldown_shoot = 0.0
 cooldown_next_spawn = 0.0
 cooldown_next_shoot = 0.0
-wait_latence = 3
+wait_latence = 0
 wait_release = null
 layer_nbr = 1
 layer_cooldown_spawn = 0.0
@@ -71,23 +71,19 @@ r_cooldown_n_spawn_variation = Vector3( 0, 0, 0 )
 r_cooldown_n_shoot_choice = ""
 r_cooldown_n_shoot_variation = Vector3( 0, 0, 0 )
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=3]
 _data = {
 "points": PoolVector2Array(  )
 }
 
-[sub_resource type="Curve" id=7]
+[sub_resource type="Curve" id=4]
 
-[sub_resource type="Curve" id=8]
-_data = [ Vector2( 0.113402, 0.236364 ), 0.0, -0.226107, 0, 0, Vector2( 0.417526, 0.577273 ), 0.0, 0.0, 0, 0, Vector2( 0.546392, 0.986364 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=5]
 
-[sub_resource type="Gradient" id=10]
-colors = PoolColorArray( 0, 0.90625, 1, 1, 1, 1, 1, 1 )
-
-[sub_resource type="PackedDataContainer" id=9]
+[sub_resource type="PackedDataContainer" id=6]
 script = ExtResource( 1 )
-speed = 50.0
-scale = 7.0
+speed = 100.0
+scale = 1
 angle = 0
 groups = [  ]
 anim_idle_texture = "0"
@@ -104,7 +100,6 @@ anim_waiting_sfx = -1
 anim_delete_sfx = -1
 spec_bounces = 0
 spec_no_collision = false
-spec_modulate = SubResource( 10 )
 spec_modulate_loop = 0.0
 spec_trail_length = 0.0
 spec_trail_width = 0.0
@@ -115,7 +110,7 @@ death_outside_box = Rect2( 0, 0, 0, 0 )
 death_from_collision = true
 a_direction_equation = ""
 a_curve_movement = 0
-a_speed_multiplier = SubResource( 7 )
+a_speed_multiplier = SubResource( 4 )
 a_speed_multi_iterations = 0
 a_speed_multi_scale = 0.0
 trigger_container = ""
@@ -128,9 +123,9 @@ homing_duration = 999
 beam_length_per_ray = 0.0
 beam_width = 0.0
 beam_bounce_amount = 0
-scale_multi_iterations = 4
-scale_multiplier = SubResource( 8 )
-scale_multi_scale = -2.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource( 5 )
+scale_multi_scale = 1
 r_randomisation_chances = 1.0
 r_speed_choice = ""
 r_speed_variation = Vector3( 0, 0, 0 )
@@ -177,15 +172,14 @@ r_scale_multi_scale_variation = Vector3( 0, 0, 0 )
 [node name="RingEnemy" type="Node2D"]
 script = ExtResource( 5 )
 
-[node name="RingPattern" type="Path2D" parent="."]
+[node name="SpawnPattern" type="Path2D" parent="."]
 curve = SubResource( 1 )
 script = ExtResource( 3 )
 id = "RingBulletPattern"
-pattern = SubResource( 6 )
-preview_spawn = true
+pattern = SubResource( 2 )
 
 [node name="BulletPattern" type="Path2D" parent="."]
-curve = SubResource( 2 )
+curve = SubResource( 3 )
 script = ExtResource( 2 )
 id = "RingBullet"
-props = SubResource( 9 )
+props = SubResource( 6 )
