@@ -30,6 +30,7 @@ func updateActClockWise():
 		get_parent().get_parent().get_parent().get_node("Background/Description").show()
 		get_parent().get_parent().get_parent().get_node("Button").show()
 		get_parent().get_parent().get_parent().get_node("Button2").show()
+		get_parent().get_parent().get_parent().get_node("Transition").show()
 	firstpass = false
 	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))
 	updateLabelData()
@@ -139,4 +140,5 @@ func _on_Button2_button_up():
 
 func _on_Transition_button_up():
 	get_parent().get_parent().get_parent().get_node("Transition").transition(Global.chosenActivities[activityIndex]["scene"])
+	Global.allowedActivities.remove(activityIndex)
 	pass # Replace with function body.

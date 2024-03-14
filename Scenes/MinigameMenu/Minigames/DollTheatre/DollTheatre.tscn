@@ -1,0 +1,294 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/DollTheatre.gd" type="Script" id=1]
+[ext_resource path="res://addons/SIsilicon.3d.text/default_font.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/wall.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/lc.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/lapsa.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/gem-indicator.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/flasher.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/bg.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/table.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Paspēlēsim Paslēpes Cut.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/rc.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/100.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/miss.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Flasher.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Indicator.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Beatmap.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Orchestra.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Scoring.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/Judge.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/gem-indicator-body.png" type="Texture" id=20]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/curtain.png" type="Texture" id=21]
+[ext_resource path="res://Assets/ARIAL.TTF" type="DynamicFontData" id=22]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/herkuless.png" type="Texture" id=23]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/ucipuci.png" type="Texture" id=24]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/leljljuteatralogo.png" type="Texture" id=25]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/300.png" type="Texture" id=26]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/img/50.png" type="Texture" id=27]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/DollTheatre/HugeCurtain.gd" type="Script" id=28]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 26 ), ExtResource( 12 ), ExtResource( 27 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 135
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 128
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 144
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 22 )
+
+[node name="Theatre" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Scoring" type="Node" parent="."]
+script = ExtResource( 18 )
+
+[node name="Beatmap" type="Node" parent="."]
+script = ExtResource( 16 )
+
+[node name="Orchestra" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+script = ExtResource( 17 )
+
+[node name="Conductor" type="Timer" parent="Orchestra"]
+one_shot = true
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Wallpaper" type="TextureRect" parent="Background"]
+margin_right = 1024.0
+margin_bottom = 576.0
+texture = ExtResource( 8 )
+
+[node name="Ground" type="ColorRect" parent="Background"]
+margin_top = 456.0
+margin_right = 1024.0
+margin_bottom = 576.0
+color = Color( 0.341176, 0.262745, 0.219608, 1 )
+
+[node name="Wall" type="TextureRect" parent="Background"]
+margin_left = 500.0
+margin_right = 832.0
+margin_bottom = 456.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Foreground" type="Node2D" parent="."]
+
+[node name="Rcurtain" type="TextureRect" parent="Foreground"]
+margin_left = 831.0
+margin_top = -25.0
+margin_right = 1236.0
+margin_bottom = 560.0
+texture = ExtResource( 11 )
+expand = true
+
+[node name="Lcurtain" type="TextureRect" parent="Foreground"]
+margin_left = 218.0
+margin_top = -25.0
+margin_right = 560.0
+margin_bottom = 523.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Dolls" type="Node2D" parent="Foreground"]
+
+[node name="Flasher" type="Sprite" parent="Foreground/Dolls"]
+visible = false
+position = Vector2( 550, 157 )
+scale = Vector2( 0.839999, 0.610039 )
+texture = ExtResource( 7 )
+script = ExtResource( 14 )
+
+[node name="Indicator" type="Sprite" parent="Foreground/Dolls"]
+visible = false
+position = Vector2( 550, 75 )
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 6 )
+script = ExtResource( 15 )
+
+[node name="Color" type="Sprite" parent="Foreground/Dolls/Indicator"]
+texture = ExtResource( 20 )
+
+[node name="DollShow" type="Node2D" parent="Foreground/Dolls"]
+
+[node name="D1" type="Sprite" parent="Foreground/Dolls/DollShow"]
+visible = false
+position = Vector2( 550, 222 )
+scale = Vector2( 0.84, 0.84 )
+texture = ExtResource( 23 )
+
+[node name="D3" type="Sprite" parent="Foreground/Dolls/DollShow"]
+visible = false
+position = Vector2( 718, 234 )
+scale = Vector2( 0.84, 0.84 )
+texture = ExtResource( 24 )
+
+[node name="D2" type="Sprite" parent="Foreground/Dolls/DollShow"]
+visible = false
+position = Vector2( 634, 222 )
+scale = Vector2( 0.84, 0.84 )
+texture = ExtResource( 5 )
+
+[node name="D4" type="Sprite" parent="Foreground/Dolls/DollShow"]
+visible = false
+position = Vector2( 802, 211 )
+scale = Vector2( 0.84, 0.84 )
+texture = ExtResource( 25 )
+
+[node name="Table" type="TextureRect" parent="Foreground"]
+margin_left = 459.0
+margin_top = 291.0
+margin_right = 869.0
+margin_bottom = 456.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="HUD" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 576.0
+
+[node name="Judge" type="AnimatedSprite" parent="HUD"]
+visible = false
+position = Vector2( 268, 234 )
+frames = SubResource( 1 )
+script = ExtResource( 19 )
+
+[node name="ComboText" type="Label" parent="HUD"]
+margin_left = 4.0
+margin_top = 438.0
+margin_right = 188.0
+margin_bottom = 591.0
+custom_fonts/font = SubResource( 2 )
+text = "0x"
+
+[node name="AccuracyText" type="Label" parent="HUD"]
+margin_left = 13.0
+margin_top = 9.0
+margin_right = 328.0
+margin_bottom = 86.0
+custom_fonts/font = SubResource( 3 )
+text = "Prec.:
+100.00%"
+
+[node name="ScoreText" type="Label" parent="HUD"]
+margin_left = 836.0
+margin_top = 5.0
+margin_right = 1016.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 3 )
+text = "Punkti:
+0"
+align = 2
+
+[node name="Preparation" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 576.0
+
+[node name="Bg" type="ColorRect" parent="Preparation"]
+margin_right = 1024.0
+margin_bottom = 576.0
+color = Color( 0, 0, 0, 0.317647 )
+
+[node name="Label" type="Label" parent="Preparation"]
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 843.0
+margin_bottom = 346.0
+custom_fonts/font = SubResource( 6 )
+text = "Gatavojies!"
+
+[node name="HugeCurtain" type="Control" parent="."]
+visible = false
+margin_top = -576.0
+margin_right = 1024.0
+script = ExtResource( 28 )
+
+[node name="Curtain" type="TextureRect" parent="HugeCurtain"]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 21 )
+
+[node name="Scoreboard" type="Control" parent="HugeCurtain"]
+margin_left = 219.0
+margin_top = 44.0
+margin_right = 812.0
+margin_bottom = 498.0
+
+[node name="Bg" type="ColorRect" parent="HugeCurtain/Scoreboard"]
+margin_right = 593.0
+margin_bottom = 454.0
+color = Color( 0, 0, 0, 0.47451 )
+
+[node name="Grade" type="Label" parent="HugeCurtain/Scoreboard"]
+margin_left = 22.0
+margin_top = 74.0
+margin_right = 159.0
+margin_bottom = 238.0
+custom_fonts/font = SubResource( 4 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="ScoringText" type="Label" parent="HugeCurtain/Scoreboard"]
+margin_left = 223.0
+margin_top = 32.0
+margin_right = 493.0
+margin_bottom = 322.0
+custom_fonts/font = SubResource( 5 )
+
+[node name="Instruction" type="Label" parent="HugeCurtain/Scoreboard"]
+margin_left = 28.0
+margin_top = 397.0
+margin_right = 566.0
+margin_bottom = 479.0
+rect_pivot_offset = Vector2( 149, -63 )
+custom_fonts/font = SubResource( 5 )
+text = "Spiediet jekburu taustiņu, lai turpinātu"
+
+[node name="GradingLabel" type="Label" parent="HugeCurtain/Scoreboard"]
+margin_left = 12.0
+margin_top = 27.0
+margin_right = 171.0
+margin_bottom = 109.0
+rect_pivot_offset = Vector2( 149, -63 )
+custom_fonts/font = SubResource( 5 )
+text = "Nopelnītie
+punkti:"
+align = 1
+valign = 1
+
+[connection signal="beatHit" from="." to="Scoring" method="_on_Theatre_beatHit"]
+[connection signal="beatHit" from="." to="HUD/Judge" method="_on_Theatre_beatHit"]
+[connection signal="eof" from="Beatmap" to="." method="_on_Beatmap_eof"]
+[connection signal="eof" from="Beatmap" to="Orchestra" method="_on_Beatmap_eof"]
+[connection signal="eof" from="Beatmap" to="Foreground/Dolls/Indicator" method="_on_Beatmap_eof"]
+[connection signal="eof" from="Beatmap" to="HugeCurtain" method="_on_Beatmap_eof"]
+[connection signal="nextbeat" from="Orchestra" to="." method="_on_Orchestra_nextbeat"]
+[connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Flasher" method="_on_Orchestra_nextbeat"]
+[connection signal="nextbeat" from="Orchestra" to="Foreground/Dolls/Indicator" method="_on_Orchestra_nextbeat"]
+[connection signal="nextwave" from="Orchestra" to="." method="_on_Orchestra_nextwave"]
+[connection signal="nowstart" from="Orchestra" to="." method="_on_Orchestra_nowstart"]
+[connection signal="nowstart" from="Orchestra" to="Foreground/Dolls/Indicator" method="_on_Orchestra_nowstart"]
+[connection signal="timeout" from="Orchestra/Conductor" to="Orchestra" method="_on_Conductor_timeout"]
