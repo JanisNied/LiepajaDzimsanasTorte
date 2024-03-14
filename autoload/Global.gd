@@ -1,9 +1,14 @@
 extends Node
 
 var score : int = 0
+var slicesEaten : int = 0
+var activitiesPicked : bool = false
 
 var allowedActivities = [1, 2, 3, 4, 5, 6]
 var chosenActivities : Array
+
+var discardedActivityNum : Array
+var discardedActivities : Array
 
 var availableChoices : Dictionary = {
 	"DollTheatre":{
@@ -14,36 +19,37 @@ var availableChoices : Dictionary = {
 	"testactivity2":{
 		"name":"\"he2lp\"",
 		"desc":"This is a description, this is a description, this is a description",
-		"scene":"menuscene"
+		"scene":"MinigameMenu"
 	},
 	"testactivity3":{
 		"name":"\"h3elp\"",
 		"desc":"This is a description, this is a description, this is a description",
-		"scene":"menuscene"
+		"scene":"MinigameMenu"
 	},
 	"testactivity4":{
 		"name":"\"h4elp\"",
 		"desc":"This is a description, this is a description, this is a description",
-		"scene":"menuscene"
+		"scene":"MinigameMenu"
 	},
 	"testactivity5":{
 		"name":"\"he5lp\"",
 		"desc":"This is a description, this is a description, this is a description",
-		"scene":"menuscene"
+		"scene":"MinigameMenu"
 	},
 	"testactivity6":{
 		"name":"\"he6lp\"",
 		"desc":"This is a description, this is a description, this is a description",
-		"scene":"menuscene"
+		"scene":"MinigameMenu"
 	},
 	"testactivity7":{
 		"name":"\"he7lp\"",
 		"desc":"This is a description, this is a description, this is a description",
-		"scene":"menuscene"
+		"scene":"MinigameMenu"
 	}
 }
 
 func pickActivitiesRandomly():
+	activitiesPicked = true
 	var temp = availableChoices.duplicate(true)
 	for i in allowedActivities:
 		var random_key = temp.keys()[randi() % temp.size()]
@@ -51,7 +57,18 @@ func pickActivitiesRandomly():
 		chosenActivities.append(activity)
 		temp.erase(random_key)
 
+func printAllActivities():
+	var string : String = "[DEBUG] Activities:\n"
+	for i in range(len(allowedActivities)):
+		string += str(allowedActivities[i])+". "+chosenActivities[i]["name"]+"\n"
+	print(string)
+	
 func endGame():
+	score = 0
+	slicesEaten = 0
+	activitiesPicked = false
+	discardedActivities.clear()
+	discardedActivityNum.clear()
 	allowedActivities = [1, 2, 3, 4, 5, 6]
 	chosenActivities.clear()
 	

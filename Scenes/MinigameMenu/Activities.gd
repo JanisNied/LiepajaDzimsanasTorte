@@ -140,5 +140,9 @@ func _on_Button2_button_up():
 
 func _on_Transition_button_up():
 	get_parent().get_parent().get_parent().get_node("Transition").transition(Global.chosenActivities[activityIndex]["scene"])
+	Global.discardedActivityNum.append(Global.allowedActivities[activityIndex])
+	Global.discardedActivities.append(Global.chosenActivities[activityIndex])
 	Global.allowedActivities.remove(activityIndex)
+	Global.chosenActivities.remove(activityIndex)
+	Global.slicesEaten += 1
 	pass # Replace with function body.

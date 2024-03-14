@@ -12,6 +12,7 @@ var momentIndiTouchesDollMS
 
 func _ready():
 	SoundManager.stop("sunMenuMusic")
+	
 	$Orchestra.start_play(5, $Beatmap.getbpm())
 	
 func _unhandled_input(event):

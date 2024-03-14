@@ -4,7 +4,7 @@ var landed = true
 var controllable = false
 
 func _input(event):
-	if (controllable and event is InputEventKey and event is InputEventMouseButton):
+	if controllable and (event is InputEventKey or event is InputEventMouseButton):
 		Global.transition("MinigameMenu")
 	pass
 
