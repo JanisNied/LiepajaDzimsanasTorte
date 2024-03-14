@@ -3,6 +3,7 @@ extends Node
 var score : int = 0
 var slicesEaten : int = 0
 var activitiesPicked : bool = false
+var returning = false
 
 var allowedActivities = [1, 2, 3, 4, 5, 6]
 var chosenActivities : Array
@@ -67,6 +68,7 @@ func endGame():
 	score = 0
 	slicesEaten = 0
 	activitiesPicked = false
+	returning = false
 	discardedActivities.clear()
 	discardedActivityNum.clear()
 	allowedActivities = [1, 2, 3, 4, 5, 6]
