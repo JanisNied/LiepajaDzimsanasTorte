@@ -91,7 +91,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=243]
+[sub_resource type="ShaderMaterial" id=250]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -105,9 +105,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=244]
+[sub_resource type="ShaderMaterial" id=251]
 render_priority = -124
-next_pass = SubResource( 243 )
+next_pass = SubResource( 250 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -120,9 +120,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=245]
+[sub_resource type="ShaderMaterial" id=252]
 render_priority = -125
-next_pass = SubResource( 244 )
+next_pass = SubResource( 251 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -135,9 +135,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=246]
+[sub_resource type="ShaderMaterial" id=253]
 render_priority = -126
-next_pass = SubResource( 245 )
+next_pass = SubResource( 252 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -150,9 +150,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=247]
+[sub_resource type="ShaderMaterial" id=254]
 render_priority = -127
-next_pass = SubResource( 246 )
+next_pass = SubResource( 253 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -165,9 +165,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=248]
+[sub_resource type="ShaderMaterial" id=255]
 render_priority = -128
-next_pass = SubResource( 247 )
+next_pass = SubResource( 254 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -1946,12 +1946,12 @@ emission_on_uv2 = false
 flags_transparent = true
 albedo_color = Color( 1, 1, 1, 0 )
 
-[sub_resource type="ViewportTexture" id=127]
+[sub_resource type="ViewportTexture" id=249]
 viewport_path = NodePath("Camera/Viewport")
 
 [sub_resource type="SpatialMaterial" id=126]
 resource_local_to_scene = true
-albedo_texture = SubResource( 127 )
+albedo_texture = SubResource( 249 )
 
 [sub_resource type="ArrayMesh" id=182]
 surfaces/0 = {
@@ -2451,7 +2451,7 @@ transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968
 
 [node name="Cloud" parent="Environment" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 248 )
+material_override = SubResource( 255 )
 skeleton = NodePath("../..")
 cloud_speed = Vector2( 3.606, 0 )
 cloud_transform_speed = Vector2( 0.001, 0.001 )
@@ -3282,7 +3282,7 @@ text = "- Spēlētājam ir tiesības mēģināt izspēlēt torta gabalu, ja tiek
 font = SubResource( 105 )
 horizontal_alignment = 0
 autowrap = true
-width = 5000.0
+width = 4500.0
 
 [node name="Noteikumi3" type="Label3D" parent="RuleboardCreditBoard"]
 transform = Transform( 0.00156047, 0, 0, 0, 0.00231485, 0, 0, 0, 0.000645324, -52.1428, 117.163, 1.63281 )

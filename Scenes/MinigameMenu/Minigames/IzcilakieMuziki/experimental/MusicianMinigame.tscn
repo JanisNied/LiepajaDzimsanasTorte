@@ -21,9 +21,11 @@ func _ready():
 	yield(get_tree().create_timer(2), \"timeout\")
 	$NoteAnimation.play(\"ComeIn\")
 	yield(get_tree().create_timer(4), \"timeout\")
+	Global.transition(\"MinigameMenu\")
 	pass
 	
-func _physics_process(delta):
+func _process(delta):
+	Global.time += delta
 	if not $Timer.is_stopped():
 		if $Timer.time_left <= 5:
 			$Status.bbcode_text = \"[center]Pārbaudiet taustiņas!(\"+str(floor($Timer.time_left))+\")\\n(QWOP)\"

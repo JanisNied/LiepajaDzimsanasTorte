@@ -3,6 +3,7 @@ extends Node2D
 var holoMat = preload("res://Shaders/holo.tres")
 
 func _ready():
+	print(Global.time)
 	SoundManager.stop("sunMenuMusic")
 	randomize()
 	if not Global.activitiesPicked:
@@ -19,8 +20,7 @@ func _ready():
 	pass # Replace with function body.
 	
 func noSlices():
-	Global.endGame()
-	Global.transition("menuscene")
+	Global.transition("GameEnd")
 	
 func deleteEatenSlices():
 	for i in Global.discardedActivityNum:
@@ -51,4 +51,6 @@ func deleteEatenSlices():
 				$ViewportContainer/Viewport/Spatial/CakeBottom/PieceofCake.set_surface_material(0, holoMat)
 				$ViewportContainer/Viewport/Spatial/CakeBottom/PieceofCake11.set_surface_material(0, holoMat)
 				$ViewportContainer/Viewport/Spatial/CakeBottom/PieceofCake10.set_surface_material(0, holoMat)
-# y = -0.294
+
+func _process(delta):
+	Global.time += delta

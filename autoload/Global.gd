@@ -1,6 +1,7 @@
 extends Node
 
 var score : int = 0
+var time : float = 0
 var slicesEaten : int = 0
 var activitiesPicked : bool = false
 var returning = false
@@ -15,12 +16,12 @@ var availableChoices : Dictionary = {
 	"DollTheatre":{
 		"name":"\"Liepājas teātris\"",
 		"desc":"Laipni lūdzam Liepājas leļļu teātri!\nJāspiež atstarpi dziesmas ritmā, kad rombs ir zaļš!\n\nVeiksmi!",
-		"scene":"DollTheatre"
+		"scene":"MinigameMenu"
 	},
 	"MusicianMinigame":{
 		"name":"\"Liepājas izcilākie mūziķi\"",
 		"desc":"Mūziķi veido mūsu pilsētu skaļāku!\nŠeit jūs spēlēsiet x ritma spēles kārtas, ar mūziķu dziesmām.\nTālāk seko jautājumi!",
-		"scene":"MusicianMinigame"
+		"scene":"MinigameMenu"
 	},
 	"testactivity3":{
 		"name":"\"h3elp\"",
@@ -66,6 +67,7 @@ func printAllActivities():
 	
 func endGame():
 	score = 0
+	time = 0
 	slicesEaten = 0
 	activitiesPicked = false
 	returning = false
