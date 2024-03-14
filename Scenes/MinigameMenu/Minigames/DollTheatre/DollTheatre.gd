@@ -12,7 +12,7 @@ var momentIndiTouchesDollMS
 
 func _ready():
 	SoundManager.stop("sunMenuMusic")
-	
+	$Orchestra.volume_db = linear2db(SaveSystem.get_var("Volumes")["music"] * SaveSystem.get_var("Volumes")["master"])
 	$Orchestra.start_play(5, $Beatmap.getbpm())
 	
 func _unhandled_input(event):
