@@ -98,7 +98,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GodotCake"
+config/name="Liepājas Torte"
 run/main_scene="res://Scenes/SplashScreen/splashscene.tscn"
 boot_splash/show_image=false
 config/icon="res://icon.png"
