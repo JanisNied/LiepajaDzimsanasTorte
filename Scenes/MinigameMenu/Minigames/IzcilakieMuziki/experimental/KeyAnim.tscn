@@ -1,0 +1,210 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Handvetica Neue Regular Trial.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/KeyAnim.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+uniform float corner_scale: hint_range(0., 1.) = 0.;
+
+bool isOut(float x, float y) {
+    return pow(x, 2.) + pow(y, 2.) > pow(corner_scale * .5, 2.);
+}
+
+void fragment() {
+    float s = corner_scale * .5;
+
+    if (
+        (UV.x < s      && UV.y < s      && isOut(UV.x - s,      UV.y - s)) ||
+        (UV.x < s      && UV.y > 1. - s && isOut(UV.x - s,      UV.y - 1. + s)) ||
+        (UV.x > 1. - s && UV.y < s      && isOut(UV.x - 1. + s, UV.y - s)) ||
+        (UV.x > 1. - s && UV.y > 1. - s && isOut(UV.x - 1. + s, UV.y - 1. + s))
+    ) {
+        COLOR.a = 0.;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/corner_scale = 0.152
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+uniform float corner_scale: hint_range(0., 1.) = 0.;
+
+bool isOut(float x, float y) {
+    return pow(x, 2.) + pow(y, 2.) > pow(corner_scale * .5, 2.);
+}
+
+void fragment() {
+    float s = corner_scale * .5;
+
+    if (
+        (UV.x < s      && UV.y < s      && isOut(UV.x - s,      UV.y - s)) ||
+        (UV.x < s      && UV.y > 1. - s && isOut(UV.x - s,      UV.y - 1. + s)) ||
+        (UV.x > 1. - s && UV.y < s      && isOut(UV.x - 1. + s, UV.y - s)) ||
+        (UV.x > 1. - s && UV.y > 1. - s && isOut(UV.x - 1. + s, UV.y - 1. + s))
+    ) {
+        COLOR.a = 0.;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+shader_param/corner_scale = 0.0
+
+[sub_resource type="DynamicFont" id=11]
+size = 66
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "New Anim"
+length = 1.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Line2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:open")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Line2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0.1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:open")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+
+uniform float corner_scale: hint_range(0., 1.) = 0.;
+
+bool isOut(float x, float y) {
+    return pow(x, 2.) + pow(y, 2.) > pow(corner_scale * .5, 2.);
+}
+
+void fragment() {
+    float s = corner_scale * .5;
+
+    if (
+        (UV.x < s      && UV.y < s      && isOut(UV.x - s,      UV.y - s)) ||
+        (UV.x < s      && UV.y > 1. - s && isOut(UV.x - s,      UV.y - 1. + s)) ||
+        (UV.x > 1. - s && UV.y < s      && isOut(UV.x - 1. + s, UV.y - s)) ||
+        (UV.x > 1. - s && UV.y > 1. - s && isOut(UV.x - 1. + s, UV.y - 1. + s))
+    ) {
+        COLOR.a = 0.;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/corner_scale = 0.152
+
+[sub_resource type="Environment" id=10]
+background_mode = 4
+glow_enabled = true
+glow_levels/1 = true
+glow_levels/2 = true
+glow_levels/3 = false
+glow_levels/5 = false
+glow_intensity = 0.56
+glow_blend_mode = 1
+glow_hdr_threshold = 1.13
+glow_hdr_luminance_cap = 0.72
+glow_hdr_scale = 1.47
+
+[node name="KeyAnim" type="ColorRect"]
+material = SubResource( 7 )
+margin_left = 100.0
+margin_top = 212.0
+margin_right = 180.0
+margin_bottom = 292.0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource( 2 )
+button = "W"
+
+[node name="Line2D" type="Line2D" parent="."]
+show_behind_parent = true
+material = SubResource( 9 )
+position = Vector2( 40, 40 )
+scale = Vector2( 1, 0.1 )
+points = PoolVector2Array( 0, 200, 0, -200 )
+width = 30.0
+default_color = Color( 1.4, 0.75, 0.4, 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -4.0
+custom_colors/font_color = Color( 0.305882, 0.309804, 0.317647, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "O"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/New Anim" = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="Border" type="ColorRect" parent="."]
+show_behind_parent = true
+material = SubResource( 5 )
+anchor_left = 0.5
+anchor_top = 0.271
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -45.0
+margin_top = -26.68
+margin_right = 45.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 90, 90 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 10 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

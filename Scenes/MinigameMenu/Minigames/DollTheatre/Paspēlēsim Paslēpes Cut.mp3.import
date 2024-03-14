@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Paspēlēsim Paslēpes Cut.mp3-4dc7e87cd3015af9894058892e8a525c.mp3str"
+
+[deps]
+
+source_file="res://Scenes/MinigameMenu/Minigames/DollTheatre/Paspēlēsim Paslēpes Cut.mp3"
+dest_files=[ "res://.import/Paspēlēsim Paslēpes Cut.mp3-4dc7e87cd3015af9894058892e8a525c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
