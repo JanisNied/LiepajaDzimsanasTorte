@@ -24,7 +24,7 @@ var availableChoices : Dictionary = {
 	},
 	"MusicianMinigame":{
 		"name":"\"Liepājas izcilākie mūziķi\"",
-		"desc":"Mūziķi veido mūsu pilsētu skaļāku!\nŠeit jūs spēlēsiet x ritma spēles kārtas, ar mūziķu dziesmām.\nTālāk seko jautājumi!",
+		"desc":"Mūziķi veido mūsu pilsētu skaļāku!\nŠeit jūs spēlēsiet 3 ritma spēles kārtas, ar mūziķu dziesmām.\nTālāk seko jautājumi!",
 		"scene":"MusicianMinigame"
 	},
 	"IzskrienLiepaju":{
@@ -126,6 +126,8 @@ onready var fade_in_options = SceneManager.create_options(fade_in_speed, fade_in
 onready var general_options = SceneManager.create_general_options(color, timeout, clickable, add_to_back)
 
 func transition(scene):
+	if SoundManager.is_playing("bass"):
+		SoundManager.stop("bass")
 	SceneManager.validate_scene(scene)
 	SceneManager.validate_pattern(fade_out_pattern)
 	SceneManager.validate_pattern(fade_in_pattern)
