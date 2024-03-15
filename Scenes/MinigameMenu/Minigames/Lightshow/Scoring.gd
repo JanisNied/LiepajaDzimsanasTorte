@@ -1,6 +1,6 @@
 extends Node
 
-var Score = 0
+var Score = 0 ############
 var playertolookoutfor
 
 # Called when the node enters the scene tree for the first time.
