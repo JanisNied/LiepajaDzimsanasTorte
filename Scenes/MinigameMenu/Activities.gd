@@ -158,4 +158,5 @@ func _on_Transition_button_up():
 	Global.allowedActivities.remove(activityIndex)
 	Global.chosenActivities.remove(activityIndex)
 	Global.slicesEaten += 1
+	SoundManager.stop("bass")
 	pass # Replace with function body.

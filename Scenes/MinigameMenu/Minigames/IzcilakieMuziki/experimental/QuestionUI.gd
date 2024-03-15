@@ -1,6 +1,6 @@
 extends Control
 
-var questionNum : int = 3
+var questionNum : int = 1
 var maxRounds : int = 3
 onready var statusText = get_parent().get_node("Status")
 onready var textAnim = get_parent().get_node("TextAnimation")
