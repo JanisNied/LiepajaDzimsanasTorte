@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/The Happy Giraffe Demo.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/QuestionUI.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/buttonfont.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/font.tres" type="DynamicFont" id=9]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
@@ -15,31 +16,28 @@ script/source = "extends Control
 onready var allKeys = [$KeyAnim,$KeyAnim2,$KeyAnim3,$KeyAnim4]
 var currentKeys = []
 var combo = 0
+var acc : float = 1.0
+var pointsEnd = 0
+
+var correct_notes := 0
+var early_notes := 0
+var missed_notes := 0
+
+const correct_note_score = 100
+const early_note_penalty = 5
+const missed_note_penalty = 10
 
 var busy = false
 
 func _ready():
 	yield(get_tree().create_timer(2), \"timeout\")
-	$NoteAnimation.play(\"ComeIn\")
-	yield(get_tree().create_timer(4), \"timeout\")
-	var pointsEnd = -2
-	Global.score += pointsEnd
-	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += pointsEnd
-	if pointsEnd < 0:
-		if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
-			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
-			Global.allowedActivities.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
-			Global.chosenActivities.append(Global.discardedActivities[Global.discardedActivities.size()-1])
-			
-			Global.discardedActivityNum.erase(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
-			Global.discardedActivities.erase(Global.discardedActivities[Global.discardedActivities.size()-1])
-			Global.sortActivities()
-			Global.slicesEaten -= 1
-	Global.transition(\"MinigameMenu\")		
+	$NoteAnimation.play(\"ComeIn\")	
 	pass
 	
 func _process(delta):
 	Global.time += delta
+	print(calculate_accuracy())
+	$RichTextLabel.bbcode_text = \"[center][center]\"+str(calculate_accuracy()+\"%\")
 	if not $Timer.is_stopped():
 		if $Timer.time_left <= 5:
 			$Status.bbcode_text = \"[center]Pārbaudiet taustiņas!(\"+str(floor($Timer.time_left))+\")\\n(QWOP)\"
@@ -66,13 +64,13 @@ func _on_MidiPlayer_midi_event(channel, event):
 		busy = true
 		for N in channel.note_on:
 			match N:
-				71:
+				1:
 					$KeyAnim.play()
-				95:
+				3:
 					$KeyAnim3.play()
-				83:
+				2:
 					$KeyAnim2.play()
-				59:
+				4:
 					$KeyAnim4.play()
 		yield(get_tree().create_timer(0.3),\"timeout\")
 		busy = false
@@ -83,6 +81,45 @@ func _on_Timer_timeout():
 	$TextAnimation.play(\"FadeOutArrows\")
 	$QuestionUI.startRound()
 	pass
+
+func endGame():
+	Global.score += pointsEnd
+	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += pointsEnd
+	if pointsEnd < 0:
+		if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
+			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.allowedActivities.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
+			Global.chosenActivities.append(Global.discardedActivities[Global.discardedActivities.size()-1])
+			
+			Global.discardedActivityNum.erase(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.discardedActivities.erase(Global.discardedActivities[Global.discardedActivities.size()-1])
+			Global.sortActivities()
+			Global.slicesEaten -= 1
+	Global.transition(\"MinigameMenu\")
+
+func process_note_result(result: String):
+	match result:
+		\"correct\":
+			correct_notes += 1
+		\"early\":
+			early_notes += 1
+		\"missed\":
+			missed_notes += 1
+
+func calculate_accuracy() -> String:
+	var total_notes := correct_notes + early_notes + missed_notes
+	
+	if total_notes == 0:
+		return \"100.00\"  
+	else:
+		var weighted_correct := correct_notes * 1.0  
+		var weighted_early := early_notes * 0.5 
+		var accuracy := ((weighted_correct + weighted_early) / total_notes) * 100
+		return \"% . 2f\" % accuracy
+
+
+
+
 "
 
 [sub_resource type="Animation" id=2]
@@ -303,10 +340,6 @@ size = 118
 extra_spacing_char = 100
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 49
-font_data = ExtResource( 6 )
-
 [sub_resource type="Animation" id=7]
 resource_name = "FadeIn"
 length = 2.0
@@ -523,7 +556,7 @@ button = "P"
 
 [node name="MidiPlayer" type="Node" parent="."]
 script = ExtResource( 1 )
-file = "res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/dreadshort.mid"
+file = "res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/rokenrols.mid"
 volume_db = -144.0
 soundfont = "res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/Yoshi's Island.sf2"
 
@@ -548,14 +581,16 @@ bbcode_text = "[center][wave][wave amp = 10]V V V V[/wave]"
 text = "V V V V"
 
 [node name="Status" type="RichTextLabel" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = 12.0
-margin_top = 10.0
-margin_right = 1012.0
-margin_bottom = 510.0
+anchor_left = 0.007
+anchor_top = 0.052
+anchor_right = 0.007
+anchor_bottom = 0.052
+margin_left = 4.832
+margin_top = -19.952
+margin_right = 1004.83
+margin_bottom = 480.048
 custom_colors/default_color = Color( 1, 1, 1, 0 )
-custom_fonts/normal_font = SubResource( 6 )
+custom_fonts/normal_font = ExtResource( 9 )
 bbcode_enabled = true
 bbcode_text = "[center]Pārbaudiet taustiņas!
 (QWOP)"
@@ -572,11 +607,12 @@ anims/RESET = SubResource( 11 )
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 12.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 
 [node name="QuestionUI" type="Control" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 1024.0
 margin_bottom = 576.0
@@ -592,7 +628,7 @@ margin_top = -272.372
 margin_right = 500.0
 margin_bottom = -357.248
 custom_colors/default_color = Color( 1, 1, 1, 1 )
-custom_fonts/normal_font = SubResource( 6 )
+custom_fonts/normal_font = ExtResource( 9 )
 bbcode_enabled = true
 bbcode_text = "[wave][wave amp=0]Jautājums #1[/wave]"
 text = "Jautājums #1"
@@ -659,6 +695,16 @@ margin_bottom = -143.0
 custom_fonts/font = SubResource( 17 )
 text = "answer2"
 flat = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -105.0
+margin_right = 194.0
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center][center]100.00%"
+text = "100.00%"
 
 [connection signal="midi_event" from="MidiPlayer" to="." method="_on_MidiPlayer_midi_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
