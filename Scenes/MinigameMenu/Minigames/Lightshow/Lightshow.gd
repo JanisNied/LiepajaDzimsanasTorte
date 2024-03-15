@@ -30,7 +30,6 @@ func _process(delta):
 		#emit_signal("gameover")
 		stop = true
 		Spawning.clear_all_bullets()
-		bosses[bossidx].find_node("RingEnemy").visible = false
 		$Playground/DeathMoonPath/PathFollow2D/DeathMoon.visible = false
 		$Playground/Player.lock = true
 		$Playground/Fighters/Label.text = "Švaki...\n%d" % $Scoring.Score
@@ -73,6 +72,7 @@ func _process(delta):
 		bosses[bossidx].offset += 200 * delta
 	else:
 		currenemy = bosses[bossidx].find_node("DeathMoon")
+		bosses[bossidx].offset += 100 * delta
 		pass
 	$HUD/Cover/Time.text = "Laiks: %d\nAplis: %d/%d\nSpēks: %d\nPunkti: %d" % [(int($Chronometer.time_left) + 1), bossidx + 1,  bosses.size(), $Playground/Player.hp, $Scoring.Score]
 
@@ -106,8 +106,6 @@ func _on_Chronometer_timeout():
 		$Playground/Fighters/Label.text = "Visus\npieveici!\nNopelns: %d" % $Scoring.Score
 		$Playground/Fighters.visible = true
 		exitstage = true
-
-
 
 func _on_Moon_timeout():
 	$Playground/Fighters.visible = false

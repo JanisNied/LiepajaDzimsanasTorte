@@ -97,6 +97,7 @@ curve = SubResource( 7 )
 [node name="PathFollow2D" type="PathFollow2D" parent="Playground/DeathMoonPath"]
 position = Vector2( 247, 40 )
 rotation = 2.4196
+rotate = false
 
 [node name="DeathMoon" parent="Playground/DeathMoonPath/PathFollow2D" instance=ExtResource( 12 )]
 visible = false

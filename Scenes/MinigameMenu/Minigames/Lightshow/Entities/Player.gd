@@ -31,7 +31,7 @@ func _physics_process(delta):
 	position.y = clamp(position.y, 0, 576)
 	
 	if hp < 100:
-		hp += 5
+		hp += 10 * delta
 
 func _on_Inferface_gamestart():
 	lock = false
@@ -39,6 +39,6 @@ func _on_Inferface_gamestart():
 
 
 func _on_CollisionArea_entered(area):
-	hp -= 30
+	hp -= 50
 	wasHit = true
 	pass # Replace with function body.
