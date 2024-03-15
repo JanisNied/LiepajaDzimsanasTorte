@@ -1,6 +1,6 @@
 extends Control
 
-var questionNum : int = 1
+var questionNum : int = 3
 var maxRounds : int = 3
 onready var statusText = get_parent().get_node("Status")
 onready var textAnim = get_parent().get_node("TextAnimation")
@@ -9,7 +9,7 @@ var enabled = true
 
 var files = ["res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/rokenrols.mid", "res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/tumanesi.mid","res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/kakugis.mid"]
 var music = ["rokenrols", "tumanesi", "kakugis"]
-var length = [16, 28, 20]
+var length = [16, 28, 20] # 20
 
 var file_path = "res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/questions.tres"
 var questions : Dictionary

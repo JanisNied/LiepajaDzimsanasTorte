@@ -21,6 +21,8 @@ func _ready():
 		$ViewportContainer.show()
 		yield(get_tree().create_timer(1.5), "timeout")
 		$ViewportContainer/Viewport/Spatial/Camera/AnimationPlayer.play("CakeOpening")
+		yield(get_tree().create_timer(2.55), "timeout")
+		SoundManager.play_bgm("bass")
 	else:
 		noSlices()
 	print("Current Score: "+str(Global.score))

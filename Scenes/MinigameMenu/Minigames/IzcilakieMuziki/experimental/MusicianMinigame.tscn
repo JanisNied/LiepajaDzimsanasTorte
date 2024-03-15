@@ -20,7 +20,7 @@ onready var allKeys = [$KeyAnim,$KeyAnim2,$KeyAnim3,$KeyAnim4]
 var currentKeys = []
 var combo = 0
 var acc : float = 1.0
-var score = 0
+var score : int = 0
 
 var correct_notes := 0
 var early_notes := 0
@@ -86,8 +86,8 @@ func _on_Timer_timeout():
 	pass
 
 func endGame():
-	if (float(calculate_accuracy())/10 < 4):	
-		score -= int(float(calculate_accuracy())/10)-5
+	if (float(calculate_accuracy())/10 < 4 and 0 < float(calculate_accuracy())/10):	
+		score += int(float(calculate_accuracy())/10)-5
 	elif (float(calculate_accuracy())/10 == 0):
 		score -= 8
 	else:	
