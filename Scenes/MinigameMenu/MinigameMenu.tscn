@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Assets/Cake/textures/Tea flavour Cake.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Cake/cakeobj.obj" type="ArrayMesh" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Scenes/MinigameMenu/SelectedCake.tres" type="Material" id=6]
 [ext_resource path="res://Assets/MyHandsareHoldingYou.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Scenes/MinigameMenu/TransitionScene.gd" type="Script" id=8]
+[ext_resource path="res://Assets/clipboard.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/MinigameMenu/rulesclipboard.gd" type="Script" id=10]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -1563,6 +1565,10 @@ shader_param/scalinesOpt = 0.483
 shader_param/rgbOffsetOpt = 0.173
 shader_param/horzFuzzOpt = 0.176
 
+[sub_resource type="DynamicFont" id=37]
+size = 26
+font_data = ExtResource( 7 )
+
 [node name="Scene" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -1937,6 +1943,33 @@ margin_right = 1024.0
 margin_bottom = 576.0
 mouse_filter = 2
 
+[node name="Hitbox" type="ColorRect" parent="."]
+margin_left = 10.0
+margin_top = 519.0
+margin_right = 49.0
+margin_bottom = 569.0
+mouse_filter = 2
+color = Color( 1, 1, 1, 0 )
+script = ExtResource( 10 )
+
+[node name="Clipboard" type="Sprite" parent="Hitbox"]
+position = Vector2( 20, 25 )
+scale = Vector2( 0.0974082, 0.0974082 )
+texture = ExtResource( 9 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Hitbox"]
+margin_left = -84.0
+margin_top = -61.0
+margin_right = 298.0
+margin_bottom = 56.0
+rect_scale = Vector2( 1.22414, 1.22414 )
+custom_fonts/normal_font = SubResource( 37 )
+bbcode_enabled = true
+bbcode_text = "[tornado amp][center]<- Noteikumi"
+text = "<- Noteikumi"
+
 [connection signal="button_up" from="Button" to="ViewportContainer/Viewport/Spatial" method="_on_Button_button_up"]
 [connection signal="button_up" from="Transition" to="ViewportContainer/Viewport/Spatial" method="_on_Transition_button_up"]
 [connection signal="button_up" from="Button2" to="ViewportContainer/Viewport/Spatial" method="_on_Button2_button_up"]
+[connection signal="mouse_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_mouse_entered"]
+[connection signal="mouse_exited" from="Hitbox" to="Hitbox" method="_on_Hitbox_mouse_exited"]

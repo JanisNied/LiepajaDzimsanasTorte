@@ -29,11 +29,12 @@ func _on_Area2D_body_entered(body):
 	Global.izskrienPunkti = pointsEnd
 	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += pointsEnd
 	if pointsEnd < 0:
-		Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
-		Global.allowedActivities.insert(Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1, Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
-		Global.chosenActivities.insert(Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1, Global.discardedActivities[Global.discardedActivities.size()-1])
-		
-		Global.discardedActivityNum.erase(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
-		Global.discardedActivities.erase(Global.discardedActivities[Global.discardedActivities.size()-1])
-		Global.sortActivities()
+		if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
+			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.allowedActivities.insert(Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1, Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
+			Global.chosenActivities.insert(Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1, Global.discardedActivities[Global.discardedActivities.size()-1])
+			
+			Global.discardedActivityNum.erase(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.discardedActivities.erase(Global.discardedActivities[Global.discardedActivities.size()-1])
+			Global.sortActivities()
 	Global.transition("ExtraScene")
