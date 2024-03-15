@@ -1,0 +1,8 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[sub_resource type="DynamicFontData" id=16]
+font_path = "res://Assets/The Happy Giraffe Demo.ttf"
+
+[resource]
+size = 29
+font_data = SubResource( 16 )

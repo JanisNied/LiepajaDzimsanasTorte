@@ -1,0 +1,14 @@
+# Blender 4.0.2 MTL File: 'None'
+# www.blender.org
+
+newmtl Material.003
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd D:/Blender/3D/Вывеска настенная 1/Wall_signboard_1/Material_Wall_signboard_1_BaseColor.tga
+map_Ns D:/Blender/3D/Вывеска настенная 1/Wall_signboard_1/Material_Wall_signboard_1_Roughness.tga
+map_refl D:/Blender/3D/Вывеска настенная 1/Wall_signboard_1/Material_Wall_signboard_1_Metallic.tga
+map_d D:/Blender/3D/Вывеска настенная 1/Wall_signboard_1/Material_Wall_signboard_1_Alpha.tga
+map_Bump -bm 1.000000 D:/Blender/3D/Вывеска настенная 1/Wall_signboard_1/Material_Wall_signboard_1_Normal.tga

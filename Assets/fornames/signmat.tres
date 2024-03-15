@@ -1,0 +1,13 @@
+[gd_resource type="SpatialMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Assets/fornames/Material_Wall_signboard_1_BaseColor.png" type="Texture" id=1]
+[ext_resource path="res://Assets/fornames/Material_Wall_signboard_3_Normal.png" type="Texture" id=2]
+[ext_resource path="res://Assets/fornames/Material_Wall_signboard_3_Roughness.png" type="Texture" id=3]
+
+[resource]
+albedo_color = Color( 0.282353, 0.282353, 0.282353, 1 )
+albedo_texture = ExtResource( 1 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = -0.98
+normal_texture = ExtResource( 2 )

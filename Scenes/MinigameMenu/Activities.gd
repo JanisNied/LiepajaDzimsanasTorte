@@ -18,7 +18,11 @@ func _ready():
 func updateLabelData():
 	get_parent().get_parent().get_parent().get_node("Background/Tituls").text = str(Global.chosenActivities[activityIndex]["name"])
 	get_parent().get_parent().get_parent().get_node("Background/Description").text = str(Global.chosenActivities[activityIndex]["desc"])
-
+	if Global.allowedActivities[activityIndex] in Global.retryMinigameNums:
+		get_parent().get_parent().get_parent().get_node("Background/Tituls2").show()
+	else:
+		get_parent().get_parent().get_parent().get_node("Background/Tituls2").hide()
+		
 func updateActClockWise():
 	if activityIndex == Global.allowedActivities.size():
 		activityIndex = 0
@@ -28,9 +32,13 @@ func updateActClockWise():
 		get_parent().get_parent().get_parent().get_node("Background/Tituls").show()
 		get_parent().get_parent().get_parent().get_node("Background/Nosaukums").show()
 		get_parent().get_parent().get_parent().get_node("Background/Description").show()
+		get_parent().get_parent().get_parent().get_node("Hitbox").show()
+		get_parent().get_parent().get_parent().get_node("Gamepad").show()
 		if Global.slicesEaten < 5:
 			get_parent().get_parent().get_parent().get_node("Button").show()
 			get_parent().get_parent().get_parent().get_node("Button2").show()
+			get_parent().get_parent().get_parent().get_node("LeftArrow").show()
+			get_parent().get_parent().get_parent().get_node("RightArrow").show()
 		get_parent().get_parent().get_parent().get_node("Transition").show()
 	firstpass = false
 	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))

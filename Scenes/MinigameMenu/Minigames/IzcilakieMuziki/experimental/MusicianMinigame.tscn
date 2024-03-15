@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://addons/midi/MidiPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/KeyAnim.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/AmaticSC-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Assets/The Happy Giraffe Demo.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/QuestionUI.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/buttonfont.tres" type="DynamicFont" id=8]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
@@ -21,7 +22,20 @@ func _ready():
 	yield(get_tree().create_timer(2), \"timeout\")
 	$NoteAnimation.play(\"ComeIn\")
 	yield(get_tree().create_timer(4), \"timeout\")
-	Global.transition(\"MinigameMenu\")
+	var pointsEnd = -2
+	Global.score += pointsEnd
+	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += pointsEnd
+	if pointsEnd < 0:
+		if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
+			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.allowedActivities.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
+			Global.chosenActivities.append(Global.discardedActivities[Global.discardedActivities.size()-1])
+			
+			Global.discardedActivityNum.erase(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.discardedActivities.erase(Global.discardedActivities[Global.discardedActivities.size()-1])
+			Global.sortActivities()
+			Global.slicesEaten -= 1
+	Global.transition(\"MinigameMenu\")		
 	pass
 	
 func _process(delta):
@@ -66,9 +80,8 @@ func _on_MidiPlayer_midi_event(channel, event):
 
 
 func _on_Timer_timeout():
-	$Status.bbcode_text = \"[center]...\"
 	$TextAnimation.play(\"FadeOutArrows\")
-	$MidiPlayer.play()
+	$QuestionUI.startRound()
 	pass
 "
 
@@ -338,6 +351,135 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=10]
+resource_name = "GoAway"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Status:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.153893, 0.153893 ),
+"update": 0,
+"values": [ Vector2( 12, 10 ), Vector2( 12, -150 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "QuestionsComeIn"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("QuestionUI:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.241484, 0.241484 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("QuestionUI:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "QuestionsComeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("QuestionUI:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.241484, 0.241484 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("QuestionUI:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Status:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 12, 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Status:custom_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("QuestionUI:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=9]
+size = 28
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 29
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 29
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFontData" id=16]
+font_path = "res://Assets/The Happy Giraffe Demo.ttf"
+
+[sub_resource type="DynamicFont" id=17]
+size = 29
+font_data = SubResource( 16 )
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -402,18 +544,16 @@ rect_scale = Vector2( 1, 0.362 )
 custom_colors/default_color = Color( 1, 1, 1, 0 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[center][wave amp = 50]V V V V"
+bbcode_text = "[center][wave][wave amp = 10]V V V V[/wave]"
 text = "V V V V"
 
 [node name="Status" type="RichTextLabel" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.759
-margin_left = -500.0
-margin_top = -288.0
-margin_right = 500.0
-margin_bottom = 288.0
+margin_left = 12.0
+margin_top = 10.0
+margin_right = 1012.0
+margin_bottom = 510.0
 custom_colors/default_color = Color( 1, 1, 1, 0 )
 custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
@@ -425,6 +565,10 @@ text = "Pārbaudiet taustiņas!
 [node name="TextAnimation" type="AnimationPlayer" parent="."]
 anims/FadeIn = SubResource( 7 )
 anims/FadeOutArrows = SubResource( 8 )
+anims/GoAway = SubResource( 10 )
+anims/QuestionsComeIn = SubResource( 12 )
+anims/QuestionsComeOut = SubResource( 13 )
+anims/RESET = SubResource( 11 )
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 0
@@ -433,9 +577,88 @@ one_shot = true
 autostart = true
 
 [node name="QuestionUI" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 1024.0
 margin_bottom = 576.0
 script = ExtResource( 7 )
+
+[node name="Question" type="RichTextLabel" parent="QuestionUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.759
+margin_left = -500.0
+margin_top = -272.372
+margin_right = 500.0
+margin_bottom = -357.248
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[wave][wave amp=0]Jautājums #1[/wave]"
+text = "Jautājums #1"
+
+[node name="Question2" type="RichTextLabel" parent="QuestionUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.759
+margin_left = -500.0
+margin_top = -198.0
+margin_right = -121.0
+margin_bottom = -156.184
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[wave][wave amp=0]Kaut kāds jautājuma teksts?[/wave]"
+text = "Kaut kāds jautājuma teksts?"
+
+[node name="Ans3" type="Button" parent="QuestionUI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 130.0
+margin_top = -126.0
+margin_right = 464.0
+margin_bottom = -17.0
+custom_fonts/font = SubResource( 14 )
+text = "answer3"
+flat = true
+
+[node name="Ans4" type="Button" parent="QuestionUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -464.0
+margin_top = -126.0
+margin_right = -130.0
+margin_bottom = -17.0
+custom_fonts/font = SubResource( 15 )
+text = "answer4"
+flat = true
+
+[node name="Ans1" type="Button" parent="QuestionUI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 130.0
+margin_top = -252.0
+margin_right = 464.0
+margin_bottom = -143.0
+custom_fonts/font = ExtResource( 8 )
+text = "answer1"
+flat = true
+
+[node name="Ans2" type="Button" parent="QuestionUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -464.0
+margin_top = -252.0
+margin_right = -130.0
+margin_bottom = -143.0
+custom_fonts/font = SubResource( 17 )
+text = "answer2"
+flat = true
 
 [connection signal="midi_event" from="MidiPlayer" to="." method="_on_MidiPlayer_midi_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

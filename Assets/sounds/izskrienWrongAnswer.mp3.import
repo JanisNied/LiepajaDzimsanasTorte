@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/izskrienWrongAnswer.mp3-b39b9a02bede925e2b8b55cd0e4e2985.mp3str"
+
+[deps]
+
+source_file="res://Assets/sounds/izskrienWrongAnswer.mp3"
+dest_files=[ "res://.import/izskrienWrongAnswer.mp3-b39b9a02bede925e2b8b55cd0e4e2985.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
