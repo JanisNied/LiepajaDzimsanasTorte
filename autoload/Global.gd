@@ -23,28 +23,28 @@ var availableChoices : Dictionary = {
 		"desc":"Mūziķi veido mūsu pilsētu skaļāku!\nŠeit jūs spēlēsiet x ritma spēles kārtas, ar mūziķu dziesmām.\nTālāk seko jautājumi!",
 		"scene":"MusicianMinigame"
 	},
-	"testactivity3":{
-		"name":"\"h3elp\"",
-		"desc":"This is a description, this is a description, this is a description",
-		"scene":"MinigameMenu"
+	"IzskrienLiepaju":{
+		"name":"Izskrien Latviju Liepājā",
+		"desc":"Iesaisties Latvijas izskriešanā Liepājā!\nKatru kontrolpunktu jāatbild uz jautājumiem, kuri cieši saistīti ar vietu jūsu tuvumā uz kartes!\nMēģiniet uzvarēt pret datoru!",
+		"scene":"TrailingPlayer"
 	},
 	"testactivity4":{
-		"name":"\"h4elp\"",
+		"name":"",
 		"desc":"This is a description, this is a description, this is a description",
 		"scene":"MinigameMenu"
 	},
 	"testactivity5":{
-		"name":"\"he5lp\"",
+		"name":"",
 		"desc":"This is a description, this is a description, this is a description",
 		"scene":"MinigameMenu"
 	},
 	"testactivity6":{
-		"name":"\"he6lp\"",
+		"name":"",
 		"desc":"This is a description, this is a description, this is a description",
 		"scene":"MinigameMenu"
 	},
 	"testactivity7":{
-		"name":"\"he7lp\"",
+		"name":"",
 		"desc":"This is a description, this is a description, this is a description",
 		"scene":"MinigameMenu"
 	}
@@ -58,6 +58,7 @@ func pickActivitiesRandomly():
 		var activity = temp[random_key]
 		chosenActivities.append(activity)
 		temp.erase(random_key)
+
 
 func printAllActivities():
 	var string : String = "[DEBUG] Activities:\n"

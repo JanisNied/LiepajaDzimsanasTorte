@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/izskrienCorrectAnswer.mp3-78e04559753ed09e0e6530abfe9093a5.mp3str"
+
+[deps]
+
+source_file="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/assets/sounds/izskrienCorrectAnswer.mp3"
+dest_files=[ "res://.import/izskrienCorrectAnswer.mp3-78e04559753ed09e0e6530abfe9093a5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
