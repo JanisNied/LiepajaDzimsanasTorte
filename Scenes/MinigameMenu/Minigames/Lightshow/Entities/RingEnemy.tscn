@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/BulletUpHell/BulletProps.gd" type="Script" id=1]
 [ext_resource path="res://addons/BulletUpHell/BuHBulletProperties.gd" type="Script" id=2]
@@ -80,6 +80,8 @@ _data = {
 
 [sub_resource type="Curve" id=4]
 
+[sub_resource type="Curve" id=9]
+
 [sub_resource type="Gradient" id=7]
 offsets = PoolRealArray( 0, 0.994152, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.912281, 1, 0.985609, 1, 1, 1, 1, 1 )
@@ -129,6 +131,7 @@ beam_length_per_ray = 0.0
 beam_width = 0.0
 beam_bounce_amount = 0
 scale_multi_iterations = 0
+scale_multiplier = SubResource( 9 )
 scale_multi_scale = 1
 r_randomisation_chances = 1.0
 r_speed_choice = ""
