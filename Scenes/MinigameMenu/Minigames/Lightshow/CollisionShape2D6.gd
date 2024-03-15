@@ -1,6 +1,6 @@
-extends Node
+extends CollisionShape2D
 
-var Score = 0
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
