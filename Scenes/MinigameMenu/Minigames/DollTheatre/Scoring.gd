@@ -52,4 +52,8 @@ func getGrade():
 	if get_parent().find_node("Beatmap").FullCombo == Combo:
 		didmaxcombo == 1
 	var final = ((acc + didmaxcombo) / 11)
+	
+	if (Accuracy * 100) < 35.0:
+		final *= -1
+
 	return int(final)
