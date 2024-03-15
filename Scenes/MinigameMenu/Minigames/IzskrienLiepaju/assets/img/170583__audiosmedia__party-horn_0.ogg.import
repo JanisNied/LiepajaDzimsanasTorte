@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/170583__audiosmedia__party-horn_0.ogg-3dedb7823f2857dcb800bbcc96cbaa8b.oggstr"
+
+[deps]
+
+source_file="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/assets/img/170583__audiosmedia__party-horn_0.ogg"
+dest_files=[ "res://.import/170583__audiosmedia__party-horn_0.ogg-3dedb7823f2857dcb800bbcc96cbaa8b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

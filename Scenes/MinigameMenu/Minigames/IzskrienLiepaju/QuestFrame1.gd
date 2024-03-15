@@ -28,8 +28,6 @@ func _ready():
 
 
 func show_questions():
-	if get_viewport().size!=Vector2(1920,1080):
-		get_parent().get_node("QuestFrame1").set_size(get_viewport().size)
 	AnswersList.show()
 	QuestionImage.show()
 	AnswersList.clear()
@@ -63,10 +61,10 @@ func _on_AnswersList_item_selected(index):
 		get_parent().get_parent().get_parent().get_node("Route/RouteFollowers").boostTime+=5
 		print("so cool")
 		refresh_scene()
-		#Correct Sound res://assets/sounds/izskrienCorrectAnswer
+		SoundManager.play_se("IzskrienCorrect")
 	else:
+		SoundManager.play_se("IzskrienIncorrect")
 		print("sad")
-		#Wrong Sound res://assets/sounds/izskrienWrongAnswer
 	hideAll()
 	get_parent().get_parent().restart()
 	get_parent().get_parent().rememberSmth+=1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/quest1.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/enemyHard.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/staminaBar.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/Line2D.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/finish.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/assets/img/bAll.png" type="Texture" id=8]
 [ext_resource path="res://assets/img/pin.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/QuestFrame1.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/bg22.png" type="Texture" id=11]
@@ -25,10 +26,6 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 599, 155, 0, 0, 0, 0, 560, 154, 0, 0, 0, 0, 520, 158, 0, 0, 0, 0, 520, 158, 0, 0, 0, 0, 509, 145, 0, 0, 0, 0, 509, 145, 0, 0, 0, 0, 420, 149, 0, 0, 0, 0, 422, 160, 0, 0, 0, 0, 381, 164, 0, 0, 0, 0, 392, 183, 0, 0, 0, 0, 426, 219, 0, 0, 0, 0, 433, 225, 0, 0, 0, 0, 429, 248, 0, 0, 0, 0, 416, 281, 0, 0, 0, 0, 414, 289, 0, 0, 0, 0, 417, 313, 0, 0, 0, 0, 328, 310, 0, 0, 0, 0, 332, 343, 0, 0, 0, 0, 333, 355, 0, 0, 0, 0, 259, 364, 0, 0, 0, 0, 237, 306, 0, 0, 0, 0, 193, 304, 0, 0, 0, 0, 177, 302, 0, 0, 0, 0, 148, 293, 0, 0, 0, 0, 130, 234, 0, 0, 0, 0, 121, 207, 0, 0, 0, 0, 104, 195, 0, 0, 0, 0, 87, 188, 0, 0, 0, 0, 63, 212, 0, 0, 0, 0, 68, 244, 0, 0, 0, 0, 64, 255, 0, 0, 0, 0, 46, 305, 0, 0, 0, 0, 49.8415, 360.965, 0, 0, 0, 0, 49, 371, 0, 0, 0, 0, 66, 419, 0, 0, 0, 0, 94, 466, 0, 0, 0, 0, 110, 501, 0, 0, 0, 0, 140, 470, 0, 0, 0, 0, 161, 462, 0, 0, 0, 0, 291, 448, 0, 0, 0, 0, 373, 441, 0, 0, 0, 0, 375, 456, 0, 0, 0, 0, 403, 454, 0, 0, 0, 0, 400, 438, 0, 0, 0, 0, 435, 433, 0, 0, 0, 0, 443, 411, 0, 0, 0, 0, 455, 400, 0, 0, 0, 0, 474, 403, 0, 0, 0, 0, 465, 435, 0, 0, 0, 0, 512, 440, 0, 0, 0, 0, 519, 408, 0, 0, 0, 0, 540, 411, 0, 0, 0, 0, 583, 428, 0, 0, 0, 0, 615, 435, 0, 0, 0, 0, 641, 442, 0, 0, 0, 0, 667, 454, 0, 0, 0, 0, 769, 462, 0, 0, 0, 0, 794, 415, 0, 0, 0, 0, 837, 420, 0, 0, 0, 0, 843, 403, 0, 0, 0, 0, 870, 408, 0, 0, 0, 0, 889, 346, 0, 0, 0, 0, 914, 347, 0, 0, 0, 0, 922, 331, 0, 0, 0, 0, 895, 327, 0, 0, 0, 0, 918, 234, 0, 0, 0, 0, 868, 229, 0, 0, 0, 0, 862, 218, 0, 0, 0, 0, 824, 201, 0, 0, 0, 0, 793, 170, 0, 0, 0, 0, 779, 167, 0, 0, 0, 0, 749, 161, 0, 0, 0, 0, 723, 155, 0, 0, 0, 0, 692, 155, 0, 0, 0, 0, 599, 155 )
 }
 
-[sub_resource type="StreamTexture" id=7]
-flags = 4
-load_path = "res://.import/bAll.png-5b30ef9aff819c06905ac469c8c5717e.stex"
-
 [sub_resource type="CircleShape2D" id=6]
 radius = 135.81
 
@@ -39,15 +36,153 @@ font_data = ExtResource( 17 )
 radius = 6.40312
 
 [sub_resource type="DynamicFont" id=5]
-size = 45
+size = 54
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 17 )
 
 [sub_resource type="DynamicFont" id=10]
+size = 15
+extra_spacing_space = -3
 font_data = ExtResource( 17 )
 
 [sub_resource type="StyleBoxEmpty" id=11]
 content_margin_left = 150.0
+
+[sub_resource type="Shader" id=38]
+code = "//SHADER ORIGINALY CREADED BY \"ehj1\" FROM SHADERTOY
+//MODIFIED AND PORTED TO GODOT BY AHOPNESS (@ahopness)
+//LICENSE : CC0
+//COMATIBLE WITH : GLES2, GLES3
+//SHADERTOY LINK : https://www.shadertoy.com/view/ldXGW4
+
+shader_type canvas_item;
+
+uniform float vertJerkOpt :hint_range(0,1) = 0.2;
+uniform float vertMovementOpt :hint_range(0,1) = 0.0;
+uniform float bottomStaticOpt :hint_range(0,5) = 0.0;
+uniform float bottomStaticStrenth :hint_range(0.0, 1.5) = 0.7;
+uniform float scalinesOpt :hint_range(0,6) = 0.8;
+uniform float rgbOffsetOpt :hint_range(0,2) = 0.2;
+uniform float horzFuzzOpt :hint_range(0,5) = 0.15;
+
+// Noise generation functions borrowed from: 
+// https://github.com/ashima/webgl-noise/blob/master/src/noise2D.glsl
+
+vec3 mod289vec3(vec3 x){
+	return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec2 mod289vec2(vec2 x){
+	return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec3 permute(vec3 x){
+	return mod289vec3(((x*34.0)+1.0)*x);
+}
+
+float snoise(vec2 v){
+	const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0
+						0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)
+						-0.577350269189626, // -1.0 + 2.0 * C.x
+						0.024390243902439); // 1.0 / 41.0
+	// First corner
+	vec2 i  = floor(v + dot(v, C.yy) );
+	vec2 x0 = v -   i + dot(i, C.xx);
+	
+	// Other corners
+	vec2 i1;
+	//i1.x = step( x0.y, x0.x ); // x0.x > x0.y ? 1.0 : 0.0
+	//i1.y = 1.0 - i1.x;
+	i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+	// x0 = x0 - 0.0 + 0.0 * C.xx ;
+	// x1 = x0 - i1 + 1.0 * C.xx ;
+	// x2 = x0 - 1.0 + 2.0 * C.xx ;
+	vec4 x12 = x0.xyxy + C.xxzz;
+	x12.xy -= i1;
+	
+	// Permutations
+	i = mod289vec2(i); // Avoid truncation effects in permutation
+	vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+	+ i.x + vec3(0.0, i1.x, 1.0 ));
+	
+	vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+	m = m*m ;
+	m = m*m ;
+	
+	// Gradients: 41 points uniformly over a line, mapped onto a diamond.
+	// The ring size 17*17 = 289 is close to a multiple of 41 (41*7 = 287)
+	
+	vec3 x = 2.0 * fract(p * C.www) - 1.0;
+	vec3 h = abs(x) - 0.5;
+	vec3 ox = floor(x + 0.5);
+	vec3 a0 = x - ox;
+	
+	// Normalise gradients implicitly by scaling m
+	// Approximation of: m *= inversesqrt( a0*a0 + h*h );
+	m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+	
+	// Compute final noise value at P
+	vec3 g;
+	g.x  = a0.x  * x0.x  + h.x  * x0.y;
+	g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+	return 130.0 * dot(m, g);
+}
+
+float staticV(vec2 uv, float time){
+	float staticHeight = snoise(vec2(9.0,float(time)*1.2+3.0))*bottomStaticStrenth+5.0;
+	float staticAmount = snoise(vec2(1.0,time*1.2-6.0))*0.1+0.3;
+	float staticStrength = snoise(vec2(-9.75,time*0.6-3.0))*2.0+2.0;
+	return (1.0-step(snoise(vec2(5.0*pow(time,2.0)+pow(uv.x*7.0,1.2),pow((mod(time,100.0)+100.0)*uv.y*0.3+3.0,staticHeight))),staticAmount))*staticStrength;
+}
+
+
+void fragment(){
+	vec2 uv =  FRAGCOORD.xy / (1.0 / SCREEN_PIXEL_SIZE).xy;
+	
+	float jerkOffset = (1.0-step(snoise(vec2(TIME*1.3,5.0)),0.8))*0.05;
+	
+	float fuzzOffset = snoise(vec2(TIME*15.0,uv.y*80.0))*0.003;
+	float largeFuzzOffset = snoise(vec2(TIME*1.0,uv.y*25.0))*0.004;
+	
+	float vertMovementOn = (1.0-step(snoise(vec2(TIME*0.2,8.0)),0.4))*vertMovementOpt;
+	float vertJerk = (1.0-step(snoise(vec2(TIME*1.5,5.0)),0.6))*vertJerkOpt;
+	float vertJerk2 = (1.0-step(snoise(vec2(TIME*5.5,5.0)),0.2))*vertJerkOpt;
+	float yOffset = abs(sin(TIME)*4.0)*vertMovementOn+vertJerk*vertJerk2*0.3;
+	float _y = mod(uv.y+yOffset,1.0);
+	
+	
+	float xOffset = (fuzzOffset + largeFuzzOffset) * horzFuzzOpt;
+	
+	float staticVal = 0.0;
+	
+	for (float y = -1.0; y <= 1.0; y += 1.0) {
+		float maxDist = 5.0/200.0;
+		float dist = y/200.0;
+		staticVal += staticV(vec2(uv.x,uv.y+dist), TIME)*(maxDist-abs(dist))*1.5;
+	}
+	
+	staticVal *= bottomStaticOpt;
+	
+	float red = texture(SCREEN_TEXTURE, vec2(uv.x + xOffset -0.01*rgbOffsetOpt,_y)).r+staticVal;
+	float green = texture(SCREEN_TEXTURE, vec2(uv.x + xOffset,_y)).g+staticVal;
+	float blue = texture(SCREEN_TEXTURE, vec2(uv.x + xOffset +0.01*rgbOffsetOpt,_y)).b+staticVal;
+	
+	vec3 color = vec3(red,green,blue);
+	float scanline = sin(uv.y*800.0)*0.04*scalinesOpt;
+	color -= scanline;
+	
+	COLOR = vec4(color,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=37]
+shader = SubResource( 38 )
+shader_param/vertJerkOpt = 0.0
+shader_param/vertMovementOpt = 0.0
+shader_param/bottomStaticOpt = 0.0
+shader_param/bottomStaticStrenth = 0.358
+shader_param/scalinesOpt = 0.483
+shader_param/rgbOffsetOpt = 0.173
+shader_param/horzFuzzOpt = 0.176
 
 [node name="SceneNode" type="Node2D"]
 
@@ -151,7 +286,7 @@ scale = Vector2( 0.3, 0.3 )
 
 [node name="playerSprite" type="Sprite" parent="Route/hardFollow/enemyHard"]
 scale = Vector2( 0.02, 0.02 )
-texture = SubResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Route/hardFollow/enemyHard"]
 position = Vector2( -3.33228, 0.0854034 )
@@ -188,7 +323,7 @@ zoom = Vector2( 0.3, 0.3 )
 [node name="playerSprite" type="Sprite" parent="Route/RouteFollowers/MainPlayer"]
 modulate = Color( 0.0588235, 0.541176, 0.941176, 1 )
 scale = Vector2( 0.02, 0.02 )
-texture = SubResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Route/RouteFollowers/MainPlayer"]
 position = Vector2( -3.33228, 0.0854034 )
@@ -226,7 +361,7 @@ alignment = 1
 
 [node name="QuestionName" type="Label" parent="Quest1/Control/QuestFrame1/VBoxContainer"]
 margin_right = 818.0
-margin_bottom = 119.0
+margin_bottom = 141.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "Test
@@ -235,38 +370,16 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="TextureRect4" type="TextureRect" parent="Quest1/Control/QuestFrame1"]
-margin_left = -262.0
-margin_top = 128.0
-margin_right = 523.0
-margin_bottom = 602.0
-rect_rotation = -27.6
-texture = ExtResource( 16 )
-expand = true
-stretch_mode = 6
-flip_h = true
-flip_v = true
-
-[node name="CheckpointPhoto" type="TextureRect" parent="Quest1/Control/QuestFrame1"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -460.0
-margin_right = 460.0
-margin_bottom = 305.0
-grow_horizontal = 2
-grow_vertical = 2
-expand = true
-stretch_mode = 6
-
 [node name="AnswersList" type="ItemList" parent="Quest1/Control/QuestFrame1"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -500.0
-margin_top = -130.0
-margin_right = 500.0
-margin_bottom = 70.0015
+margin_left = -1060.0
+margin_top = -365.0
+margin_right = -60.0
+margin_bottom = -164.998
+rect_scale = Vector2( 2.00384, 2.00384 )
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -280,6 +393,31 @@ max_columns = 2
 fixed_column_width = 400
 icon_mode = 0
 icon_scale = 0.0
+
+[node name="TextureRect4" type="TextureRect" parent="Quest1/Control/QuestFrame1"]
+margin_left = -262.0
+margin_top = 128.0
+margin_right = 523.0
+margin_bottom = 602.0
+rect_rotation = -27.6
+rect_scale = Vector2( 1.33904, 1.33904 )
+texture = ExtResource( 16 )
+expand = true
+stretch_mode = 6
+flip_h = true
+flip_v = true
+
+[node name="CheckpointPhoto" type="TextureRect" parent="Quest1/Control/QuestFrame1"]
+anchor_left = 0.5
+anchor_top = 0.063
+anchor_right = 0.5
+anchor_bottom = 0.063
+margin_left = -560.0
+margin_right = 360.0
+margin_bottom = 375.0
+rect_scale = Vector2( 1.25228, 1.25228 )
+expand = true
+stretch_mode = 6
 
 [node name="TextureRect" type="TextureRect" parent="Quest1/Control/QuestFrame1"]
 anchor_left = 0.5
@@ -296,11 +434,12 @@ expand = true
 [node name="TextureRect3" type="TextureRect" parent="Quest1/Control/QuestFrame1"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = -30.0
-margin_top = 4.0
-margin_right = 182.0
-margin_bottom = 156.0
+margin_left = 10.0
+margin_top = 222.0
+margin_right = 222.0
+margin_bottom = 374.0
 rect_rotation = 19.8
+rect_scale = Vector2( 1.97173, 1.97173 )
 texture = ExtResource( 15 )
 expand = true
 stretch_mode = 6
@@ -310,17 +449,27 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -301.0
-margin_top = -337.0
-margin_right = 80.0
-margin_bottom = 26.0
+margin_left = -512.0
+margin_top = -449.0
+margin_right = -131.0
+margin_bottom = -86.0
+rect_scale = Vector2( 1.72271, 1.72271 )
 texture = ExtResource( 13 )
 expand = true
 stretch_mode = 6
 flip_h = true
 
 [node name="questCamera" type="Camera2D" parent="Quest1"]
-position = Vector2( 507, 298 )
+position = Vector2( 960, 538.032 )
+zoom = Vector2( 1.85, 1.869 )
+
+[node name="CRT" type="ColorRect" parent="."]
+material = SubResource( 37 )
+margin_left = -87.0
+margin_top = -101.0
+margin_right = 2006.0
+margin_bottom = 1135.0
+mouse_filter = 2
 
 [connection signal="body_entered" from="finishAreay" to="finishAreay" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Quest1" to="Quest1" method="_on_Area2D_body_entered"]
