@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://addons/midi/MidiPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/KeyAnim.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/QuestionUI.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/buttonfont.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assets/CabinSketch-Regular.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
@@ -36,7 +37,6 @@ func _ready():
 	
 func _process(delta):
 	Global.time += delta
-	print(calculate_accuracy())
 	$RichTextLabel.bbcode_text = \"[center][center]\"+str(calculate_accuracy()+\"%\")
 	if not $Timer.is_stopped():
 		if $Timer.time_left <= 5:
@@ -115,7 +115,7 @@ func calculate_accuracy() -> String:
 		var weighted_correct := correct_notes * 1.0  
 		var weighted_early := early_notes * 0.5 
 		var accuracy := ((weighted_correct + weighted_early) / total_notes) * 100
-		return \"% . 2f\" % accuracy
+		return \"%.2f\" % accuracy
 
 
 
@@ -513,6 +513,10 @@ font_path = "res://Assets/The Happy Giraffe Demo.ttf"
 size = 29
 font_data = SubResource( 16 )
 
+[sub_resource type="DynamicFont" id=18]
+size = 49
+font_data = ExtResource( 10 )
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -699,9 +703,9 @@ flat = true
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -105.0
-margin_right = 194.0
-custom_fonts/normal_font = ExtResource( 9 )
+margin_top = -126.0
+margin_right = 269.0
+custom_fonts/normal_font = SubResource( 18 )
 bbcode_enabled = true
 bbcode_text = "[center][center]100.00%"
 text = "100.00%"
