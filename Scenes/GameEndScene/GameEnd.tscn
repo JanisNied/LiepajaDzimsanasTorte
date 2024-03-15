@@ -288,4 +288,20 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 1.0
 anims/RESET = SubResource( 14 )
 anims/ShowScore = SubResource( 15 )
 
+[node name="Punkts" type="Label3D" parent="."]
+transform = Transform( -1.05005e-13, 0, 2.40226e-06, 0, 2.40225e-06, 0, -2.40225e-06, 0, -1.05006e-13, -1.54687, 1.15215, -0.482577 )
+visible = false
+pixel_size = 128.0
+modulate = Color( 0, 0, 0, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Uzdevumu 
+Punkti
+1. 99pt
+2. 99pt
+3. 99pt
+4. 99pt
+5. 99pt
+6. 99pt"
+font = SubResource( 18 )
+
 [connection signal="button_up" from="NameField/Button" to="." method="_on_Button_button_up"]

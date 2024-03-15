@@ -13,6 +13,7 @@ func _ready():
 	randomize()
 	if not Global.activitiesPicked:
 		Global.pickActivitiesRandomly()
+		Global.getRidOfEmptyActivities()
 	Global.printAllActivities()
 	repeatSlices()
 	deleteEatenSlices()

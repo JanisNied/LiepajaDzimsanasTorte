@@ -19,6 +19,10 @@ func _ready():
 	$Stats/Points.show()
 	yield(get_tree().create_timer(0.5), "timeout")
 	SoundManager.play_se("impactGameEnd")
+	$Punkts.text = "Uzdevumu\nPunkti\n1. "+str(Global.earnedPoints[0])+"pt\n2. "+str(Global.earnedPoints[1])+"pt\n3. "+str(Global.earnedPoints[2])+"pt\n4. "+str(Global.earnedPoints[3])+"pt\n5. "+str(Global.earnedPoints[4])+"pt\n6. "+str(Global.earnedPoints[5])+"pt\n"
+	$Punkts.show()
+	yield(get_tree().create_timer(0.5), "timeout")
+	SoundManager.play_se("impactGameEnd")
 	$Stats/Time.text = "Laiks: %02d: %02d: %02d" % [floor(int(Global.time) / 3600), floor((int(Global.time) % 3600) / 60), int(Global.time) % 60]
 	$Stats/Time.show()
 	yield(get_tree().create_timer(0.5), "timeout")

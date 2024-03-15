@@ -22,6 +22,19 @@ func _ready():
 	yield(get_tree().create_timer(2), \"timeout\")
 	$NoteAnimation.play(\"ComeIn\")
 	yield(get_tree().create_timer(4), \"timeout\")
+	var pointsEnd = -2
+	Global.score += pointsEnd
+	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += pointsEnd
+	if pointsEnd < 0:
+		if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
+			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.allowedActivities.insert(Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1, Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
+			Global.chosenActivities.insert(Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1, Global.discardedActivities[Global.discardedActivities.size()-1])
+			
+			Global.discardedActivityNum.erase(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.discardedActivities.erase(Global.discardedActivities[Global.discardedActivities.size()-1])
+			Global.sortActivities()
+	Global.transition(\"MinigameMenu\")		
 	pass
 	
 func _process(delta):
@@ -535,13 +548,11 @@ text = "V V V V"
 
 [node name="Status" type="RichTextLabel" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.759
 margin_left = 12.0
 margin_top = 10.0
 margin_right = 1012.0
-margin_bottom = 1779.48
+margin_bottom = 510.0
 custom_colors/default_color = Color( 1, 1, 1, 0 )
 custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true

@@ -33,22 +33,22 @@ var availableChoices : Dictionary = {
 		"scene":"TrailingPlayer"
 	},
 	"testactivity4":{
-		"name":"",
+		"name":"Null",
 		"desc":"This is a description, this is a description, this is a description",
 		"scene":"MinigameMenu"
 	},
 	"testactivity5":{
-		"name":"",
+		"name":"Null",
 		"desc":"This is a description, this is a description, this is a description",
 		"scene":"MinigameMenu"
 	},
 	"testactivity6":{
-		"name":"",
+		"name":"Null",
 		"desc":"This is a description, this is a description, this is a description",
 		"scene":"MinigameMenu"
 	},
 	"testactivity7":{
-		"name":"",
+		"name":"Null",
 		"desc":"This is a description, this is a description, this is a description",
 		"scene":"MinigameMenu"
 	}
@@ -63,7 +63,19 @@ func pickActivitiesRandomly():
 		chosenActivities.append(activity)
 		temp.erase(random_key)
 
-
+func getRidOfEmptyActivities():
+	for i in range(6):
+		if chosenActivities[i]["name"] == "Null":
+			discardedActivityNum.append(allowedActivities[i])
+			discardedActivities.append(chosenActivities[i])
+	for i in discardedActivityNum:
+		if i in allowedActivities:
+			allowedActivities.erase(i)
+	for i in discardedActivities:
+		if i in chosenActivities:
+			chosenActivities.erase(i)				
+					
+	
 func printAllActivities():
 	var string : String = "[DEBUG] Activities:\n"
 	for i in range(len(allowedActivities)):
