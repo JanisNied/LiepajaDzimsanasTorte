@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/Lightshow/Lightshow.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/Lightshow/Entities/RingEnemy.tscn" type="PackedScene" id=2]
@@ -9,6 +9,11 @@ extents = Vector2( 325.75, 5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 13, 346.5 )
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 257, 81, 0, 0, 0, 0, 353, 142, 0, 0, 0, 0, 412, 108, 0, 0, 0, 0, 275, 254, 0, 0, 0, 0, 257, 81, 0, 0, 0, 0, 261, 72, 0, 0, 0, 0, 263, 79, 0, 0, 0, 0, 450, 43, 0, 0, 0, 0, 117, 81, 0, 0, 0, 0, 90, 110, 0, 0, 0, 0, 78, 144, 0, 0, 0, 0, 78, 169, 0, 0, 0, 0, 92, 193, 0, 0, 0, 0, 105, 203, 0, 0, 0, 0, 126, 209, 0, 0, 0, 0, 149, 212, 0, 0, 0, 0, 182, 214, 0, 0, 0, 0, 221, 187, 0, 0, 0, 0, 227, 153, 0, 0, 0, 0, 220, 128, 0, 0, 0, 0, 211, 121, 0, 0, 0, 0, 207, 113, 0, 0, 0, 0, 225, 108, 0, 0, 0, 0, 247, 106, 0, 0, 0, 0, 266, 119, 0, 0, 0, 0, 270, 130, 0, 0, 0, 0, 254, 160, 0, 0, 0, 0, 230, 184, 0, 0, 0, 0, 223, 200, 0, 0, 0, 0, 225, 203, 0, 0, 0, 0, 270, 228, 0, 0, 0, 0, 279, 232, 0, 0, 0, 0, 297, 232, 0, 0, 0, 0, 311, 230, 0, 0, 0, 0, 340, 223, 0, 0, 0, 0, 367, 221, 0, 0, 0, 0, 385, 225, 0, 0, 0, 0, 399, 232, 0, 0, 0, 0, 403, 239, 0, 0, 0, 0, 408, 248, 0, 0, 0, 0, 410, 250, 0, 0, 0, 0, 410, 255, 0, 0, 0, 0, 410, 263, 0, 0, 0, 0, 99, 293, 0, 0, 0, 0, 241, 81 )
+}
 
 [node name="Inferface" type="Control"]
 script = ExtResource( 1 )
@@ -47,5 +52,12 @@ shape = SubResource( 2 )
 position = Vector2( 589, 294 )
 shape = SubResource( 2 )
 
-[node name="RingEnemy" parent="Playground" instance=ExtResource( 2 )]
-position = Vector2( 254, 82 )
+[node name="RIngPath" type="Path2D" parent="Playground"]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Playground/RIngPath"]
+position = Vector2( 257, 81 )
+rotate = false
+loop = false
+
+[node name="RingEnemy" parent="Playground/RIngPath/PathFollow2D" instance=ExtResource( 2 )]

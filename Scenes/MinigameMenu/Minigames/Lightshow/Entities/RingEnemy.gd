@@ -1,9 +1,9 @@
 extends Node2D
 
-var pointsToMove = [Vector2(-100, -13), Vector2(0, -40)]
+var pointsToMove = [Vector2(-100, -13)]
 var idx = 0
 var moving = false
-var dest
+var dest = Vector2.ZERO
 
 var degx
 var degy
@@ -13,41 +13,37 @@ func _ready():
 	Spawning.spawn(self, "RingBulletPattern")
 	pass
 
-func _process(delta):
+""""
+func _physics_process(delta):
 	if !moving:
 		dest = self.position + pointsToMove[idx]
 		moving = true
-		
-		if (self.position.x > dest.x):
-			degx = true
-		elif (self.position.x < dest.x):
-			degx = false
-	
-		if (self.position.y > dest.y):
-			degy = true
-		elif (self.position.y < dest.y):
-			degy = false
-			
 	else:
-		if (self.position == dest):
+		self.position.move_toward(Vector2(100, 100), 10)
+		if idx + 1 < pointsToMove.size():
+			moving = false
+			idx += 1
+		if (
+			self.position == dest):
+			
 			if idx + 1 < pointsToMove.size():
 				moving = false
 				idx += 1
 		else:
+			self.position.move_toward(dest, delta * 10)
 			if (self.position.x != dest.x):
 				if degx:
-					self.position.x -= 1
+					self.position.x -= (abs(pointsToMove[idx].x) / 10)
 				else:
-					self.position.x += 1
+					self.position.x += (abs(pointsToMove[idx].x) / 10)
 				
 			if (self.position.y != dest.y):
 				if degy:
-					self.position.y -= 1
+					self.position.y += (abs(pointsToMove[idx].y) / 100)
 				else:
-					self.position.y += 1
-		print(self.position, " ", dest)
+					self.position.y -= (abs(pointsToMove[idx].y) / 100)
 	
-		
+		"""
 			
 	#	self.position += (pointsToMove[idx] / 100)
 	#	pass
