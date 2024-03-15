@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tōhō6-rumia2.mp3-441cee4da807e58e29f43fe92c6ca972.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/tōhō6-rumia2.mp3"
+dest_files=[ "res://.import/tōhō6-rumia2.mp3-441cee4da807e58e29f43fe92c6ca972.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

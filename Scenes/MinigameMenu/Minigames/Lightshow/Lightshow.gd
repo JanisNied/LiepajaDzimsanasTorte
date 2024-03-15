@@ -9,6 +9,7 @@ signal gamestart
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SoundManager.stop("sunMenuMusic")
 	bosses = [$Playground/RIngPath/PathFollow2D]
 	
 	pass # Replace with function body.
@@ -47,6 +48,7 @@ func _physics_process(delta):
 
 
 func _on_Timer_timeout():
+	SoundManager.play_bgm("bulletHellMusic")
 	$Playground/Fighters.visible = false
 	$Playground/Player.visible = true
 	emit_signal("gamestart")
@@ -54,4 +56,5 @@ func _on_Timer_timeout():
 	$Chronometer.start()
 
 func _on_Chronometer_timeout():
+	Spawning.clear_all_bullets()
 	pass # Replace with function body.

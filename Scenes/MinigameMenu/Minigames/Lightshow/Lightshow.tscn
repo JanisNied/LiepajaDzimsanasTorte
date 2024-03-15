@@ -74,6 +74,7 @@ curve = SubResource( 3 )
 [node name="PathFollow2D" type="PathFollow2D" parent="Playground/RIngPath"]
 position = Vector2( 257, 81 )
 rotate = false
+loop = false
 
 [node name="RingEnemy" parent="Playground/RIngPath/PathFollow2D" instance=ExtResource( 2 )]
 visible = false
