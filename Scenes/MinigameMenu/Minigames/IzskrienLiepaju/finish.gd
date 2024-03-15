@@ -38,4 +38,5 @@ func _on_Area2D_body_entered(body):
 			Global.discardedActivities.erase(Global.discardedActivities[Global.discardedActivities.size()-1])
 			Global.sortActivities()
 			Global.slicesEaten -= 1
+	SoundManager.stop("heartbreak")		
 	Global.transition("ExtraScene")
