@@ -49,12 +49,26 @@ func _physics_process(delta):
 
 func _on_Timer_timeout():
 	SoundManager.play_bgm("bulletHellMusic")
+	
 	$Playground/Fighters.visible = false
+	$Playground/Fighters/bat.visible = false
+	$Playground/Fighters/angel.visible = false
+	
+	
 	$Playground/Player.visible = true
 	emit_signal("gamestart")
+	
 	stop = false
 	$Chronometer.start()
 
 func _on_Chronometer_timeout():
+	stop = true
 	Spawning.clear_all_bullets()
-	pass # Replace with function body.
+	bosses[bossidx].find_node("RingEnemy").visible = false
+	
+	if bossidx + 1 < bosses.size():
+		bossidx += 1
+		$Playground/Fighters.visible = true
+	else:
+		$Playground/Fighters/Label.text = "Nogurdināji\nvisus!"
+		$Playground/Fighters.visible = true
