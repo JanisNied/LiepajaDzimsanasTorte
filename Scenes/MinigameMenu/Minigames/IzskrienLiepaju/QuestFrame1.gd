@@ -15,7 +15,7 @@ func _ready():
 	get_options()
 	get_question()
 	get_correct()
-	imagePath = "res://assets/img/izskrien_quest"+str(questionNum+1)+".jpg"
+	imagePath = "res://Assets/img/izskrien_quest"+str(questionNum+1)+".jpg"
 	#x-153 y-90
 	hideAll()
 	QuestionItems = $VBoxContainer/QuestionName
