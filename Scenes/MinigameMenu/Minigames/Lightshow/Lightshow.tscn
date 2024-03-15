@@ -77,7 +77,8 @@ shape = SubResource( 5 )
 curve = SubResource( 6 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Playground/RIngPath"]
-position = Vector2( 219, 40 )
+position = Vector2( 213.619, 47.0482 )
+offset = 980.0
 rotate = false
 
 [node name="RingEnemy" parent="Playground/RIngPath/PathFollow2D" instance=ExtResource( 2 )]
@@ -154,6 +155,8 @@ one_shot = true
 [node name="Scoring" type="Node" parent="."]
 script = ExtResource( 9 )
 
+[connection signal="gameover" from="." to="Blinder" method="_on_Inferface_gameover"]
+[connection signal="gameover" from="." to="Scoring" method="_on_Inferface_gameover"]
 [connection signal="gamestart" from="." to="Playground/Player" method="_on_Inferface_gamestart"]
 [connection signal="timeout" from="Startup" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Chronometer" to="." method="_on_Chronometer_timeout"]

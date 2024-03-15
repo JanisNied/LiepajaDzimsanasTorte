@@ -4,7 +4,7 @@ var playertolookoutfor
 var flash = true
 
 func _process(delta):
-	if playertolookoutfor.hp < 100:
+	if playertolookoutfor.hp < 100 and flash:
 		visible = true
 	else: 
 		visible = false
@@ -14,3 +14,8 @@ func _process(delta):
 func _ready():
 	playertolookoutfor = get_parent().find_node("Player")
 	pass
+
+
+func _on_Inferface_gameover():
+	flash = false
+	visible = false
