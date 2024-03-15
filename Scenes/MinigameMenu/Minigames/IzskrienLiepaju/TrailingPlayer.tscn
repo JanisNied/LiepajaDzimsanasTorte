@@ -25,15 +25,15 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 599, 155, 0, 0, 0, 0, 560, 154, 0, 0, 0, 0, 520, 158, 0, 0, 0, 0, 520, 158, 0, 0, 0, 0, 509, 145, 0, 0, 0, 0, 509, 145, 0, 0, 0, 0, 420, 149, 0, 0, 0, 0, 422, 160, 0, 0, 0, 0, 381, 164, 0, 0, 0, 0, 392, 183, 0, 0, 0, 0, 426, 219, 0, 0, 0, 0, 433, 225, 0, 0, 0, 0, 429, 248, 0, 0, 0, 0, 416, 281, 0, 0, 0, 0, 414, 289, 0, 0, 0, 0, 417, 313, 0, 0, 0, 0, 328, 310, 0, 0, 0, 0, 332, 343, 0, 0, 0, 0, 333, 355, 0, 0, 0, 0, 259, 364, 0, 0, 0, 0, 237, 306, 0, 0, 0, 0, 193, 304, 0, 0, 0, 0, 177, 302, 0, 0, 0, 0, 148, 293, 0, 0, 0, 0, 130, 234, 0, 0, 0, 0, 121, 207, 0, 0, 0, 0, 104, 195, 0, 0, 0, 0, 87, 188, 0, 0, 0, 0, 63, 212, 0, 0, 0, 0, 68, 244, 0, 0, 0, 0, 64, 255, 0, 0, 0, 0, 46, 305, 0, 0, 0, 0, 49.8415, 360.965, 0, 0, 0, 0, 49, 371, 0, 0, 0, 0, 66, 419, 0, 0, 0, 0, 94, 466, 0, 0, 0, 0, 110, 501, 0, 0, 0, 0, 140, 470, 0, 0, 0, 0, 161, 462, 0, 0, 0, 0, 291, 448, 0, 0, 0, 0, 373, 441, 0, 0, 0, 0, 375, 456, 0, 0, 0, 0, 403, 454, 0, 0, 0, 0, 400, 438, 0, 0, 0, 0, 435, 433, 0, 0, 0, 0, 443, 411, 0, 0, 0, 0, 455, 400, 0, 0, 0, 0, 474, 403, 0, 0, 0, 0, 465, 435, 0, 0, 0, 0, 512, 440, 0, 0, 0, 0, 519, 408, 0, 0, 0, 0, 540, 411, 0, 0, 0, 0, 583, 428, 0, 0, 0, 0, 615, 435, 0, 0, 0, 0, 641, 442, 0, 0, 0, 0, 667, 454, 0, 0, 0, 0, 769, 462, 0, 0, 0, 0, 794, 415, 0, 0, 0, 0, 837, 420, 0, 0, 0, 0, 843, 403, 0, 0, 0, 0, 870, 408, 0, 0, 0, 0, 889, 346, 0, 0, 0, 0, 914, 347, 0, 0, 0, 0, 922, 331, 0, 0, 0, 0, 895, 327, 0, 0, 0, 0, 918, 234, 0, 0, 0, 0, 868, 229, 0, 0, 0, 0, 862, 218, 0, 0, 0, 0, 824, 201, 0, 0, 0, 0, 793, 170, 0, 0, 0, 0, 779, 167, 0, 0, 0, 0, 749, 161, 0, 0, 0, 0, 723, 155, 0, 0, 0, 0, 692, 155, 0, 0, 0, 0, 599, 155 )
 }
 
-[sub_resource type="DynamicFont" id=12]
-font_data = ExtResource( 17 )
-
 [sub_resource type="StreamTexture" id=7]
 flags = 4
 load_path = "res://.import/bAll.png-5b30ef9aff819c06905ac469c8c5717e.stex"
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 135.81
+
+[sub_resource type="DynamicFont" id=12]
+font_data = ExtResource( 17 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 6.40312
@@ -67,11 +67,6 @@ margin_bottom = 2700.0
 rect_scale = Vector2( 0.341, 0.206 )
 texture = ExtResource( 11 )
 stretch_mode = 4
-
-[node name="enemyLine" type="Line2D" parent="."]
-width = 4.0
-default_color = Color( 0.0431373, 0.933333, 0.890196, 1 )
-script = ExtResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 4.0
@@ -137,8 +132,31 @@ texture = ExtResource( 12 )
 position = Vector2( 3, -0.25 )
 shape = SubResource( 8 )
 
+[node name="enemyLine" type="Line2D" parent="."]
+width = 4.0
+default_color = Color( 0.0431373, 0.933333, 0.890196, 1 )
+script = ExtResource( 3 )
+
 [node name="Route" type="Path2D" parent="."]
 curve = SubResource( 2 )
+
+[node name="hardFollow" type="PathFollow2D" parent="Route"]
+position = Vector2( 599, 155 )
+rotation = -3.11596
+script = ExtResource( 2 )
+
+[node name="enemyHard" type="KinematicBody2D" parent="Route/hardFollow"]
+rotation = 3.14159
+scale = Vector2( 0.3, 0.3 )
+
+[node name="playerSprite" type="Sprite" parent="Route/hardFollow/enemyHard"]
+scale = Vector2( 0.02, 0.02 )
+texture = SubResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route/hardFollow/enemyHard"]
+position = Vector2( -3.33228, 0.0854034 )
+scale = Vector2( 0.15, 0.15 )
+shape = SubResource( 6 )
 
 [node name="RouteFollowers" type="PathFollow2D" parent="Route"]
 position = Vector2( 599, 155 )
@@ -168,28 +186,11 @@ current = true
 zoom = Vector2( 0.3, 0.3 )
 
 [node name="playerSprite" type="Sprite" parent="Route/RouteFollowers/MainPlayer"]
+modulate = Color( 0.0588235, 0.541176, 0.941176, 1 )
 scale = Vector2( 0.02, 0.02 )
 texture = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Route/RouteFollowers/MainPlayer"]
-position = Vector2( -3.33228, 0.0854034 )
-scale = Vector2( 0.15, 0.15 )
-shape = SubResource( 6 )
-
-[node name="hardFollow" type="PathFollow2D" parent="Route"]
-position = Vector2( 599, 155 )
-rotation = -3.11596
-script = ExtResource( 2 )
-
-[node name="enemyHard" type="KinematicBody2D" parent="Route/hardFollow"]
-rotation = 3.14159
-scale = Vector2( 0.3, 0.3 )
-
-[node name="playerSprite" type="Sprite" parent="Route/hardFollow/enemyHard"]
-scale = Vector2( 0.02, 0.02 )
-texture = SubResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Route/hardFollow/enemyHard"]
 position = Vector2( -3.33228, 0.0854034 )
 scale = Vector2( 0.15, 0.15 )
 shape = SubResource( 6 )
@@ -212,18 +213,6 @@ margin_right = 1915.0
 margin_bottom = 1075.0
 script = ExtResource( 10 )
 
-[node name="TextureRect4" type="TextureRect" parent="Quest1/Control/QuestFrame1"]
-margin_left = -262.0
-margin_top = 128.0
-margin_right = 523.0
-margin_bottom = 602.0
-rect_rotation = -27.6
-texture = ExtResource( 16 )
-expand = true
-stretch_mode = 6
-flip_h = true
-flip_v = true
-
 [node name="VBoxContainer" type="VBoxContainer" parent="Quest1/Control/QuestFrame1"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -245,6 +234,18 @@ text = "Test
 align = 1
 valign = 1
 autowrap = true
+
+[node name="TextureRect4" type="TextureRect" parent="Quest1/Control/QuestFrame1"]
+margin_left = -262.0
+margin_top = 128.0
+margin_right = 523.0
+margin_bottom = 602.0
+rect_rotation = -27.6
+texture = ExtResource( 16 )
+expand = true
+stretch_mode = 6
+flip_h = true
+flip_v = true
 
 [node name="CheckpointPhoto" type="TextureRect" parent="Quest1/Control/QuestFrame1"]
 anchor_left = 0.5
