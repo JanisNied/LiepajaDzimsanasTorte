@@ -11,7 +11,6 @@ signal gamestart
 func _ready():
 	SoundManager.stop("sunMenuMusic")
 	bosses = [$Playground/RIngPath/PathFollow2D]
-	
 	pass # Replace with function body.
 
 

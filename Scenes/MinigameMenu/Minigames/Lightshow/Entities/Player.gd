@@ -31,3 +31,8 @@ func _physics_process(delta):
 func _on_Inferface_gamestart():
 	lock = false
 	pass
+
+
+func _on_CollisionArea_entered(area):
+	print("ooooooooooooooo")
+	pass # Replace with function body.
