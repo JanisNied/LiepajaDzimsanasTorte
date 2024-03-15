@@ -31,7 +31,7 @@ func _physics_process(delta):
 	position.y = clamp(position.y, 0, 576)
 	
 	if hp < 100:
-		hp += 10
+		hp += 5
 
 func _on_Inferface_gamestart():
 	lock = false
