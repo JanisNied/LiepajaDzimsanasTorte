@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/Lightshow/Lightshow.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/Lightshow/Entities/RingEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/Lightshow/Images/stage1.png" type="Texture" id=3]
 [ext_resource path="res://Assets/MyHandsareHoldingYou.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/Lightshow/Entities/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/SIsilicon.3d.text/default_font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/Lightshow/Images/enemyPortrait.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/Lightshow/Images/batPortrait.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 325.75, 5 )
@@ -66,9 +69,34 @@ position = Vector2( 257, 81 )
 rotate = false
 
 [node name="RingEnemy" parent="Playground/RIngPath/PathFollow2D" instance=ExtResource( 2 )]
+visible = false
 
 [node name="Player" parent="Playground" instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 288, 500 )
+
+[node name="Fighters" type="Node2D" parent="Playground"]
+
+[node name="bat" type="TextureRect" parent="Playground/Fighters"]
+margin_top = 109.0
+margin_right = 200.0
+margin_bottom = 572.0
+texture = ExtResource( 8 )
+
+[node name="angel" type="TextureRect" parent="Playground/Fighters"]
+margin_left = 375.0
+margin_top = 87.0
+margin_right = 575.0
+margin_bottom = 550.0
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="Playground/Fighters"]
+margin_left = 33.0
+margin_top = 101.0
+margin_right = 449.0
+margin_bottom = 215.0
+custom_fonts/font = ExtResource( 6 )
+text = "Gatvojies!"
 
 [node name="HUD" type="Control" parent="."]
 margin_left = 576.0
@@ -84,3 +112,10 @@ Laiks: 14
 Spēks: 100%
 Punkti: 00000000"
 align = 1
+
+[node name="Startup" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Startup" to="." method="_on_Timer_timeout"]
