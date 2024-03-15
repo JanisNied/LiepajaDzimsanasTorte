@@ -16,7 +16,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _process(delta):
 	if (stop):
 		return
 	
@@ -44,7 +44,7 @@ func _physics_process(delta):
 			
 		bosses[bossidx].offset += 250 * delta
 	
-	$HUD/Time.text = "Laiks: %d" % (int($Chronometer.time_left))
+	$HUD/Cover/Time.text = "Laiks: %d" % (int($Chronometer.time_left))
 
 
 func _on_Timer_timeout():
@@ -70,5 +70,5 @@ func _on_Chronometer_timeout():
 		bossidx += 1
 		$Playground/Fighters.visible = true
 	else:
-		$Playground/Fighters/Label.text = "Nogurdināji\nvisus!"
+		$Playground/Fighters/Label.text = "Visus\npieveici!"
 		$Playground/Fighters.visible = true

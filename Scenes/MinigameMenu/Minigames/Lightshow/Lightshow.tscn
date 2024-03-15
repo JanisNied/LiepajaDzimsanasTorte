@@ -39,33 +39,35 @@ margin_bottom = 576.0
 texture = ExtResource( 3 )
 expand = true
 
-[node name="PaperCover" type="ColorRect" parent="Playground"]
-margin_left = 576.0
-margin_right = 1024.0
-margin_bottom = 576.0
-color = Color( 0, 0, 0, 1 )
-
 [node name="Wall" type="StaticBody2D" parent="Playground"]
 z_index = -4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Playground/Wall"]
 position = Vector2( 293.5, -41 )
+z_index = 50
+z_as_relative = false
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Playground/Wall"]
 position = Vector2( 297.25, 619 )
+z_index = 50
+z_as_relative = false
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Playground/Wall"]
 position = Vector2( -42, 296.5 )
+z_index = 50
+z_as_relative = false
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Playground/Wall"]
 position = Vector2( 589, 294 )
+z_index = 50
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Playground/Wall"]
-position = Vector2( 813, 292 )
+position = Vector2( 794, 292 )
+z_index = 50
 shape = SubResource( 5 )
 
 [node name="RIngPath" type="Path2D" parent="Playground"]
@@ -111,7 +113,18 @@ margin_left = 576.0
 margin_right = 1024.0
 margin_bottom = 576.0
 
-[node name="Time" type="Label" parent="HUD"]
+[node name="Cover" type="Node2D" parent="HUD"]
+z_index = 988
+z_as_relative = false
+
+[node name="PaperCover" type="ColorRect" parent="HUD/Cover"]
+margin_left = 3.0
+margin_top = 1.0
+margin_right = 451.0
+margin_bottom = 577.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Time" type="Label" parent="HUD/Cover"]
 margin_left = 2.0
 margin_top = 1.0
 margin_right = 450.0
