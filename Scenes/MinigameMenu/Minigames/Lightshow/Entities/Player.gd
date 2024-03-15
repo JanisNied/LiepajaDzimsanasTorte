@@ -1,6 +1,7 @@
 extends Node2D
 
 var lock = true
+var hp = 100
 
 func _ready():
 	pass # Replace with function body.
@@ -27,6 +28,9 @@ func _physics_process(delta):
 	
 	position.x = clamp(position.x, 0, 576)
 	position.y = clamp(position.y, 0, 576)
+	
+	if hp < 100:
+		hp += 1
 
 func _on_Inferface_gamestart():
 	lock = false
@@ -34,5 +38,5 @@ func _on_Inferface_gamestart():
 
 
 func _on_CollisionArea_entered(area):
-	print("ooooooooooooooo")
+	hp -= 10
 	pass # Replace with function body.

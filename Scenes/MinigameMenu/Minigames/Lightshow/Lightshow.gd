@@ -23,27 +23,10 @@ func _process(delta):
 	if bossidx == 0:
 		currenemy = bosses[bossidx].find_node("RingEnemy")
 		
-		if !currenemy.visible:
-			currenemy.visible = true
 		
-		if bosses[bossidx].offset < 2.5:
-			currenemy.spawnV()
-		
-		if bosses[bossidx].offset > 1900.0 and bosses[bossidx].offset < 1910.0:
-			currenemy.spawnRings()
-		
-		if bosses[bossidx].offset > 2100.0 and bosses[bossidx].offset < 2110.0:
-			currenemy.spawnRings()
-			
-		if bosses[bossidx].offset > 2800.0 and bosses[bossidx].offset < 2810.0:
-			currenemy.spawnRings()
-			
-		if bosses[bossidx].offset > 3000.0 and bosses[bossidx].offset < 3010.0:
-			currenemy.spawnRings()
-			
 		bosses[bossidx].offset += 250 * delta
 	
-	$HUD/Cover/Time.text = "Laiks: %d" % (int($Chronometer.time_left))
+	$HUD/Cover/Time.text = "Laiks: %d\nAplis: %d/%d\nSpēks: %d\nPunkti" % [(int($Chronometer.time_left) + 1), bossidx + 1,  bosses.size(), $Playground/Player.hp]
 
 
 func _on_Timer_timeout():
@@ -53,8 +36,8 @@ func _on_Timer_timeout():
 	$Playground/Fighters/bat.visible = false
 	$Playground/Fighters/angel.visible = false
 	
-	
 	$Playground/Player.visible = true
+	bosses[bossidx].find_node("RingEnemy").visible = true
 	emit_signal("gamestart")
 	
 	stop = false
