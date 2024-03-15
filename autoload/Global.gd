@@ -81,8 +81,8 @@ func sortActivities():
 					allowedActivities[j + 1] = temp
 					
 					var tempActivity = chosenActivities[j]
-					chosenActivities[j] = allowedActivities[j + 1]
-					allowedActivities[j + 1] = tempActivity
+					chosenActivities[j] = chosenActivities[j + 1]
+					chosenActivities[j + 1] = tempActivity
 
 func endGame():
 	score = 0
