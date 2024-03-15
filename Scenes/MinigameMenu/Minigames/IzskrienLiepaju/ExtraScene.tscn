@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/SourceCodePro-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/ExtraScene.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 39
+outline_size = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="Environment" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 576.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Win" type="RichTextLabel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -233.0
+margin_right = 234.0
+margin_bottom = 116.0
+custom_colors/default_color = Color( 0.231373, 0.968627, 0.309804, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center][center][wave][wave amp = 1]Jūs uzvarējāt![/wave]"
+text = "Jūs uzvarējāt!"
+
+[node name="Punkti" type="RichTextLabel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -233.0
+margin_top = 120.0
+margin_right = 234.0
+margin_bottom = 236.0
+custom_colors/default_color = Color( 0.294118, 0.231373, 0.968627, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center][center][wave][wave amp = 1]Punkti: 999pt[/wave]"
+text = "Punkti: 999pt"
+
+[node name="Lose" type="RichTextLabel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -233.0
+margin_right = 234.0
+margin_bottom = 116.0
+custom_colors/default_color = Color( 0.968627, 0.231373, 0.231373, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center][center][wave][wave amp = 1]Jūs zaudējāt![/wave]"
+text = "Jūs zaudējāt!"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )

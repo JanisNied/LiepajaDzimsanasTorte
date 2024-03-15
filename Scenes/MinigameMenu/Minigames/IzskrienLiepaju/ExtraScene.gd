@@ -1,0 +1,21 @@
+extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if Global.izskrienUzvara:
+		$Win.show()
+	else:
+		$Lose.show()
+	$Punkti.bbcode_text = "[center][center][wave][wave amp = 1]Punkti: "+str(Global.izskrienPunkti)+"pt[/wave]"	
+	$Punkti.show()	
+	yield(get_tree().create_timer(4), "timeout")
+	Global.transition("MinigameMenu")
+	pass # Replace with function body.
+
+

@@ -102,3 +102,6 @@ func transition(scene):
 	SceneManager.change_scene("loadscene", fade_out_options, fade_in_options, general_options)
 	pass 
 
+
+var izskrienPunkti : int
+var izskrienUzvara : bool
