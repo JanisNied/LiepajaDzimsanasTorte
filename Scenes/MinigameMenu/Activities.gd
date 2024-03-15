@@ -31,6 +31,7 @@ func updateActClockWise():
 	else:
 		get_parent().get_parent().get_parent().get_node("Background/Tituls").show()
 		get_parent().get_parent().get_parent().get_node("Background/Nosaukums").show()
+		get_parent().get_parent().get_parent().get_node("Background/Nosaukums2").show()
 		get_parent().get_parent().get_parent().get_node("Background/Description").show()
 		get_parent().get_parent().get_parent().get_node("Hitbox").show()
 		get_parent().get_parent().get_parent().get_node("Gamepad").show()
