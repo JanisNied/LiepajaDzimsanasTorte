@@ -7,8 +7,9 @@ onready var textAnim = get_parent().get_node("TextAnimation")
 onready var noteAnim = get_parent().get_node("NoteAnimation")
 var enabled = true
 
-var files = ["res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/rokenrols.mid"]
-var music = ["rokenrols"]
+var files = ["res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/rokenrols.mid", "res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/tumanesi.mid","res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/kakugis.mid"]
+var music = ["rokenrols", "tumanesi", "kakugis"]
+var length = [16, 28, 20]
 
 var file_path = "res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/questions.tres"
 var questions : Dictionary
@@ -28,21 +29,21 @@ func import_resources_data():
 		
 func startRound():
 	if (questionNum <= maxRounds):
-	#	get_parent().get_node("MidiPlayer").file = files[questionNum-1]
-	#	statusText.bbcode_text = "[center][wave][wave amp = 1]"+str(questionNum)+". piegājiens[/wave]"
-	#	yield(get_tree().create_timer(2),"timeout")
-	#	statusText.bbcode_text = "[center][wave][wave amp = 1]Uzmanību...[/wave]"
-	#	yield(get_tree().create_timer(2),"timeout")
-	#	statusText.bbcode_text = "[center][wave][wave amp = 1]Gatavību...[/wave]"
-	#	yield(get_tree().create_timer(2),"timeout")
-	#	statusText.bbcode_text = "[center][wave][wave amp = 1]Starts![/wave]"
-	#	yield(get_tree().create_timer(1),"timeout")
+		get_parent().get_node("MidiPlayer").file = files[questionNum-1]
+		statusText.bbcode_text = "[center][wave][wave amp = 1]"+str(questionNum)+". piegājiens[/wave]"
+		yield(get_tree().create_timer(2),"timeout")
+		statusText.bbcode_text = "[center][wave][wave amp = 1]Uzmanību...[/wave]"
+		yield(get_tree().create_timer(2),"timeout")
+		statusText.bbcode_text = "[center][wave][wave amp = 1]Gatavību...[/wave]"
+		yield(get_tree().create_timer(2),"timeout")
+		statusText.bbcode_text = "[center][wave][wave amp = 1]Starts![/wave]"
+		yield(get_tree().create_timer(1),"timeout")
 		get_parent().get_node("MidiPlayer").play()
 		SoundManager.play_se(music[questionNum-1])
 		textAnim.play("GoAway")
 		yield(get_tree().create_timer(1),"timeout")
 		textAnim.play("RESET")
-		yield(get_tree().create_timer(16),"timeout")
+		yield(get_tree().create_timer(length[questionNum-1]),"timeout")
 		endRound()
 	else:
 		get_parent().endGame()	
@@ -51,6 +52,7 @@ func startRound():
 func endRound():
 	noteAnim.play("ComeOut")
 	SoundManager.play_bgm("submenu")
+	$Question.bbcode_text = "[wave][wave amp=0]Jautājums #"+str(questionNum)+"[/wave]"
 	$Question2.bbcode_text = "[wave][wave amp=0]"+questions[questionNum][0]+"[/wave]"
 	$Ans1.text = questions[questionNum][1]
 	$Ans2.text = questions[questionNum][2]
@@ -172,10 +174,11 @@ func disableButtons():
 	enabled = false
 	yield(get_tree().create_timer(2),"timeout")
 	textAnim.play("QuestionsComeOut")
-#	questionNum += 1
+	questionNum += 1
 	yield(get_tree().create_timer(3),"timeout")
-	SoundManager.stop("submenu")
-	noteAnim.play("ComeIn")
+	if questionNum <= maxRounds:
+		SoundManager.stop("submenu")
+		noteAnim.play("ComeIn")
 	hide()
 	enabled = true
 	$Ans1.modulate = Color(1.0, 1.0, 1.0)
