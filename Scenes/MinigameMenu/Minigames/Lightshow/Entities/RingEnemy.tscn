@@ -77,14 +77,14 @@ r_cooldown_n_shoot_variation = Vector3( 0, 0, 0 )
 resource_name = "PatternCircle"
 script = ExtResource( 4 )
 bullet = "RingBulletW"
-nbr = 5
+nbr = 6
 radius = 0.0
 angle_total = 3.0
 angle_decal = 0
 pattern_angle = -3.1416
 symmetric = false
 center = 0
-iterations = 7
+iterations = 8
 follows_parent = false
 forced_angle = 1.5
 forced_target = NodePath("")
@@ -142,15 +142,15 @@ _data = {
 
 [sub_resource type="Curve" id=9]
 
-[sub_resource type="Gradient" id=7]
-offsets = PoolRealArray( 0.00584795, 0.444444, 1 )
-colors = PoolColorArray( 0.430115, 0.937052, 0.949219, 1, 0.912281, 1, 0.985609, 1, 1, 0.679688, 0, 1 )
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.385965, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 )
 
 [sub_resource type="PackedDataContainer" id=6]
 script = ExtResource( 1 )
 speed = 150.0
 scale = 1.0
-angle = 0
+angle = 3.1416
 groups = [  ]
 anim_idle_texture = "0"
 anim_spawn_texture = ""
@@ -166,7 +166,7 @@ anim_waiting_sfx = -1
 anim_delete_sfx = -1
 spec_bounces = 0
 spec_no_collision = false
-spec_modulate = SubResource( 7 )
+spec_modulate = SubResource( 11 )
 spec_modulate_loop = 0.0
 spec_trail_length = 0.0
 spec_trail_width = 0.0

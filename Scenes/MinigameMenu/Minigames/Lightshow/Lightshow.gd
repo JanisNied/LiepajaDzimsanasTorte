@@ -34,10 +34,16 @@ func _physics_process(delta):
 		
 		if bosses[bossidx].offset > 2100.0 and bosses[bossidx].offset < 2110.0:
 			currenemy.spawnRings()
-		bosses[bossidx].offset += 250 * delta	
+			
+		if bosses[bossidx].offset > 2800.0 and bosses[bossidx].offset < 2810.0:
+			currenemy.spawnRings()
+			
+		if bosses[bossidx].offset > 3000.0 and bosses[bossidx].offset < 3010.0:
+			currenemy.spawnRings()
+			
+		bosses[bossidx].offset += 250 * delta
 	
-	#bosses[bossidx].position.move_toward(Vector2(100, 100), delta * 100)
-	pass
+	$HUD/Time.text = "Laiks: %d" % (int($Chronometer.time_left))
 
 
 func _on_Timer_timeout():
@@ -45,4 +51,7 @@ func _on_Timer_timeout():
 	$Playground/Player.visible = true
 	emit_signal("gamestart")
 	stop = false
+	$Chronometer.start()
+
+func _on_Chronometer_timeout():
 	pass # Replace with function body.
