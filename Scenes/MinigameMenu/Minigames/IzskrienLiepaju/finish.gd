@@ -28,7 +28,7 @@ func _on_Area2D_body_entered(body):
 	Global.score += pointsEnd
 	Global.izskrienPunkti = pointsEnd
 	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += pointsEnd
-	if pointsEnd < 0:
+	if pointsEnd <= 0:
 		if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
 			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
 			Global.allowedActivities.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		

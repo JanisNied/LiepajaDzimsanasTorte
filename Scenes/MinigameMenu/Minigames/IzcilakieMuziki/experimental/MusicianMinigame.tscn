@@ -96,7 +96,7 @@ func endGame():
 	$Woah.bbcode_text = \"[center][center][center][center][center][center][wave]Jūs saņēmāt \"+str(score)+\"pt no šī uzdevuma!\"
 	$EndAnim.play(\"wavy\")	
 	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += score
-	if score < 0:
+	if score <= 0:
 		if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
 			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
 			Global.allowedActivities.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
