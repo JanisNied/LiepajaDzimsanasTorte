@@ -18,7 +18,7 @@ var discardedActivities : Array
 
 var availableChoices : Dictionary = {
 	"DollTheatre":{
-		"name":"\"Liepājas teātris\"",
+		"name":"\"Liepājas leļļu teātris\"",
 		"desc":"Laipni lūdzam Liepājas leļļu teātri!\nJāspiež atstarpi dziesmas ritmā, kad rombs ir zaļš!\n\nVeiksmi!",
 		"scene":"DollTheatre"
 	},
