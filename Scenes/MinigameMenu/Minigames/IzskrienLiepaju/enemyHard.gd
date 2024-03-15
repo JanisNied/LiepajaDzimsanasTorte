@@ -30,5 +30,5 @@ func _process(delta):
 func set_moving(i):
 	moving =i
 func stop():
-#	stopTime+=6+randi()%4
+	stopTime+=6+randi()%4
 	moving=false

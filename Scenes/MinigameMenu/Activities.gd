@@ -33,9 +33,12 @@ func updateActClockWise():
 		get_parent().get_parent().get_parent().get_node("Background/Nosaukums").show()
 		get_parent().get_parent().get_parent().get_node("Background/Description").show()
 		get_parent().get_parent().get_parent().get_node("Hitbox").show()
+		get_parent().get_parent().get_parent().get_node("Gamepad").show()
 		if Global.slicesEaten < 5:
 			get_parent().get_parent().get_parent().get_node("Button").show()
 			get_parent().get_parent().get_parent().get_node("Button2").show()
+			get_parent().get_parent().get_parent().get_node("LeftArrow").show()
+			get_parent().get_parent().get_parent().get_node("RightArrow").show()
 		get_parent().get_parent().get_parent().get_node("Transition").show()
 	firstpass = false
 	$AnimationPlayerIn.play("Activity"+str(Global.allowedActivities[activityIndex]))
