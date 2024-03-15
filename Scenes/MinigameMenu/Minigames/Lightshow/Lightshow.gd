@@ -6,6 +6,9 @@ var bossidx = 0
 var stop = true
 var exitstage = false
 
+var spawningdeath = true
+var antikick = true
+
 signal gamestart
 signal gameover
 
@@ -17,24 +20,30 @@ func _ready():
 
 
 func _input(event):
-	if exitstage and (event is InputEventKey or event is InputEventMouseButton):
+	if event.is_echo():
+		return
+	
+	if exitstage and event is InputEventMouseButton:
+		SoundManager.stop("bulletHellMusic")
 		Global.transition("MinigameMenu")
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (stop):
+		Spawning.clear_all_bullets()
 		return
 		
 	if $Playground/Player.hp < 0:
 		#emit_signal("gameover")
 		stop = true
-		Spawning.clear_all_bullets()
 		$Playground/DeathMoonPath/PathFollow2D/DeathMoon.visible = false
 		$Playground/Player.lock = true
 		$Playground/Fighters/Label.text = "Švaki...\n%d" % $Scoring.Score
 		$Playground/Fighters.visible = true
-		SoundManager.stop("bulletHellMusic")
+		$Playground/Fighters/Label.visible = true
+		$Playground/Fighters/Label2.visible = true
+		$Blinder.visible = false
 		exitstage = true
 		return
 		
@@ -73,6 +82,11 @@ func _process(delta):
 	else:
 		currenemy = bosses[bossidx].find_node("DeathMoon")
 		bosses[bossidx].offset += 100 * delta
+		
+		if spawningdeath:
+			Spawning.spawn($Playground/DeathMoonPath/PathFollow2D/DeathMoon, "MoonSpawn")
+			spawningdeath = false
+		
 		pass
 	$HUD/Cover/Time.text = "Laiks: %d\nAplis: %d/%d\nSpēks: %d\nPunkti: %d" % [(int($Chronometer.time_left) + 1), bossidx + 1,  bosses.size(), $Playground/Player.hp, $Scoring.Score]
 
@@ -93,7 +107,6 @@ func _on_Timer_timeout():
 
 func _on_Chronometer_timeout():
 	stop = true
-	Spawning.clear_all_bullets()
 	$Playground/RIngPath/PathFollow2D/RingEnemy.visible = false
 	$Playground/DeathMoonPath/PathFollow2D/DeathMoon.visible = false
 	
@@ -105,6 +118,8 @@ func _on_Chronometer_timeout():
 	else:
 		$Playground/Fighters/Label.text = "Visus\npieveici!\nNopelns: %d" % $Scoring.Score
 		$Playground/Fighters.visible = true
+		$Playground/Fighters/Label.visible = true
+		$Blinder.visible = false
 		exitstage = true
 
 func _on_Moon_timeout():

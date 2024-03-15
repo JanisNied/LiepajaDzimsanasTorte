@@ -39,6 +39,6 @@ func _on_Inferface_gamestart():
 
 
 func _on_CollisionArea_entered(area):
-	hp -= 50
+	hp -= 25
 	wasHit = true
 	pass # Replace with function body.
