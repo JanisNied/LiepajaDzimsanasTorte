@@ -89,7 +89,8 @@ func set_new_pos():
 	get_parent().set_global_position(player.global_position)
 func get_question():
 	var f = File.new()
-	f.open("res://assets/texts/izskrienQuestions.tres",File.READ)
+	var path = "res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/assets/texts/izskrienQuestions.tres"
+	f.open(path,File.READ)
 	var index=0
 	var content = f.get_as_text()
 	while index<questionNum:
@@ -100,7 +101,8 @@ func get_question():
 	f.close()
 func get_options():
 	var f = File.new()
-	f.open("res://assets/texts/izskrienChoices.tres",File.READ)
+	var path = "res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/assets/texts/izskrienChoices.tres"
+	f.open(path,File.READ)
 	var index=0
 	while index<questionNum:
 		f.get_line()
@@ -109,7 +111,8 @@ func get_options():
 	#print(answerOptions)
 func get_correct():
 	var f = File.new()
-	f.open("res://assets/texts/izskrienCorrect.tres",File.READ)
+	var path = "res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/assets/texts/izskrienCorrect.tres"
+	f.open(path, File.READ)
 	var index=0
 	while index<questionNum:
 		f.get_line()
