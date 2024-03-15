@@ -44,7 +44,7 @@ func _on_Button_button_up():
 	SoundManager.play_se("impactGameEnd")
 	$Stats.hide()
 	$NameField.hide()
-	
+	$Punkts.hide()
 	yield(get_tree().create_timer(1), "timeout")
 	SoundManager.play_se("impactGameEnd")
 	$Thankyou.show()

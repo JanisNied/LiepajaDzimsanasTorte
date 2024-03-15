@@ -68,6 +68,7 @@ func getRidOfEmptyActivities():
 		if chosenActivities[i]["name"] == "Null":
 			discardedActivityNum.append(allowedActivities[i])
 			discardedActivities.append(chosenActivities[i])
+			slicesEaten += 1
 	for i in discardedActivityNum:
 		if i in allowedActivities:
 			allowedActivities.erase(i)
