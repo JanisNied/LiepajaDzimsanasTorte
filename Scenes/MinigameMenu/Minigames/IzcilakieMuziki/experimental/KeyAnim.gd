@@ -41,5 +41,6 @@ func _input(event):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "New Anim":
 		get_parent().combo = 0
+		get_parent().process_note_result("missed")
 		color = Color(2.02, 0.31, 0.31, 0.61)
 	pass # Replace with function body.

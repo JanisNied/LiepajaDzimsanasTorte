@@ -18,7 +18,7 @@ onready var allKeys = [$KeyAnim,$KeyAnim2,$KeyAnim3,$KeyAnim4]
 var currentKeys = []
 var combo = 0
 var acc : float = 1.0
-var pointsEnd = 0
+var score = 0
 
 var correct_notes := 0
 var early_notes := 0
@@ -37,7 +37,7 @@ func _ready():
 	
 func _process(delta):
 	Global.time += delta
-	$RichTextLabel.bbcode_text = \"[center][center]\"+str(calculate_accuracy()+\"%\")
+	$RichTextLabel.bbcode_text = \"[center][center][center]\"+str(calculate_accuracy()+\"%\")
 	if not $Timer.is_stopped():
 		if $Timer.time_left <= 5:
 			$Status.bbcode_text = \"[center]Pārbaudiet taustiņas!(\"+str(floor($Timer.time_left))+\")\\n(QWOP)\"
@@ -83,9 +83,9 @@ func _on_Timer_timeout():
 	pass
 
 func endGame():
-	Global.score += pointsEnd
-	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += pointsEnd
-	if pointsEnd < 0:
+	Global.score += score
+	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += score
+	if score < 0:
 		if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
 			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
 			Global.allowedActivities.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
@@ -514,7 +514,7 @@ size = 29
 font_data = SubResource( 16 )
 
 [sub_resource type="DynamicFont" id=18]
-size = 49
+size = 34
 font_data = ExtResource( 10 )
 
 [node name="Control" type="Control"]
@@ -574,6 +574,7 @@ anims/ComeOut = SubResource( 4 )
 anims/RESET = SubResource( 3 )
 
 [node name="ArrowIndicator" type="RichTextLabel" parent="."]
+visible = false
 margin_top = 200.0
 margin_right = 1024.0
 margin_bottom = 776.0
@@ -585,6 +586,7 @@ bbcode_text = "[center][wave][wave amp = 10]V V V V[/wave]"
 text = "V V V V"
 
 [node name="Status" type="RichTextLabel" parent="."]
+visible = false
 anchor_left = 0.007
 anchor_top = 0.052
 anchor_right = 0.007
@@ -611,7 +613,6 @@ anims/RESET = SubResource( 11 )
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 2.0
 one_shot = true
 autostart = true
 
@@ -707,8 +708,20 @@ margin_top = -126.0
 margin_right = 269.0
 custom_fonts/normal_font = SubResource( 18 )
 bbcode_enabled = true
-bbcode_text = "[center][center]100.00%"
+bbcode_text = "[center][center][center]100.00%"
 text = "100.00%"
 
 [connection signal="midi_event" from="MidiPlayer" to="." method="_on_MidiPlayer_midi_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="button_up" from="QuestionUI/Ans3" to="QuestionUI" method="_on_Ans3_button_up"]
+[connection signal="mouse_entered" from="QuestionUI/Ans3" to="QuestionUI" method="_on_Ans3_mouse_entered"]
+[connection signal="mouse_exited" from="QuestionUI/Ans3" to="QuestionUI" method="_on_Ans3_mouse_exited"]
+[connection signal="button_up" from="QuestionUI/Ans4" to="QuestionUI" method="_on_Ans4_button_up"]
+[connection signal="mouse_entered" from="QuestionUI/Ans4" to="QuestionUI" method="_on_Ans4_mouse_entered"]
+[connection signal="mouse_exited" from="QuestionUI/Ans4" to="QuestionUI" method="_on_Ans4_mouse_exited"]
+[connection signal="button_up" from="QuestionUI/Ans1" to="QuestionUI" method="_on_Ans1_button_up"]
+[connection signal="mouse_entered" from="QuestionUI/Ans1" to="QuestionUI" method="_on_Ans1_mouse_entered"]
+[connection signal="mouse_exited" from="QuestionUI/Ans1" to="QuestionUI" method="_on_Ans1_mouse_exited"]
+[connection signal="button_up" from="QuestionUI/Ans2" to="QuestionUI" method="_on_Ans2_button_up"]
+[connection signal="mouse_entered" from="QuestionUI/Ans2" to="QuestionUI" method="_on_Ans2_mouse_entered"]
+[connection signal="mouse_exited" from="QuestionUI/Ans2" to="QuestionUI" method="_on_Ans2_mouse_exited"]
