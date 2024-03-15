@@ -1591,9 +1591,25 @@ margin_left = 51.36
 margin_top = 119.0
 margin_right = 487.0
 margin_bottom = 206.0
+rect_pivot_offset = Vector2( 379, 44 )
 custom_fonts/font = SubResource( 32 )
 text = "\"Liepājas izcilākie mūziķi\""
 align = 2
+valign = 1
+
+[node name="Tituls2" type="Label" parent="Background"]
+visible = false
+anchor_left = 0.36
+anchor_right = 0.5
+margin_left = -99.64
+margin_top = 55.0
+margin_right = 825.0
+margin_bottom = 142.0
+rect_scale = Vector2( 0.536105, 0.536105 )
+rect_pivot_offset = Vector2( 379, 44 )
+custom_colors/font_color = Color( 1, 0.141176, 0.141176, 1 )
+custom_fonts/font = SubResource( 32 )
+text = "Papildus piegājiens par neveiksmgu mēģinājumu!"
 valign = 1
 
 [node name="Description" type="Label" parent="Background"]

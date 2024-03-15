@@ -55,5 +55,5 @@ func getGrade():
 	
 	if (Accuracy * 100) < 35.0:
 		final *= -1
-
+		
 	return int(final)

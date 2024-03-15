@@ -9,6 +9,10 @@ var returning = false
 var allowedActivities = [1, 2, 3, 4, 5, 6]
 var chosenActivities : Array
 
+var retryMinigameNums : Array
+
+var earnedPoints = [0, 0, 0, 0, 0, 0]
+
 var discardedActivityNum : Array
 var discardedActivities : Array
 
@@ -24,7 +28,7 @@ var availableChoices : Dictionary = {
 		"scene":"MusicianMinigame"
 	},
 	"IzskrienLiepaju":{
-		"name":"Izskrien Latviju Liepājā",
+		"name":"\"Izskrien Latviju Liepājā\"",
 		"desc":"Iesaisties Latvijas izskriešanā Liepājā!\nKatru kontrolpunktu jāatbild uz jautājumiem, kuri cieši saistīti ar vietu jūsu tuvumā uz kartes!\nMēģiniet uzvarēt pret datoru!",
 		"scene":"TrailingPlayer"
 	},
@@ -65,7 +69,21 @@ func printAllActivities():
 	for i in range(len(allowedActivities)):
 		string += str(allowedActivities[i])+". "+chosenActivities[i]["name"]+"\n"
 	print(string)
-	
+
+func sortActivities():
+	if allowedActivities.size() > 1:
+		var n = allowedActivities.size()
+		for i in range(n - 1):
+			for j in range(n - i - 1):
+				if allowedActivities[j] > allowedActivities[j + 1]:     
+					var temp = allowedActivities[j]
+					allowedActivities[j] = allowedActivities[j + 1]
+					allowedActivities[j + 1] = temp
+					
+					var tempActivity = chosenActivities[j]
+					chosenActivities[j] = allowedActivities[j + 1]
+					allowedActivities[j + 1] = tempActivity
+
 func endGame():
 	score = 0
 	time = 0

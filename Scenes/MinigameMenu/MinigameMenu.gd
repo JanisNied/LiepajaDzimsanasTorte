@@ -4,6 +4,7 @@ var holoMat = preload("res://Shaders/holo.tres")
 
 func _ready():
 	print("[TIME] Elapsed Time since Game Start: %02d:%02d:%02d" % [floor(int(Global.time) / 3600), floor((int(Global.time) % 3600) / 60), int(Global.time) % 60])
+	print("[STATS] Tracked Total Score: ", Global.earnedPoints)
 	SoundManager.stop("sunMenuMusic")
 	randomize()
 	if not Global.activitiesPicked:

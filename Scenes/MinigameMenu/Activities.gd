@@ -18,7 +18,11 @@ func _ready():
 func updateLabelData():
 	get_parent().get_parent().get_parent().get_node("Background/Tituls").text = str(Global.chosenActivities[activityIndex]["name"])
 	get_parent().get_parent().get_parent().get_node("Background/Description").text = str(Global.chosenActivities[activityIndex]["desc"])
-
+	if Global.allowedActivities[activityIndex] in Global.retryMinigameNums:
+		get_parent().get_parent().get_parent().get_node("Background/Tituls2").show()
+	else:
+		get_parent().get_parent().get_parent().get_node("Background/Tituls2").hide()
+		
 func updateActClockWise():
 	if activityIndex == Global.allowedActivities.size():
 		activityIndex = 0
