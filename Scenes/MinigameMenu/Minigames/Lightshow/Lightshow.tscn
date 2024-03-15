@@ -16,7 +16,7 @@ script = ExtResource( 1 )
 [node name="Playground" type="Node2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Playground"]
-modulate = Color( 0, 0.458824, 0.862745, 1 )
+modulate = Color( 0.054902, 0, 0.333333, 1 )
 margin_right = 591.0
 margin_bottom = 573.0
 texture = ExtResource( 3 )
