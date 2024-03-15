@@ -88,9 +88,10 @@ func _on_Timer_timeout():
 func endGame():
 	if (float(calculate_accuracy())/10 < 4):	
 		score -= int(float(calculate_accuracy())/10)-5
-	elif (float(calculate_accuracy())/10 <= 0):
+	elif (float(calculate_accuracy())/10 == 0):
 		score -= 8
-	score += int(float(calculate_accuracy())/10)				
+	else:	
+		score += int(float(calculate_accuracy())/10)				
 	Global.score += score
 	$Woah.bbcode_text = \"[center][center][center][center][center][center][wave]Jūs saņēmāt \"+str(score)+\"pt no šī uzdevuma!\"
 	$EndAnim.play(\"wavy\")	
