@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/BulletUpHell/BulletProps.gd" type="Script" id=1]
 [ext_resource path="res://addons/BulletUpHell/BuHBulletProperties.gd" type="Script" id=2]
@@ -17,7 +17,7 @@ _data = {
 resource_name = "PatternCircle"
 script = ExtResource( 4 )
 bullet = "RingBullet"
-nbr = 45
+nbr = 25
 radius = 0
 angle_total = 6.28319
 angle_decal = 0
@@ -73,6 +73,66 @@ r_cooldown_n_spawn_variation = Vector3( 0, 0, 0 )
 r_cooldown_n_shoot_choice = ""
 r_cooldown_n_shoot_variation = Vector3( 0, 0, 0 )
 
+[sub_resource type="NavigationPolygon" id=10]
+resource_name = "PatternCircle"
+script = ExtResource( 4 )
+bullet = "RingBulletW"
+nbr = 2
+radius = 0.0
+angle_total = 3.0
+angle_decal = 0
+pattern_angle = -3.1416
+symmetric = false
+center = 0
+iterations = 7
+follows_parent = false
+forced_angle = 1.5
+forced_target = NodePath("")
+forced_pattern_lookat = true
+other_scene = ""
+other_props = {
+}
+cooldown_stasis = false
+cooldown_spawn = 0.017
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_latence = 0
+wait_release = null
+layer_nbr = 4
+layer_cooldown_spawn = 0.25
+layer_pos_offset = 0.0
+layer_speed_offset = 0.0
+layer_angle_offset = 0.0
+r_randomisation_chances = 1.0
+r_radius_choice = ""
+r_radius_variation = Vector3( 0, 0, 0 )
+r_angle_total_choice = ""
+r_angle_total_variation = Vector3( 0, 0, 0 )
+r_angle_decal_choice = ""
+r_angle_decal_variation = Vector3( 0, 0, 0 )
+r_symmetry_chances = 0.0
+r_bullet_choice = ""
+r_bullet_nbr_choice = ""
+r_bullet_nbr_variation = Vector3( 0, 0, 0 )
+r_pattern_angle_choice = ""
+r_pattern_angle_variation = Vector3( 0, 0, 0 )
+r_infinite_iter_chances = 0.0
+r_iterations_choice = ""
+r_iterations_variation = Vector3( 0, 0, 0 )
+r_forced_angle_choice = ""
+r_forced_angle_variation = Vector3( 0, 0, 0 )
+r_forced_target_choice = [  ]
+r_stasis_chances = 0.0
+r_cooldown_spawn_choice = ""
+r_cooldown_spawn_variation = Vector3( 0, 0, 0 )
+r_cooldown_shoot_choice = ""
+r_cooldown_shoot_variation = Vector3( 0, 0, 0 )
+r_cooldown_n_spawn_choice = ""
+r_cooldown_n_spawn_variation = Vector3( 0, 0, 0 )
+r_cooldown_n_shoot_choice = ""
+r_cooldown_n_shoot_variation = Vector3( 0, 0, 0 )
+
 [sub_resource type="Curve2D" id=3]
 _data = {
 "points": PoolVector2Array(  )
@@ -83,8 +143,8 @@ _data = {
 [sub_resource type="Curve" id=9]
 
 [sub_resource type="Gradient" id=7]
-offsets = PoolRealArray( 0, 0.994152, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0.912281, 1, 0.985609, 1, 1, 1, 1, 1 )
+offsets = PoolRealArray( 0.00584795, 0.444444, 1 )
+colors = PoolColorArray( 0.430115, 0.937052, 0.949219, 1, 0.912281, 1, 0.985609, 1, 1, 0.679688, 0, 1 )
 
 [sub_resource type="PackedDataContainer" id=6]
 script = ExtResource( 1 )
@@ -189,18 +249,32 @@ texture = ExtResource( 7 )
 modulate = Color( 0, 0.976471, 1, 1 )
 texture = ExtResource( 6 )
 
-[node name="SpawnPattern" type="Path2D" parent="."]
+[node name="RingPattern" type="Path2D" parent="."]
 z_index = -10
 curve = SubResource( 1 )
 script = ExtResource( 3 )
 id = "RingBulletPattern"
 pattern = SubResource( 2 )
 
+[node name="VPattern" type="Path2D" parent="."]
+z_index = -10
+curve = SubResource( 1 )
+script = ExtResource( 3 )
+id = "RingBulletPatternV"
+pattern = SubResource( 10 )
+
 [node name="BulletPattern" type="Path2D" parent="."]
 z_index = -10
 curve = SubResource( 3 )
 script = ExtResource( 2 )
 id = "RingBullet"
+props = SubResource( 6 )
+
+[node name="WhiteBullet" type="Path2D" parent="."]
+z_index = -10
+curve = SubResource( 3 )
+script = ExtResource( 2 )
+id = "RingBulletW"
 props = SubResource( 6 )
 
 [node name="Hitbox" type="Area2D" parent="."]
