@@ -5,6 +5,8 @@ var bosses
 var bossidx = 0
 var stop = true
 
+signal gamestart
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bosses = [$Playground/RIngPath/PathFollow2D]
@@ -41,5 +43,6 @@ func _physics_process(delta):
 func _on_Timer_timeout():
 	$Playground/Fighters.visible = false
 	$Playground/Player.visible = true
+	emit_signal("gamestart")
 	stop = false
 	pass # Replace with function body.
