@@ -1,24 +1,23 @@
 extends ColorRect
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var selected = preload("res://Assets/selectedclipboard.png")
+var normal = preload("res://Assets/clipboard.png")
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+
+func _on_Button_mouse_entered():
+	$RichTextLabel.bbcode_text = "[center][center][color=purple]<- Noteikumi"
+	$Clipboard.texture = selected
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_Hitbox_mouse_entered():
+func _on_Button_mouse_exited():
+	$RichTextLabel.bbcode_text = "[center][center]<- Noteikumi"
+	$Clipboard.texture = normal
 	pass # Replace with function body.
 
 
-func _on_Hitbox_mouse_exited():
+func _on_Button_button_up():
+	get_parent().get_node("Rules/AnimationPlayer").play("GoIn")
 	pass # Replace with function body.
