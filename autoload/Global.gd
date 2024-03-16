@@ -98,6 +98,8 @@ func sortActivities():
 					chosenActivities[j + 1] = tempActivity
 
 func endGame():
+	retryMinigameNums.clear()
+	earnedPoints = [0, 0, 0, 0, 0, 0]
 	score = 0
 	time = 0
 	slicesEaten = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/SourceCodePro-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzskrienLiepaju/ExtraScene.gd" type="Script" id=2]
@@ -7,6 +7,11 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 39
+outline_size = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=38]
+size = 35
 outline_size = 2
 font_data = ExtResource( 1 )
 
@@ -187,10 +192,10 @@ margin_top = 20.0
 margin_right = 234.0
 margin_bottom = 136.0
 custom_colors/default_color = Color( 0.294118, 0.231373, 0.968627, 1 )
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 38 )
 bbcode_enabled = true
-bbcode_text = "[center][center][wave][wave amp = 1]Punkti: 999pt[/wave]"
-text = "Punkti: 999pt"
+bbcode_text = "[center][center][wave][wave amp = 1]Saņemti Punkti: 999pt[/wave]"
+text = "Saņemti Punkti: 999pt"
 
 [node name="Lose" type="RichTextLabel" parent="."]
 visible = false
