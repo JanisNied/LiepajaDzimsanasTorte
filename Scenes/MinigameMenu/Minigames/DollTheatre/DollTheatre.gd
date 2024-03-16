@@ -91,7 +91,7 @@ func _on_Beatmap_eof():
 	
 	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += $Scoring.getGrade()
 	
-	if $Scoring.getGrade() < 0:
+	if $Scoring.getGrade() <= 0:
 		if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
 			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
 			Global.allowedActivities.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		

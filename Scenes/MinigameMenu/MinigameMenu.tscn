@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Assets/Cake/textures/Tea flavour Cake.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Cake/cakeobj.obj" type="ArrayMesh" id=2]
@@ -38,6 +38,10 @@ shader_param/dot_size = 0.05
 
 [sub_resource type="DynamicFont" id=31]
 size = 51
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=46]
+size = 33
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=32]
@@ -1710,6 +1714,15 @@ custom_fonts/font = SubResource( 31 )
 text = "Izvēlies Tortes Gabalu!"
 align = 1
 valign = 1
+
+[node name="Nosaukums2" type="Label" parent="Background"]
+visible = false
+margin_right = 251.0
+margin_bottom = 117.0
+custom_fonts/font = SubResource( 46 )
+text = "Punkti: 9999pt"
+valign = 3
+autowrap = true
 
 [node name="Tituls" type="Label" parent="Background"]
 visible = false

@@ -16,7 +16,7 @@ func _ready():
 	else:
 		SoundManager.play_se("loss")
 		$Lose.show()
-	$Punkti.bbcode_text = "[center][center][wave][wave amp = 1]Punkti: +"+str(Global.izskrienPunkti)+"pt[/wave]"	
+	$Punkti.bbcode_text = "[center][center][wave][wave amp = 1]Saņemti Punkti: "+str(Global.izskrienPunkti)+"pt[/wave]"	
 	$Punkti.show()	
 	yield(get_tree().create_timer(5), "timeout")
 	Global.transition("MinigameMenu")
