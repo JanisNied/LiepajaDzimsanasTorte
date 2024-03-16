@@ -63,6 +63,7 @@ func _process(delta):
 		$Playground/Fighters/Label2.visible = true
 		$Blinder.visible = false
 		exitstage = true
+		$Chronometer.stop()
 		return
 		
 	var currenemy
