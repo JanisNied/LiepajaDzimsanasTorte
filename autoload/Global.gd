@@ -32,10 +32,10 @@ var availableChoices : Dictionary = {
 		"desc":"Iesaisties Latvijas izskriešanā Liepājā!\nKatru kontrolpunktu jāatbild uz jautājumiem, kuri cieši saistīti ar vietu jūsu tuvumā uz kartes!\nMēģiniet uzvarēt pret datoru!",
 		"scene":"TrailingPlayer"
 	},
-	"testactivity4":{
-		"name":"Null",
-		"desc":"This is a description, this is a description, this is a description",
-		"scene":"MinigameMenu"
+	"IzgaismotaLiepaja":{
+		"name":"\"Izgaismotā Liepāja\"",
+		"desc":"Pilsēta izgaismojusies, bet tevi žilbina!\nAr kursorpogām izvairies no lādiņiem un nogurdini žilbinātājus!",
+		"scene":"Lightshow"
 	},
 	"testactivity5":{
 		"name":"Null",
