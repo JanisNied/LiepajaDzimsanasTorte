@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=2]
+[gd_scene load_steps=149 format=2]
 
 [ext_resource path="res://Assets/textures/lake.jpg" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainMenu/rock/Rock030_2K-JPG_NormalGL.jpg" type="Texture" id=2]
@@ -59,6 +59,7 @@
 [ext_resource path="res://Assets/fornames/signmat.tres" type="Material" id=57]
 [ext_resource path="res://Scenes/MainMenu/Flag_of_Liepāja.svg" type="Texture" id=58]
 [ext_resource path="res://Scenes/MainMenu/Untitled.png" type="Texture" id=59]
+[ext_resource path="res://Scenes/tarot.tscn" type="PackedScene" id=60]
 
 [sub_resource type="SpatialMaterial" id=55]
 resource_local_to_scene = true
@@ -95,7 +96,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=250]
+[sub_resource type="ShaderMaterial" id=280]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -109,9 +110,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=251]
+[sub_resource type="ShaderMaterial" id=281]
 render_priority = -124
-next_pass = SubResource( 250 )
+next_pass = SubResource( 280 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -124,9 +125,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=252]
+[sub_resource type="ShaderMaterial" id=282]
 render_priority = -125
-next_pass = SubResource( 251 )
+next_pass = SubResource( 281 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -139,9 +140,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=253]
+[sub_resource type="ShaderMaterial" id=283]
 render_priority = -126
-next_pass = SubResource( 252 )
+next_pass = SubResource( 282 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -154,9 +155,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=254]
+[sub_resource type="ShaderMaterial" id=284]
 render_priority = -127
-next_pass = SubResource( 253 )
+next_pass = SubResource( 283 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -169,9 +170,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=255]
+[sub_resource type="ShaderMaterial" id=285]
 render_priority = -128
-next_pass = SubResource( 254 )
+next_pass = SubResource( 284 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 3.606, 0 )
@@ -494,6 +495,69 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 70.0 ]
+}
+
+[sub_resource type="Animation" id=276]
+resource_name = "TarotCards"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( 15.09, 19.021, 152.135 ), Vector3( 13.169, 18.302, 152.947 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector3( -46.632, 167.665, 0 ), Vector3( -76.938, 193.251, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Camera/Viewport/viewport:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.116629 ),
+"update": 0,
+"values": [ Vector3( 15.09, 19.021, 152.135 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Camera/Viewport/viewport:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.116629 ),
+"update": 0,
+"values": [ Vector3( -46.632, 167.665, 0 ) ]
 }
 
 [sub_resource type="Animation" id=137]
@@ -2321,6 +2385,9 @@ shader_param/tex = ExtResource( 58 )
 [sub_resource type="SpatialMaterial" id=260]
 albedo_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 
+[sub_resource type="PlaneMesh" id=279]
+flip_faces = true
+
 [sub_resource type="PlaneMesh" id=261]
 flip_faces = true
 
@@ -2515,7 +2582,7 @@ transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968
 
 [node name="Cloud" parent="Environment" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 255 )
+material_override = SubResource( 285 )
 skeleton = NodePath("../..")
 cloud_speed = Vector2( 3.606, 0 )
 cloud_transform_speed = Vector2( 0.001, 0.001 )
@@ -2572,6 +2639,7 @@ anims/BackFromNotebook = SubResource( 48 )
 anims/Enter = SubResource( 166 )
 anims/FromPDA = SubResource( 242 )
 anims/RESET = SubResource( 29 )
+anims/TarotCards = SubResource( 276 )
 anims/ToTV = SubResource( 137 )
 anims/ZoomBackFromNotebookSettings = SubResource( 152 )
 anims/ZoomToNotebook = SubResource( 47 )
@@ -3746,6 +3814,12 @@ transform = Transform( 0.0448628, 9.94477e-09, -6.18347e-08, 1.70699e-10, 0.0090
 mesh = SubResource( 259 )
 material/0 = SubResource( 260 )
 
+[node name="Flag3" type="MeshInstance" parent="Flag"]
+transform = Transform( 1, 0, 0, 1.16415e-10, 1, -5.82077e-11, 0, -1.49012e-08, 1, 0, 0, 0 )
+mesh = SubResource( 279 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 258 )
+
 [node name="Flag2" type="MeshInstance" parent="."]
 transform = Transform( 0.0551219, -0.336479, -0.0340016, -0.0596721, 0.00664702, -0.0420233, 0.0327876, 0.57778, -0.0193179, 13.5824, 18.6007, 153.801 )
 mesh = SubResource( 261 )
@@ -3755,6 +3829,8 @@ material/0 = SubResource( 262 )
 transform = Transform( 0.0448628, 9.94477e-09, -6.18347e-08, 1.70699e-10, 0.00904879, -0.00255896, -1.44005e-07, -0.347194, 2.20365, -0.995728, -0.00203419, 1.74492 )
 mesh = SubResource( 259 )
 material/0 = SubResource( 260 )
+
+[node name="Control" parent="." instance=ExtResource( 60 )]
 
 [connection signal="input_event" from="Namebook/Rules/YesArea" to="Namebook/Rules" method="_on_YesArea_input_event"]
 [connection signal="mouse_entered" from="Namebook/Rules/YesArea" to="Namebook/Rules" method="_on_YesArea_mouse_entered"]
