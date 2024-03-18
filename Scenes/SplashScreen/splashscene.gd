@@ -38,6 +38,8 @@ func _ready():
 	center_window()
 	if (SaveSystem.get_var("WindowMode") == "Fullscreen"):
 		OS.window_fullscreen = true
+	else:
+		OS.window_fullscreen = false	
 	$ViewportContainer/Viewport/Coin/Teksts.hide()
 	yield(get_tree().create_timer(1.0), "timeout")
 	$ViewportContainer/Viewport/Coin/AnimationPlayer.play("COIN")
