@@ -37,10 +37,10 @@ var availableChoices : Dictionary = {
 		"desc":"Pilsēta izgaismojusies, bet tevi žilbina!\nAr kursorpogām izvairies no lādiņiem un nogurdini žilbinātājus!",
 		"scene":"Lightshow"
 	},
-	"testactivity5":{
-		"name":"Null",
-		"desc":"This is a description, this is a description, this is a description",
-		"scene":"MinigameMenu"
+	"LiepajaGalvaspilseta":{
+		"name":"\"Liepāja - Latvijas glvsp.\"",
+		"desc":"Iztēlojiet, ka dzīvojam galvaspilsētā! Šeit būs daži atjautības jautājumi par Liepāju! Ar bultiņu pa kreisi var izmantot kādu palīglīdzekli vienu reizi.",
+		"scene":"TestQuiz"
 	},
 	"testactivity6":{
 		"name":"Null",
@@ -76,7 +76,17 @@ func getRidOfEmptyActivities():
 		if i in chosenActivities:
 			chosenActivities.erase(i)				
 					
-	
+func queueforretry():
+	if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
+			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.allowedActivities.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
+			Global.chosenActivities.append(Global.discardedActivities[Global.discardedActivities.size()-1])
+			
+			Global.discardedActivityNum.erase(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.discardedActivities.erase(Global.discardedActivities[Global.discardedActivities.size()-1])			
+			Global.sortActivities()
+			Global.slicesEaten -= 1
+				
 func printAllActivities():
 	var string : String = "[DEBUG] Activities:\n"
 	for i in range(len(allowedActivities)):
