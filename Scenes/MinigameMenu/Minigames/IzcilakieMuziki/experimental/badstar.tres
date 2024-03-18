@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Shaders/StarShader.gdshader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/tiling = Vector2( 1, 1 )
+shader_param/offset = Vector2( 0, 0 )
+shader_param/rotate = 0.0
+shader_param/frequency = 5.0
+shader_param/star_size = 1.0
+shader_param/sine_speed = 1.2
+shader_param/sharpness = 1.0
+shader_param/white_color = Plane( 1.681, 0.025, -0.131, 1 )
+shader_param/black_color = Plane( 1.534, 0.285, 0.553, 1 )

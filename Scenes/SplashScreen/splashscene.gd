@@ -21,9 +21,9 @@ onready var general_options = SceneManager.create_general_options(color, timeout
 func _ready():
 	# Create persistent settings if file doesn't exist in user directory
 	if not SaveSystem.has("SettingsGenerated"):
-		var volumes : Dictionary = {"master" : 1.0,
+		var volumes : Dictionary = {"master" : 0.8,
 									"music" : 0.2,
-									"sfx" : 1.0}
+									"sfx" : 0.3}
 		SaveSystem.set_var("SettingsGenerated", true)
 		SaveSystem.set_var("WindowMode", "Windowed")
 		SaveSystem.set_var("Resolution", Vector2(1024, 576))
