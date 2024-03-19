@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/tarot.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Assets/fool/fool.tres" type="Material" id=2]
@@ -433,6 +433,12 @@ outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
+[sub_resource type="DynamicFont" id=302]
+size = 37
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
 [sub_resource type="DynamicFont" id=298]
 size = 29
 outline_size = 3
@@ -485,6 +491,7 @@ margin_bottom = 259.0
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 518, 518 )
+own_world = true
 transparent_bg = true
 handle_input_locally = false
 msaa = 1
@@ -600,6 +607,21 @@ bbcode_enabled = true
 bbcode_text = "[right][wave]<"
 text = "<"
 
+[node name="Title2" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = -0.074
+anchor_right = 0.5
+anchor_bottom = 0.07
+margin_left = -719.0
+margin_top = 14.624
+margin_right = -121.0
+margin_bottom = 167.624
+custom_colors/default_color = Color( 0.639216, 0.215686, 0.972549, 1 )
+custom_fonts/normal_font = SubResource( 302 )
+bbcode_enabled = true
+bbcode_text = "[center][center][wave]< Atpakaļ"
+text = "< Atpakaļ"
+
 [node name="Forward" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 258.0
@@ -639,6 +661,14 @@ margin_left = 126.0
 margin_top = 450.0
 margin_right = 232.0
 margin_bottom = 543.0
+text = "change arcana"
+
+[node name="BackToMenu" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 7.0
+margin_top = -4.0
+margin_right = 192.0
+margin_bottom = 60.0
 text = "change arcana"
 
 [node name="Title" type="RichTextLabel" parent="."]
@@ -738,3 +768,6 @@ mouse_filter = 2
 [connection signal="button_up" from="Backward" to="." method="_on_Backward_button_up"]
 [connection signal="mouse_entered" from="Backward" to="." method="_on_Backward_mouse_entered"]
 [connection signal="mouse_exited" from="Backward" to="." method="_on_Backward_mouse_exited"]
+[connection signal="button_up" from="BackToMenu" to="." method="_on_BackToMenu_button_up"]
+[connection signal="mouse_entered" from="BackToMenu" to="." method="_on_BackToMenu_mouse_entered"]
+[connection signal="mouse_exited" from="BackToMenu" to="." method="_on_BackToMenu_mouse_exited"]

@@ -69,8 +69,10 @@ func _on_abl8_gui_input(event):
 				nodesToDelete.append(str(r))
 			print(nodesToDelete)
 			SoundManager.play_se("explode")	
-			get_parent().get_node("b"+nodesToDelete[0]).disabled = true
-			get_parent().get_node("b"+nodesToDelete[1]).disabled = true
+			get_parent().get_node("b1").disabled = true
+			get_parent().get_node("b2").disabled = true
+			get_parent().get_node("b3").disabled = true
+			get_parent().get_node("b4").disabled = true
 			get_parent().get_node("b"+nodesToDelete[0]+"/ViewportContainer").show()
 			get_parent().get_node("b"+nodesToDelete[1]+"/ViewportContainer").show()	
 			get_parent().get_node("b"+nodesToDelete[0]+"/ViewportContainer/Viewport/Spatial/Explosion1").emitting = true		
@@ -79,6 +81,10 @@ func _on_abl8_gui_input(event):
 			get_parent().get_node("b"+nodesToDelete[1]+"/ViewportContainer").hide()	
 			get_parent().get_node("b"+nodesToDelete[0]).hide()
 			get_parent().get_node("b"+nodesToDelete[1]).hide()	
+			get_parent().get_node("b1").disabled = false
+			get_parent().get_node("b2").disabled = false
+			get_parent().get_node("b3").disabled = false
+			get_parent().get_node("b4").disabled = false
 	pass # Replace with function body.
 
 
@@ -91,12 +97,19 @@ func _on_abl7_gui_input(event):
 			while str(r)==str(int(get_parent().correctOption)+1) or get_parent().get_node("b"+str(r)).is_visible()==false:
 				r=randi()%4+1
 			SoundManager.play_se("explode")		
-			get_parent().get_node("b"+str(r)).disabled = true
+			get_parent().get_node("b1").disabled = true
+			get_parent().get_node("b2").disabled = true
+			get_parent().get_node("b3").disabled = true
+			get_parent().get_node("b4").disabled = true
 			get_parent().get_node("b"+str(r)+"/ViewportContainer").show()
 			get_parent().get_node("b"+str(r)+"/ViewportContainer/Viewport/Spatial/Explosion1").emitting = true	
 			yield(get_tree().create_timer(0.8), "timeout")
 			get_parent().get_node("b"+str(r)+"/ViewportContainer").hide()
 			get_parent().get_node("b"+str(r)).hide()
+			get_parent().get_node("b1").disabled = false
+			get_parent().get_node("b2").disabled = false
+			get_parent().get_node("b3").disabled = false
+			get_parent().get_node("b4").disabled = false
 	pass # Replace with function body.
 
 

@@ -92,6 +92,7 @@ func show_result():
 	QuestionItems.text = ""
 	$Victory.text = greet + " Pareizas atbildes: " + str(percentage) + " procenti!"
 	Global.score += points
+	Global.earnedPoints[Global.discardedActivityNum[Global.discardedActivityNum.size()-1]-1] += points
 	if points <= 0:
 		Global.queueforretry()
 	yield(get_tree().create_timer(4), "timeout")

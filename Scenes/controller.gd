@@ -214,6 +214,8 @@ func _on_PlayB_button_up():
 	$ButtonGo.hide()
 	$ButtonMinus.hide()
 	$ButtonPlus.hide()
+	$BackToMenu.hide()
+	$Title2.hide()
 	Global.activitiesPicked = true
 	Global.chosenActivities = convertActivities()
 	Global.transition("MinigameMenu")
@@ -232,4 +234,19 @@ func _on_PlayB_mouse_entered():
 
 func _on_PlayB_mouse_exited():
 	$Play.bbcode_text = "[wave][center]Sākt Spēli"
+	pass # Replace with function body.
+
+
+func _on_BackToMenu_button_up():
+	Global.transition("menuscene")
+	pass # Replace with function body.
+
+
+func _on_BackToMenu_mouse_exited():
+	$Title2.bbcode_text = "[center][center][wave]< Atpakaļ"
+	pass # Replace with function body.
+
+
+func _on_BackToMenu_mouse_entered():
+	$Title2.bbcode_text = "[center][center][wave][color=white]< Atpakaļ"
 	pass # Replace with function body.
