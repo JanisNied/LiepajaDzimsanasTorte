@@ -17,17 +17,37 @@ var maxTasks = 6
 
 
 func _ready():
+	SoundManager.stop("sunMenuMusic")
+	SoundManager.play_bgm("betweenDoors")
 	upd()
 	$ViewportContainer/Viewport/Spatial/AnimationPlayer.play("float")
-	
+
+func updateList():
+	if minigameList.empty():
+		$ChosenGames.hide()
+		$GameTitle2.hide()
+	else:
+		$ChosenGames.show()
+		$GameTitle2.show()
+		var new = ""
+		for i in minigameList:
+			new += Global.availableChoices[i]["name"]+"\n"
+		$ChosenGames.text = new 	
+		
 func upd():
 	print(minigameList.size())
 	if minigameList.size() < 5:
 		$Choose.bbcode_text = "[center][center][wave]Izvēlies "+str(maxTasks-minigameList.size())+" uzdevumus!"
+		$Play.hide()
+		$PlayB.hide()
 	elif minigameList.size() == 5:
+		$Play.hide()
+		$PlayB.hide()
 		$Choose.bbcode_text = "[center][center][wave]Izvēlies "+str(maxTasks-minigameList.size())+" uzdevumu!"
 	else:
-		$Choose.bbcode_text = ""	
+		$Choose.bbcode_text = "[center][center][wave]Varat sākt spēli!"	
+		$Play.show()
+		$PlayB.show()
 	if chosenArcana in disallowedIndexes:
 		$ButtonPlus.hide()
 		$Add.hide()
@@ -46,6 +66,7 @@ func upd():
 		$Remove.disabled = true	
 	$GameTitle.text = Global.availableChoices[choiceKeys[chosenArcana]]["name"]
 	$GameDesc.text = Global.availableChoices[choiceKeys[chosenArcana]]["desc"]
+	updateList()
 		
 func buttonPressAction():
 	$Forward.disabled = true
@@ -56,8 +77,6 @@ func buttonPressAction():
 func _on_Button_button_up():
 	lastdirection = "forward"
 	chosenArcana += 1
-	if chosenArcana in disallowedIndexes:
-		chosenArcana += 1
 	if chosenArcana > limit:
 		chosenArcana = 0
 	buttonPressAction()	
@@ -183,4 +202,34 @@ func _on_Remove_mouse_entered():
 
 func _on_Remove_mouse_exited():
 	$ButtonMinus.bbcode_text = "[wave][center][center]-"
+	pass # Replace with function body.
+
+
+func _on_PlayB_button_up():
+	$Add.hide()
+	$Remove.hide()
+	$Backward.hide()
+	$Forward.hide()
+	$ButtonBack.hide()
+	$ButtonGo.hide()
+	$ButtonMinus.hide()
+	$ButtonPlus.hide()
+	Global.activitiesPicked = true
+	Global.chosenActivities = convertActivities()
+	Global.transition("MinigameMenu")
+	pass # Replace with function body.
+
+func convertActivities() -> Array:
+	var activities : Array
+	for i in minigameList:
+		activities.append(Global.availableChoices[i])
+	return activities	
+	
+func _on_PlayB_mouse_entered():
+	$Play.bbcode_text = "[wave][center][color=white]Sākt Spēli"
+	pass # Replace with function body.
+
+
+func _on_PlayB_mouse_exited():
+	$Play.bbcode_text = "[wave][center]Sākt Spēli"
 	pass # Replace with function body.
