@@ -2,17 +2,17 @@ extends Sprite
 
 func _on_ColorRect_mouse_entered():
 	if get_parent().anim:
-		get_parent().get_node("Abilities2/Arrow").bbcode_text = "[color=purple][wave][center]<"
+		get_parent().get_node("Arrow").bbcode_text = "[color=purple][wave][center]<"
 	else:
-		get_parent().get_node("Abilities2/Arrow").bbcode_text = "[color=purple][wave][center]>"
+		get_parent().get_node("Arrow").bbcode_text = "[color=purple][wave][center]>"
 	pass # Replace with function body.
 
 
 func _on_ColorRect_mouse_exited():
 	if get_parent().anim:	
-		get_parent().get_node("Abilities2/Arrow").bbcode_text = "[color=black][wave][center]<"
+		get_parent().get_node("Arrow").bbcode_text = "[color=black][wave][center]<"
 	else:
-		get_parent().get_node("Abilities2/Arrow").bbcode_text = "[color=black][wave][center]>"	
+		get_parent().get_node("Arrow").bbcode_text = "[color=black][wave][center]>"	
 	pass # Replace with function body.
 
 
