@@ -1,3 +1,86 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/KaPaNotim/src/scenes/board/board.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/KaPaNotim/KaPaNotim.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0784314, 0.0901961, 0.133333, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.2, 0.231373, 0.309804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.780392, 0.780392, 0.780392, 1 )
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.588235 )
+border_color = Color( 0, 0, 0, 0 )
 
 [node name="Notis" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 576.0
+
+[node name="GameView" type="MarginContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -160.0
+margin_right = 160.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 320, 320 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BackgroundBoard" type="Panel" parent="Control/GameView"]
+margin_right = 320.0
+margin_bottom = 320.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+
+[node name="Board" parent="Control/GameView" instance=ExtResource( 1 )]
+margin_right = 320.0
+margin_bottom = 320.0
+
+[node name="BoardBorder" type="Panel" parent="Control/GameView"]
+margin_right = 320.0
+margin_bottom = 320.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 2 )
+
+[node name="StartOverlay" type="Panel" parent="Control/GameView"]
+visible = false
+margin_right = 320.0
+margin_bottom = 320.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 3 )
+
+[node name="TextOverlay" type="Label" parent="Control/GameView/StartOverlay"]
+margin_right = 328.0
+margin_bottom = 319.0
+text = "Click to start"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlockGame" type="ColorRect" parent="Control"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 308.0
+margin_top = 92.0
+margin_right = 715.0
+margin_bottom = 482.0
