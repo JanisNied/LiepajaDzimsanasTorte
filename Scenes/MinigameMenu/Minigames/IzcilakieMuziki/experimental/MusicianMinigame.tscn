@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://addons/midi/MidiPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/KeyAnim.tscn" type="PackedScene" id=2]
@@ -11,11 +11,12 @@
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/font.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assets/CabinSketch-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://icon.png" type="Texture" id=11]
-[ext_resource path="res://Shaders/StarShader.gdshader" type="Shader" id=12]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/goodstar.tres" type="Material" id=13]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
 
+var goodMat = preload(\"res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/goodstar.tres\")
 onready var allKeys = [$KeyAnim,$KeyAnim2,$KeyAnim3,$KeyAnim4]
 var currentKeys = []
 var combo = 0
@@ -519,7 +520,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1024, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Icon:scale")
+tracks/4/path = NodePath("Icon1:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -571,7 +572,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -576 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Icon:visible")
+tracks/1/path = NodePath("Icon1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -607,7 +608,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Icon:scale")
+tracks/4/path = NodePath("Icon1:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -666,18 +667,6 @@ font_data = SubResource( 16 )
 size = 34
 font_data = ExtResource( 10 )
 
-[sub_resource type="ShaderMaterial" id=21]
-shader = ExtResource( 12 )
-shader_param/tiling = Vector2( 1, 1 )
-shader_param/offset = Vector2( 0, 0 )
-shader_param/rotate = 0.0
-shader_param/frequency = 5.0
-shader_param/star_size = 1.0
-shader_param/sine_speed = 1.2
-shader_param/sharpness = 1.0
-shader_param/white_color = Plane( 0.415, 0.617, 1.535, 1 )
-shader_param/black_color = Plane( 0.184, 0.285, 0.553, 1 )
-
 [sub_resource type="DynamicFont" id=19]
 size = 49
 font_data = ExtResource( 6 )
@@ -698,7 +687,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -576 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Icon:visible")
+tracks/1/path = NodePath("Icon1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -734,7 +723,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Icon:scale")
+tracks/4/path = NodePath("Icon1:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -842,10 +831,10 @@ anchor_left = 0.007
 anchor_top = 0.052
 anchor_right = 0.007
 anchor_bottom = 0.052
-margin_left = 4.832
-margin_top = -19.952
-margin_right = 1004.83
-margin_bottom = 480.048
+margin_left = 12.0
+margin_top = 10.0
+margin_right = 1012.0
+margin_bottom = 510.0
 custom_colors/default_color = Color( 1, 1, 1, 0 )
 custom_fonts/normal_font = ExtResource( 9 )
 bbcode_enabled = true
@@ -966,22 +955,22 @@ x0"
 text = "100.00%
 x0"
 
-[node name="Icon" type="Sprite" parent="."]
-material = SubResource( 21 )
+[node name="Icon1" type="Sprite" parent="."]
+material = ExtResource( 13 )
 position = Vector2( 929, 299 )
 rotation = -1.67293
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 11 )
 
 [node name="Icon2" type="Sprite" parent="."]
-material = SubResource( 21 )
+material = ExtResource( 13 )
 position = Vector2( 916, 352 )
 rotation = -1.45236
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 11 )
 
 [node name="Icon3" type="Sprite" parent="."]
-material = SubResource( 21 )
+material = ExtResource( 13 )
 position = Vector2( 850, 374 )
 rotation = -1.0661
 scale = Vector2( 1e-05, 1e-05 )

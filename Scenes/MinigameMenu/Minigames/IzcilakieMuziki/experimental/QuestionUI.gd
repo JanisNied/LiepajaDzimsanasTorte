@@ -39,9 +39,10 @@ func startRound():
 		statusText.bbcode_text = "[center][wave][wave amp = 1]Starts![/wave]"
 		yield(get_tree().create_timer(1),"timeout")
 		get_parent().get_node("MidiPlayer").play()
-		SoundManager.play_se(music[questionNum-1])
+		SoundManager.play_bgm(music[questionNum-1])
 		textAnim.play("GoAway")
 		yield(get_tree().create_timer(1),"timeout")
+		
 		textAnim.play("RESET")
 		yield(get_tree().create_timer(length[questionNum-1]),"timeout")
 		endRound()

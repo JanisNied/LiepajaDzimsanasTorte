@@ -17,7 +17,7 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="Environment" id=2]
 
-[sub_resource type="Shader" id=36]
+[sub_resource type="Shader" id=39]
 code = "//SHADER ORIGINALY CREADED BY \"ehj1\" FROM SHADERTOY
 //MODIFIED AND PORTED TO GODOT BY AHOPNESS (@ahopness)
 //LICENSE : CC0
@@ -144,7 +144,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=37]
-shader = SubResource( 36 )
+shader = SubResource( 39 )
 shader_param/vertJerkOpt = 0.0
 shader_param/vertMovementOpt = 0.0
 shader_param/bottomStaticOpt = 0.0

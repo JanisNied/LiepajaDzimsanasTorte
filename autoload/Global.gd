@@ -6,6 +6,8 @@ var slicesEaten : int = 0
 var activitiesPicked : bool = false
 var returning = false
 
+var youwenttocustomgame = false
+
 var allowedActivities = [1, 2, 3, 4, 5, 6]
 var chosenActivities : Array
 
@@ -37,21 +39,26 @@ var availableChoices : Dictionary = {
 		"desc":"Pilsēta izgaismojusies, bet tevi žilbina!\nAr kursorpogām izvairies no lādiņiem un nogurdini žilbinātājus!",
 		"scene":"Lightshow"
 	},
-	"testactivity5":{
-		"name":"Null",
-		"desc":"This is a description, this is a description, this is a description",
-		"scene":"MinigameMenu"
+	"LiepajaGalvaspilseta":{
+		"name":"\"Liepāja - Latvijas glvsp.\"",
+		"desc":"Iztēlojiet, ka dzīvojam galvaspilsētā! Šeit būs daži atjautības jautājumi par Liepāju! Ar bultiņu pa kreisi var izmantot kādu palīglīdzekli vienu reizi.",
+		"scene":"TestQuiz"
 	},
-	"testactivity6":{
-		"name":"Null",
-		"desc":"This is a description, this is a description, this is a description",
-		"scene":"MinigameMenu"
+	"KaPaNotim":{
+		"name":"\"Liepājā - Kā pa notīm\"",
+		"desc":"Vai jūs zinat šīs vietas? Šeit jums jāpastaigā pa Liepāju kā pa notīm! Sakartojiet slaidu puzli noteiktā laikā, darot to ar vismazāko gajienu skaitu, lai saņemtu visvairāk punktus!",
+		"scene":"KaPaNotim"
 	},
-	"testactivity7":{
-		"name":"Null",
-		"desc":"This is a description, this is a description, this is a description",
-		"scene":"MinigameMenu"
-	}
+	"Festivals":{
+		"name":"\"Liepājas Festivāli\"",
+		"desc":"Iedziļinies festivāla noskaņā! Šeit ir visi jautājumi par Liepājas festivāliem!",
+		"scene":"festivals_quiz"
+	},
+	"Eiropa":{
+		"name":"\"Liepāja un Eiropa\"",
+		"desc":"2 dažādas lietas, cieši saistītas. Starp Eiropu un Liepāju ir savu veidu attiecības. Šeit varat uzzināt visu par to!",
+		"scene":"eiropa_quiz"
+	}	
 }
 
 func pickActivitiesRandomly():
@@ -76,12 +83,31 @@ func getRidOfEmptyActivities():
 		if i in chosenActivities:
 			chosenActivities.erase(i)				
 					
-	
+func queueforretry():
+	if not Global.discardedActivityNum[Global.discardedActivityNum.size()-1] in Global.retryMinigameNums:
+			Global.retryMinigameNums.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.allowedActivities.append(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])		
+			Global.chosenActivities.append(Global.discardedActivities[Global.discardedActivities.size()-1])
+			
+			Global.discardedActivityNum.erase(Global.discardedActivityNum[Global.discardedActivityNum.size()-1])
+			Global.discardedActivities.erase(Global.discardedActivities[Global.discardedActivities.size()-1])			
+			Global.sortActivities()
+			Global.slicesEaten -= 1
+				
 func printAllActivities():
 	var string : String = "[DEBUG] Activities:\n"
 	for i in range(len(allowedActivities)):
 		string += str(allowedActivities[i])+". "+chosenActivities[i]["name"]+"\n"
 	print(string)
+
+func countMinigames():
+	var counter : int = -1
+	var keys = availableChoices.keys()
+	for i in keys:
+		if availableChoices[i]["name"] != "Null":
+			counter += 1
+	print("Count: ", counter)		
+	return counter	
 
 func sortActivities():
 	if allowedActivities.size() > 1:

@@ -1,0 +1,773 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Assets/tarot.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/fool/fool.tres" type="Material" id=2]
+[ext_resource path="res://Assets/fool/texture card back.jpg" type="Texture" id=3]
+[ext_resource path="res://Scenes/controller.gd" type="Script" id=4]
+[ext_resource path="res://Assets/The Happy Giraffe Demo.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/CabinSketch-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://GodotRetro/Screen Shaders/NTSC.shader" type="Shader" id=7]
+
+[sub_resource type="Shader" id=283]
+code = "/*
+	Original shader by mrange (https://www.shadertoy.com/view/3ljyDD)
+	Godot 3.5 port with customizable parameters by PmkExpert
+	As much as possible of the original has been kept, including comments
+	
+	MIT License
+
+*/
+
+// License CC0: Hexagonal tiling + cog wheels
+//  Nothing fancy, just hexagonal tiling + cog wheels
+
+shader_type canvas_item;
+
+const float PI = 3.141592654;
+const float TAU = (2.0*PI);
+
+uniform vec4 back_color : hint_color = vec4(0.63, 0.63, 0.63, 1.0); //The background color
+uniform vec4 gears_color : hint_color = vec4(0.3, 0.3, 0.3, 1.0); //The gears color
+uniform float base_zoom : hint_range (0.1, 1.0) = 1.0; //How much the gears are zoomed in
+uniform float zoomSpeed : hint_range (0.0, 1.0) = 0.1; //How quickly the zoom effect cycles
+uniform float GearSpeed : hint_range (-10.0, 10.0) = 1.0; //The gears speed; negative for opposite direction
+uniform float ClockSpeed : hint_range (-10.0, 10.0) = 1.0; //The hands speed; negative to go back in time
+//Some other values in the code can be changed, but are mostly details like the number of holes
+
+mat2 MROT(float a){
+	return mat2(vec2(cos(a),sin(a)),vec2(-sin(a),cos(a)));
+}
+
+float hash(in vec2 co) {
+  return fract(sin(dot(co.xy ,vec2(12.9898,58.233))) * 13758.5453);
+}
+
+float pcos(float a) {
+  return 0.5 + 0.5*cos(a);
+}
+
+void rot(inout vec2 p, float a) {
+  float c = cos(a);
+  float s = sin(a);
+  p = vec2(c*p.x + s*p.y, -s*p.x + c*p.y);
+}
+
+float modPolar(inout vec2 p, float repetitions) {
+  float angle = 2.0*PI/repetitions;
+  float a = atan(p.y, p.x) + angle/2.;
+  float r = length(p);
+  float c = floor(a/angle);
+  a = mod(a,angle) - angle/2.;
+  p = vec2(cos(a), sin(a))*r;
+  // For an odd number of repetitions, fix cell index of the cell in -x direction
+  // (cell index would be e.g. -5 and 5 in the two halves of the cell):
+  if (abs(c) >= (repetitions/2.0)) c = abs(c);
+  return c;
+}
+
+float pmin(float a, float b, float k) {
+  float h = clamp( 0.5+0.5*(b-a)/k, 0.0, 1.0 );
+  return mix( b, a, h ) - k*h*(1.0-h);
+}
+
+const vec2 sz       = vec2(1.0, sqrt(3.0));
+const vec2 hsz      = 0.5*sz;
+const float smallCount = 16.0;
+
+vec2 hextile(inout vec2 p) {
+  // See Art of Code: Hexagonal Tiling Explained!
+  // https://www.youtube.com/watch?v=VmrIDyYiJBA
+
+  vec2 p1 = mod(p, sz)-hsz;
+  vec2 p2 = mod(p - hsz*1.0, sz)-hsz;
+  vec2 p3 = dot(p1, p1) < dot(p2, p2) ? p1 : p2;
+  vec2 n = p3 - p;
+  p = p3;
+
+  return n;
+}
+
+float circle(vec2 p, float r) {
+  return length(p) - r;
+}
+
+float box(vec2 p, vec2 b) {
+  vec2 d = abs(p)-b;
+  return length(max(d,0.0)) + min(max(d.x,d.y),0.0);
+}
+
+float unevenCapsule(vec2 p, float r1, float r2, float h) {
+  p.x = abs(p.x);
+  float b = (r1-r2)/h;
+  float a = sqrt(1.0-b*b);
+  float k = dot(p,vec2(-b,a));
+  if( k < 0.0 ) return length(p) - r1;
+  if( k > a*h ) return length(p-vec2(0.0,h)) - r2;
+  return dot(p, vec2(a,b) ) - r1;
+}
+
+float cogwheel(vec2 p, float innerRadius, float outerRadius, float cogs, float holes) {
+  float cogWidth  = 0.25*innerRadius*TAU/cogs;
+  
+  float d0 = circle(p, innerRadius);  
+    
+  vec2 icp = p;
+  modPolar(icp, holes);
+  icp -= vec2(innerRadius*0.55, 0.0);
+  float d1 = circle(icp, innerRadius*0.25);  
+
+  vec2 cp = p;
+  modPolar(cp, cogs);
+  cp -= vec2(innerRadius, 0.0);
+  float d2 = unevenCapsule(cp.yx, cogWidth, cogWidth*0.75, (outerRadius-innerRadius));
+
+  float d3 = circle(p, innerRadius*0.20);  
+  
+  float d = 1E6;  
+  d = min(d, d0);
+  d = pmin(d, d2, 0.5*cogWidth);
+  d = min(d, d2);
+  d = max(d, -d1);
+  d = max(d, -d3);
+  
+  return d;
+}
+
+float ccell1(vec2 p, float r) {
+  float d = 1E6;
+  const float bigCount = 60.0;
+  
+  vec2 cp0 = p;
+  rot(cp0, -TIME * GearSpeed *TAU/bigCount);
+  float d0 = cogwheel(cp0, 0.36, 0.38, bigCount, 5.0);
+  
+  vec2 cp1 = p;
+  float nm = modPolar(cp1, 6.0);
+
+  cp1 -= vec2(0.5, 0.0);
+  rot(cp1, 0.2+TAU*nm/2.0 + TIME * GearSpeed *TAU/smallCount);
+  float d1 = cogwheel(cp1, 0.11, 0.125, smallCount, 5.0);
+
+  d = min(d, d0);
+  d = min(d, d1);
+  return d;
+}
+
+float ccell2(vec2 p, float r) {
+  float d = 1E6;
+  vec2 cp0 = p;
+  float nm = modPolar(cp0, 6.0);
+  vec2 cp1 = cp0;
+  const float off = 0.275;
+  const float count = smallCount + 2.0;
+  cp0 -= vec2(off, 0.0);
+  rot(cp0, 0.+TAU*nm/2.0 - TIME * GearSpeed *TAU/count);
+  float d0 = cogwheel(cp0, 0.09, 0.105, count, 5.0);
+  
+
+  cp1 -= vec2(0.5, 0.0);
+  rot(cp1, 0.2+TAU*nm/2.0 + TIME * GearSpeed *TAU/smallCount);
+  float d1 = cogwheel(cp1, 0.11, 0.125, smallCount, 5.0);
+  
+  float l = length(p);
+  float d2 = l - (off+0.055);
+  float d3 = d2 + 0.020;
+  
+  vec2 tp0 = p;
+  modPolar(tp0, 60.0);
+  tp0.x -= off;
+  float d4 = box(tp0, vec2(0.0125, 0.005));
+
+  float ctime = -(TIME * ClockSpeed *0.05 + r)*TAU;
+
+  vec2 tp1 = p;
+  rot(tp1, ctime*12.0);
+  tp1.x -= 0.13;
+  float d5 = box(tp1, vec2(0.125, 0.005));
+
+  vec2 tp2 = p;
+  rot(tp2, ctime);
+  tp2.x -= 0.13*0.5;
+  float d6 = box(tp2, vec2(0.125*0.5, 0.0075));
+
+  float d7 = l - 0.025;
+  float d8 = l - 0.0125;
+
+  d = min(d, d0);
+  d = min(d, d1);
+  d = min(d, d2);
+  d = max(d, -d3);
+  d = min(d, d4);
+  d = min(d, d5);
+  d = min(d, d6);
+  d = min(d, d7);
+  d = max(d, -d8);
+
+  return d;
+}
+
+float df(vec2 p, float scale, inout vec2 nn) {
+  p /= scale;
+  nn = hextile(p);
+  nn = round(nn);
+  float r = hash(nn);
+
+  float d;
+  
+  if (r < 0.5) {
+    d = ccell1(p, r);  
+  } else {
+    d = ccell2(p, r);
+  }
+  
+  return d*scale;
+}
+
+vec3 postProcess(vec3 col, vec2 q)  {
+  //col = saturate(col);
+  col=pow(clamp(col,0.0,1.0),vec3(0.75)); 
+  col=col*0.6+0.4*col*col*(3.0-2.0*col);  // contrast
+  col=mix(col, vec3(dot(col, vec3(0.33))), -0.4);  // satuation
+  col*=0.5+0.5*pow(19.0*q.x*q.y*(1.0-q.x)*(1.0-q.y),0.7);  // vigneting
+  return col;
+}
+
+void fragment() {
+  vec2 q = FRAGCOORD.xy/(1.0 / SCREEN_PIXEL_SIZE).xy;
+  vec2 p = -1. + 2. * q;
+  p.x *= (1.0 / SCREEN_PIXEL_SIZE).x/(1.0 / SCREEN_PIXEL_SIZE).y;
+  float tm = 0.1 + TIME * zoomSpeed;
+  p += vec2(cos(tm), sin(tm*sqrt(0.5)));
+  float z = mix(0.5, base_zoom, pcos(tm*sqrt(0.3)));
+  float aa = 4.0 / (1.0 / SCREEN_PIXEL_SIZE).y;
+
+  vec2 nn = vec2(0.0);
+  float d = df(p, z, nn);
+
+  vec3 col = back_color.rgb;
+  vec3 baseCol = gears_color.rgb;
+  vec4 logoCol = vec4(baseCol, 1.0)*smoothstep(-aa, 0.0, -d);
+  col = mix(col, logoCol.xyz, pow(logoCol.w, 8.0));  
+  col += 0.4*pow(abs(sin(20.0*d)), 0.6);  
+  
+  col = postProcess(col, q);
+  
+  COLOR.rgb = vec3(col);
+  COLOR.a = texture(TEXTURE, UV).a;
+}"
+
+[sub_resource type="ShaderMaterial" id=284]
+shader = SubResource( 283 )
+shader_param/back_color = Color( 0.0862745, 0.14902, 0.435294, 1 )
+shader_param/gears_color = Color( 0.364706, 0.364706, 0.364706, 1 )
+shader_param/base_zoom = 1.0
+shader_param/zoomSpeed = 0.02
+shader_param/GearSpeed = 0.9
+shader_param/ClockSpeed = 0.1
+
+[sub_resource type="Shader" id=294]
+code = "shader_type canvas_item;
+
+uniform float brightness : hint_range(0.001, 2.0) = 1.0;
+uniform float anchor : hint_range(-1.0,0.0) = -0.5;
+//The point where all the lines come from.
+uniform float speed_scale = 1.0;
+uniform float fov : hint_range(0.001, 1.0) = 0.2;
+uniform float line_count = 1.0;
+uniform vec4 background_color : hint_color = vec4(0.0, 0.1, 0.2, 1.0);
+uniform vec4 grid_color : hint_color = vec4(1.0, 0.5, 1.0, 1.0);
+
+float grid(vec2 uv, float batt) {
+    vec2 size = vec2(uv.y, uv.y * uv.y * 0.2) * 0.01* (batt + 0.05);
+    uv += vec2(0.0, TIME * speed_scale);
+    uv = abs(fract(uv) - 0.5);
+ 	vec2 lines = smoothstep(size, vec2(0.0), uv);
+ 	lines += smoothstep(size * 5.0, vec2(0.0), uv) * 0.4 * batt;
+    return lines.x + lines.y;
+}
+void fragment() {
+	vec2 uv = UV;
+	vec4 col = background_color;
+    uv.y = 3.0 / (abs(uv.y + fov) + 0.05);
+	uv.x += anchor;
+    uv.x *= uv.y * line_count;
+    float gridVal = grid(uv, brightness);
+    col = mix(background_color, grid_color, gridVal);
+	COLOR = col;
+}"
+
+[sub_resource type="ShaderMaterial" id=295]
+shader = SubResource( 294 )
+shader_param/brightness = 1.0
+shader_param/anchor = -0.5
+shader_param/speed_scale = 1.0
+shader_param/fov = 0.2
+shader_param/line_count = 1.0
+shader_param/background_color = Color( 0, 0.1, 0.2, 1 )
+shader_param/grid_color = Color( 0.501961, 0.529412, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=286]
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="Environment" id=287]
+dof_blur_near_enabled = true
+dof_blur_near_distance = 37.87
+dof_blur_near_transition = 0.35
+dof_blur_near_amount = 0.06
+
+[sub_resource type="Animation" id=289]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("tarot:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.001, 0.014, -0.149 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("tarot:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -4.736, 17.223, 0 ) ]
+}
+
+[sub_resource type="Animation" id=290]
+resource_name = "changearcana"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("tarot:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.133972, 0.25 ),
+"update": 0,
+"values": [ Vector3( 0.001, 0.014, -0.149 ), Vector3( 0.001, 0.014, -0.149 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("tarot:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.133972, 0.25 ),
+"update": 0,
+"values": [ Vector3( -4.736, 17.223, 0 ), Vector3( -4.736, 377.223, 0 ) ]
+}
+
+[sub_resource type="Animation" id=291]
+resource_name = "changearcanaback"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("tarot:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.25, 0.133972 ),
+"update": 0,
+"values": [ Vector3( 0.001, 0.014, -0.149 ), Vector3( 0.001, 0.014, -0.149 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("tarot:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.25, 0.133972 ),
+"update": 0,
+"values": [ Vector3( -4.736, 377.223, 0 ), Vector3( -4.736, 17.223, 0 ) ]
+}
+
+[sub_resource type="Animation" id=288]
+resource_name = "float"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("tarot:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.757856, 0.757856 ),
+"update": 0,
+"values": [ Vector3( 0.001, 0.014, -0.149 ), Vector3( 0.001, 0.025, -0.149 ) ]
+}
+
+[sub_resource type="DynamicFont" id=292]
+size = 53
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=301]
+size = 23
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=299]
+size = 100
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=302]
+size = 37
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=298]
+size = 29
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=296]
+size = 33
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=297]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=300]
+shader = ExtResource( 7 )
+shader_param/blur_amount = 0.0
+shader_param/signal_quality = 0.0
+shader_param/bottom_strenth = 1.651
+
+[node name="Control" type="Control"]
+margin_right = 1024.0
+margin_bottom = 576.0
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 284 )
+margin_right = 1024.0
+margin_bottom = 576.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.529412 )
+material = SubResource( 295 )
+margin_left = 1031.0
+margin_top = -8.0
+margin_right = 1483.0
+margin_bottom = 736.0
+rect_rotation = 37.9
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -259.0
+margin_right = 518.0
+margin_bottom = 259.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 518, 518 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+msaa = 1
+render_target_update_mode = 3
+
+[node name="Spatial" type="Spatial" parent="ViewportContainer/Viewport"]
+
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.215207 )
+fov = 90.8
+
+[node name="tarot" type="MeshInstance" parent="ViewportContainer/Viewport/Spatial"]
+transform = Transform( 0.0454908, -0.00116431, 0.0140536, 0, 0.0474638, 0.00393226, -0.0141018, -0.00375594, 0.0453355, 0.001, 0.014, -0.149 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+material/1 = SubResource( 286 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="ViewportContainer/Viewport/Spatial"]
+transform = Transform( 0.965099, -0.119789, 0.232884, 0, 0.889257, 0.457408, -0.261886, -0.441444, 0.858221, 0, 0, 0 )
+light_color = Color( 0.290196, 0.407843, 0.521569, 1 )
+light_energy = 6.131
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ViewportContainer/Viewport/Spatial"]
+environment = SubResource( 287 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ViewportContainer/Viewport/Spatial"]
+anims/RESET = SubResource( 289 )
+anims/changearcana = SubResource( 290 )
+anims/changearcanaback = SubResource( 291 )
+anims/float = SubResource( 288 )
+
+[node name="ButtonGo" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -230.0
+margin_top = 450.0
+margin_right = -154.0
+margin_bottom = 511.0
+rect_scale = Vector2( 1.85682, 1.85682 )
+mouse_filter = 2
+custom_colors/default_color = Color( 0.741176, 0.670588, 1, 1 )
+custom_fonts/normal_font = SubResource( 292 )
+bbcode_enabled = true
+bbcode_text = "[wave]>"
+text = ">"
+
+[node name="Play" type="RichTextLabel" parent="."]
+anchor_left = 0.489
+anchor_top = 0.924
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -58.0
+margin_top = -82.224
+margin_right = 58.0
+margin_bottom = 3.77606
+rect_scale = Vector2( 1.85682, 1.85682 )
+mouse_filter = 2
+custom_colors/default_color = Color( 0, 0.478431, 1, 1 )
+custom_fonts/normal_font = SubResource( 301 )
+bbcode_enabled = true
+bbcode_text = "[wave][center]Sākt Spēli"
+text = "Sākt Spēli"
+fit_content_height = true
+scroll_active = false
+
+[node name="ButtonPlus" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.0
+margin_top = -127.0
+margin_right = 57.0001
+margin_bottom = 230.0
+rect_scale = Vector2( 1.85682, 1.85682 )
+mouse_filter = 2
+custom_colors/default_color = Color( 0.670588, 1, 0.721569, 1 )
+custom_fonts/normal_font = SubResource( 299 )
+bbcode_enabled = true
+bbcode_text = "[wave][center][center]+"
+text = "+"
+fit_content_height = true
+scroll_active = false
+
+[node name="ButtonMinus" type="RichTextLabel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.0
+margin_top = -127.0
+margin_right = 57.0001
+margin_bottom = 230.0
+rect_scale = Vector2( 1.85682, 1.85682 )
+mouse_filter = 2
+custom_colors/default_color = Color( 1, 0.670588, 0.670588, 1 )
+custom_fonts/normal_font = SubResource( 299 )
+bbcode_enabled = true
+bbcode_text = "[wave][center][center]-"
+text = "-"
+fit_content_height = true
+scroll_active = false
+
+[node name="ButtonBack" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -432.0
+margin_top = 450.0
+margin_right = -356.0
+margin_bottom = 511.0
+rect_scale = Vector2( 1.85682, 1.85682 )
+mouse_filter = 2
+custom_colors/default_color = Color( 0.741176, 0.670588, 1, 1 )
+custom_fonts/normal_font = SubResource( 292 )
+bbcode_enabled = true
+bbcode_text = "[right][wave]<"
+text = "<"
+
+[node name="Title2" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = -0.074
+anchor_right = 0.5
+anchor_bottom = 0.07
+margin_left = -719.0
+margin_top = 14.624
+margin_right = -121.0
+margin_bottom = 167.624
+custom_colors/default_color = Color( 0.639216, 0.215686, 0.972549, 1 )
+custom_fonts/normal_font = SubResource( 302 )
+bbcode_enabled = true
+bbcode_text = "[center][center][wave]< Atpakaļ"
+text = "< Atpakaļ"
+
+[node name="Forward" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 258.0
+margin_top = 450.0
+margin_right = 364.0
+margin_bottom = 543.0
+text = "change arcana"
+
+[node name="Add" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 504.0
+margin_top = 388.0
+margin_right = 610.0
+margin_bottom = 481.0
+text = "change arcana"
+
+[node name="PlayB" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 446.0
+margin_top = 482.0
+margin_right = 683.0
+margin_bottom = 545.0
+text = "change arcana"
+
+[node name="Remove" type="Button" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 504.0
+margin_top = 388.0
+margin_right = 610.0
+margin_bottom = 481.0
+text = "change arcana"
+
+[node name="Backward" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 126.0
+margin_top = 450.0
+margin_right = 232.0
+margin_bottom = 543.0
+text = "change arcana"
+
+[node name="BackToMenu" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 7.0
+margin_top = -4.0
+margin_right = 192.0
+margin_bottom = 60.0
+text = "change arcana"
+
+[node name="Title" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = -0.074
+anchor_right = 0.5
+anchor_bottom = 0.07
+margin_left = -299.0
+margin_right = 299.0
+margin_bottom = 153.0
+custom_colors/default_color = Color( 0.215686, 0.6, 0.972549, 1 )
+custom_fonts/normal_font = SubResource( 292 )
+bbcode_enabled = true
+bbcode_text = "[center][center][wave]Pielāgota Spēle"
+text = "Pielāgota Spēle"
+
+[node name="Choose" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.039
+anchor_right = 0.5
+anchor_bottom = 0.039
+margin_left = -290.0
+margin_top = 22.536
+margin_right = 308.0
+margin_bottom = 175.536
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 298 )
+bbcode_enabled = true
+bbcode_text = "[center][center][wave]Izvēlies 6 uzdevumus!"
+text = "Izvēlies 6 uzdevumus!"
+
+[node name="GameTitle" type="Label" parent="."]
+margin_left = 360.0
+margin_top = 153.0
+margin_right = 758.0
+margin_bottom = 296.0
+custom_colors/font_color = Color( 0.0392157, 0.423529, 0.713726, 1 )
+custom_fonts/font = SubResource( 296 )
+text = "aeaeaeaeaeaea"
+
+[node name="GameTitle2" type="Label" parent="."]
+margin_left = 913.0
+margin_top = 347.259
+margin_right = 1053.0
+margin_bottom = 490.259
+custom_colors/font_color = Color( 0.0392157, 0.423529, 0.713726, 1 )
+custom_fonts/font = SubResource( 296 )
+text = "Spēles:
+
+"
+
+[node name="GameDesc" type="Label" parent="."]
+margin_left = 373.0
+margin_top = 192.0
+margin_right = 771.0
+margin_bottom = 394.0
+custom_fonts/font = SubResource( 297 )
+text = "aeaeaeaeaeaeaaeaeaeaeaeaeaeaeaeaeaeaeaeoeaioifoewifowekeigreeigheruighredugrtuihrdguhjigriuhrdgirdjdiedrehgiuergeiurgjeroigjeoirgjeriojgjogegjoegjegjegjerjgejigroejigjogierjgigjroeroirjgejoigrjigerojgojijergerjiogrejoirgejregjoigrjeojoigrejregjiregojijorgjioreijogrejiorgejiojiorgijrgejiorgeijgrjioregjiorgejiogrejiogrejiogrejoigrejoirgejoigrejoigrejoi"
+autowrap = true
+
+[node name="ChosenGames" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 0.917
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -398.0
+margin_top = -145.0
+custom_fonts/font = SubResource( 297 )
+text = "\"Liepāja - kā pa notīm\"
+\"Liepāja - kā pa notīm\"
+\"Liepāja - kā pa notīm\"
+\"Liepāja - kā pa notīm\"
+\"Liepāja - kā pa notīm\"
+\"Liepāja - kā pa notīm\""
+align = 2
+autowrap = true
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+material = SubResource( 300 )
+margin_right = 1024.0
+margin_bottom = 576.0
+mouse_filter = 2
+
+[connection signal="animation_finished" from="ViewportContainer/Viewport/Spatial/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="button_up" from="Forward" to="." method="_on_Button_button_up"]
+[connection signal="mouse_entered" from="Forward" to="." method="_on_Forward_mouse_entered"]
+[connection signal="mouse_exited" from="Forward" to="." method="_on_Forward_mouse_exited"]
+[connection signal="button_up" from="Add" to="." method="_on_Add_button_up"]
+[connection signal="mouse_entered" from="Add" to="." method="_on_Add_mouse_entered"]
+[connection signal="mouse_exited" from="Add" to="." method="_on_Add_mouse_exited"]
+[connection signal="button_up" from="PlayB" to="." method="_on_PlayB_button_up"]
+[connection signal="mouse_entered" from="PlayB" to="." method="_on_PlayB_mouse_entered"]
+[connection signal="mouse_exited" from="PlayB" to="." method="_on_PlayB_mouse_exited"]
+[connection signal="button_up" from="Remove" to="." method="_on_Remove_button_up"]
+[connection signal="mouse_entered" from="Remove" to="." method="_on_Remove_mouse_entered"]
+[connection signal="mouse_exited" from="Remove" to="." method="_on_Remove_mouse_exited"]
+[connection signal="button_up" from="Backward" to="." method="_on_Backward_button_up"]
+[connection signal="mouse_entered" from="Backward" to="." method="_on_Backward_mouse_entered"]
+[connection signal="mouse_exited" from="Backward" to="." method="_on_Backward_mouse_exited"]
+[connection signal="button_up" from="BackToMenu" to="." method="_on_BackToMenu_button_up"]
+[connection signal="mouse_entered" from="BackToMenu" to="." method="_on_BackToMenu_mouse_entered"]
+[connection signal="mouse_exited" from="BackToMenu" to="." method="_on_BackToMenu_mouse_exited"]

@@ -1,0 +1,659 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/LiepajaGalvaspilseta/assets/images/new_background.jpg" type="Texture" id=1]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/LiepajaGalvaspilseta/TestQuiz.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/LiepajaGalvaspilseta/handler.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/LiepajaGalvaspilseta/ArchitectsDaughter.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/LiepajaGalvaspilseta/assets/images/bottle.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/LiepajaGalvaspilseta/assets/images/bloons.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/LiepajaGalvaspilseta/assets/images/buttonTexture1-removebg-preview.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/LiepajaGalvaspilseta/bg-removebg-preview.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/LiepajaGalvaspilseta/font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://explosion/Explosions.tscn" type="PackedScene" id=10]
+[ext_resource path="res://fake_confetti_particles.gd" type="Script" id=11]
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 45
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Abilities2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1222, 282 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Abilities2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.116629, 0.116629 ),
+"update": 0,
+"values": [ Vector2( 1222, 282 ), Vector2( 850, 282 ) ]
+}
+
+[sub_resource type="Shader" id=38]
+code = "//SHADER ORIGINALY CREADED BY \"ehj1\" FROM SHADERTOY
+//MODIFIED AND PORTED TO GODOT BY AHOPNESS (@ahopness)
+//LICENSE : CC0
+//COMATIBLE WITH : GLES2, GLES3
+//SHADERTOY LINK : https://www.shadertoy.com/view/ldXGW4
+
+shader_type canvas_item;
+
+uniform float vertJerkOpt :hint_range(0,1) = 0.2;
+uniform float vertMovementOpt :hint_range(0,1) = 0.0;
+uniform float bottomStaticOpt :hint_range(0,5) = 0.0;
+uniform float bottomStaticStrenth :hint_range(0.0, 1.5) = 0.7;
+uniform float scalinesOpt :hint_range(0,6) = 0.8;
+uniform float rgbOffsetOpt :hint_range(0,2) = 0.2;
+uniform float horzFuzzOpt :hint_range(0,5) = 0.15;
+
+// Noise generation functions borrowed from: 
+// https://github.com/ashima/webgl-noise/blob/master/src/noise2D.glsl
+
+vec3 mod289vec3(vec3 x){
+	return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec2 mod289vec2(vec2 x){
+	return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec3 permute(vec3 x){
+	return mod289vec3(((x*34.0)+1.0)*x);
+}
+
+float snoise(vec2 v){
+	const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0
+						0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)
+						-0.577350269189626, // -1.0 + 2.0 * C.x
+						0.024390243902439); // 1.0 / 41.0
+	// First corner
+	vec2 i  = floor(v + dot(v, C.yy) );
+	vec2 x0 = v -   i + dot(i, C.xx);
+	
+	// Other corners
+	vec2 i1;
+	//i1.x = step( x0.y, x0.x ); // x0.x > x0.y ? 1.0 : 0.0
+	//i1.y = 1.0 - i1.x;
+	i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+	// x0 = x0 - 0.0 + 0.0 * C.xx ;
+	// x1 = x0 - i1 + 1.0 * C.xx ;
+	// x2 = x0 - 1.0 + 2.0 * C.xx ;
+	vec4 x12 = x0.xyxy + C.xxzz;
+	x12.xy -= i1;
+	
+	// Permutations
+	i = mod289vec2(i); // Avoid truncation effects in permutation
+	vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+	+ i.x + vec3(0.0, i1.x, 1.0 ));
+	
+	vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+	m = m*m ;
+	m = m*m ;
+	
+	// Gradients: 41 points uniformly over a line, mapped onto a diamond.
+	// The ring size 17*17 = 289 is close to a multiple of 41 (41*7 = 287)
+	
+	vec3 x = 2.0 * fract(p * C.www) - 1.0;
+	vec3 h = abs(x) - 0.5;
+	vec3 ox = floor(x + 0.5);
+	vec3 a0 = x - ox;
+	
+	// Normalise gradients implicitly by scaling m
+	// Approximation of: m *= inversesqrt( a0*a0 + h*h );
+	m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+	
+	// Compute final noise value at P
+	vec3 g;
+	g.x  = a0.x  * x0.x  + h.x  * x0.y;
+	g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+	return 130.0 * dot(m, g);
+}
+
+float staticV(vec2 uv, float time){
+	float staticHeight = snoise(vec2(9.0,float(time)*1.2+3.0))*bottomStaticStrenth+5.0;
+	float staticAmount = snoise(vec2(1.0,time*1.2-6.0))*0.1+0.3;
+	float staticStrength = snoise(vec2(-9.75,time*0.6-3.0))*2.0+2.0;
+	return (1.0-step(snoise(vec2(5.0*pow(time,2.0)+pow(uv.x*7.0,1.2),pow((mod(time,100.0)+100.0)*uv.y*0.3+3.0,staticHeight))),staticAmount))*staticStrength;
+}
+
+
+void fragment(){
+	vec2 uv =  FRAGCOORD.xy / (1.0 / SCREEN_PIXEL_SIZE).xy;
+	
+	float jerkOffset = (1.0-step(snoise(vec2(TIME*1.3,5.0)),0.8))*0.05;
+	
+	float fuzzOffset = snoise(vec2(TIME*15.0,uv.y*80.0))*0.003;
+	float largeFuzzOffset = snoise(vec2(TIME*1.0,uv.y*25.0))*0.004;
+	
+	float vertMovementOn = (1.0-step(snoise(vec2(TIME*0.2,8.0)),0.4))*vertMovementOpt;
+	float vertJerk = (1.0-step(snoise(vec2(TIME*1.5,5.0)),0.6))*vertJerkOpt;
+	float vertJerk2 = (1.0-step(snoise(vec2(TIME*5.5,5.0)),0.2))*vertJerkOpt;
+	float yOffset = abs(sin(TIME)*4.0)*vertMovementOn+vertJerk*vertJerk2*0.3;
+	float _y = mod(uv.y+yOffset,1.0);
+	
+	
+	float xOffset = (fuzzOffset + largeFuzzOffset) * horzFuzzOpt;
+	
+	float staticVal = 0.0;
+	
+	for (float y = -1.0; y <= 1.0; y += 1.0) {
+		float maxDist = 5.0/200.0;
+		float dist = y/200.0;
+		staticVal += staticV(vec2(uv.x,uv.y+dist), TIME)*(maxDist-abs(dist))*1.5;
+	}
+	
+	staticVal *= bottomStaticOpt;
+	
+	float red = texture(SCREEN_TEXTURE, vec2(uv.x + xOffset -0.01*rgbOffsetOpt,_y)).r+staticVal;
+	float green = texture(SCREEN_TEXTURE, vec2(uv.x + xOffset,_y)).g+staticVal;
+	float blue = texture(SCREEN_TEXTURE, vec2(uv.x + xOffset +0.01*rgbOffsetOpt,_y)).b+staticVal;
+	
+	vec3 color = vec3(red,green,blue);
+	float scanline = sin(uv.y*800.0)*0.04*scalinesOpt;
+	color -= scanline;
+	
+	COLOR = vec4(color,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=37]
+shader = SubResource( 38 )
+shader_param/vertJerkOpt = 0.0
+shader_param/vertMovementOpt = 0.0
+shader_param/bottomStaticOpt = 0.0
+shader_param/bottomStaticStrenth = 0.358
+shader_param/scalinesOpt = 0.483
+shader_param/rgbOffsetOpt = 0.173
+shader_param/horzFuzzOpt = 0.176
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="bg" type="TextureRect" parent="."]
+margin_left = -81.0
+margin_top = -56.0
+margin_right = 1027.0
+margin_bottom = 668.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="ImageRect" type="TextureRect" parent="."]
+margin_left = 168.0
+margin_top = 20.0
+margin_right = 735.0
+margin_bottom = 316.0
+expand = true
+stretch_mode = 6
+
+[node name="bottle" type="TextureRect" parent="."]
+margin_left = 709.0
+margin_top = 340.0
+margin_right = 1125.0
+margin_bottom = 555.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="bloons" type="TextureRect" parent="."]
+margin_left = -152.0
+margin_top = -78.0
+margin_right = 355.0
+margin_bottom = 291.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
+
+[node name="abilities" type="ItemList" parent="."]
+margin_left = -335.0
+margin_top = 111.0
+margin_right = -116.0
+margin_bottom = 242.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+custom_styles/bg = SubResource( 5 )
+items = [ "Izdzēst pusi", null, false, "Izdzēst 1 atbildi", null, false, "Dubulti punkti", null, false, "Nejauši izvēlēties atbildi", null, false ]
+max_columns = 2
+same_column_width = true
+fixed_column_width = 432
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 80.0
+margin_top = 338.0
+margin_right = 830.0
+margin_bottom = 395.0
+
+[node name="QuestionTexts" type="Label" parent="VBoxContainer"]
+margin_right = 750.0
+margin_bottom = 29.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+align = 1
+valign = 1
+
+[node name="Points" type="Label" parent="."]
+margin_left = 800.0
+margin_top = 50.0
+margin_right = 970.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 3 )
+
+[node name="ScoreNumber" type="Label" parent="."]
+margin_left = 800.0
+margin_top = 100.0
+margin_right = 970.0
+margin_bottom = 150.0
+custom_fonts/font = SubResource( 4 )
+
+[node name="b1" type="TextureButton" parent="."]
+margin_left = 10.0
+margin_top = 439.0
+margin_right = 228.0
+margin_bottom = 577.0
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="b1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -93.0
+margin_top = -56.5
+margin_right = 93.0
+margin_bottom = 56.5
+input_pass_on_modal_close_click = false
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="b1/VBoxContainer"]
+margin_top = 41.0
+margin_right = 186.0
+margin_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]ĀēāĒčģōīĪū 1[/center]"
+text = "ĀēāĒčģōīĪū 1"
+fit_content_height = true
+scroll_active = false
+
+[node name="ViewportContainer" type="ViewportContainer" parent="b1"]
+visible = false
+margin_left = -103.0
+margin_top = -91.0
+margin_right = 115.0
+margin_bottom = 47.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Viewport" type="Viewport" parent="b1/ViewportContainer"]
+size = Vector2( 218, 138 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Spatial" parent="b1/ViewportContainer/Viewport" instance=ExtResource( 10 )]
+
+[node name="b2" type="TextureButton" parent="."]
+margin_left = 239.0
+margin_top = 439.0
+margin_right = 457.0
+margin_bottom = 577.0
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="b2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -93.0
+margin_top = -56.5
+margin_right = 93.0
+margin_bottom = 56.5
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="b2/VBoxContainer"]
+margin_top = 41.0
+margin_right = 186.0
+margin_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]ĀēāĒčģōīĪū 1[/center]"
+text = "ĀēāĒčģōīĪū 1"
+fit_content_height = true
+scroll_active = false
+
+[node name="ViewportContainer" type="ViewportContainer" parent="b2"]
+visible = false
+margin_left = -103.0
+margin_top = -91.0
+margin_right = 115.0
+margin_bottom = 47.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Viewport" type="Viewport" parent="b2/ViewportContainer"]
+size = Vector2( 218, 138 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Spatial" parent="b2/ViewportContainer/Viewport" instance=ExtResource( 10 )]
+
+[node name="b3" type="TextureButton" parent="."]
+margin_left = 458.0
+margin_top = 439.0
+margin_right = 676.0
+margin_bottom = 577.0
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="b3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -93.0
+margin_top = -56.5
+margin_right = 93.0
+margin_bottom = 56.5
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="b3/VBoxContainer"]
+margin_top = 41.0
+margin_right = 186.0
+margin_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]ĀēāĒčģōīĪū 1[/center]"
+text = "ĀēāĒčģōīĪū 1"
+fit_content_height = true
+scroll_active = false
+
+[node name="ViewportContainer" type="ViewportContainer" parent="b3"]
+visible = false
+margin_left = -103.0
+margin_top = -91.0
+margin_right = 115.0
+margin_bottom = 47.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Viewport" type="Viewport" parent="b3/ViewportContainer"]
+size = Vector2( 218, 138 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Spatial" parent="b3/ViewportContainer/Viewport" instance=ExtResource( 10 )]
+
+[node name="b4" type="TextureButton" parent="."]
+margin_left = 690.0
+margin_top = 439.0
+margin_right = 908.0
+margin_bottom = 577.0
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="b4"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -93.0
+margin_top = -56.5
+margin_right = 93.0
+margin_bottom = 56.5
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="b4/VBoxContainer"]
+margin_top = 41.0
+margin_right = 186.0
+margin_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]ĀēāĒčģōīĪū 1[/center]"
+text = "ĀēāĒčģōīĪū 1"
+fit_content_height = true
+scroll_active = false
+
+[node name="ViewportContainer" type="ViewportContainer" parent="b4"]
+visible = false
+margin_left = -103.0
+margin_top = -91.0
+margin_right = 115.0
+margin_bottom = 47.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Viewport" type="Viewport" parent="b4/ViewportContainer"]
+size = Vector2( 218, 138 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Spatial" parent="b4/ViewportContainer/Viewport" instance=ExtResource( 10 )]
+
+[node name="Victory" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -375.0
+margin_top = -114.5
+margin_right = 375.0
+margin_bottom = 114.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Abilities2" type="Sprite" parent="."]
+position = Vector2( 1222, 282 )
+rotation = 1.5708
+scale = Vector2( 0.706771, 0.706771 )
+texture = ExtResource( 8 )
+script = ExtResource( 3 )
+
+[node name="abl1" type="RichTextLabel" parent="Abilities2"]
+margin_left = -150.0
+margin_top = 171.0
+margin_right = 119.0
+margin_bottom = 229.0
+rect_rotation = -90.0
+mouse_filter = 2
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[color=black][center]Izdzēst pusi"
+text = "Izdzēst pusi"
+scroll_active = false
+
+[node name="abl2" type="RichTextLabel" parent="Abilities2"]
+margin_left = -80.0
+margin_top = 159.687
+margin_right = 189.0
+margin_bottom = 217.687
+rect_rotation = -90.0
+mouse_filter = 2
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[color=black][center]Izdzēst vienu"
+text = "Izdzēst vienu"
+scroll_active = false
+
+[node name="abl3" type="RichTextLabel" parent="Abilities2"]
+margin_left = -10.0
+margin_top = 171.0
+margin_right = 259.0
+margin_bottom = 229.0
+rect_rotation = -90.0
+mouse_filter = 2
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[color=black][center]x2 punkti"
+text = "x2 punkti"
+scroll_active = false
+
+[node name="abl4" type="RichTextLabel" parent="Abilities2"]
+margin_left = 70.0
+margin_top = 180.0
+margin_right = 440.0
+margin_bottom = 238.0
+rect_rotation = -90.0
+mouse_filter = 2
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[color=black][center]Izvēlet atbildi nejauši"
+text = "Izvēlet atbildi nejauši"
+fit_content_height = true
+scroll_active = false
+
+[node name="Arrow" type="RichTextLabel" parent="Abilities2"]
+margin_left = -444.274
+margin_top = 1255.0
+margin_right = -74.274
+margin_bottom = 1426.0
+rect_rotation = -90.0
+rect_scale = Vector2( 5, 5 )
+mouse_filter = 2
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[color=black][wave][center]<"
+text = "<"
+fit_content_height = true
+scroll_active = false
+
+[node name="abl8" type="ColorRect" parent="Abilities2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -150.0
+margin_top = 171.0
+margin_right = 119.0
+margin_bottom = 229.0
+rect_rotation = -90.0
+mouse_filter = 1
+
+[node name="abl7" type="ColorRect" parent="Abilities2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -79.9999
+margin_top = 159.687
+margin_right = 189.0
+margin_bottom = 217.687
+rect_rotation = -90.0
+mouse_filter = 1
+
+[node name="abl6" type="ColorRect" parent="Abilities2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -9.99988
+margin_top = 171.0
+margin_right = 259.0
+margin_bottom = 229.0
+rect_rotation = -90.0
+mouse_filter = 1
+
+[node name="abl5" type="ColorRect" parent="Abilities2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 70.0001
+margin_top = 180.0
+margin_right = 449.0
+margin_bottom = 238.0
+rect_rotation = -90.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="Abilities2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -77.0
+margin_top = 275.0
+margin_right = 47.0
+margin_bottom = 363.0
+mouse_filter = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Abilities2"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 7 )
+anims/move = SubResource( 8 )
+
+[node name="Confetti" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 11 )
+type = 1
+amount = 200
+colors = [ Color( 0, 0.529412, 0.317647, 1 ), Color( 0, 0.894118, 0.211765, 1 ), Color( 0.160784, 0.678431, 1, 1 ), Color( 0.494118, 0.145098, 0.32549, 1 ), Color( 0.513726, 0.462745, 0.611765, 1 ), Color( 1, 0, 0.301961, 1 ), Color( 1, 0.466667, 0.658824, 1 ), Color( 1, 0.639216, 0, 1 ), Color( 1, 0.92549, 0.152941, 1 ) ]
+timer_wait_time = 1.5
+
+[node name="CRT" type="ColorRect" parent="."]
+material = SubResource( 37 )
+margin_left = -116.0
+margin_top = -58.0
+margin_right = 1108.0
+margin_bottom = 665.0
+mouse_filter = 2
+
+[connection signal="item_activated" from="abilities" to="." method="_on_abilities_item_activated"]
+[connection signal="pressed" from="b1" to="." method="_on_b1_pressed"]
+[connection signal="pressed" from="b2" to="." method="_on_b2_pressed"]
+[connection signal="pressed" from="b3" to="." method="_on_b3_pressed"]
+[connection signal="pressed" from="b4" to="." method="_on_b4_pressed"]
+[connection signal="gui_input" from="Abilities2/abl8" to="Abilities2" method="_on_abl8_gui_input"]
+[connection signal="mouse_entered" from="Abilities2/abl8" to="Abilities2" method="_on_abl1_mouse_entered"]
+[connection signal="mouse_exited" from="Abilities2/abl8" to="Abilities2" method="_on_abl1_mouse_exited"]
+[connection signal="gui_input" from="Abilities2/abl7" to="Abilities2" method="_on_abl7_gui_input"]
+[connection signal="mouse_entered" from="Abilities2/abl7" to="Abilities2" method="_on_abl2_mouse_entered"]
+[connection signal="mouse_exited" from="Abilities2/abl7" to="Abilities2" method="_on_abl2_mouse_exited"]
+[connection signal="gui_input" from="Abilities2/abl6" to="Abilities2" method="_on_abl6_gui_input"]
+[connection signal="mouse_entered" from="Abilities2/abl6" to="Abilities2" method="_on_abl3_mouse_entered"]
+[connection signal="mouse_exited" from="Abilities2/abl6" to="Abilities2" method="_on_abl3_mouse_exited"]
+[connection signal="gui_input" from="Abilities2/abl5" to="Abilities2" method="_on_abl5_gui_input"]
+[connection signal="mouse_entered" from="Abilities2/abl5" to="Abilities2" method="_on_abl4_mouse_entered"]
+[connection signal="mouse_exited" from="Abilities2/abl5" to="Abilities2" method="_on_abl4_mouse_exited"]
+[connection signal="gui_input" from="Abilities2/ColorRect" to="." method="_on_ColorRect_gui_input"]
+[connection signal="mouse_entered" from="Abilities2/ColorRect" to="Abilities2" method="_on_ColorRect_mouse_entered"]
+[connection signal="mouse_exited" from="Abilities2/ColorRect" to="Abilities2" method="_on_ColorRect_mouse_exited"]

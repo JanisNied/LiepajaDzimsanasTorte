@@ -1,0 +1,365 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/Festival/assets/images/balloon1.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/Festival/assets/images/pngwing.com (5).png" type="Texture" id=2]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/Festival/assets/images/balloon3.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/Festival/assets/images/balloon2.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/Festival/assets/images/kindpng_6783178.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/Festival/quiz.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/Festival/ArchitectsDaughter.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://fake_confetti_particles.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.984314, 0.890196, 0.890196, 1 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 7 )
+
+[sub_resource type="Shader" id=38]
+code = "//SHADER ORIGINALY CREADED BY \"ehj1\" FROM SHADERTOY
+//MODIFIED AND PORTED TO GODOT BY AHOPNESS (@ahopness)
+//LICENSE : CC0
+//COMATIBLE WITH : GLES2, GLES3
+//SHADERTOY LINK : https://www.shadertoy.com/view/ldXGW4
+
+shader_type canvas_item;
+
+uniform float vertJerkOpt :hint_range(0,1) = 0.2;
+uniform float vertMovementOpt :hint_range(0,1) = 0.0;
+uniform float bottomStaticOpt :hint_range(0,5) = 0.0;
+uniform float bottomStaticStrenth :hint_range(0.0, 1.5) = 0.7;
+uniform float scalinesOpt :hint_range(0,6) = 0.8;
+uniform float rgbOffsetOpt :hint_range(0,2) = 0.2;
+uniform float horzFuzzOpt :hint_range(0,5) = 0.15;
+
+// Noise generation functions borrowed from: 
+// https://github.com/ashima/webgl-noise/blob/master/src/noise2D.glsl
+
+vec3 mod289vec3(vec3 x){
+	return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec2 mod289vec2(vec2 x){
+	return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec3 permute(vec3 x){
+	return mod289vec3(((x*34.0)+1.0)*x);
+}
+
+float snoise(vec2 v){
+	const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0
+						0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)
+						-0.577350269189626, // -1.0 + 2.0 * C.x
+						0.024390243902439); // 1.0 / 41.0
+	// First corner
+	vec2 i  = floor(v + dot(v, C.yy) );
+	vec2 x0 = v -   i + dot(i, C.xx);
+	
+	// Other corners
+	vec2 i1;
+	//i1.x = step( x0.y, x0.x ); // x0.x > x0.y ? 1.0 : 0.0
+	//i1.y = 1.0 - i1.x;
+	i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+	// x0 = x0 - 0.0 + 0.0 * C.xx ;
+	// x1 = x0 - i1 + 1.0 * C.xx ;
+	// x2 = x0 - 1.0 + 2.0 * C.xx ;
+	vec4 x12 = x0.xyxy + C.xxzz;
+	x12.xy -= i1;
+	
+	// Permutations
+	i = mod289vec2(i); // Avoid truncation effects in permutation
+	vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+	+ i.x + vec3(0.0, i1.x, 1.0 ));
+	
+	vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+	m = m*m ;
+	m = m*m ;
+	
+	// Gradients: 41 points uniformly over a line, mapped onto a diamond.
+	// The ring size 17*17 = 289 is close to a multiple of 41 (41*7 = 287)
+	
+	vec3 x = 2.0 * fract(p * C.www) - 1.0;
+	vec3 h = abs(x) - 0.5;
+	vec3 ox = floor(x + 0.5);
+	vec3 a0 = x - ox;
+	
+	// Normalise gradients implicitly by scaling m
+	// Approximation of: m *= inversesqrt( a0*a0 + h*h );
+	m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+	
+	// Compute final noise value at P
+	vec3 g;
+	g.x  = a0.x  * x0.x  + h.x  * x0.y;
+	g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+	return 130.0 * dot(m, g);
+}
+
+float staticV(vec2 uv, float time){
+	float staticHeight = snoise(vec2(9.0,float(time)*1.2+3.0))*bottomStaticStrenth+5.0;
+	float staticAmount = snoise(vec2(1.0,time*1.2-6.0))*0.1+0.3;
+	float staticStrength = snoise(vec2(-9.75,time*0.6-3.0))*2.0+2.0;
+	return (1.0-step(snoise(vec2(5.0*pow(time,2.0)+pow(uv.x*7.0,1.2),pow((mod(time,100.0)+100.0)*uv.y*0.3+3.0,staticHeight))),staticAmount))*staticStrength;
+}
+
+
+void fragment(){
+	vec2 uv =  FRAGCOORD.xy / (1.0 / SCREEN_PIXEL_SIZE).xy;
+	
+	float jerkOffset = (1.0-step(snoise(vec2(TIME*1.3,5.0)),0.8))*0.05;
+	
+	float fuzzOffset = snoise(vec2(TIME*15.0,uv.y*80.0))*0.003;
+	float largeFuzzOffset = snoise(vec2(TIME*1.0,uv.y*25.0))*0.004;
+	
+	float vertMovementOn = (1.0-step(snoise(vec2(TIME*0.2,8.0)),0.4))*vertMovementOpt;
+	float vertJerk = (1.0-step(snoise(vec2(TIME*1.5,5.0)),0.6))*vertJerkOpt;
+	float vertJerk2 = (1.0-step(snoise(vec2(TIME*5.5,5.0)),0.2))*vertJerkOpt;
+	float yOffset = abs(sin(TIME)*4.0)*vertMovementOn+vertJerk*vertJerk2*0.3;
+	float _y = mod(uv.y+yOffset,1.0);
+	
+	
+	float xOffset = (fuzzOffset + largeFuzzOffset) * horzFuzzOpt;
+	
+	float staticVal = 0.0;
+	
+	for (float y = -1.0; y <= 1.0; y += 1.0) {
+		float maxDist = 5.0/200.0;
+		float dist = y/200.0;
+		staticVal += staticV(vec2(uv.x,uv.y+dist), TIME)*(maxDist-abs(dist))*1.5;
+	}
+	
+	staticVal *= bottomStaticOpt;
+	
+	float red = texture(SCREEN_TEXTURE, vec2(uv.x + xOffset -0.01*rgbOffsetOpt,_y)).r+staticVal;
+	float green = texture(SCREEN_TEXTURE, vec2(uv.x + xOffset,_y)).g+staticVal;
+	float blue = texture(SCREEN_TEXTURE, vec2(uv.x + xOffset +0.01*rgbOffsetOpt,_y)).b+staticVal;
+	
+	vec3 color = vec3(red,green,blue);
+	float scanline = sin(uv.y*800.0)*0.04*scalinesOpt;
+	color -= scanline;
+	
+	COLOR = vec4(color,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=37]
+shader = SubResource( 38 )
+shader_param/vertJerkOpt = 0.0
+shader_param/vertMovementOpt = 0.0
+shader_param/bottomStaticOpt = 0.0
+shader_param/bottomStaticStrenth = 0.358
+shader_param/scalinesOpt = 0.483
+shader_param/rgbOffsetOpt = 0.173
+shader_param/horzFuzzOpt = 0.176
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -512.0
+margin_right = 512.0
+margin_bottom = 600.0
+
+[node name="Answers" type="ItemList" parent="."]
+anchor_left = 0.5
+anchor_top = 0.812
+anchor_right = 0.5
+anchor_bottom = 0.812
+margin_left = -170.5
+margin_top = -134.0
+margin_right = 170.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+auto_height = true
+same_column_width = true
+
+[node name="QuestionPicture" type="TextureRect" parent="."]
+margin_left = 170.0
+margin_top = 31.0
+margin_right = 852.0
+margin_bottom = 244.0
+expand = true
+stretch_mode = 6
+
+[node name="deco1" type="TextureRect" parent="."]
+margin_left = 768.0
+margin_top = 492.0
+margin_right = 970.0
+margin_bottom = 622.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="deco2" type="TextureRect" parent="."]
+modulate = Color( 0.85098, 0.0196078, 0.0196078, 1 )
+margin_left = -12.0
+margin_top = -105.0
+margin_right = 273.0
+margin_bottom = 411.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="deco3" type="TextureRect" parent="."]
+modulate = Color( 0.243137, 0.835294, 0.392157, 1 )
+margin_left = 38.0
+margin_top = 176.0
+margin_right = 323.0
+margin_bottom = 692.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="Points" type="Label" parent="."]
+margin_left = 818.0
+margin_top = 61.0
+margin_right = 1017.0
+margin_bottom = 111.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+align = 2
+
+[node name="Correct" type="Label" parent="."]
+margin_left = 818.0
+margin_top = 11.0
+margin_right = 1017.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+align = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -18.5
+margin_right = 260.0
+margin_bottom = 18.5
+alignment = 1
+
+[node name="Question" type="Label" parent="VBoxContainer"]
+margin_right = 520.0
+margin_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+autowrap = true
+
+[node name="abilities" type="ItemList" parent="."]
+visible = false
+margin_left = 771.0
+margin_top = 220.0
+margin_right = 1019.0
+margin_bottom = 260.0
+custom_fonts/font = SubResource( 6 )
+items = [ "Izdzēst pusi", null, false, "Izdzēst 1 atbildi", null, false, "Dubulti punkti", null, false, "Nejauši izvēlēties atbildi", null, false ]
+
+[node name="bal1" type="TextureButton" parent="."]
+margin_left = 821.0
+margin_top = 272.0
+margin_right = 905.0
+margin_bottom = 470.0
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="bal1"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -32.5
+margin_top = 30.0
+margin_right = 32.5
+margin_bottom = 75.0
+mouse_filter = 2
+bbcode_enabled = true
+bbcode_text = "[center]Izdzest pusi[/center]"
+text = "Izdzest pusi"
+fit_content_height = true
+scroll_active = false
+
+[node name="bal2" type="TextureButton" parent="."]
+margin_left = 924.0
+margin_top = 292.0
+margin_right = 1008.0
+margin_bottom = 525.0
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="bal2"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -23.0
+margin_top = 25.0
+margin_right = 26.0
+margin_bottom = 65.0
+mouse_filter = 2
+bbcode_enabled = true
+bbcode_text = "[center]Izdzest vienu"
+text = "Izdzest vienu"
+fit_content_height = true
+scroll_active = false
+
+[node name="bal3" type="TextureButton" parent="."]
+margin_left = 718.0
+margin_top = 309.0
+margin_right = 802.0
+margin_bottom = 507.0
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="bal3"]
+margin_top = 25.0
+margin_right = 77.0
+margin_bottom = 65.0
+mouse_filter = 2
+bbcode_enabled = true
+bbcode_text = "[center]Nezaudet punktus"
+text = "Nezaudet punktus"
+fit_content_height = true
+scroll_active = false
+
+[node name="Confetti" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 8 )
+type = 1
+amount = 200
+colors = [ Color( 0, 0.529412, 0.317647, 1 ), Color( 0, 0.894118, 0.211765, 1 ), Color( 0.160784, 0.678431, 1, 1 ), Color( 0.494118, 0.145098, 0.32549, 1 ), Color( 0.513726, 0.462745, 0.611765, 1 ), Color( 1, 0, 0.301961, 1 ), Color( 1, 0.466667, 0.658824, 1 ), Color( 1, 0.639216, 0, 1 ), Color( 1, 0.92549, 0.152941, 1 ) ]
+timer_wait_time = 1.5
+
+[node name="CRT" type="ColorRect" parent="."]
+material = SubResource( 37 )
+margin_left = -116.0
+margin_top = -58.0
+margin_right = 1108.0
+margin_bottom = 665.0
+mouse_filter = 2
+
+[connection signal="item_selected" from="Answers" to="." method="_on_Answers_item_selected"]
+[connection signal="item_activated" from="abilities" to="." method="_on_abilities_item_activated"]
+[connection signal="pressed" from="bal1" to="." method="_on_bal1_pressed"]
+[connection signal="pressed" from="bal2" to="." method="_on_bal2_pressed"]
+[connection signal="pressed" from="bal3" to="." method="_on_bal3_pressed"]
