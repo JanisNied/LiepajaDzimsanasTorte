@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/galvaspilsetaCorrectAnswer.mp3-fd865d530adc8314477d4b22ca96e596.mp3str"
+
+[deps]
+
+source_file="res://Scenes/MinigameMenu/Minigames/Festival/galvaspilsetaCorrectAnswer.mp3"
+dest_files=[ "res://.import/galvaspilsetaCorrectAnswer.mp3-fd865d530adc8314477d4b22ca96e596.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

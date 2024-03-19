@@ -19,7 +19,7 @@ func _unhandled_input(event):
 	if !orchestra.playing:
 		return
 	
-	if !event.is_echo() and event.scancode == KEY_SPACE and !vis:
+	if  Input.is_action_just_pressed("space") and !vis:
 		self.visible = true
 		vis = true
 		self.modulate.a = 1

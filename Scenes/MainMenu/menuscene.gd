@@ -9,6 +9,7 @@ func _ready():
 	SoundManager.play_bgm("sunMenuMusic")
 	if Global.youwenttocustomgame:
 		$Camera/CameraAnim.play("ZoomToTable")
+		$RuleboardCreditBoard/Area.show()
 		enableAreas()
 	else:	
 		animationplayer.play("Enter")

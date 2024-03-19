@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/christmas-new-year-european-union-concept-christmas-tree-gift-boxes-with-eu-flag-3d-rendering-isolated-white-background_823159-7670.jpg-f09ae09f4e50290aac721f8b14e39f96.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Scenes/MinigameMenu/Minigames/Eiropa/assets/images/christmas-new-year-european-union-concept-christmas-tree-gift-boxes-with-eu-flag-3d-rendering-isolated-white-background_823159-7670.jpg"
+dest_files=[ "res://.import/christmas-new-year-european-union-concept-christmas-tree-gift-boxes-with-eu-flag-3d-rendering-isolated-white-background_823159-7670.jpg-f09ae09f4e50290aac721f8b14e39f96.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

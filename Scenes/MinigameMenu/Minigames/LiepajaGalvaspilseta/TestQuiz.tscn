@@ -64,7 +64,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1222, 282 ), Vector2( 850, 282 ) ]
 }
 
-[sub_resource type="Shader" id=36]
+[sub_resource type="Shader" id=38]
 code = "//SHADER ORIGINALY CREADED BY \"ehj1\" FROM SHADERTOY
 //MODIFIED AND PORTED TO GODOT BY AHOPNESS (@ahopness)
 //LICENSE : CC0
@@ -191,7 +191,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=37]
-shader = SubResource( 36 )
+shader = SubResource( 38 )
 shader_param/vertJerkOpt = 0.0
 shader_param/vertMovementOpt = 0.0
 shader_param/bottomStaticOpt = 0.0

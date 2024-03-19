@@ -48,6 +48,16 @@ var availableChoices : Dictionary = {
 		"name":"\"Liepājā - Kā pa notīm\"",
 		"desc":"Vai jūs zinat šīs vietas? Šeit jums jāpastaigā pa Liepāju kā pa notīm! Sakartojiet slaidu puzli noteiktā laikā, darot to ar vismazāko gajienu skaitu, lai saņemtu visvairāk punktus!",
 		"scene":"KaPaNotim"
+	},
+	"Festivals":{
+		"name":"\"Liepājas Festivāli\"",
+		"desc":"Iedziļinies festivāla noskaņā! Šeit ir visi jautājumi par Liepājas festivāliem!",
+		"scene":"festivals_quiz"
+	},
+	"Eiropa":{
+		"name":"\"Liepāja un Eiropa\"",
+		"desc":"2 dažādas lietas, cieši saistītas. Starp Eiropu un Liepāju ir savu veidu attiecības. Šeit varat uzzināt visu par to!",
+		"scene":"eiropa_quiz"
 	}	
 }
 

@@ -8,6 +8,8 @@ var arcana2 = preload("res://Assets/fool/hp.tres")
 var arcana3 = preload("res://Assets/fool/empress.tres")
 var arcana4 = preload("res://Assets/fool/emperor.tres")
 var arcana5 = preload("res://Assets/fool/hiero.tres")
+var arcana6 = preload("res://Assets/fool/lovers.tres")
+var arcana7 = preload("res://Assets/fool/chariot.tres")
 var choiceKeys = Global.availableChoices.keys()
 var limit = Global.countMinigames()
 var minigameList : Array
@@ -37,15 +39,15 @@ func updateList():
 func upd():
 	print(minigameList.size())
 	if minigameList.size() < 5:
-		$Choose.bbcode_text = "[center][center][wave]Izvēlies "+str(maxTasks-minigameList.size())+" uzdevumus!"
+		$Choose.bbcode_text = "[center][center][wave]Izvēlies vēl "+str(maxTasks-minigameList.size())+" uzdevumus!"
 		$Play.hide()
 		$PlayB.hide()
 	elif minigameList.size() == 5:
 		$Play.hide()
 		$PlayB.hide()
-		$Choose.bbcode_text = "[center][center][wave]Izvēlies "+str(maxTasks-minigameList.size())+" uzdevumu!"
+		$Choose.bbcode_text = "[center][center][wave]Izvēlies vēl "+str(maxTasks-minigameList.size())+" uzdevumu!"
 	else:
-		$Choose.bbcode_text = "[center][center][wave]Varat sākt spēli!"	
+		$Choose.bbcode_text = "[center][center][wave]Varat sākt spēlēt!"	
 		$Play.show()
 		$PlayB.show()
 	if chosenArcana in disallowedIndexes:
@@ -57,13 +59,22 @@ func upd():
 		$Remove.show()
 		$Remove.disabled = false
 	else:
-		$ButtonPlus.show()
-		$Add.show()
-		$Add.disabled = false
-		
-		$ButtonMinus.hide()
-		$Remove.hide()
-		$Remove.disabled = true	
+		if minigameList.size() != 6:
+			$ButtonPlus.show()
+			$Add.show()
+			$Add.disabled = false
+			
+			$ButtonMinus.hide()
+			$Remove.hide()
+			$Remove.disabled = true
+		else:
+			$ButtonPlus.hide()
+			$Add.hide()
+			$Add.disabled = true
+			
+			$ButtonMinus.hide()
+			$Remove.hide()
+			$Remove.disabled = true			
 	$GameTitle.text = Global.availableChoices[choiceKeys[chosenArcana]]["name"]
 	$GameDesc.text = Global.availableChoices[choiceKeys[chosenArcana]]["desc"]
 	updateList()
@@ -127,6 +138,10 @@ func retrieveTexture():
 			return arcana4
 		5:
 			return arcana5
+		6:
+			return arcana6
+		7:
+			return arcana7		
 	pass		
 
 
