@@ -8,10 +8,11 @@ var maxAttempt = 3
 var img : Array = ["res://Assets/rozulaukums.png", "res://Assets/muzejs.png","res://Assets/muzikaspilseta.png"]
 var used : Array 
 
-var time = [3, 3, 3, 3]
+var time = [300, 300, 300, 300]
 var points = [10, 10, 10, 10]
 
 func _ready():
+	SoundManager.play_bgm("timetime")
 	newRound()
 	
 func _process(delta):
@@ -55,6 +56,7 @@ func endGame():
 	if score <= 0:
 		Global.queueforretry()
 	yield(get_tree().create_timer(3), "timeout")
+	SoundManager.stop("timetime")
 	Global.transition("MinigameMenu")
 	
 func _on_Board_game_won():
@@ -63,11 +65,11 @@ func _on_Board_game_won():
 	if attempt == maxAttempt:
 		$Press.show()
 		score += int((points[attempt-1] - ($GameView/Board.move_count * 0.02)))
-		$Press.bbcode_text = "[center][center][wave]Jūs saņēmāt "+str(score)+" punktus!"
+		$Press.bbcode_text = "[center][center][wave]Jūs saņēmāt "+str(score)+" punktus par šo spēli!"
 		endGame()
 	else:
 		$Press.show()
-		$Press.bbcode_text = "[center][center][wave]"+str(int((points[attempt-1] - ($GameView/Board.move_count * 0.02))))+"punkti saņemti! Spiežat uz bildi lai turpinātu!"
+		$Press.bbcode_text = "[center][center][wave]"+str(int((points[attempt-1] - ($GameView/Board.move_count * 0.02))))+" punkti saņemti! Spiežat uz bildi lai turpinātu!"
 		score += int((points[attempt-1] - ($GameView/Board.move_count * 0.02)))
 		print(score) 
 		attempt += 1
