@@ -15,8 +15,12 @@ var answerOptions
 var correctOption
 var questionNum = 0
 var invul=0
-func _ready():
+
+func _process(delta):
+	Global.time += delta
 	
+func _ready():
+	SoundManager.play_bgm("wayoflife")
 	QuestionItems = $VBoxContainer/Question
 	QuestionImage = $QuestionPicture
 	Correct = $Correct
@@ -73,6 +77,7 @@ func show_result():
 	if points <= 0:
 		Global.queueforretry()	
 	yield(get_tree().create_timer(4), "timeout")
+	SoundManager.stop("wayoflife")
 	Global.transition("MinigameMenu")
 	
 

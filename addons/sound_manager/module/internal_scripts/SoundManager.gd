@@ -595,7 +595,7 @@ func _ready() -> void:
 func get_sound_manager_settings()-> void:
 	var data_settings : Dictionary
 	var file: File = File.new()
-	file.open("res://addons/sound_manager/SoundManager.json", File.READ)
+	file.open("res://addons/sound_manager/SoundManager.tres", File.READ)
 	var json : JSONParseResult = JSON.parse(file.get_as_text())
 	file.close()
 	if typeof(json.result) == TYPE_DICTIONARY:
@@ -609,7 +609,7 @@ func get_sound_manager_settings()-> void:
 		debug = data_settings["DEBUG"]
 		
 	elif debug:
-		print_debug("Failed to load the sound manager's settings file: " + 'res://addons/sound_manager/SoundManager.json')
+		print_debug("Failed to load the sound manager's settings file: " + 'res://addons/sound_manager/SoundManager.tres')
 
 
 # Calls the play method as deferred

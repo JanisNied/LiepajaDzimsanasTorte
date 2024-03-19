@@ -28,6 +28,7 @@ func _process(delta):
 	Global.time += delta
 
 func _ready():
+	SoundManager.play_bgm("wayoflife")
 	QuestionItems = $VBoxContainer/QuestionTexts
 	QuestionImage = $ImageRect
 	b1 = $b1
@@ -96,6 +97,7 @@ func show_result():
 	if points <= 0:
 		Global.queueforretry()
 	yield(get_tree().create_timer(4), "timeout")
+	SoundManager.stop("wayoflife")
 	Global.transition("MinigameMenu")
 	
 func refresh_scene():

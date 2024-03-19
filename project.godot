@@ -199,6 +199,7 @@ enabled=PoolStringArray( "res://addons/goutte.camera.trackball/plugin.cfg", "res
 [global]
 
 stretch=false
+filter=false
 
 [gui]
 
