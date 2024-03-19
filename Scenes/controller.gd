@@ -8,17 +8,57 @@ var arcana2 = preload("res://Assets/fool/hp.tres")
 var arcana3 = preload("res://Assets/fool/empress.tres")
 var arcana4 = preload("res://Assets/fool/emperor.tres")
 var arcana5 = preload("res://Assets/fool/hiero.tres")
+var choiceKeys = Global.availableChoices.keys()
+var limit = Global.countMinigames()
+var minigameList : Array
+var disallowedIndexes : Array
+var lastdirection = "forward"
+var maxTasks = 6
+
 
 func _ready():
+	upd()
 	$ViewportContainer/Viewport/Spatial/AnimationPlayer.play("float")
+	
+func upd():
+	print(minigameList.size())
+	if minigameList.size() < 5:
+		$Choose.bbcode_text = "[center][center][wave]Izvēlies "+str(maxTasks-minigameList.size())+" uzdevumus!"
+	elif minigameList.size() == 5:
+		$Choose.bbcode_text = "[center][center][wave]Izvēlies "+str(maxTasks-minigameList.size())+" uzdevumu!"
+	else:
+		$Choose.bbcode_text = ""	
+	if chosenArcana in disallowedIndexes:
+		$ButtonPlus.hide()
+		$Add.hide()
+		$Add.disabled = true
+		
+		$ButtonMinus.show()
+		$Remove.show()
+		$Remove.disabled = false
+	else:
+		$ButtonPlus.show()
+		$Add.show()
+		$Add.disabled = false
+		
+		$ButtonMinus.hide()
+		$Remove.hide()
+		$Remove.disabled = true	
+	$GameTitle.text = Global.availableChoices[choiceKeys[chosenArcana]]["name"]
+	$GameDesc.text = Global.availableChoices[choiceKeys[chosenArcana]]["desc"]
+		
 func buttonPressAction():
 	$Forward.disabled = true
 	$Backward.disabled = true
-	$GameTitle.bbcode_text = "[center] "+retrieveText()+" spēle:"
+	$Add.disabled = true
+	upd()
 	
 func _on_Button_button_up():
+	lastdirection = "forward"
 	chosenArcana += 1
-	if chosenArcana > 5:
+	if chosenArcana in disallowedIndexes:
+		chosenArcana += 1
+	if chosenArcana > limit:
 		chosenArcana = 0
 	buttonPressAction()	
 	animForwards(retrieveTexture())							
@@ -74,14 +114,16 @@ func retrieveTexture():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	$Forward.disabled = false
 	$Backward.disabled = false
+	$Add.disabled = false
 	$ViewportContainer/Viewport/Spatial/AnimationPlayer.play("float")
 	pass
 
 
 func _on_Backward_button_up():
+	lastdirection = "backward"
 	chosenArcana -= 1
 	if chosenArcana < 0:
-		chosenArcana = 5
+		chosenArcana = limit
 	buttonPressAction()	
 	animBackwards(retrieveTexture())
 	pass # Replace with function body.
@@ -96,9 +138,49 @@ func _on_Forward_mouse_exited():
 	pass
 
 func _on_Backward_mouse_entered():
-	$ButtonBack.bbcode_text = "[wave][color=white]<"
+	$ButtonBack.bbcode_text = "[right][wave][color=white]<"
 	pass # Replace with function body.
 
 func _on_Backward_mouse_exited():
-	$ButtonBack.bbcode_text = "[wave]<"
+	$ButtonBack.bbcode_text = "[right][wave]<"
 	pass		
+
+
+func _on_Add_button_up():
+	disallowedIndexes.append(chosenArcana)
+	minigameList.append(choiceKeys[chosenArcana])
+	print(minigameList)
+	print(disallowedIndexes)
+	upd()
+	yield(get_tree().create_timer(1), "timeout")
+	pass # Replace with function body.
+
+
+func _on_Add_mouse_entered():
+	$ButtonPlus.bbcode_text = "[wave][center][center][color=white]+"
+	pass # Replace with function body.
+
+
+func _on_Add_mouse_exited():
+	$ButtonPlus.bbcode_text = "[wave][center][center]+"
+	pass # Replace with function body.
+
+
+func _on_Remove_button_up():
+	disallowedIndexes.erase(chosenArcana)
+	minigameList.erase(choiceKeys[chosenArcana])
+	print(minigameList)
+	print(disallowedIndexes)
+	upd()
+	yield(get_tree().create_timer(1), "timeout")
+	pass # Replace with function body.
+
+
+func _on_Remove_mouse_entered():
+	$ButtonMinus.bbcode_text = "[wave][center][center][color=white]-"
+	pass # Replace with function body.
+
+
+func _on_Remove_mouse_exited():
+	$ButtonMinus.bbcode_text = "[wave][center][center]-"
+	pass # Replace with function body.

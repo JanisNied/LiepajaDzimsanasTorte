@@ -23,6 +23,10 @@ var questionList
 var answerOptions
 var correctOption
 var questionNum = 0
+
+func _process(delta):
+	Global.time += delta
+
 func _ready():
 	QuestionItems = $VBoxContainer/QuestionTexts
 	QuestionImage = $ImageRect

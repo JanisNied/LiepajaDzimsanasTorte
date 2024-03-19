@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/tarot.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Assets/fool/fool.tres" type="Material" id=2]
 [ext_resource path="res://Assets/fool/texture card back.jpg" type="Texture" id=3]
 [ext_resource path="res://Scenes/controller.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Handvetica Neue Regular Trial.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/The Happy Giraffe Demo.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/CabinSketch-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://GodotRetro/Screen Shaders/NTSC.shader" type="Shader" id=7]
 
 [sub_resource type="Shader" id=283]
 code = "/*
@@ -419,11 +421,35 @@ outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=293]
-size = 34
+[sub_resource type="DynamicFont" id=299]
+size = 100
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=298]
+size = 29
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=296]
+size = 33
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=297]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=300]
+shader = ExtResource( 7 )
+shader_param/blur_amount = 0.0
+shader_param/signal_quality = 0.2
+shader_param/bottom_strenth = 1.13
 
 [node name="Control" type="Control"]
 margin_right = 1024.0
@@ -488,9 +514,9 @@ anims/float = SubResource( 288 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -230.0
-margin_top = 467.0
+margin_top = 450.0
 margin_right = -154.0
-margin_bottom = 528.0
+margin_bottom = 511.0
 rect_scale = Vector2( 1.85682, 1.85682 )
 mouse_filter = 2
 custom_colors/default_color = Color( 0.741176, 0.670588, 1, 1 )
@@ -499,77 +525,152 @@ bbcode_enabled = true
 bbcode_text = "[wave]>"
 text = ">"
 
+[node name="ButtonPlus" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.0
+margin_top = -127.0
+margin_right = 57.0001
+margin_bottom = 230.0
+rect_scale = Vector2( 1.85682, 1.85682 )
+mouse_filter = 2
+custom_colors/default_color = Color( 0.670588, 1, 0.721569, 1 )
+custom_fonts/normal_font = SubResource( 299 )
+bbcode_enabled = true
+bbcode_text = "[wave][center][center]+"
+text = "+"
+fit_content_height = true
+scroll_active = false
+
+[node name="ButtonMinus" type="RichTextLabel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.0
+margin_top = -127.0
+margin_right = 57.0001
+margin_bottom = 230.0
+rect_scale = Vector2( 1.85682, 1.85682 )
+mouse_filter = 2
+custom_colors/default_color = Color( 1, 0.670588, 0.670588, 1 )
+custom_fonts/normal_font = SubResource( 299 )
+bbcode_enabled = true
+bbcode_text = "[wave][center][center]-"
+text = "-"
+fit_content_height = true
+scroll_active = false
+
 [node name="ButtonBack" type="RichTextLabel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -362.0
-margin_top = 467.0
-margin_right = -286.0
-margin_bottom = 528.0
+margin_left = -432.0
+margin_top = 450.0
+margin_right = -356.0
+margin_bottom = 511.0
 rect_scale = Vector2( 1.85682, 1.85682 )
 mouse_filter = 2
 custom_colors/default_color = Color( 0.741176, 0.670588, 1, 1 )
 custom_fonts/normal_font = SubResource( 292 )
 bbcode_enabled = true
-bbcode_text = "[wave]<"
+bbcode_text = "[right][wave]<"
 text = "<"
 
 [node name="Forward" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 258.0
-margin_top = 476.0
+margin_top = 450.0
 margin_right = 364.0
-margin_bottom = 569.0
+margin_bottom = 543.0
+text = "change arcana"
+
+[node name="Add" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 504.0
+margin_top = 388.0
+margin_right = 610.0
+margin_bottom = 481.0
+text = "change arcana"
+
+[node name="Remove" type="Button" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 504.0
+margin_top = 388.0
+margin_right = 610.0
+margin_bottom = 481.0
 text = "change arcana"
 
 [node name="Backward" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 126.0
-margin_top = 476.0
+margin_top = 450.0
 margin_right = 232.0
-margin_bottom = 569.0
+margin_bottom = 543.0
 text = "change arcana"
 
 [node name="Title" type="RichTextLabel" parent="."]
 anchor_left = 0.5
-anchor_top = 0.039
+anchor_top = -0.074
 anchor_right = 0.5
-anchor_bottom = 0.039
+anchor_bottom = 0.07
 margin_left = -299.0
 margin_right = 299.0
 margin_bottom = 153.0
 custom_colors/default_color = Color( 0.215686, 0.6, 0.972549, 1 )
 custom_fonts/normal_font = SubResource( 292 )
 bbcode_enabled = true
-bbcode_text = "[center][wave]Pielāgota Spēle"
+bbcode_text = "[center][center][wave]Pielāgota Spēle"
 text = "Pielāgota Spēle"
 
-[node name="GameTitle" type="RichTextLabel" parent="."]
+[node name="Choose" type="RichTextLabel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.039
 anchor_right = 0.5
 anchor_bottom = 0.039
-margin_left = -283.0
-margin_top = 125.536
-margin_right = 205.0
-margin_bottom = 278.536
-custom_colors/default_color = Color( 0.74902, 0.909804, 0.835294, 1 )
-custom_fonts/normal_font = SubResource( 293 )
+margin_left = -290.0
+margin_top = 22.536
+margin_right = 308.0
+margin_bottom = 175.536
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 298 )
 bbcode_enabled = true
-bbcode_text = "[center]Pirmā spēle:"
-text = "Pirmā spēle:"
+bbcode_text = "[center][center][wave]Izvēlies 6 uzdevumus!"
+text = "Izvēlies 6 uzdevumus!"
 
-[node name="ItemList" type="ItemList" parent="."]
-margin_left = 368.0
-margin_top = 195.0
-margin_right = 576.0
-margin_bottom = 353.0
-items = [ "Item 0", null, false, "Item 1", null, false, "Item 2", null, false ]
+[node name="GameTitle" type="Label" parent="."]
+margin_left = 360.0
+margin_top = 153.0
+margin_right = 758.0
+margin_bottom = 296.0
+custom_colors/font_color = Color( 0.0392157, 0.423529, 0.713726, 1 )
+custom_fonts/font = SubResource( 296 )
+text = "aeaeaeaeaeaea"
+
+[node name="GameDesc" type="Label" parent="."]
+margin_left = 373.0
+margin_top = 192.0
+margin_right = 771.0
+margin_bottom = 394.0
+custom_fonts/font = SubResource( 297 )
+text = "aeaeaeaeaeaeaaeaeaeaeaeaeaeaeaeaeaeaeaeoeaioifoewifowekeigreeigheruighredugrtuihrdguhjigriuhrdgirdjdiedrehgiuergeiurgjeroigjeoirgjeriojgjogegjoegjegjegjerjgejigroejigjogierjgigjroeroirjgejoigrjigerojgojijergerjiogrejoirgejregjoigrjeojoigrejregjiregojijorgjioreijogrejiorgejiojiorgijrgejiorgeijgrjioregjiorgejiogrejiogrejiogrejoigrejoirgejoigrejoigrejoi"
+autowrap = true
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+material = SubResource( 300 )
+margin_right = 1024.0
+margin_bottom = 576.0
+mouse_filter = 2
 
 [connection signal="animation_finished" from="ViewportContainer/Viewport/Spatial/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="button_up" from="Forward" to="." method="_on_Button_button_up"]
 [connection signal="mouse_entered" from="Forward" to="." method="_on_Forward_mouse_entered"]
 [connection signal="mouse_exited" from="Forward" to="." method="_on_Forward_mouse_exited"]
+[connection signal="button_up" from="Add" to="." method="_on_Add_button_up"]
+[connection signal="mouse_entered" from="Add" to="." method="_on_Add_mouse_entered"]
+[connection signal="mouse_exited" from="Add" to="." method="_on_Add_mouse_exited"]
+[connection signal="button_up" from="Remove" to="." method="_on_Remove_button_up"]
+[connection signal="mouse_entered" from="Remove" to="." method="_on_Remove_mouse_entered"]
+[connection signal="mouse_exited" from="Remove" to="." method="_on_Remove_mouse_exited"]
 [connection signal="button_up" from="Backward" to="." method="_on_Backward_button_up"]
 [connection signal="mouse_entered" from="Backward" to="." method="_on_Backward_mouse_entered"]
 [connection signal="mouse_exited" from="Backward" to="." method="_on_Backward_mouse_exited"]

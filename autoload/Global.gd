@@ -42,16 +42,11 @@ var availableChoices : Dictionary = {
 		"desc":"Iztēlojiet, ka dzīvojam galvaspilsētā! Šeit būs daži atjautības jautājumi par Liepāju! Ar bultiņu pa kreisi var izmantot kādu palīglīdzekli vienu reizi.",
 		"scene":"TestQuiz"
 	},
-	"testactivity6":{
-		"name":"Null",
-		"desc":"This is a description, this is a description, this is a description",
-		"scene":"MinigameMenu"
+	"KaPaNotim":{
+		"name":"Liepājā - Kā pa notīm",
+		"desc":"Vai jūs zinat šīs vietas? Šeit jums jāpastaigā pa Liepāju kā pa notīm! Sakartojiet slaidu puzli noteiktā laikā lai saņemtu visvairāk punktus!",
+		"scene":"KaPaNotim"
 	},
-	"testactivity7":{
-		"name":"Null",
-		"desc":"This is a description, this is a description, this is a description",
-		"scene":"MinigameMenu"
-	}
 }
 
 func pickActivitiesRandomly():
@@ -92,6 +87,15 @@ func printAllActivities():
 	for i in range(len(allowedActivities)):
 		string += str(allowedActivities[i])+". "+chosenActivities[i]["name"]+"\n"
 	print(string)
+
+func countMinigames():
+	var counter : int = -1
+	var keys = availableChoices.keys()
+	for i in keys:
+		if availableChoices[i]["name"] != "Null":
+			counter += 1
+	print("Count: ", counter)		
+	return counter	
 
 func sortActivities():
 	if allowedActivities.size() > 1:
