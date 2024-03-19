@@ -64,13 +64,13 @@ func _on_Board_game_won():
 	$Timer.stop()
 	if attempt == maxAttempt:
 		$Press.show()
-		score += int((points[attempt-1] - ($GameView/Board.move_count * 0.02)))
+		score += int((points[attempt-1] - ($GameView/Board.move_count * 0.03)))
 		$Press.bbcode_text = "[center][center][wave]Jūs saņēmāt "+str(score)+" punktus par šo spēli!"
 		endGame()
 	else:
 		$Press.show()
 		$Press.bbcode_text = "[center][center][wave]"+str(int((points[attempt-1] - ($GameView/Board.move_count * 0.02))))+" punkti saņemti! Spiežat uz bildi lai turpinātu!"
-		score += int((points[attempt-1] - ($GameView/Board.move_count * 0.02)))
+		score += int((points[attempt-1] - ($GameView/Board.move_count * 0.03)))
 		print(score) 
 		attempt += 1
 		yield(get_tree().create_timer(2), "timeout")
