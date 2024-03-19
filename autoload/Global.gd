@@ -46,7 +46,7 @@ var availableChoices : Dictionary = {
 		"name":"Liepājā - Kā pa notīm",
 		"desc":"Vai jūs zinat šīs vietas? Šeit jums jāpastaigā pa Liepāju kā pa notīm! Sakartojiet slaidu puzli noteiktā laikā lai saņemtu visvairāk punktus!",
 		"scene":"KaPaNotim"
-	},
+	}	
 }
 
 func pickActivitiesRandomly():
