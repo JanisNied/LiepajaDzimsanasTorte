@@ -11,7 +11,7 @@ var files = ["res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/experimental/r
 var music = ["rokenrols", "tumanesi", "kakugis"]
 var length = [16, 28, 20] # 20
 
-var file_path = "res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/questions.tres"
+var file_path = "res://Scenes/MinigameMenu/Minigames/IzcilakieMuziki/questions.json"
 var questions : Dictionary
 
 func _ready():

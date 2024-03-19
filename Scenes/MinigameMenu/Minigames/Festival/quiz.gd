@@ -112,7 +112,7 @@ func _on_abilities_item_activated(index):
 		_on_Answers_item_selected(randi()%4)
 func get_question():
 	var f = File.new()
-	f.open("res://Scenes/MinigameMenu/Minigames/Festival/assets/texts/festivalsQuestionList.tres",File.READ)
+	f.open("res://Scenes/MinigameMenu/Minigames/Festival/assets/texts/festivalsQuestionList.json",File.READ)
 	var index=0
 	var content = f.get_as_text()
 	while index<questionNum:
@@ -123,7 +123,7 @@ func get_question():
 	f.close()
 func get_options():
 	var f = File.new()
-	f.open("res://Scenes/MinigameMenu/Minigames/Festival/assets/texts/festivalsAnswers.tres",File.READ)
+	f.open("res://Scenes/MinigameMenu/Minigames/Festival/assets/texts/festivalsAnswers.json",File.READ)
 	var index=0
 	while index<questionNum:
 		f.get_line()
@@ -132,7 +132,7 @@ func get_options():
 	#print(answerOptions)
 func get_correct():
 	var f = File.new()
-	f.open("res://Scenes/MinigameMenu/Minigames/Festival/assets/texts/festivalsCorrect.tres",File.READ)
+	f.open("res://Scenes/MinigameMenu/Minigames/Festival/assets/texts/festivalsCorrect.json",File.READ)
 	var index=0
 	while index<questionNum:
 		f.get_line()

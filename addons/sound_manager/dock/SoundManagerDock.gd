@@ -181,10 +181,10 @@ func parse_json_string(json_file: String) -> Dictionary:
 
 
 func read_sound_manager_settings() -> bool:
-	if not file.file_exists("res://addons/sound_manager/SoundManager.tres"):
+	if not file.file_exists("res://addons/sound_manager/SoundManager.json"):
 		return false
 	
-	file.open("res://addons/sound_manager/SoundManager.tres", File.READ)
+	file.open("res://addons/sound_manager/SoundManager.json", File.READ)
 	data_settings = parse_json_string(file.get_as_text())
 	file.close()
 	
@@ -211,7 +211,7 @@ func update_sound_manager_settings() -> void:
 	data_settings["PRELOAD_RES"] = PRELOAD_RES
 	data_settings["PREINSTANTIATE_NODES"] = PREINSTANTIATE_NODES
 	data_settings["DEBUG"] = DEBUG
-	file.open("res://addons/sound_manager/SoundManager.tres", File.WRITE)
+	file.open("res://addons/sound_manager/SoundManager.json", File.WRITE)
 	file.store_string(JSON.print(data_settings, "", true))
 	file.close()
 	self.update_gui()

@@ -152,9 +152,9 @@ text = "Atlicis Laiks:
 [node name="Time2" type="RichTextLabel" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -436.0
+margin_top = -404.05
 margin_right = 228.0
-margin_bottom = -208.0
+margin_bottom = -176.05
 custom_fonts/normal_font = SubResource( 20 )
 bbcode_enabled = true
 bbcode_text = "[center]Gājieni:
