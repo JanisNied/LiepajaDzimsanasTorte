@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/KaPaNotim/src/scenes/board/board.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MinigameMenu/Minigames/KaPaNotim/KaPaNotim.gd" type="Script" id=2]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=17]
 bg_color = Color( 0.0784314, 0.0901961, 0.133333, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -11,7 +11,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.2, 0.231373, 0.309804, 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.780392, 0.780392, 0.780392, 1 )
 draw_center = false
 border_width_left = 2
@@ -20,54 +20,67 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=19]
 bg_color = Color( 0, 0, 0, 0.588235 )
 border_color = Color( 0, 0, 0, 0 )
 
-[node name="Notis" type="Node2D"]
+[sub_resource type="DynamicFontData" id=16]
+font_path = "res://Assets/The Happy Giraffe Demo.ttf"
+
+[sub_resource type="DynamicFont" id=20]
+size = 36
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 16 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 28
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 16 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 2 )
 
-[node name="Control" type="Control" parent="."]
-margin_right = 1024.0
-margin_bottom = 576.0
-
-[node name="GameView" type="MarginContainer" parent="Control"]
+[node name="GameView" type="MarginContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -160.0
-margin_top = -160.0
-margin_right = 160.0
-margin_bottom = 160.0
+margin_left = -280.5
+margin_top = -280.5
+margin_right = 280.5
+margin_bottom = 280.5
 rect_min_size = Vector2( 320, 320 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="BackgroundBoard" type="Panel" parent="Control/GameView"]
-margin_right = 320.0
-margin_bottom = 320.0
+[node name="BackgroundBoard" type="Panel" parent="GameView"]
+margin_right = 561.0
+margin_bottom = 561.0
 mouse_filter = 2
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 17 )
 
-[node name="Board" parent="Control/GameView" instance=ExtResource( 1 )]
-margin_right = 320.0
-margin_bottom = 320.0
+[node name="Board" parent="GameView" instance=ExtResource( 1 )]
+margin_right = 561.0
+margin_bottom = 561.0
 
-[node name="BoardBorder" type="Panel" parent="Control/GameView"]
-margin_right = 320.0
-margin_bottom = 320.0
+[node name="BoardBorder" type="Panel" parent="GameView"]
+margin_right = 561.0
+margin_bottom = 561.0
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 18 )
 
-[node name="StartOverlay" type="Panel" parent="Control/GameView"]
+[node name="StartOverlay" type="Panel" parent="GameView"]
 visible = false
-margin_right = 320.0
-margin_bottom = 320.0
+margin_right = 561.0
+margin_bottom = 561.0
 mouse_filter = 2
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 19 )
 
-[node name="TextOverlay" type="Label" parent="Control/GameView/StartOverlay"]
+[node name="TextOverlay" type="Label" parent="GameView/StartOverlay"]
 margin_right = 328.0
 margin_bottom = 319.0
 text = "Click to start"
@@ -77,10 +90,73 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BlockGame" type="ColorRect" parent="Control"]
+[node name="Time" type="RichTextLabel" parent="."]
+margin_right = 228.0
+margin_bottom = 228.0
+custom_fonts/normal_font = SubResource( 20 )
+bbcode_enabled = true
+bbcode_text = "[center][center]Atlicis Laiks:
+00:00"
+text = "Atlicis Laiks:
+00:00"
+
+[node name="Time2" type="RichTextLabel" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -436.0
+margin_right = 228.0
+margin_bottom = -208.0
+custom_fonts/normal_font = SubResource( 20 )
+bbcode_enabled = true
+bbcode_text = "[center]Gājieni:
+0"
+text = "Gājieni:
+0"
+
+[node name="Press" type="RichTextLabel" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -228.0
+margin_right = 228.0
+custom_fonts/normal_font = SubResource( 21 )
+bbcode_enabled = true
+bbcode_text = "[center][center][wave]Spiežat uz bildes lai sāktu spēli!"
+text = "Spiežat uz bildes lai sāktu spēli!"
+
+[node name="Rounds" type="RichTextLabel" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -228.0
+margin_bottom = 228.0
+custom_fonts/normal_font = SubResource( 20 )
+bbcode_enabled = true
+bbcode_text = "[center][center]Piegājiens:
+1/2"
+text = "Piegājiens:
+1/2"
+
+[node name="BlockGame" type="ColorRect" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 308.0
 margin_top = 92.0
 margin_right = 715.0
 margin_bottom = 482.0
+
+[node name="Restart" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 308.0
+margin_top = 92.0
+margin_right = 715.0
+margin_bottom = 482.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+
+[connection signal="game_started" from="GameView/Board" to="." method="_on_Board_game_started"]
+[connection signal="game_won" from="GameView/Board" to="." method="_on_Board_game_won"]
+[connection signal="moves_updated" from="GameView/Board" to="." method="_on_Board_moves_updated"]
+[connection signal="gui_input" from="Restart" to="." method="_on_Restart_gui_input"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
