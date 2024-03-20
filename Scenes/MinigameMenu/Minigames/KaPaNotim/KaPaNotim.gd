@@ -27,13 +27,7 @@ func newRound():
 	while path in used:
 		path = img[randi() % img.size()]
 	used.append(path)
-	var image = Image.new()
-	var err = image.load(path)
-	if err != OK:
-		print("[PUZZLE] image failed to load..")
-		pass
-	var texture = ImageTexture.new()
-	texture.create_from_image(image, 0)
+	var texture = load(path)
 	$GameView/Board.update_background_texture(texture)
 
 func _on_Board_moves_updated(move_count):
