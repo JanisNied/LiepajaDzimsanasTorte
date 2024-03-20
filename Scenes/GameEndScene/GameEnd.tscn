@@ -1,11 +1,11 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/MainMenu/tvmat.tres" type="Material" id=1]
 [ext_resource path="res://Scenes/MainMenu/television/tv.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://Scenes/MainMenu/syferfontein_18d_clear_puresky_4k.hdr" type="Texture" id=3]
 [ext_resource path="res://Scenes/GameEndScene/GameEnd.gd" type="Script" id=4]
 [ext_resource path="res://Assets/AEROSWIFT.otf" type="DynamicFontData" id=5]
-[ext_resource path="res://Assets/The Happy Giraffe Demo.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Scenes/GameEndScene/fonteae.tres" type="DynamicFont" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -116,11 +116,6 @@ font_data = ExtResource( 5 )
 albedo_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="CubeMesh" id=20]
-
-[sub_resource type="DynamicFont" id=21]
-size = 19
-use_filter = true
-font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=14]
 length = 0.001
@@ -269,7 +264,7 @@ margin_left = -57.0
 margin_top = -32.0
 margin_right = 57.0
 custom_colors/font_color_hover = Color( 0.384314, 0.992157, 0.34902, 1 )
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = ExtResource( 6 )
 text = "Beigt Spēli"
 
 [node name="LineEdit" type="LineEdit" parent="NameField"]
@@ -278,6 +273,7 @@ margin_top = 350.0
 margin_right = 599.0
 margin_bottom = 390.0
 rect_pivot_offset = Vector2( 1396, 378 )
+custom_fonts/font = ExtResource( 6 )
 align = 1
 max_length = 10
 

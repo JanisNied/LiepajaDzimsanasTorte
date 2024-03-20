@@ -9,7 +9,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd C:/Users/JanisN/Downloads/source/texture card back.jpg
 
 newmtl playing_card
 Ns 224.999985
@@ -19,4 +18,3 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd C:/Users/JanisN/Downloads/source/texture card wheatstone.jpg

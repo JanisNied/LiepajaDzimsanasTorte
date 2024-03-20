@@ -9,7 +9,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd C:/Users/JanisN/Downloads/z book/FINAL/text_alpha.jpg
 
 newmtl Texture-base
 Ns 20.000006
@@ -19,7 +18,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd C:/Users/JanisN/Downloads/z book/FINAL/texture.jpg
 
 newmtl Texture-base-gloss-jpg
 Ns 74.642616
@@ -29,5 +27,3 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 3
-map_Kd C:/Users/JanisN/Downloads/z book/FINAL/texture.jpg
-map_refl C:/Map #10
