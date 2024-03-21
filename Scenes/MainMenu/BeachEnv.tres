@@ -1,6 +1,6 @@
 [gd_resource type="Environment" load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/MainMenu/syferfontein_18d_clear_puresky_4k.hdr" type="Texture" id=1]
+[ext_resource path="res://Scenes/MainMenu/kloppenheim_02_puresky_2k.hdr" type="Texture" id=1]
 
 [sub_resource type="PanoramaSky" id=12]
 panorama = ExtResource( 1 )
@@ -26,6 +26,8 @@ ssao_intensity2 = 3.44
 ssao_bias = 0.086
 ssao_light_affect = 0.13
 ssao_edge_sharpness = 0.0
+dof_blur_far_enabled = true
+dof_blur_far_distance = 1.45
 dof_blur_near_enabled = true
 dof_blur_near_distance = 18.99
 dof_blur_near_transition = 118.01

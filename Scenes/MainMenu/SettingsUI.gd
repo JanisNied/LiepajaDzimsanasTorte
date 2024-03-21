@@ -30,6 +30,7 @@ func _on_Master_value_changed(value):
 	SoundManager.set_bgm_volume_db(linear2db(newValMus))
 	SoundManager.set_se_volume_db(linear2db(newValSFX))
 	SoundManager.set_volume_db(linear2db(newValMus), "sunMenuMusic")
+	SoundManager.set_volume_db(linear2db(newValMus), "days")
 	pass 
 
 
@@ -41,6 +42,7 @@ func _on_Music_value_changed(value):
 	var newValMus = masterVol * musicVol
 	SoundManager.set_bgm_volume_db(linear2db(newValMus))
 	SoundManager.set_volume_db(linear2db(newValMus), "sunMenuMusic")
+	SoundManager.set_volume_db(linear2db(newValMus), "days")
 	pass
 
 func _on_SFX_value_changed(value):

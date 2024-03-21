@@ -2583,10 +2583,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.98645, 0, 0.785583 )
 shape = SubResource( 286 )
 
 [node name="SpotLight" type="SpotLight" parent="CakeDecor"]
-transform = Transform( -1.96461, -1.44852, 1.91101, 0.0161376, 2.46244, 1.88309, -2.39789, 1.20335, -1.55303, 1.63343, 2.73201, -1.67941 )
+transform = Transform( -1.96461, -1.44852, 1.911, 0.0161376, 2.46244, 1.88309, -2.39789, 1.20335, -1.55303, 1.3651, 2.73201, -1.54019 )
 visible = false
-light_color = Color( 0.00784314, 0.87451, 0.988235, 1 )
-light_energy = 21.214
+light_color = Color( 0.06, 0.62, 2.62, 1 )
+light_energy = 3.359
+spot_range = 2.01679
 
 [node name="Environment" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 16.3651, 0 )
@@ -2653,10 +2654,18 @@ shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = ExtResource( 9 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Environment/WorldEnvironment"]
+[node name="Day" type="DirectionalLight" parent="Environment/WorldEnvironment"]
 transform = Transform( 0.0067195, 0.241425, -0.970396, 0, 0.970418, 0.241431, 0.999977, -0.00162229, 0.00652072, -0.102328, 6.3098, 158.897 )
 light_color = Color( 0.819608, 0.643137, 0.164706, 1 )
 light_energy = 16.0
+shadow_enabled = true
+shadow_bias = -0.069
+
+[node name="Night" type="DirectionalLight" parent="Environment/WorldEnvironment"]
+transform = Transform( 0.0067195, 0.241425, -0.970396, 0, 0.970418, 0.241431, 0.999977, -0.00162229, 0.00652072, -0.102328, 6.3098, 158.897 )
+visible = false
+light_color = Color( 0.45098, 0.545098, 0.639216, 1 )
+light_energy = 0.846
 shadow_enabled = true
 shadow_bias = -0.069
 
@@ -3420,7 +3429,7 @@ script = ExtResource( 45 )
 [node name="NoteikumiTitle" type="Label3D" parent="RuleboardCreditBoard"]
 transform = Transform( 0.00041912, 0, 0, 0, 0.000419121, 0, 0, 0, 0.000419122, -36.7878, 148.065, 1.63281 )
 pixel_size = 128.0
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color( 8.54, 0.16, 0.05, 1 )
 outline_modulate = Color( 1, 1, 1, 1 )
 text = "Noteikumi"
 font = SubResource( 105 )
@@ -3428,7 +3437,7 @@ font = SubResource( 105 )
 [node name="Arrow" type="Label3D" parent="RuleboardCreditBoard"]
 transform = Transform( 0.000846982, 0, 0, 0, 0.000846985, 0, 0, 0, 0.000846987, -68.4906, 149.894, 1.63281 )
 pixel_size = 128.0
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color( 8.54, 0.16, 0.05, 1 )
 outline_modulate = Color( 1, 1, 1, 1 )
 text = "<"
 font = SubResource( 105 )
@@ -3511,7 +3520,7 @@ text = "Top 10"
 font = SubResource( 223 )
 
 [node name="Exit" type="Label3D" parent="Leaderboard"]
-transform = Transform( -5.07422e-14, -1.16085e-06, -5.07425e-14, 0, -5.07425e-14, 1.16085e-06, -1.16085e-06, 5.07425e-14, 2.21803e-21, -0.0323505, 0.00113964, -0.0709 )
+transform = Transform( -5.07422e-14, -1.16085e-06, -5.07425e-14, 0, -5.07425e-14, 1.16085e-06, -1.16085e-06, 5.07425e-14, 2.21803e-21, -0.032351, 0.00113964, -0.0709 )
 pixel_size = 128.0
 modulate = Color( 0, 0, 0, 1 )
 outline_modulate = Color( 1, 1, 1, 1 )

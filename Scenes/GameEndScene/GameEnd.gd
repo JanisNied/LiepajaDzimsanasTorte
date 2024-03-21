@@ -8,6 +8,7 @@ const file_path : String = "user://leaderboard.data"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.youwenttocustomgame = false
 	SoundManager.play_bgm("mistic")
 	$Camera/AnimationPlayer.play("ShowScore")
 	yield(get_tree().create_timer(4.5), "timeout")
