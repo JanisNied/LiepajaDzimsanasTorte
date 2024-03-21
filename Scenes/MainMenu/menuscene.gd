@@ -1,9 +1,9 @@
 extends Spatial
 
-var anim = false
+var anim = true
 var rulesRead = false
 var nightenv = load("res://NightSky.tres")
-
+var init = false
 var nightmusic = true
 var daymusic = true
 
@@ -24,11 +24,15 @@ func _ready():
 		disableAreas()
 		yield(get_tree().create_timer(0.5), "timeout")
 		anim = true;
+		init = true
 
 func _process(delta):
 	var num = int(Time.get_time_string_from_system(false).substr(0,2))
 	if (0 <= num and num < 5):
 		if nightmusic:
+			if not anim and init:
+				anim = true
+				animationplayer.play("ZoomToTable 2")
 			daymusic = true
 			time = "night"
 			$CakeDecor/SpotLight.light_energy = 1.519
@@ -41,6 +45,9 @@ func _process(delta):
 			nightmusic = false
 	else:
 		if daymusic:
+			if not anim and init:
+				anim = true
+				animationplayer.play("ZoomToTable 2")
 			nightmusic = true
 			time = "day"
 			$CakeDecor/SpotLight.light_energy = 3.359
