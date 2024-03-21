@@ -19,6 +19,7 @@ func _ready():
 		$Camera/CameraAnim.play("ZoomToTable")
 		$RuleboardCreditBoard/Area.show()
 		enableAreas()
+		init = not Global.youwenttocustomgame
 	else:	
 		animationplayer.play("Enter")
 		disableAreas()
@@ -30,9 +31,12 @@ func _process(delta):
 	var num = int(Time.get_time_string_from_system(false).substr(0,2))
 	if (0 <= num and num < 5):
 		if nightmusic:
-			if not anim and init:
+			init = true
+			if not anim and init and not $Namebook/Settings.visible and not $Namebook/Ready.visible and not $Namebook/Rules.visible and $LeaderboardSelector/Area.visible and $Camera.fov == 70:
 				anim = true
 				animationplayer.play("ZoomToTable 2")
+			$Candles/MeshInstance.show()
+			$Candles2/MeshInstance2.show()	
 			daymusic = true
 			time = "night"
 			$CakeDecor/SpotLight.light_energy = 1.519
@@ -45,11 +49,14 @@ func _process(delta):
 			nightmusic = false
 	else:
 		if daymusic:
-			if not anim and init:
+			init = true
+			if not anim and init and not $Namebook/Settings.visible and not $Namebook/Ready.visible and not $Namebook/Rules.visible and $LeaderboardSelector/Area.visible and $Camera.fov == 70:
 				anim = true
 				animationplayer.play("ZoomToTable 2")
 			nightmusic = true
 			time = "day"
+			$Candles/MeshInstance.hide()
+			$Candles2/MeshInstance2.hide()
 			$CakeDecor/SpotLight.light_energy = 3.359
 			$CakeDecor/SpotLight.light_color = Color(0.06, 0.62, 1.62)
 			$Environment/WorldEnvironment/Day.show()

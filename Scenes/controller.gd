@@ -20,6 +20,7 @@ var maxTasks = 6
 
 func _ready():
 	SoundManager.stop("sunMenuMusic")
+	SoundManager.stop("days")
 	SoundManager.play_bgm("betweenDoors")
 	upd()
 	$ViewportContainer/Viewport/Spatial/AnimationPlayer.play("float")
