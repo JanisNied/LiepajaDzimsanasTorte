@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/knocking.mp3-07106dcc66fbae6e3b8044d6c5f03586.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/knocking.mp3"
+dest_files=[ "res://.import/knocking.mp3-07106dcc66fbae6e3b8044d6c5f03586.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

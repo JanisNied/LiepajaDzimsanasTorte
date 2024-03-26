@@ -1,0 +1,499 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://tram.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/TrainHorror/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/TrainHorror/Knock.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/TrainHorror/Horror.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Handvetica Neue Regular Trial.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Sounds/Music/knocking.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/TrainHorror/House_env.tres" type="Environment" id=7]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/TrainHorror/Intruders.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/TrainHorror/Randomizer.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/MinigameMenu/Minigames/TrainHorror/thingy.tres" type="Material" id=10]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.92434, 0.620001, 9.65382 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.92434, 3.13733, 9.65382 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 1, 1, 1.42758 )
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 0.192298, 0.0489842, 0.53988 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.192298, 0.294693, 0.0388463 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.192298, 0.0489842, 0.205123 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 1, 1, 0.43263 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 0.132786, 0.772436, 0.50487 )
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 0.132786, 0.772436, 0.517775 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 0.132786, 0.772436, 0.288762 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 29
+font_data = ExtResource( 5 )
+
+[sub_resource type="SphereMesh" id=13]
+
+[sub_resource type="Animation" id=16]
+resource_name = "end"
+
+[sub_resource type="Animation" id=15]
+resource_name = "start"
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="tram" parent="." instance=ExtResource( 1 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 7 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.497164, 0, 0, 0, 0.497164, 0, 0, 0, 0.497164, -0.0972211, 1.40225, -1.56233 )
+
+[node name="Colliders" type="Spatial" parent="."]
+
+[node name="Floor" type="StaticBody" parent="Colliders"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.620658, 0.438239 )
+shape = SubResource( 2 )
+
+[node name="Floor2" type="StaticBody" parent="Colliders"]
+transform = Transform( 0.232787, 0, 0, 0, 1, 0, 0, 0, 1, 1.66756, 2.37375, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Floor2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.620658, 0.438239 )
+shape = SubResource( 3 )
+
+[node name="Floor4" type="StaticBody" parent="Colliders"]
+transform = Transform( -1.01755e-08, 0, -1, 0, 1, 0, 0.232787, 0, -4.37114e-08, 1.66756, 2.37375, -7.12392 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Floor4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.620658, 0.438239 )
+shape = SubResource( 3 )
+
+[node name="Floor5" type="StaticBody" parent="Colliders"]
+transform = Transform( -1.01755e-08, 0, -1, 0, 1, 0, 0.232787, 0, -4.37114e-08, 1.66756, 2.37375, 7.5725 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Floor5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.620658, 0.438239 )
+shape = SubResource( 3 )
+
+[node name="Floor6" type="StaticBody" parent="Colliders"]
+transform = Transform( 0.164606, 0, 0.707107, 0, 1, 0, -0.164606, 0, 0.707107, -0.800338, 2.37375, 7.78529 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Floor6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.620658, 0.438239 )
+shape = SubResource( 3 )
+
+[node name="Floor7" type="StaticBody" parent="Colliders"]
+transform = Transform( 0.164606, 0, -0.707107, 0, 1, 0, 0.164606, 0, 0.707107, 0.783814, 2.37375, 7.49208 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Floor7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.620658, 0.438239 )
+shape = SubResource( 3 )
+
+[node name="Floor3" type="StaticBody" parent="Colliders"]
+transform = Transform( 0.232787, 0, 0, 0, 1, 0, 0, 0, 1, -1.49115, 2.37375, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Floor3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.620658, 0.438239 )
+shape = SubResource( 3 )
+
+[node name="StaticBody" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32151, -0.0814143, 3.64657 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="StaticBody21" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73056, 0.0637337, 0.345833 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.648054 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody21"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody22" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73334, 0.0637337, -0.508687 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody22"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody22"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody37" type="StaticBody" parent="Colliders"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.14699, 0.0081175, 0.859693 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody37"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody37"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody38" type="StaticBody" parent="Colliders"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.14699, 0.0081175, 0.373034 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody38"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody38"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody39" type="StaticBody" parent="Colliders"]
+transform = Transform( 0.45399, 0, 0.891006, 0, 1, 0, -0.891006, 0, 0.45399, 0.655884, 0.0081175, 7.53931 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody39"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody39"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody40" type="StaticBody" parent="Colliders"]
+transform = Transform( 0.45399, 0, 0.891006, 0, 1, 0, -0.891006, 0, 0.45399, 0.465126, 0.0081175, 7.91768 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody40"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody40"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody41" type="StaticBody" parent="Colliders"]
+transform = Transform( 0.43048, 0, -0.9026, 0, 1, 0, 0.9026, 0, 0.43048, -1.11995, 0.0081175, 6.45837 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody41"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody41"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody42" type="StaticBody" parent="Colliders"]
+transform = Transform( 0.43048, 0, -0.9026, 0, 1, 0, 0.9026, 0, 0.43048, -1.30399, 0.0081175, 6.07668 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody42"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody42"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody43" type="StaticBody" parent="Colliders"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.09748, 0.0081175, 5.2517 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody43"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody43"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody44" type="StaticBody" parent="Colliders"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.09748, 0.0081175, 4.80329 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody44"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody44"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody45" type="StaticBody" parent="Colliders"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.09748, 0.0081175, 4.80329 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody45"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.801394, 0.946196, -0.228604 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody45"]
+transform = Transform( 1, 0, 0, 0, 0.965304, -0.261128, 0, 0.261128, 0.965304, 0.801394, 1.20919, -0.0316622 )
+shape = SubResource( 7 )
+
+[node name="StaticBody2" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36407, -0.0814143, 3.64657 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody2"]
+shape = SubResource( 4 )
+
+[node name="StaticBody3" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13289, -0.0814143, 3.64657 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.115548, -0.133597, -0.985802 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.46652, -0.133597, 0.996686 )
+shape = SubResource( 5 )
+
+[node name="StaticBody4" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32151, -0.0814143, -4.00211 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody4"]
+shape = SubResource( 4 )
+
+[node name="StaticBody5" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36407, -0.0814143, -4.00211 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody5"]
+shape = SubResource( 4 )
+
+[node name="StaticBody6" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13289, -0.0814143, -4.00211 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13888, -0.133597, -0.985802 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Colliders/StaticBody6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41287, -0.133597, 0.996686 )
+shape = SubResource( 5 )
+
+[node name="Knocking" type="Area" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358474, 0, 0 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Knocking"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4349, 1.63604, 1.25213 )
+shape = SubResource( 12 )
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Colliders/Knocking"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58763, 1.54606, 1.25922 )
+stream = ExtResource( 6 )
+
+[node name="Knocking2" type="Area" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358474, 0, -2.85919 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Knocking2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4349, 1.63604, 1.25213 )
+shape = SubResource( 11 )
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Colliders/Knocking2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58763, 1.54606, 1.19335 )
+stream = ExtResource( 6 )
+
+[node name="Knocking3" type="Area" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358474, 0, -7.2952 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Knocking3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4349, 1.63604, 1.17745 )
+shape = SubResource( 9 )
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Colliders/Knocking3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58763, 1.54606, 1.19335 )
+stream = ExtResource( 6 )
+
+[node name="Knocking4" type="Area" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358474, 0, 4.61798 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/Knocking4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4349, 1.63604, 1.17745 )
+shape = SubResource( 9 )
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Colliders/Knocking4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58763, 1.54606, 1.19335 )
+stream = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Tutorial" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 576.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -332.5
+margin_top = -139.5
+margin_right = 332.5
+margin_bottom = 139.5
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center]Spied 'F' lai ieslēgtu lukturi
+Spied 'Q' lai atvērtu atskaites izvelni"
+text = "Spied 'F' lai ieslēgtu lukturi
+Spied 'Q' lai atvērtu atskaites izvelni"
+fit_content_height = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Tutorial"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -332.0
+margin_top = -68.0
+margin_right = 333.0
+margin_bottom = 140.0
+custom_colors/default_color = Color( 0.776471, 0.337255, 1, 1 )
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center]Atskaites izvelnē:
+Bultiņa uz augšu un leju lai pārvietotos tajā!
+Atstarpes poga lai iesniegt ziņojumu!"
+text = "Atskaites izvelnē:
+Bultiņa uz augšu un leju lai pārvietotos tajā!
+Atstarpes poga lai iesniegt ziņojumu!"
+fit_content_height = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Tutorial"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -332.0
+margin_top = 41.0
+margin_right = 333.0
+margin_bottom = 140.0
+custom_colors/default_color = Color( 0.529412, 0.694118, 1, 1 )
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center]Spied jebko lai turpinātu..."
+text = "Spied jebko lai turpinātu..."
+fit_content_height = true
+
+[node name="Events" type="Spatial" parent="."]
+script = ExtResource( 9 )
+
+[node name="Intruders" type="Spatial" parent="Events"]
+script = ExtResource( 8 )
+
+[node name="Intruder1" type="Spatial" parent="Events/Intruders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30421, 1.69737, -6.10615 )
+visible = false
+
+[node name="Eye1" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0171021, -0.00419954, 0.00909272, -0.000245775, 0.0178114, 0.00868858, -0.0100127, -0.00761024, 0.0153176, 4.01169, 0.340432, -0.22148 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye2" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0171021, -0.00419954, 0.00909272, -0.000245775, 0.0178114, 0.00868858, -0.0100127, -0.00761024, 0.0153176, 4.06928, 0.395454, -0.124479 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye5" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0171021, -0.00419954, 0.00909272, 0.00517116, 0.0191114, -0.000899483, -0.00857745, 0.00314863, 0.0175872, 4.01169, 0.370791, 2.49175 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye6" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0171021, -0.00419954, 0.00909272, 0.00517116, 0.0191114, -0.000899483, -0.00857745, 0.00314863, 0.0175872, 4.06928, 0.365095, 2.60313 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye7" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0184156, -0.00522456, -0.00513486, 0.00517116, 0.0191114, -0.000899483, 0.00518862, -0.000503992, 0.0191212, 4.05674, 0.370791, 4.18891 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye8" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0184156, -0.00522456, -0.00513486, 0.00517116, 0.0191114, -0.000899483, 0.00518862, -0.000503992, 0.0191212, 4.02423, 0.365095, 4.31 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye3" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0195426, 0.00166029, -0.00285075, -0.00239556, 0.0189168, -0.00540492, 0.00226818, 0.00567409, 0.0188536, 4.81241, 0.385057, 1.21652 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye4" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0195426, 0.00166029, -0.00285075, -0.00239556, 0.0189168, -0.00540492, 0.00226818, 0.00567409, 0.0188536, 4.79435, 0.350829, 1.33591 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye9" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0195426, 0.00166029, -0.00285075, -0.00239556, 0.0189168, -0.00540492, 0.00226818, 0.00567409, 0.0188536, 4.2318, 0.385057, 5.49047 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye10" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0195426, 0.00166029, -0.00285075, -0.00239556, 0.0189168, -0.00540492, 0.00226818, 0.00567409, 0.0188536, 4.21374, 0.350829, 5.60986 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye11" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0115617, 0.0039721, -0.0155995, -0.00103736, 0.0193502, 0.00415827, 0.0160638, -0.00160928, 0.0114961, 4.27216, 0.354776, 7.02695 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye12" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0115617, 0.0039721, -0.0155995, -0.00103736, 0.0193502, 0.00415827, 0.0160638, -0.00160928, 0.0114961, 4.17338, 0.381109, 7.09975 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye13" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0115617, 0.0039721, -0.0155995, -0.0121881, 0.0147063, -0.00528867, 0.0105154, 0.0126784, 0.0110218, 4.27216, 0.384689, 9.61446 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye14" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0115617, 0.0039721, -0.0155995, -0.0121881, 0.0147063, -0.00528867, 0.0105154, 0.0126784, 0.0110218, 4.17338, 0.351197, 9.68426 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye15" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0115358, 0.00389944, -0.015637, -0.00180601, 0.0194219, 0.00351094, 0.0160144, -0.000618645, 0.0116599, 4.27228, 0.356825, 13.8021 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="Eye16" type="MeshInstance" parent="Events/Intruders/Intruder1"]
+transform = Transform( 0.0115358, 0.00389944, -0.015637, -0.00180601, 0.0194219, 0.00351094, 0.0160144, -0.000618645, 0.0116599, 4.17326, 0.37906, 13.876 )
+mesh = SubResource( 13 )
+material/0 = ExtResource( 10 )
+
+[node name="anim" type="AnimationPlayer" parent="Events/Intruders/Intruder1"]
+root_node = NodePath("../../../..")
+anims/end = SubResource( 16 )
+anims/start = SubResource( 15 )
+
+[node name="EventTimer" type="Timer" parent="Events"]
+wait_time = 25.0
+
+[connection signal="body_entered" from="Colliders/Knocking" to="Colliders/Knocking" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Colliders/Knocking" to="Colliders/Knocking" method="_on_Area_body_exited"]
+[connection signal="body_entered" from="Colliders/Knocking2" to="Colliders/Knocking2" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Colliders/Knocking2" to="Colliders/Knocking2" method="_on_Area_body_exited"]
+[connection signal="body_entered" from="Colliders/Knocking3" to="Colliders/Knocking3" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Colliders/Knocking3" to="Colliders/Knocking3" method="_on_Area_body_exited"]
+[connection signal="body_entered" from="Colliders/Knocking4" to="Colliders/Knocking4" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Colliders/Knocking4" to="Colliders/Knocking4" method="_on_Area_body_exited"]
+[connection signal="visibility_changed" from="Events/Intruders/Intruder1" to="Events/Intruders" method="_on_Intruder1_visibility_changed"]
+[connection signal="timeout" from="Events/EventTimer" to="Events" method="_on_EventTimer_timeout"]

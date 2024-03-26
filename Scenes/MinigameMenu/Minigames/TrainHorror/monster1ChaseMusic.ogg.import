@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/monster1ChaseMusic.ogg-3154676427963e7a64588dfe9f9ecee1.oggstr"
+
+[deps]
+
+source_file="res://Scenes/MinigameMenu/Minigames/TrainHorror/monster1ChaseMusic.ogg"
+dest_files=[ "res://.import/monster1ChaseMusic.ogg-3154676427963e7a64588dfe9f9ecee1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

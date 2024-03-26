@@ -58,6 +58,11 @@ var availableChoices : Dictionary = {
 		"name":"\"Liepāja un Eiropa\"",
 		"desc":"2 dažādas lietas, cieši saistītas. Starp Eiropu un Liepāju ir savu veidu attiecības. Šeit varat uzzināt visu par to!",
 		"scene":"eiropa_quiz"
+	},
+	"Horror":{
+		"name":"\"Liepājas Tramvajs\"",
+		"desc":"Izdzīvojiet nakti tramvajā! Izvairies no anomālijām, mēģiniet censties, lai to skaits nav lielāks par 3!",
+		"scene":"Horror"
 	}	
 }
 
