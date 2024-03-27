@@ -134,6 +134,8 @@ func reseteverything():
 	$Flashlight2/pda/Points.text = str(points)+"pt."
 
 func endgame():
+	SoundManager.stop("ambiencetrain")
+	SoundManager.stop("chase")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	Global.score += points
 	

@@ -60,7 +60,7 @@ var availableChoices : Dictionary = {
 		"scene":"eiropa_quiz"
 	},
 	"Horror":{
-		"name":"\"Liepājas Tramvajs\"",
+		"name":"\"Liepājas Tramvajs (DEBUG)\"",
 		"desc":"Izdzīvojiet nakti tramvajā! Izvairies no anomālijām, mēģiniet censties, lai to skaits nav lielāks par 3!",
 		"scene":"Horror"
 	}	
@@ -69,6 +69,9 @@ var availableChoices : Dictionary = {
 func pickActivitiesRandomly():
 	activitiesPicked = true
 	var temp = availableChoices.duplicate(true)
+	for i in temp.keys():
+		if "(DEBUG)" in temp[i]["name"]:
+			temp.erase(i)
 	for i in allowedActivities:
 		var random_key = temp.keys()[randi() % temp.size()]
 		var activity = temp[random_key]
@@ -109,7 +112,7 @@ func countMinigames():
 	var counter : int = -1
 	var keys = availableChoices.keys()
 	for i in keys:
-		if availableChoices[i]["name"] != "Null":
+		if availableChoices[i]["name"] != "Null" and not "(DEBUG)" in availableChoices[i]["name"]:
 			counter += 1
 	print("Count: ", counter)		
 	return counter	

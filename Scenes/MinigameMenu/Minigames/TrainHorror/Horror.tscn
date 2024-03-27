@@ -330,6 +330,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58763, 1.54606, 1.19335 )
 stream = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="Tutorial" type="Control" parent="."]
 visible = false
@@ -485,7 +486,6 @@ anims/end = SubResource( 16 )
 anims/start = SubResource( 15 )
 
 [node name="EventTimer" type="Timer" parent="Events"]
-wait_time = 25.0
 
 [connection signal="body_entered" from="Colliders/Knocking" to="Colliders/Knocking" method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Colliders/Knocking" to="Colliders/Knocking" method="_on_Area_body_exited"]

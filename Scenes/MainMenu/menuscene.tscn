@@ -4209,6 +4209,10 @@ transform = Transform( 87.6529, 0, 0, 0, 87.6529, 0, 0, 0, 87.6529, -4.79944, 5.
 light_color = Color( 0.996078, 0.658824, 0.0117647, 1 )
 omni_range = 0.822
 
+[node name="CheckDate" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="input_event" from="CakeDecor/Area" to="." method="_on_Area_input_event"]
 [connection signal="mouse_entered" from="CakeDecor/Area" to="." method="_on_Area_mouse_entered"]
 [connection signal="mouse_exited" from="CakeDecor/Area" to="." method="_on_Area_mouse_exited"]
@@ -4262,3 +4266,4 @@ omni_range = 0.822
 [connection signal="input_event" from="Leaderboard/Arrow/Area2" to="Leaderboard" method="_on_Area2_input_event"]
 [connection signal="mouse_entered" from="Leaderboard/Arrow/Area2" to="Leaderboard" method="_on_Area2_mouse_entered"]
 [connection signal="mouse_exited" from="Leaderboard/Arrow/Area2" to="Leaderboard" method="_on_Area2_mouse_exited"]
+[connection signal="timeout" from="CheckDate" to="." method="_on_CheckDate_timeout"]

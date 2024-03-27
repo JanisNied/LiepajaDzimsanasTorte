@@ -10,6 +10,14 @@ var arcana4 = preload("res://Assets/fool/emperor.tres")
 var arcana5 = preload("res://Assets/fool/hiero.tres")
 var arcana6 = preload("res://Assets/fool/lovers.tres")
 var arcana7 = preload("res://Assets/fool/chariot.tres")
+var arcana8 = preload("res://Assets/fool/justice.tres")
+
+var clockNormal = preload("res://Scenes/tarotclocknormal.tres")
+var clockDebug = preload("res://Scenes/tarotclockdebug.tres")
+
+var gridn = preload("res://Scenes/gridnormal.tres")
+var gridd = preload("res://Scenes/griddebug.tres")
+
 var choiceKeys = Global.availableChoices.keys()
 var limit = Global.countMinigames()
 var minigameList : Array
@@ -17,8 +25,40 @@ var disallowedIndexes : Array
 var lastdirection = "forward"
 var maxTasks = 6
 
+var orgLimit
+var outcasts = choiceKeys.size() - limit - 1
+var debug = false
+var debounce = false
 
+
+func _input(event):
+	if event is InputEventKey:
+		if event.scancode == KEY_F1 and not debounce:
+			print(chosenArcana)
+			debounce = true
+			if not debug:
+				debug = true
+				limit += outcasts
+				$ColorRect.material = clockDebug
+				$ColorRect2.material = gridd
+			else:
+				$ColorRect.material = clockNormal
+				$ColorRect2.material = gridn
+				if chosenArcana > orgLimit:
+					chosenArcana = 0
+					upd()
+					animForwards(retrieveTexture())
+				debug = false
+				limit -= outcasts
+			debounceInput()		
+			print("Updated Limit: ", limit)		
+
+func debounceInput():
+	yield(get_tree().create_timer(1), "timeout")
+	debounce = false
+				
 func _ready():
+	orgLimit = limit
 	SoundManager.stop("sunMenuMusic")
 	SoundManager.stop("days")
 	SoundManager.play_bgm("betweenDoors")
@@ -142,7 +182,9 @@ func retrieveTexture():
 		6:
 			return arcana6
 		7:
-			return arcana7		
+			return arcana7
+		8:
+			return arcana8		
 	pass		
 
 
