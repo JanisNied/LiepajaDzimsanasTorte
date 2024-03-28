@@ -46,7 +46,7 @@ func _input(event):
 				$ColorRect2.material = gridn
 				if chosenArcana > orgLimit:
 					chosenArcana = 0
-					upd()
+					buttonPressAction()
 					animForwards(retrieveTexture())
 				debug = false
 				limit -= outcasts

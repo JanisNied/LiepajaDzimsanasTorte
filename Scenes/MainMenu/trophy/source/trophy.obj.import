@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/trophy.obj-f6217dab40cd7183bcf83e476f6f9683.mesh"
+
+[deps]
+
+files=[ "res://.import/trophy.obj-f6217dab40cd7183bcf83e476f6f9683.mesh" ]
+
+source_file="res://Scenes/MainMenu/trophy/source/trophy.obj"
+dest_files=[ "res://.import/trophy.obj-f6217dab40cd7183bcf83e476f6f9683.mesh", "res://.import/trophy.obj-f6217dab40cd7183bcf83e476f6f9683.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

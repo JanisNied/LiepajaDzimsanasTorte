@@ -1,4 +1,4 @@
-[gd_scene load_steps=182 format=2]
+[gd_scene load_steps=186 format=2]
 
 [ext_resource path="res://Assets/textures/lake.jpg" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainMenu/rock/Rock030_2K-JPG_NormalGL.jpg" type="Texture" id=2]
@@ -48,6 +48,8 @@
 [ext_resource path="res://Assets/Cake/textures/Icecream Cake.png" type="Texture" id=46]
 [ext_resource path="res://Scenes/MainMenu/pda/pda.obj" type="ArrayMesh" id=47]
 [ext_resource path="res://Scenes/MainMenu/pdamat.tres" type="Material" id=48]
+[ext_resource path="res://Scenes/MainMenu/trophy/textures/TrophyImageTex.png" type="Texture" id=49]
+[ext_resource path="res://Scenes/MainMenu/trophy/source/trophy.obj" type="ArrayMesh" id=50]
 [ext_resource path="res://Assets/The Happy Giraffe Demo.ttf" type="DynamicFontData" id=51]
 [ext_resource path="res://Scenes/MainMenu/LeaderboardLoader.gd" type="Script" id=52]
 [ext_resource path="res://Assets/Postit/Sketchfab_2023_03_21_11_58_42.obj" type="ArrayMesh" id=53]
@@ -108,7 +110,7 @@ shader_param/chromatic_aberration = false
 shader_param/chromatic_aberration_level = 1.0
 shader_param/ripple = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=311]
+[sub_resource type="ShaderMaterial" id=319]
 render_priority = -123
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
@@ -122,9 +124,9 @@ shader_param/detail_noise = true
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=312]
+[sub_resource type="ShaderMaterial" id=320]
 render_priority = -124
-next_pass = SubResource( 311 )
+next_pass = SubResource( 319 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 4, 0 )
@@ -137,9 +139,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=313]
+[sub_resource type="ShaderMaterial" id=321]
 render_priority = -125
-next_pass = SubResource( 312 )
+next_pass = SubResource( 320 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 4, 0 )
@@ -152,9 +154,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=314]
+[sub_resource type="ShaderMaterial" id=322]
 render_priority = -126
-next_pass = SubResource( 313 )
+next_pass = SubResource( 321 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 4, 0 )
@@ -167,9 +169,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=315]
+[sub_resource type="ShaderMaterial" id=323]
 render_priority = -127
-next_pass = SubResource( 314 )
+next_pass = SubResource( 322 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 4, 0 )
@@ -182,9 +184,9 @@ shader_param/detail_noise = false
 shader_param/upper_enabled = true
 shader_param/lower_enabled = false
 
-[sub_resource type="ShaderMaterial" id=316]
+[sub_resource type="ShaderMaterial" id=324]
 render_priority = -128
-next_pass = SubResource( 315 )
+next_pass = SubResource( 323 )
 shader = ExtResource( 11 )
 shader_param/seed = -10000.0
 shader_param/speed = Vector2( 4, 0 )
@@ -2626,6 +2628,20 @@ size = Vector2( 0.03, 0.03 )
 albedo_color = Color( 0.529412, 0.0392157, 0.0392157, 1 )
 albedo_texture = ExtResource( 63 )
 
+[sub_resource type="SpatialMaterial" id=317]
+albedo_texture = ExtResource( 49 )
+metallic = 1.0
+metallic_specular = 0.0
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_gloss = 1.0
+anisotropy_enabled = true
+anisotropy = 1.0
+
+[sub_resource type="SpatialMaterial" id=318]
+albedo_color = Color( 0, 0, 0, 1 )
+albedo_texture = ExtResource( 49 )
+
 [node name="Menu" type="Spatial"]
 script = ExtResource( 15 )
 
@@ -2839,7 +2855,7 @@ transform = Transform( 0.0968904, 0, 0.0247439, 0, 0.1, 0, -0.0247439, 0, 0.0968
 
 [node name="Cloud" parent="Environment" instance=ExtResource( 7 )]
 transform = Transform( 336.68, 0, 0, 0, 336.68, 0, 0, 0, 336.68, 37.024, -14.2278, 287.76 )
-material_override = SubResource( 316 )
+material_override = SubResource( 324 )
 skeleton = NodePath("../..")
 cloud_speed = Vector2( 4, 0 )
 cloud_transform_speed = Vector2( 0.001, 0.001 )
@@ -4212,6 +4228,39 @@ omni_range = 0.822
 [node name="CheckDate" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="trophy2" type="MeshInstance" parent="."]
+transform = Transform( 0.251375, 0, -0.10324, 0, 0.271749, 0, 0.10324, 0, 0.251375, 14.1323, 17.9719, 153.664 )
+mesh = ExtResource( 50 )
+skeleton = NodePath("../ReflectionProbe")
+material/0 = SubResource( 317 )
+material/1 = SubResource( 318 )
+
+[node name="Teksts2" type="Spatial" parent="trophy2"]
+transform = Transform( -5.68395, 0, 0.0894027, 0, 5.83403, 0, -1.31475, 0, -0.386509, 0.11673, 1.54597, -0.509735 )
+script = ExtResource( 25 )
+__meta__ = {
+"_editor_icon": ExtResource( 24 )
+}
+text = "#1"
+text_size = 0.093
+font = null
+align = 2
+color = Color( 0, 0, 0, 1 )
+metallic = 1.0
+roughness = 0.0
+emission_color = Color( 0.784314, 0.596078, 0.239216, 1 )
+emission_strength = 1.79
+extrude = 0.1
+max_steps = 256
+step_size = 1.0
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform( 0.54911, 0, 0.83575, 0, 1, 0, -0.83575, 0, 0.54911, 14.4171, 18.6094, 153.031 )
+max_distance = 100.0
+extents = Vector3( 0.961185, 1, 1 )
+origin_offset = Vector3( 0, 0, -0.350586 )
+box_projection = true
 
 [connection signal="input_event" from="CakeDecor/Area" to="." method="_on_Area_input_event"]
 [connection signal="mouse_entered" from="CakeDecor/Area" to="." method="_on_Area_mouse_entered"]
