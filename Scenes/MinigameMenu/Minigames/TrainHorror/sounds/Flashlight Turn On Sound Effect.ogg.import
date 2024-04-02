@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Flashlight Turn On Sound Effect.ogg-7b5e1b3ee6203295e348c512c1f01078.oggstr"
+
+[deps]
+
+source_file="res://Scenes/MinigameMenu/Minigames/TrainHorror/sounds/Flashlight Turn On Sound Effect.ogg"
+dest_files=[ "res://.import/Flashlight Turn On Sound Effect.ogg-7b5e1b3ee6203295e348c512c1f01078.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends KinematicBody
+
+var speed = 7
+const ACCEL_DEFAULT = 7
+const ACCEL_AIR = 1
+onready var accel = ACCEL_DEFAULT
+var gravity = 9.8
+var jump = 5
+
+var cam_accel = 40
+var mouse_sense = 0.1
+var snap
+
+var direction = Vector3()
+var velocity = Vector3()
+var gravity_vec = Vector3()
+var movement = Vector3()
+
+onready var head = $Head
+onready var camera = $Head/Camera
+
+func _ready():
+	#hides the cursor
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _input(event):
+	#get mouse input for camera rotation
+	if event is InputEventMouseMotion:
+		rotate_y(deg2rad(-event.relative.x * mouse_sense))
+		head.rotate_x(deg2rad(-event.relative.y * mouse_sense))
+		head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
+
+func _process(delta):
+	#camera physics interpolation to reduce physics jitter on high refresh-rate monitors
+	if Engine.get_frames_per_second() > Engine.iterations_per_second:
+		camera.set_as_toplevel(true)
+		camera.global_transform.origin = camera.global_transform.origin.linear_interpolate(head.global_transform.origin, cam_accel * delta)
+		camera.rotation.y = rotation.y
+		camera.rotation.x = head.rotation.x
+	else:
+		camera.set_as_toplevel(false)
+		camera.global_transform = head.global_transform
+		
+func _physics_process(delta):
+	#get keyboard input
+	direction = Vector3.ZERO
+	var h_rot = global_transform.basis.get_euler().y
+	var f_input = Input.get_action_strength(\"down\") - Input.get_action_strength(\"up\")
+	var h_input = Input.get_action_strength(\"right\") - Input.get_action_strength(\"left\")
+	direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()
+	
+	#jumping and gravity
+	if is_on_floor():
+		snap = -get_floor_normal()
+		accel = ACCEL_DEFAULT
+		gravity_vec = Vector3.ZERO
+	else:
+		snap = Vector3.DOWN
+		accel = ACCEL_AIR
+		gravity_vec += Vector3.DOWN * gravity * delta
+		
+	if Input.is_action_just_pressed(\"space\") and is_on_floor():
+		snap = Vector3.ZERO
+		gravity_vec = Vector3.UP * jump
+	
+	#make it move
+	velocity = velocity.linear_interpolate(direction * speed, accel * delta)
+	movement = velocity + gravity_vec
+	
+	move_and_slide_with_snap(movement, snap, Vector3.UP)
+	
+	
+	
+"
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.5
+
+[sub_resource type="CapsuleMesh" id=2]
+radius = 0.5
+
+[node name="FPS" type="KinematicBody"]
+script = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -0.00172377, 0, -0.034059 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+mesh = SubResource( 2 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+fov = 90.0

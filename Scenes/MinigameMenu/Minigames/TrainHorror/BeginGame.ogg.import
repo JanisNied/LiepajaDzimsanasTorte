@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BeginGame.ogg-514b132f876bc17ff1f82705577d6e5b.oggstr"
+
+[deps]
+
+source_file="res://Scenes/MinigameMenu/Minigames/TrainHorror/BeginGame.ogg"
+dest_files=[ "res://.import/BeginGame.ogg-514b132f876bc17ff1f82705577d6e5b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

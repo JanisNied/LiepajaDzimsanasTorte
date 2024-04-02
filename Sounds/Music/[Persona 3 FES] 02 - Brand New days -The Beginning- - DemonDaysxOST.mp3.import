@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/[Persona 3 FES] 02 - Brand New days -The Beginning- - DemonDaysxOST.mp3-c6ca66aca551a5b798d326a1a0a782b3.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/[Persona 3 FES] 02 - Brand New days -The Beginning- - DemonDaysxOST.mp3"
+dest_files=[ "res://.import/[Persona 3 FES] 02 - Brand New days -The Beginning- - DemonDaysxOST.mp3-c6ca66aca551a5b798d326a1a0a782b3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

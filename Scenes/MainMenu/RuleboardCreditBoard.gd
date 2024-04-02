@@ -18,5 +18,5 @@ func _on_Area_mouse_entered():
 
 
 func _on_Area_mouse_exited():
-	$Arrow.modulate = Color(0.21, 0.21, 0.21)
+	$Arrow.modulate = Color(8.54, 0.16, 0.05)
 	pass
